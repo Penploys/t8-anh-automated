@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["dom",
+      "es2020", "esnext.asynciterable"
+    ],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "baseUrl": ".",
+    "paths": {
+      "@api-services/*": ["api-services/*"],
+      "@elements/*": ["elements/*"],
+      "@fixtures/*": ["fixtures/*"],
+      "@services/*": ["services/*"],
+      "@tests-e2e/*": ["tests-e2e/*"],
+      "@tests-api/*": ["tests-api/*"],
+    },
+    "plugins": [{
+        "transform": "typescript-transform-paths"
+      },
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true
+      }
+    ],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "pretty": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "allowJs": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "declaration": true
+  },
+  "include": [
+    "api-services/**/*",
+    "elements/**/*",
+    "fixtures/**/*",
+    "services/**/*",
+    "tests-e2e/**/*",
+    "tests-api/**/*",
+  ],
+  "exclude": ["node_modules"]
+}

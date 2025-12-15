@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"helixquar.randomeverything",
+		"bierner.markdown-mermaid",
+		"streetsidesoftware.code-spell-checker",
+		"gruntfuggly.todo-tree",
+		"ms-playwright.playwright",
+		"yzhang.markdown-all-in-one"
+	]
+}

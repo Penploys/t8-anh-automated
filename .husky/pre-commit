@@ -1,0 +1,1 @@
+pnpm exec eslint ./api-services ./elements ./fixtures ./services ./tests-e2e ./tests-api --fix

@@ -1,0 +1,16 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": [
+        "javascript"
+    ],
+    "editor.tabSize": 2,
+    "markdown.extension.toc.levels": "3..6",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "cSpell.words": [
+        "endregion",
+        "healthcheck",
+        "juzmatch"
+    ]
+}
