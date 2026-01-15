@@ -1,0 +1,52 @@
+{
+  "memberPolicyDetailTabs": {
+    "hospital": {
+      "coverageInfo": true,
+      "claimsHistory": true,
+      "memberInformation": true,
+      "memo": false,
+      "incident": false,
+      "exclusion": true,
+      "fileAttachments": false,
+      "medicalRecords": false,
+      "endorsement": false,
+      "simBCode": false
+    },
+    "surveyor": {
+      "coverageInfo": true,
+      "claimsHistory": true,
+      "memberInformation": true,
+      "memo": true,
+      "incident": true,
+      "exclusion": true,
+      "fileAttachments": true,
+      "medicalRecords": true,
+      "endorsement": true,
+      "simBCode": true
+    }
+  },
+  "claimManagementCreate": {
+    "hospital": {
+
+    },
+    "surveyor": {
+
+    }
+  },
+  "claimManagementDetail": {
+    "hospital": {
+
+    },
+    "surveyor": {
+
+    }
+  },
+  "claimManagementEdit": {
+    "hospital": {
+
+    },
+    "surveyor": {
+
+    }
+  }
+}

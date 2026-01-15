@@ -1,0 +1,34 @@
+# 1. Dependencies
+node_modules
+
+# 2. Build Outputs
+dist
+build
+out
+coverage
+
+# 3. Playwright Artifacts
+test-results/
+playwright-report/
+blob-report/
+*.png
+*.jpg
+*.jpeg
+*.webm
+*.zip
+
+# 4. Package Manager Files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# 5. System & IDE Files
+.DS_Store
+.idea
+.vscode
+*.log
+
+# 6. Environment Files
+.env
+.env.local
+.env.*

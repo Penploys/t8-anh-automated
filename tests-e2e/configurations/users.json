@@ -1,6 +1,162 @@
 {
-  "user1": {
-    "email": "demo01@demo.com",
-    "password": "Welcome1"
+  "dev": {
+    "providerAdmissionUser": {
+    "email": "ah-dev+provider-admission@horixon-t8.com",
+    "password": "Passw0rd"
+    },
+
+    "providerRegistrationUser": {
+      "email": "ah-dev+provider-registration@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "providerCashierIPDUser": {
+      "email": "ah-dev+provider-cashier-ipd@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "providerCashierOPDUser": {
+      "email": "ah-dev+provider-cashier-opd@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "providerFinanceUser": {
+      "email": "ah-dev+provider-finance@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "clinicUser": {
+      "email": "ah-dev+clinic@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "claimAdminUser": {
+      "email": "ah-dev+claim-admin@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "claimAssessorUser": {
+      "email": "ah-dev+claim-assessor@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "claimManagerUser": {
+      "email": "ah-dev+claim-manager@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "insurerClaimStaffUser": {
+      "email": "ah-dev+insurer-claim-staff@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "insurerDataReportUser": {
+      "email": "ah-dev+insurer-data-report@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "supervisorUser": {
+      "email": "ah-dev+supervisor@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "callCenterUser": {
+      "email": "ah-dev+call-center@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "faxClaimUser": {
+      "email": "ah-dev+fax-claim@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "claimDirectorUser": {
+      "email": "ah-dev+director@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+    "providerManagerUser": {
+      "email": "ah-dev+provider-manager@horixon-t8.com",
+      "password": "Passw0rd"
+    }
+  },
+  "uat": {
+    "providerAdmissionUser": {
+    "email": "ah-test+pt-provider-admission@horixon-t8.com",
+    "password": "Passw0rd"
+    },
+
+    "providerRegistrationUser": {
+      "email": "ah-test+pt-provider-registration@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "providerCashierIPDUser": {
+      "email": "ah-test+pt-cashier-ipd@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "providerCashierOPDUser": {
+      "email": "ah-test+pt-cashier-opd@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "providerFinanceUser": {
+      "email": "ah-test+pt-provider-finance@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "clinicUser": {
+      "email": "ah-test+clinic@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "claimAdminUser": {
+      "email": "ah-dev+claim-admin@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "claimAssessorUser": {
+      "email": "ah-dev+claim-assessor@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "claimManagerUser": {
+      "email": "ah-dev+claim-manager@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "insurerClaimStaffUser": {
+      "email": "ah-dev+insurer-claim-staff@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "insurerDataReportUser": {
+      "email": "ah-dev+insurer-data-report@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "supervisorUser": {
+      "email": "ah-dev+supervisor@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "callCenterUser": {
+      "email": "ah-dev+call-center@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "faxClaimUser": {
+      "email": "ah-test+fax-claim@horixon-t8.com",
+      "password": "Passw0rd"
+    },
+
+    "claimDirectorUser": {
+      "email": "",
+      "password": "Passw0rd"
+    },
+    "providerManagerUser": {
+      "email": "",
+      "password": "Passw0rd"
+    }
   }
 }

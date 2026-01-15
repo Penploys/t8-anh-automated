@@ -1,0 +1,34 @@
+{
+  "uat": {
+    "copay": {
+      "ha": {
+        "ipd": {
+          "positive": {
+            "preArrangement": {
+              "assign": {
+                "assignees": "",
+                "claimType": "Credit claim",
+                "claimServiceType": "IPD",
+                "claimStage": "Pre arrangement",
+                "claimStatus": "Submitted",
+                "name": "วิภาวีร์ ศรีนิธี",
+                "assignment": "unassigned",
+                "hospitalName": "โรงพยาบาลป่าตอง"
+              },
+              "authorize": {
+                "assignees": "",
+                "claimType": "Credit claim",
+                "claimServiceType": "IPD",
+                "claimStage": "Pre arrangement",
+                "claimStatus": "Under Review",
+                "name": "วิภาวีร์ ศรีนิธี",
+                "assignment": "assigned",
+                "hospitalName": "โรงพยาบาลป่าตอง"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

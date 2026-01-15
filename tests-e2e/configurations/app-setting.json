@@ -1,3 +1,12 @@
 {
-  "baseURL": "https://web-demo.qahive.com/e-commerce/register"
+  "url": {
+    "dev": {
+      "hospitalLoginURL": "https://ah-claim-dev.horixon-t8.tech/hospital/sign-in",
+      "surveyorLoginURL": "https://ah-claim-dev.horixon-t8.tech/surveyor/sign-in"
+    },
+    "uat": {
+      "hospitalLoginURL": "https://ah-claim-uat.horixon-t8.tech/hospital/sign-in",
+      "surveyorLoginURL": "https://ah-claim-uat.horixon-t8.tech/surveyor/sign-in"
+    }
+  }
 }

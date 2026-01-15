@@ -13,6 +13,7 @@
       "@services/*": ["services/*"],
       "@tests-e2e/*": ["tests-e2e/*"],
       "@tests-api/*": ["tests-api/*"],
+      "@utils/*": ["utils/*"]
     },
     "plugins": [{
         "transform": "typescript-transform-paths"
@@ -44,6 +45,7 @@
     "services/**/*",
     "tests-e2e/**/*",
     "tests-api/**/*",
+    "utils/**/*"
   ],
   "exclude": ["node_modules"]
 }
