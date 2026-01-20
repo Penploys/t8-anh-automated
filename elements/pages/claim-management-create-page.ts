@@ -165,4 +165,62 @@ export class ClaimManagementCreatePage extends BasePage {
 
     await expect(this.page).toHaveURL(/\/claim-management\/detail/i)
   }
+
+  async getCoverageRemaining() {
+    await this.page.waitForTimeout(1000)
+
+    const coverageRemainingData: any[] = []
+
+    // Find all table rows in Coverage details section
+    const tableRows = this.page.locator('table tbody tr')
+    const rowCount = await tableRows.count()
+
+    for (let i = 0; i < rowCount; i++) {
+      const row = tableRows.nth(i)
+      const cells = row.locator('td')
+      const cellCount = await cells.count()
+
+      // Skip rows with no cells or only action cells
+      if (cellCount < 2) continue
+
+      try {
+        // Extract benefit type (first cell)
+        const benefitTypeCell = cells.nth(0)
+        const benefitType = await benefitTypeCell.textContent()
+
+        // Extract sub benefit (second cell)
+        const subBenefitCell = cells.nth(1)
+        const subBenefit = await subBenefitCell.textContent()
+
+        // Extract limit, usage, and remaining (columns 3, 4, 5)
+        if (cellCount >= 5) {
+          const limitCell = cells.nth(2)
+          const limitText = await limitCell.textContent()
+
+          const usageCell = cells.nth(3)
+          const usageText = await usageCell.textContent()
+
+          const remainingCell = cells.nth(4)
+          const remainingText = await remainingCell.textContent()
+
+          if (benefitType && benefitType.trim()) {
+            coverageRemainingData.push({
+              benefitType: benefitType.trim(),
+              subBenefit: subBenefit?.trim() || '-',
+              limit: limitText?.trim() || '-',
+              usage: usageText?.trim() || '-',
+              remaining: remainingText?.trim() || '-'
+            })
+          }
+        }
+      } catch (error) {
+        // Skip rows that cannot be processed
+        continue
+      }
+    }
+
+    return coverageRemainingData
+  }
+
+  // async validateCoverageClaimSurveyor(ipdCoverages: any[]) {}
 }

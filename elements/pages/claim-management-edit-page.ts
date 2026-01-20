@@ -1,10 +1,12 @@
 import { Locator, expect } from '@playwright/test'
 import { BasePage } from '../base-page'
+import path from 'path'
 
 export class ClaimManagementEditPage extends BasePage {
   // Tabs
   readonly mainBenefitInfoTabLocator: Locator = this.page.getByRole('tab', { name: /Main benefit information/ })
   readonly treatmentInfoTabLocator: Locator = this.page.getByRole('tab', { name: /Treatment information \/ Billing/ })
+  readonly uploadDocumentsTabLocator: Locator = this.page.getByRole('tab', { name: /Upload documents/ })
 
   // Dropdowns (MUI Select Triggers) in Main benefit information tab
   readonly claimTypeSelectLocator: Locator = this.page.locator('#mui-component-select-caseType')
@@ -41,6 +43,9 @@ export class ClaimManagementEditPage extends BasePage {
   // Grid cell
   readonly gridVirtualScroller: Locator = this.page.locator('.MuiDataGrid-virtualScroller').last()
 
+  // File input for uploading documents
+  readonly fileInputLocator: Locator = this.page.locator('input[type="file"]').first()
+
   // Actions
   readonly addItemBtnIcd10Locator: Locator = this.page
     .locator('div.MuiPaper-root:has(h6:text-is("ICD-10"))')
@@ -57,6 +62,8 @@ export class ClaimManagementEditPage extends BasePage {
   readonly saveBtnLocator: Locator = this.page.getByRole('button', { name: /Save|บันทึก/ })
   readonly saveChangesBtnLocator: Locator = this.page.getByRole('button', { name: /Save changes|บันทึกการเปลี่ยนแปลง/ })
   readonly viewDetailBtnLocator: Locator = this.page.getByRole('button', { name: /View detail|ดูรายละเอียด/ })
+  readonly resubmitBtnLocator: Locator = this.page.getByRole('button', { name: /Re-submit|ส่งใหม่/ })
+  readonly confirmResubmitBtnLocator: Locator = this.page.getByRole('button', { name: /Re-submit/ }).last()
 
   // Helper methods for dynamic locators
   getIcd10CodeInputLocator(index: number): Locator {
@@ -535,10 +542,37 @@ export class ClaimManagementEditPage extends BasePage {
     }
   }
 
-  async saveEditClaim() {
+  async uploadDocument(fileName: string) {
+    await this.uploadDocumentsTabLocator.waitFor({ state: 'visible' })
+    await this.uploadDocumentsTabLocator.click()
+
+    await this.page.waitForTimeout(3000)
+
+    await this.fileInputLocator.waitFor({ state: 'attached' })
+
+    const filePath = path.join(process.cwd(), 'test-data', 'upload-data', fileName)
+    await this.fileInputLocator.setInputFiles(filePath)
+
+    const fileRow = this.page.getByText(fileName, { exact: false }).first()
+    await expect(fileRow).toBeVisible({ timeout: 10000 })
+
+    await this.page.waitForTimeout(5000)
+
+    console.log(`✓ Uploaded ${fileName} successfully (Progress 100%)`)
+  }
+
+  async saveChangeClaim() {
+    await this.saveBtnLocator.waitFor({ state: 'visible' })
     await this.saveBtnLocator.click()
     await this.saveChangesBtnLocator.waitFor({ state: 'visible' })
     await this.saveChangesBtnLocator.click()
+  }
+
+  async resubmitClaim() {
+    await this.resubmitBtnLocator.waitFor({ state: 'visible' })
+    await this.resubmitBtnLocator.click()
+    await this.confirmResubmitBtnLocator.waitFor({ state: 'visible' })
+    await this.confirmResubmitBtnLocator.click()
   }
 
   async viewClaimDetail() {

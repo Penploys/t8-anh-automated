@@ -1,5 +1,29 @@
 {
   "uat": {
+    "pendingInfo": {
+      "reason": "Additional Documents Required",
+      "completeMedicalHistory": true,
+      "completeMedicalHistoryDate": "Date range",
+      "completeMedicalHistoryFrom": "01/01/2025",
+      "completeMedicalHistoryTo": "01/01/2026",
+      "opdCardOofTreatment": true,
+      "opdCardOofTreatmentDate": "Year range",
+      "opdCardOofTreatmentFrom": "2025",
+      "opdCardOofTreatmentTo": "2026",
+      "doctorOrder": true,
+      "progressiveNote": false,
+      "medicalRecord": false,
+      "graphicSheet": false,
+      "nursesNote": false,
+      "operativeNote": false,
+      "vitalSignChart": false,
+      "form1": false,
+      "labAndPathologyResults": false,
+      "xRayUltrasoundMriCtEstEchoResults": false,
+      "others": true,
+      "otherRemark": "Please provide the required documents as soon as possible",
+      "claimStatusUpdateRemark": "Requesting additional documents for further review"
+    },
     "copay": {
       "ha": {
         "ipd": {
@@ -56,9 +80,10 @@
                     "no": "1",
                     "billingCode": "2.1(1)",
                     "billingName": "2.1(1) - Intensive Care Unit (ผู้ป่วยหนัก)",
+                    "billingNameResult": "2.1(1) - ค่าห้องหรือค่าเตียงผู้ป่วยหนัก (ICU)",
                     "benefit": "Room and Board",
                     "schedule": "0",
-                    "ิcopay": "90.00",
+                    "copay": "90.00",
                     "noOfDays": "2",
                     "incurredAmount": "30000.00",
                     "discount": "100.55",
@@ -76,9 +101,10 @@
                     "no": "2",
                     "billingCode": "2.1",
                     "billingName": "2.1 - ค่าห้องพักผู้ป่วยใน (Inpatient Room) (ผู้ป่วยปกติ)",
+                    "billingNameResult": "2.1 - ค่าห้องพักผู้ป่วยใน (Inpatient Room)",
                     "benefit": "Room and Board",
                     "schedule": "0",
-                    "ิcopay": "90.00",
+                    "copay": "90.00",
                     "noOfDays": "1",
                     "incurredAmount": "6000.00",
                     "discount": "200.00",
@@ -96,9 +122,10 @@
                     "no": "3",
                     "billingCode": "2.3.1",
                     "billingName": "2.3.1 - อาหารผู้ป่วยในมาตรฐาน (Standard Inpatient Food) (ผู้ป่วยปกติ)",
+                    "billingNameResult": "2.3.1 - อาหารผู้ป่วยในมาตรฐาน (Standard Inpatient Food)",
                     "benefit": "Room and Board",
                     "schedule": "0",
-                    "ิcopay": "90.00",
+                    "copay": "90.00",
                     "noOfDays": "1",
                     "incurredAmount": "3000.00",
                     "discount": "0.00",
@@ -116,9 +143,10 @@
                     "no": "4",
                     "billingCode": "1.1",
                     "billingName": "1.1 - ค่ายาและสารอาหารทางหลอดเลือด(Drugs & Parenteral Nutrition) (ค่ายา-เวชภัณฑ์)",
+                    "billingNameResult": "1.1 - ค่ายาและสารอาหารทางหลอดเลือด(Drugs & Parenteral Nutrition)",
                     "benefit": "General Expense",
                     "schedule": "0",
-                    "ิcopay": "90.00",
+                    "copay": "90.00",
                     "noOfDays": "2",
                     "incurredAmount": "3000.00",
                     "discount": "0.00",
@@ -136,9 +164,10 @@
                     "no": "5",
                     "billingCode": "1.1.12",
                     "billingName": "1.1.12 - ค่ายาและสารอาหารในห้องผ่าตัด (ค่ายา-เวชภัณฑ์ และอุปกรณ์ผ่าตัด)",
+                    "billingNameResult": "1.1.12 - ค่ายาและสารอาหารในห้องผ่าตัด",
                     "benefit": "General Expense",
                     "schedule": "0",
-                    "ิcopay": "90.00",
+                    "copay": "90.00",
                     "noOfDays": "1",
                     "incurredAmount": "2000.00",
                     "discount": "0.00",
@@ -156,6 +185,7 @@
                     "no": "6",
                     "billingCode": "1.28",
                     "billingName": "1.28 - ค่าผู้ประกอบวิชาชีพเวชกรรม ตรวจรักษาทั่วไป (Physician Evaluation & Management Services) (ค่าแพทย์ตรวจ)",
+                    "billingNameResult": "1.28 - ค่าผู้ประกอบวิชาชีพเวชกรรม ตรวจรักษาทั่วไป (Physician Evaluation & Management Services)",
                     "benefit": "General Expense",
                     "schedule": "0",
                     "copay": "90.00",
@@ -174,6 +204,18 @@
                   }
                 ],
                 "billingRemark": "Billing remark test for ipd copay"
+              },
+              "billingTotal": {
+                "incurredAmount": "46000.00",
+                "discount": "300.55",
+                "netAmount": "45699.45",
+                "deduct": "0.00",
+                "decline": "0.00",
+                "coveredByOtherParties": "0.00",
+                "payableAmount": "28800.00",
+                "majorMedical": "0.00",
+                "exceededLimit": "16899.45",
+                "recovery": "0.00"
               }
             }          
           },
@@ -192,98 +234,6 @@
         "er24": {},
         "maternity": {
           "positive": {
-            "preArrangement": {
-              "draftInfo": {
-                "claimType": "Pre-arrangement",
-                "benefitType": "Maternity",
-                "providerNameTh": "โรงพยาบาลป่าตอง",
-                "providerNameEn": "Patong Hospital",
-                "causeOfLoss": "Illness",
-                "appointmentDate": true,
-                "admissionDate": null,
-                "estimatedIpdDays": "3",
-                "estimatedExpenses": "70000.45",
-                "dischargeDate": null,
-                "accidentDate": null,
-                "isAlcoholInvolved": null,
-                "symptom": "ปวดท้อง คลื่นไส้ อาเจียน",
-                "openClaimWithNewLimit": null
-              },
-              "billingInfo": {
-                "physicianName": "Jeeranan",
-                "medicalLicenseNumber": "999999",
-                "icd10": [
-                  {
-                    "code": "O60.0",
-                    "name": "O60.0 - Preterm labor with preterm delivery",
-                    "remark": "เจ็บท้องคลอดก่อนกำหนด"
-                  },
-                  {
-                    "code": "O21.0",
-                    "name": "O21.0 - Mild hyperemesis gravidarum",
-                    "remark": "คลื่นไส้อาเจียนในหญิงตั้งครรภ์"
-                  }
-                ],
-                "icd9": [
-                  {
-                    "code": "72.0",
-                    "name": "72.0 - Preterm labor",
-                    "remark": ""
-                  },
-                  {
-                    "code": "64.0",
-                    "name": "64.0 - Hyperemesis gravidarum",
-                    "remark": ""
-                  }
-                ],
-                "billingNo": "TEST-222222",
-                "billingDate": true,
-                "billSubmitterType": "Provider",
-                "billingItems": [
-                  {
-                    "no": "1",
-                    "billingCode": "5.1",
-                    "billingName": "5.1 - ค่าฝากครรภ์ (Antenatal Care) (ค่าฝากครรภ์)",
-                    "benefit": "Maternity Care",
-                    "schedule": "0",
-                    "copay": "90.00",
-                    "noOfDays": "1",
-                    "incurredAmount": "5000.00",
-                    "discount": "0.00",
-                    "netAmount": "5000.00",
-                    "deduct": "0.00",
-                    "decline": "0.00",
-                    "coveredByOtherParties": "0.00",
-                    "payableAmount": "4500.00",
-                    "majorMedical": "0.00",
-                    "exceededLimit": "500.00",
-                    "recovery": "0.00",
-                    "remark": ""
-                  },
-                  {
-                    "no": "2",
-                    "billingCode": "5.3",
-                    "billingName": "5.3 - ค่าคลอดบุตร (Delivery Care) (ค่าคลอด)",
-                    "benefit": "Maternity Care",
-                    "schedule": "0",
-                    "copay": "90.00",
-                    "noOfDays": "1",
-                    "incurredAmount": "20000.00",
-                    "discount": "0.00",
-                    "netAmount": "20000.00",
-                    "deduct": "0.00",
-                    "decline": "0.00",
-                    "coveredByOtherParties": "0.00",
-                    "payableAmount": "18000.00",
-                    "majorMedical": "0.00",
-                    "exceededLimit": "2000.00",
-                    "recovery": "0.00",
-                    "remark": ""
-                  }
-                ],
-                "billingRemark": "Billing remark test for maternity and major medical"
-              }
-            },
             "ipdAdmission": {}
           },
           "negative": {}

@@ -14,6 +14,11 @@ export class BasePage {
   }
 
   async logout() {
+    // Close any dialogs
+    await this.page.keyboard.press('Escape')
+    await this.page.waitForTimeout(500)
+
+    // Proceed with logout
     await this.userProfileBtnLocator.waitFor({ state: 'visible' })
     await this.userProfileBtnLocator.click()
 

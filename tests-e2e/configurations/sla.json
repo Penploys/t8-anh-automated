@@ -15,12 +15,22 @@
                 "assignment": "unassigned",
                 "hospitalName": "โรงพยาบาลป่าตอง"
               },
-              "authorize": {
-                "assignees": "",
+              "pendingInfo": {
+                "assignees": "ah-test+fax-claim@horixon-t8.com",
                 "claimType": "Credit claim",
                 "claimServiceType": "IPD",
                 "claimStage": "Pre arrangement",
                 "claimStatus": "Under Review",
+                "name": "วิภาวีร์ ศรีนิธี",
+                "assignment": "assigned",
+                "hospitalName": "โรงพยาบาลป่าตอง"
+              },
+              "authorize": {
+                "assignees": "ah-test+fax-claim@horixon-t8.com",
+                "claimType": "Credit claim",
+                "claimServiceType": "IPD",
+                "claimStage": "Pre arrangement",
+                "claimStatus": "Resubmitted",
                 "name": "วิภาวีร์ ศรีนิธี",
                 "assignment": "assigned",
                 "hospitalName": "โรงพยาบาลป่าตอง"

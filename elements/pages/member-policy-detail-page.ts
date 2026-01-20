@@ -143,6 +143,8 @@ export class MemberPolicyDetailPage extends BasePage {
       simBCode: { locator: this.simBCodeBtnLocator, isVisible: tabsData.simBCode }
     }
 
+    await this.page.waitForTimeout(1000)
+
     // Validate each tab's visibility
     for (const tabInfo of Object.values(tabMappings)) {
       if (tabInfo.isVisible) {
@@ -178,7 +180,10 @@ export class MemberPolicyDetailPage extends BasePage {
     referencePolicyNo4?: string
     referencePolicyNo5?: string
   }) {
+    await this.memberInfoBtnLocator.waitFor({ state: 'visible' })
     await this.memberInfoBtnLocator.click()
+
+    await this.policyStatusLocator.waitFor({ state: 'visible' })
 
     // Validate Policy Status
     if (memberData.policyStatus) {
@@ -347,4 +352,8 @@ export class MemberPolicyDetailPage extends BasePage {
 
     await expect(this.page).toHaveURL(/\/claim-management\/create/i)
   }
+
+  // async validateCoverageDetailSurveyor(policyData: any) {}
+
+  // async validateCoverageDetailHospital(policyData: any) {}
 }

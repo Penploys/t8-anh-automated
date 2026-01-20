@@ -35,6 +35,7 @@ export class MemberPolicyPage extends BasePage {
 
   async ensureLanguage() {
     if (!(await this.languageOptionLocator.isVisible())) {
+      await this.settingsMenuLocator.waitFor({ state: 'visible' })
       await this.settingsMenuLocator.click()
       await this.languageOptionLocator.waitFor({ state: 'visible' })
     }
@@ -65,6 +66,7 @@ export class MemberPolicyPage extends BasePage {
     policyNumber?: string
     citizenId?: string
   }) {
+    await this.searchMenuLocator.waitFor({ state: 'visible' })
     await this.searchMenuLocator.click()
 
     // Select insurer
@@ -84,6 +86,122 @@ export class MemberPolicyPage extends BasePage {
 
     await this.searchBtnLocator.waitFor({ state: 'visible' })
     await this.searchBtnLocator.click()
+  }
+
+  async MemberSearchByName(memberData: {
+    insurerName?: string
+    lossDate?: string
+    nameTh?: string
+    surnameTh?: string
+  }) {
+    await this.searchMenuLocator.waitFor({ state: 'visible' })
+    await this.searchMenuLocator.click()
+
+    // Select insurer
+    await this.selectInsurerLocator.waitFor({ state: 'visible' })
+    await this.selectInsurerLocator.click()
+    await this.insurerListLocator.getByRole('option', { name: memberData.insurerName, exact: true }).click()
+
+    // Fill loss date if provided
+    if (memberData.lossDate) {
+      await this.lossDateLocator.fill(memberData.lossDate)
+    }
+
+    // Clear other fields first
+    await this.nameEnLocator.clear()
+    await this.surnameEnLocator.clear()
+    await this.citizenIdLocator.clear()
+    await this.policyNumberLocator.clear()
+    await this.creditCardLocator.clear()
+
+    // Fill only name criteria
+    await this.nameThLocator.fill(memberData.nameTh)
+    await this.surnameThLocator.fill(memberData.surnameTh)
+
+    await this.searchBtnLocator.waitFor({ state: 'visible' })
+    await this.searchBtnLocator.click()
+  }
+
+  async MemberSearchByCitizenId(memberData: { insurerName?: string; lossDate?: string; citizenId?: string }) {
+    await this.searchMenuLocator.waitFor({ state: 'visible' })
+    await this.searchMenuLocator.click()
+
+    // Select insurer
+    await this.selectInsurerLocator.waitFor({ state: 'visible' })
+    await this.selectInsurerLocator.click()
+    await this.insurerListLocator.getByRole('option', { name: memberData.insurerName, exact: true }).click()
+
+    // Fill loss date if provided
+    if (memberData.lossDate) {
+      await this.lossDateLocator.fill(memberData.lossDate)
+    }
+
+    // Clear other fields first
+    await this.nameThLocator.clear()
+    await this.surnameThLocator.clear()
+    await this.nameEnLocator.clear()
+    await this.surnameEnLocator.clear()
+    await this.policyNumberLocator.clear()
+    await this.creditCardLocator.clear()
+
+    // Fill only citizen ID
+    await this.citizenIdLocator.fill(memberData.citizenId)
+
+    await this.searchBtnLocator.waitFor({ state: 'visible' })
+    await this.searchBtnLocator.click()
+  }
+
+  async validateSearchResultsByName(memberData: { nameTh: string; surnameTh: string }) {
+    await this.nameGridLocator.waitFor({ state: 'visible' })
+
+    const allRows = await this.nameGridLocator.locator('[role="row"][data-rowindex]').all()
+
+    if (allRows.length === 0) {
+      throw new Error('No search results found')
+    }
+
+    for (const row of allRows) {
+      const rowText = await row.textContent()
+
+      // Check that both name and surname are present
+      if (!rowText.includes(memberData.nameTh) || !rowText.includes(memberData.surnameTh)) {
+        throw new Error(
+          `Search result contains incorrect data. Expected: ${memberData.nameTh} ${memberData.surnameTh}, Found: ${rowText}`
+        )
+      }
+
+      // Check for duplicates
+      const nameCount = (rowText.match(new RegExp(memberData.nameTh, 'g')) || []).length
+      const surnameCount = (rowText.match(new RegExp(memberData.surnameTh, 'g')) || []).length
+
+      if (nameCount > 1 || surnameCount > 1) {
+        throw new Error(
+          `Search result contains duplicate name/surname. Expected: ${memberData.nameTh} ${memberData.surnameTh} (once), Found: ${rowText}`
+        )
+      }
+    }
+  }
+
+  async validateSearchResultsByCitizenId(memberData: { citizenId: string }) {
+    await this.policyGridLocator.waitFor({ state: 'visible' })
+
+    // Get only data rows - rows that have data-rowindex attribute
+    const allRows = await this.policyGridLocator.locator('[role="row"][data-rowindex]').all()
+
+    if (allRows.length === 0) {
+      throw new Error('No search results found')
+    }
+
+    // Validate each row contains the searched citizen ID
+    for (const row of allRows) {
+      const rowText = await row.textContent()
+
+      if (!rowText.includes(memberData.citizenId)) {
+        throw new Error(
+          `Search result contains incorrect citizen ID. Expected: ${memberData.citizenId}, Found: ${rowText}`
+        )
+      }
+    }
   }
 
   async selectPolicy(memberData: {

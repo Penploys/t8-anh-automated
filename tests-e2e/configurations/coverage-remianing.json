@@ -1,0 +1,328 @@
+{
+  "copay": {
+    "ipd": [
+      {
+        "benefitType": "Max Payable Limit",
+        "subBenefit": "-",
+        "limit": "50,000.00THB per disability",
+        "usage": "0.00THB per disability",
+        "remaining": "50,000.00THB per disability"
+      },
+      {
+        "benefitType": "200,000.00THB per year",
+        "subBenefit": "92,969.84THB per year",
+        "limit": "107,030.16THB per year",
+        "usage": "0.00THB per year",
+        "remaining": "0.00THB per year"
+      },
+      {
+        "benefitType": "Copayment",
+        "subBenefit": "-",
+        "limit": "90:10[ประกัน:ผู้เอาประกัน]",
+        "usage": "0Percentage",
+        "remaining": "0Percentage"
+      },
+      {
+        "benefitType": "Room and Board",
+        "subBenefit": "ICU Room",
+        "limit": "10,000.00THB per day",
+        "usage": "0.00THB per day",
+        "remaining": "10,000.00THB per day"
+      },
+      {
+        "benefitType": "365Day per disability",
+        "subBenefit": "0Day per disability",
+        "limit": "365Day per disability",
+        "usage": "0.00Day per disability",
+        "remaining": "0.00Day per disability"
+      },
+      {
+        "benefitType": "Normal Room",
+        "subBenefit": "365Day per disability",
+        "limit": "0Day per disability",
+        "usage": "365Day per disability",
+        "remaining": "0.00Day per disability"
+      },
+      {
+        "benefitType": "5,000.00THB per day",
+        "subBenefit": "0.00THB per day",
+        "limit": "5,000.00THB per day",
+        "usage": "0.00THB per day",
+        "remaining": "0.00THB per day"
+      },
+      {
+        "benefitType": "General Expense",
+        "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
+        "limit": "50,000.00THB per disability",
+        "usage": "0.00THB per disability",
+        "remaining": "50,000.00THB per disability"
+      },
+      {
+        "benefitType": "Medical practitioner fee for anesthetist (doctor fee) based on the rate in the medical fee manual",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "operating room fee and procedure room fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for organ transplatation x times of the benefits in Item 4 (at least 2x)",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Major Day Surgery Fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for treatment, blood and blood component service fee and nurse service fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "medicine fee, parenteral nutrition fee, medical supplies fee, and surgery and procedure fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medicine fee, Parenteral nutrition fee and medical supplies fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical Examination Fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Doctor's Fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for treatment of cancer by chemotherapy",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for minor operation",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Ambulance fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Max Payable Limit",
+        "subBenefit": "-",
+        "limit": "50,000.00THB per disability",
+        "usage": "0.00THB per disability",
+        "remaining": "50,000.00THB per disability"
+      },
+      {
+        "benefitType": "200,000.00THB per year",
+        "subBenefit": "92,969.84THB per year",
+        "limit": "107,030.16THB per year",
+        "usage": "0.00THB per year",
+        "remaining": "0.00THB per year"
+      },
+      {
+        "benefitType": "Copayment",
+        "subBenefit": "-",
+        "limit": "90:10[ประกัน:ผู้เอาประกัน]",
+        "usage": "0Percentage",
+        "remaining": "0Percentage"
+      },
+      {
+        "benefitType": "Room and Board",
+        "subBenefit": "ICU Room",
+        "limit": "10,000.00THB per day",
+        "usage": "0.00THB per day",
+        "remaining": "10,000.00THB per day"
+      },
+      {
+        "benefitType": "365Day per disability",
+        "subBenefit": "0Day per disability",
+        "limit": "365Day per disability",
+        "usage": "0.00Day per disability",
+        "remaining": "0.00Day per disability"
+      },
+      {
+        "benefitType": "Normal Room",
+        "subBenefit": "365Day per disability",
+        "limit": "0Day per disability",
+        "usage": "365Day per disability",
+        "remaining": "0.00Day per disability"
+      },
+      {
+        "benefitType": "5,000.00THB per day",
+        "subBenefit": "0.00THB per day",
+        "limit": "5,000.00THB per day",
+        "usage": "0.00THB per day",
+        "remaining": "0.00THB per day"
+      },
+      {
+        "benefitType": "General Expense",
+        "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
+        "limit": "50,000.00THB per disability",
+        "usage": "0.00THB per disability",
+        "remaining": "50,000.00THB per disability"
+      },
+      {
+        "benefitType": "Medical practitioner fee for anesthetist (doctor fee) based on the rate in the medical fee manual",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "operating room fee and procedure room fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for organ transplatation x times of the benefits in Item 4 (at least 2x)",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Major Day Surgery Fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for treatment, blood and blood component service fee and nurse service fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "medicine fee, parenteral nutrition fee, medical supplies fee, and surgery and procedure fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medicine fee, Parenteral nutrition fee and medical supplies fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical Examination Fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Doctor's Fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for treatment of cancer by chemotherapy",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medical fee for minor operation",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      },
+      {
+        "benefitType": "Ambulance fee",
+        "subBenefit": "50,000.00THB per disability",
+        "limit": "0.00THB per disability",
+        "usage": "50,000.00THB per disability",
+        "remaining": "0.00THB per disability"
+      }
+    ]
+  }
+}
