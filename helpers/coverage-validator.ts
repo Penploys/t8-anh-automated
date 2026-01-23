@@ -75,6 +75,46 @@ export const validateBenefitSection = (
   }
 };
 
+export const validateHospitalBenefitSection = (
+  policyItems: any[] = [],
+  coverageItems: any[] = []
+) => {
+  const normalize = (v: string) => v.trim().toLowerCase();
+  const toDash = (v: any) => v == null ? '-' : v;
+  const formatNumber = (value: number | string | null | undefined) => {
+    if (value == null || value === '') return '-';
+    const num = typeof value === 'string' ? Number(value) : value;
+    if (Number.isNaN(num)) return String(value);
+    return num.toLocaleString('en-US');
+  };
+  expect(policyItems.length).toBe(coverageItems.length);
+
+  for (let i = 0; i < policyItems.length; i++) {
+    const policy = policyItems[i];
+    const coverage = coverageItems[i];
+
+    // ---------- Main Group ----------
+    expect(normalize(policy.mainGroup ?? ''))
+      .toBe(normalize(coverage.mainGroup));
+
+    // ---------- Sub Benefit ----------
+    expect(normalize(toDash(policy.subBenefit)))
+      .toBe(normalize(coverage.subBenefit));
+
+    // ---------- Limit ----------
+    if (policy.limit != null) {
+      expect(coverage.limit)
+        .toContain(formatNumber(policy.limit));
+    }
+
+    // ---------- Limit Unit ----------
+    if (policy.limitUnit) {
+      expect(coverage.limit)
+        .toContain(policy.limitUnit);
+    }
+  }
+};
+
 export const validateClaimBenefitSection = (
   policyItems: any[] = [],
   coverageItems: any[] = []
@@ -193,6 +233,58 @@ export const validateClaimBenefitSection = (
   }
 };
 
+export const validateHospitalClaimBenefitSection = (
+  policyItems: any[] = [],
+  coverageItems: any[] = []
+) => {
+  const normalize = (v: string) => v.trim().toLowerCase();
+  const toDash = (v: any) => v == null ? '-' : v;
+  const formatNumber = (value: number | string | null | undefined) => {
+    if (value == null || value === '') return '-';
+    const num = typeof value === 'string' ? Number(value) : value;
+    if (Number.isNaN(num)) return String(value);
+    return num.toLocaleString('en-US');
+  };
+  expect(policyItems.length).toBe(coverageItems.length);
+
+  for (let i = 0; i < policyItems.length; i++) {
+    const policy = policyItems[i];
+    const coverage = coverageItems[i];
+
+    // ---------- Main Group ----------
+    expect(normalize(policy.mainGroup ?? ''))
+      .toBe(normalize(coverage.mainGroup));
+
+    // ---------- Sub Benefit ----------
+    expect(normalize(toDash(policy.subBenefit)))
+      .toBe(normalize(coverage.subBenefit));
+
+    // ---------- Limit ----------
+    if (policy.limit != null) {
+      expect(coverage.limit)
+        .toContain(formatNumber(policy.limit));
+    }
+
+    // ---------- Limit Unit ----------
+    if (policy.limitUnit) {
+      expect(coverage.limit)
+        .toContain(policy.limitUnit);
+    }
+
+    // ---------- Usage ----------
+    if (policy.usage != null) {
+      expect(coverage.usage)
+        .toContain(formatNumber(policy.usage));
+    }
+
+    // ---------- Remaining ----------
+    if (policy.remaining != null) {
+      expect(coverage.remaining)
+        .toContain(formatNumber(policy.remaining));
+    }
+  }
+};
+
 export const validateClaimBenefitNotUsageRemainingSection = (
   policyItems: any[] = [],
   coverageItems: any[] = []
@@ -263,5 +355,47 @@ export const validateClaimBenefitNotUsageRemainingSection = (
       expect(coverage.combined)
         .toContain(policy.combinedUnit);
     }
+  }
+};
+
+
+export const validateClaimBenefitNotUsageRemainingSection = (
+  policyItems: any[] = [],
+  coverageItems: any[] = []
+) => {
+  const normalize = (v: string) => v.trim().toLowerCase();
+  const toDash = (v: any) => v == null ? '-' : v;
+  const formatNumber = (value: number | string | null | undefined) => {
+    if (value == null || value === '') return '-';
+    const num = typeof value === 'string' ? Number(value) : value;
+    if (Number.isNaN(num)) return String(value);
+    return num.toLocaleString('en-US');
+  };
+  expect(policyItems.length).toBe(coverageItems.length);
+
+  for (let i = 0; i < policyItems.length; i++) {
+    const policy = policyItems[i];
+    const coverage = coverageItems[i];
+
+    // ---------- Main Group ----------
+    expect(normalize(policy.mainGroup ?? ''))
+      .toBe(normalize(coverage.mainGroup));
+
+    // ---------- Sub Benefit ----------
+    expect(normalize(toDash(policy.subBenefit)))
+      .toBe(normalize(coverage.subBenefit));
+
+    // ---------- Limit ----------
+    if (policy.limit != null) {
+      expect(coverage.limit)
+        .toContain(formatNumber(policy.limit));
+    }
+
+    // ---------- Limit Unit ----------
+    if (policy.limitUnit) {
+      expect(coverage.limit)
+        .toContain(policy.limitUnit);
+    }
+
   }
 };

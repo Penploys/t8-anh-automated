@@ -4,7 +4,9 @@ import path from 'path'
 import fs from 'fs'
 import {
   validateClaimBenefitNotUsageRemainingSection,
-  validateClaimBenefitSection
+  validateHospitalClaimBenefitNotUsageRemainingSection,
+  validateClaimBenefitSection,
+  validateHospitalClaimBenefitSection
 } from '../../helpers/coverage-validator'
 
 export class ClaimManagementCreatePage extends BasePage {
@@ -145,6 +147,73 @@ export class ClaimManagementCreatePage extends BasePage {
     return results
   }
 
+  async extractHospitalClaimCoverageTable(sectionName: string) {
+    const clean = async cell => (await cell.innerText()).replace(/\s+/g, ' ').trim()
+
+    const table = this.page.locator(
+      `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
+    )
+
+    const rows = table.locator('tbody > tr')
+
+    let previousMainGroup = ''
+    let previousSubBenefit = ''
+    ;('')
+
+    const results = []
+
+    for (let i = 0; i < (await rows.count()); i++) {
+      const row = rows.nth(i)
+
+      const valueCells = row.locator("td[class*='css-136xsf8']")
+      const subBenefitCells = row.locator("td[class*='css-1x2df3e']")
+      const mainGroupCells = row.locator("td[class*='css-4jen04']")
+
+      const valueCount = await valueCells.count()
+
+      // ---------- Main Group ----------
+      let mainGroup: string | null = null
+      if ((await mainGroupCells.count()) > 0) {
+        mainGroup = await clean(mainGroupCells.nth(0))
+        if (mainGroup) previousMainGroup = mainGroup
+        else mainGroup = previousMainGroup
+      } else {
+        mainGroup = previousMainGroup
+      }
+
+      // ---------- Sub Benefit ----------
+      let subBenefit: string | null = null
+      if ((await subBenefitCells.count()) > 0) {
+        subBenefit = await clean(subBenefitCells.nth(0))
+        if (subBenefit) previousSubBenefit = subBenefit
+        else subBenefit = previousSubBenefit
+      } else {
+        subBenefit = previousSubBenefit
+      }
+
+      // ---------- Limit / Combined ----------
+      let limit: string | null = null
+      let usage: string | null = null
+      let remaining: string | null = null
+
+      if (valueCount >= 1) {
+        limit = await clean(valueCells.nth(0))
+        usage = await clean(valueCells.nth(1))
+        remaining = await clean(valueCells.nth(2))
+      }
+
+      results.push({
+        mainGroup,
+        subBenefit,
+        limit,
+        usage,
+        remaining
+      })
+    }
+
+    return results
+  }
+
   async getClaimCoverageDetail(productName: string, claimType: string) {
     const results = await this.extractClaimCoverageTable(claimType)
 
@@ -157,6 +226,32 @@ export class ClaimManagementCreatePage extends BasePage {
       fs.mkdirSync(dirPath, { recursive: true })
     }
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
+  }
+
+  async getHospitalClaimCoverageDetail(productName: string, claimType: string) {
+    const results = await this.extractHospitalClaimCoverageTable(claimType)
+
+    const data = {
+      [claimType]: results
+    }
+    const dirPath = path.resolve(process.cwd(), 'test-data', 'actual-data')
+    const filePath = path.join(dirPath, `hospiltal_claim_coverage_${productName}_${claimType}.json`)
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true })
+    }
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
+  }
+
+  async validateHospitalClaimCoverageDetail(calimCoverageData: any, productName: string, claimType: string) {
+    const filePath = path.resolve(
+      process.cwd(),
+      'test-data',
+      'actual-data',
+      `claim_coverage_${productName}_${claimType}.json`
+    )
+    const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+
+    validateHospitalClaimBenefitSection(calimCoverageData[claimType], coverage[claimType])
   }
 
   async validateClaimCoverageDetail(calimCoverageData: any, productName: string, claimType: string) {
@@ -181,6 +276,22 @@ export class ClaimManagementCreatePage extends BasePage {
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
     validateClaimBenefitNotUsageRemainingSection(calimCoverageData[claimType], coverage[claimType])
+  }
+
+  async validateHospitalClaimCoverageNotUsageRemainingDetail(
+    calimCoverageData: any,
+    productName: string,
+    claimType: string
+  ) {
+    const filePath = path.resolve(
+      process.cwd(),
+      'test-data',
+      'actual-data',
+      `claim_coverage_${productName}_${claimType}.json`
+    )
+    const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+
+    validateHospitalClaimBenefitNotUsageRemainingSection(calimCoverageData[claimType], coverage[claimType])
   }
 
   async fillMainBenefitInformation(claimData: {

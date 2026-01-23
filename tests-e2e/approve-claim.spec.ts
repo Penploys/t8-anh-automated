@@ -129,6 +129,9 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
       test.setTimeout(20000)
       await memberPolicyDetailPage.getCoverageDetails('copay')
       await memberPolicyDetailPage.validateCoverageDetail(policyData, 'copay')
+
+      await memberPolicyDetailPage.getHospitalCoverageDetails('copay')
+      await memberPolicyDetailPage.validateHospitalCoverageDetail(policyData, 'copay')
     })
 
     await test.step('Validate member information on the Policy overview page', async () => {
@@ -145,15 +148,22 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
       await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
       await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
 
+      //Hospital
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'copay',
+        'IPD'
+      )
+
       // ตัวอย่างการเรียกใช้ เพื่อทำ Expect result หลัง save claim
       const ipdCoverageActual = claimInitData['IPD']
 
       console.log(ipdCoverageActual.usage)
       ipdCoverageActual[1].usage = 200000
       ipdCoverageActual[1].remaining = 0
-
-      await claimManagementCreatePage.validateClaimCoverageDetail(claimInitData, 'copay', 'IPD')
-
+      await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageDetail(claimInitData, 'copay', 'IPD')
       // TODO: get remaining coverage claim (surveyor)
       // const coverageRemaining = await claimManagementCreatePage.getCoverageRemaining()
       // console.log('Coverage Remaining:', JSON.stringify(coverageRemaining, null, 2))
