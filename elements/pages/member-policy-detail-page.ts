@@ -1,5 +1,8 @@
 import { Locator, expect } from '@playwright/test'
 import { BasePage } from '../base-page'
+import fs from 'fs'
+import path from 'path'
+import { validateBenefitSection } from '../../helpers/coverage-validator'
 
 export class MemberPolicyDetailPage extends BasePage {
   // Tabs Locators
@@ -353,7 +356,132 @@ export class MemberPolicyDetailPage extends BasePage {
     await expect(this.page).toHaveURL(/\/claim-management\/create/i)
   }
 
-  // async validateCoverageDetailSurveyor(policyData: any) {}
+  async extractCoverageTable(sectionName: string) {
+    const clean = async cell => (await cell.innerText()).replace(/\s+/g, ' ').trim()
+
+    const table = this.page.locator(
+      `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
+    )
+
+    const rows = table.locator('tbody > tr')
+
+    let previousMainGroup = ''
+    let previousSubBenefit = ''
+    let previousCombinedSub = ''
+    let previousCombined = ''
+
+    const results = []
+
+    for (let i = 0; i < (await rows.count()); i++) {
+      const row = rows.nth(i)
+
+      const valueCells = row.locator("td[class*='css-136xsf8']")
+      const subBenefitCells = row.locator("td[class*='css-1x2df3e']")
+      const mainGroupCells = row.locator("td[class*='css-4jen04']")
+
+      const valueCount = await valueCells.count()
+
+      // ---------- Main Group ----------
+      let mainGroup: string | null = null
+      if ((await mainGroupCells.count()) > 0) {
+        mainGroup = await clean(mainGroupCells.nth(0))
+        if (mainGroup) previousMainGroup = mainGroup
+        else mainGroup = previousMainGroup
+      } else {
+        mainGroup = previousMainGroup
+      }
+
+      // ---------- Sub Benefit ----------
+      let subBenefit: string | null = null
+      if ((await subBenefitCells.count()) > 0) {
+        subBenefit = await clean(subBenefitCells.nth(0))
+        if (subBenefit) previousSubBenefit = subBenefit
+        else subBenefit = previousSubBenefit
+      } else {
+        subBenefit = previousSubBenefit
+      }
+
+      // ---------- Limit / Combined ----------
+      let limit: string | null = null
+      let combinedSub: string | null = null
+      let combined: string | null = null
+
+      if (valueCount >= 1) {
+        limit = await clean(valueCells.nth(0))
+      }
+
+      if (valueCount === 3) {
+        combinedSub = await clean(valueCells.nth(1))
+        combined = await clean(valueCells.nth(2))
+      }
+
+      if (valueCount === 2) {
+        combined = await clean(valueCells.nth(1))
+      }
+
+      // ---------- carry forward ----------
+      if (combinedSub) previousCombinedSub = combinedSub
+      else combinedSub = previousCombinedSub
+
+      if (combined) previousCombined = combined
+      else combined = previousCombined
+
+      results.push({
+        mainGroup,
+        subBenefit,
+        limit,
+        combinedSub,
+        combined
+      })
+    }
+
+    return results
+  }
+
+  async getCoverageDetails(productName: string) {
+    const resultsIPD = await this.extractCoverageTable('IPD')
+    const resultsOPD_Follow_IPD = await this.extractCoverageTable('OPD_Follow_IPD')
+    const resultsOPD = await this.extractCoverageTable('OPD')
+    const resultsER = await this.extractCoverageTable('ER')
+    const resultsOTH = await this.extractCoverageTable('OTH')
+    const resultsPA = await this.extractCoverageTable('PA')
+    const resultsHB = await this.extractCoverageTable('HB')
+
+    const data = {
+      OTH: resultsOTH,
+      IPD: resultsIPD,
+      OPD_Follow_IPD: resultsOPD_Follow_IPD,
+      OPD: resultsOPD,
+      ER: resultsER,
+      PA: resultsPA,
+      HB: resultsHB
+    }
+    const dirPath = path.resolve(process.cwd(), 'test-data', 'actual-data')
+    const filePath = path.join(dirPath, `coverage_${productName}.json`)
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true })
+    }
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
+  }
+
+  async validateCoverageDetail(policyData: any, productName: string) {
+    const filePath = path.resolve(process.cwd(), 'test-data', 'actual-data', `coverage_${productName}.json`)
+    const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+
+    validateBenefitSection(policyData.IPD, coverage.IPD)
+
+    validateBenefitSection(policyData.OPD, coverage.OPD)
+
+    validateBenefitSection(policyData.ER, coverage.ER)
+
+    validateBenefitSection(policyData.OTH, coverage.OTH)
+
+    validateBenefitSection(policyData.OPD_Follow_IPD, coverage.OPD_Follow_IPD)
+
+    validateBenefitSection(policyData.PA, coverage.PA)
+
+    validateBenefitSection(policyData.HB, coverage.HB)
+  }
 
   // async validateCoverageDetailHospital(policyData: any) {}
 }

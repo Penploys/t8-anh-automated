@@ -1,0 +1,665 @@
+{
+  "policyNo1": {
+    "info": {
+      "policyNumber": "14048-108-250000042",
+      "policyType": "ACCIDENT_HEALTH",
+      "policySubType": "",
+      "policySubClass": "HA",
+      "policyStatus": "EXPIRED",
+      "certificateNumber": "14048-108-250000042",
+      "citizenId": "3410101821221",
+      "passportNumber": "3410101821221",
+      "firstNameTh": "จินตนา",
+      "lastNameTh": "ชูพรมวงษ์",
+      "firstNameEn": "",
+      "lastNameEn": "",
+      "vip": false,
+      "cardNo": "",
+      "effectiveAt": "2024-10-01T00:01:00+07:00",
+      "expiredAt": "2025-09-30T24:00:00+07:00",
+      "planName": "แผนที่  1",
+      "insurerSlug": "DHIPAYA",
+      "insurerUuid": "99837f00-a2da-4822-9558-0665f76798ce",
+      "policyHolderNameEn": "",
+      "policyHolderNameTh": "",
+      "iiaOutsource": "TPA",
+      "member": {
+        "effectiveAt": "2024-10-01T00:00:00+07:00",
+        "expiredAt": "2025-09-30T00:00:00+07:00",
+        "iiaMembership": "51444403-1-1"
+      }
+    },
+    "coverages": {
+        "IPD": [
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-1-RNB-1.2-ICU_RM",
+            "mainGroupId": "1",
+            "mainGroupCode": "RNB",
+            "mainGroupEn": "Room and Board",
+            "mainGroupTh": "ค่าห้อง และค่าอาหาร",
+            "benefits": {
+              "ICU_RM": [
+                {
+                  "agreementCode": "HANSN1_14",
+                  "subTypeCode": "ICU_RM",
+                  "subTypeEn": "ICU Room",
+                  "subTypeTh": "ค่าห้องผู้ป่วยหนัก",
+                  "limit": 15,
+                  "unit": "DAY_PER_DISABILITY",
+                  "limitType": "days",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": "HANSN1_HANSN1_13_1500",
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": 91,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_14_3000",
+                  "parsedCoveragePercentage": null
+                },
+                {
+                  "agreementCode": "HANSN1_14",
+                  "subTypeCode": "ICU_RM",
+                  "subTypeEn": "ICU Room",
+                  "subTypeTh": "ค่าห้องผู้ป่วยหนัก",
+                  "limit": 3000,
+                  "unit": "AMOUNT_PER_DAY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": "HANSN1_HANSN1_13_1500",
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": 91,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_14_3000",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-1-RNB-1.1-NRM_RM",
+            "mainGroupId": "1",
+            "mainGroupCode": "RNB",
+            "mainGroupEn": "Room and Board",
+            "mainGroupTh": "ค่าห้อง และค่าอาหาร",
+            "benefits": {
+              "NRM_RM": [
+                {
+                  "agreementCode": "HANSN1_13",
+                  "subTypeCode": "NRM_RM",
+                  "subTypeEn": "Normal Room",
+                  "subTypeTh": "ค่าห้องผู้ป่วยปกติ",
+                  "limit": 1500,
+                  "unit": "AMOUNT_PER_DAY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": "HANSN1_HANSN1_13_1500",
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": 91,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_13_1500",
+                  "parsedCoveragePercentage": null
+                },
+                {
+                  "agreementCode": "HANSN1_13",
+                  "subTypeCode": "NRM_RM",
+                  "subTypeEn": "Normal Room",
+                  "subTypeTh": "ค่าห้องผู้ป่วยปกติ",
+                  "limit": 91,
+                  "unit": "DAY_PER_DISABILITY",
+                  "limitType": "days",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": "HANSN1_HANSN1_13_1500",
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": 91,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_13_1500",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-3-MD_EXAM-3.3-NON-SURG_CONSULT_FEE",
+            "mainGroupId": "3",
+            "mainGroupCode": "MD_EXAM",
+            "mainGroupEn": "General Expense",
+            "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+            "benefits": {
+              "NON_SURG_CONSULT_FEE": [
+                {
+                  "agreementCode": "HANSN1_21",
+                  "subTypeCode": "NON_SURG_CONSULT_FEE",
+                  "subTypeEn": "Non-Surgical Consultation Fee",
+                  "subTypeTh": "ค่าแพทย์ที่ปรึกษา กรณีไม่ผ่าตัด",
+                  "limit": 1000,
+                  "unit": "AMOUNT_PER_DISABILITY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_21_1000",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-3-MD_EXAM-3.2-SURG_CONSULT_FEE",
+            "mainGroupId": "3",
+            "mainGroupCode": "MD_EXAM",
+            "mainGroupEn": "General Expense",
+            "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+            "benefits": {
+              "SURG_CONSULT_FEE": [
+                {
+                  "agreementCode": "HANSN1_21",
+                  "subTypeCode": "SURG_CONSULT_FEE",
+                  "subTypeEn": "Surgical Consultation Fee",
+                  "subTypeTh": "ค่าแพทย์ที่ปรึกษา กรณีผ่าตัด",
+                  "limit": 1000,
+                  "unit": "AMOUNT_PER_DISABILITY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_21_1000",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-4-SURG_PROC-4.3-PROF_FEE_SP",
+            "mainGroupId": "4",
+            "mainGroupCode": "SURG_PROC",
+            "mainGroupEn": "General Expense",
+            "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+            "benefits": {
+              "PROF_FEE_SP": [
+                {
+                  "agreementCode": "HANSN1_17",
+                  "subTypeCode": "PROF_FEE_SP",
+                  "subTypeEn": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
+                  "subTypeTh": "ค่าผู้ประกอบวิชาชีพเวชกรรม ทำศัลยกรรมและหัตถการ สำหรับแพทย์ทำศัลยกรรม  และหัตถการ(รวมแพทย์ผู้ช่วยผ่าตัด) (Doctor fee) ",
+                  "limit": 15000,
+                  "unit": "AMOUNT_PER_DISABILITY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_17_15000",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-4-SURG_PROC-4.4-ANES_FEE",
+            "mainGroupId": "4",
+            "mainGroupCode": "SURG_PROC",
+            "mainGroupEn": "General Expense",
+            "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+            "benefits": {
+              "ANES_FEE": [
+                {
+                  "agreementCode": "HANSN1_19",
+                  "subTypeCode": "ANES_FEE",
+                  "subTypeEn": "Medical practitioner fee for anesthetist (doctor fee) based on the rate in the medical fee manual",
+                  "subTypeTh": "ค่าวิสัญญีแพทย์",
+                  "limit": 3000,
+                  "unit": "AMOUNT_PER_DISABILITY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_19_3000",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-4-SURG_PROC-4.1-OR_PR_FEE",
+            "mainGroupId": "4",
+            "mainGroupCode": "SURG_PROC",
+            "mainGroupEn": "General Expense",
+            "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+            "benefits": {
+              "OR_PR_FEE": [
+                {
+                  "agreementCode": "HANSN1_18",
+                  "subTypeCode": "OR_PR_FEE",
+                  "subTypeEn": "operating room fee and procedure room fee",
+                  "subTypeTh": "ค่าห้องผ่าตัด และค่าห้องทำหัตถการ",
+                  "limit": 7500,
+                  "unit": "AMOUNT_PER_DISABILITY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_18_7500",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-3-MD_EXAM-3.1-DOC_VISIT_FEE",
+            "mainGroupId": "3",
+            "mainGroupCode": "MD_EXAM",
+            "mainGroupEn": "General Expense",
+            "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+            "benefits": {
+              "DOC_VISIT_FEE": [
+                {
+                  "agreementCode": "HANSN1_20",
+                  "subTypeCode": "DOC_VISIT_FEE",
+                  "subTypeEn": "Doctor's Visit Fee",
+                  "subTypeTh": "ค่าแพทย์เยี่ยมไข้",
+                  "limit": 91,
+                  "unit": "DAY_PER_DISABILITY",
+                  "limitType": "days",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_20_1000",
+                  "parsedCoveragePercentage": null
+                },
+                {
+                  "agreementCode": "HANSN1_20",
+                  "subTypeCode": "DOC_VISIT_FEE",
+                  "subTypeEn": "Doctor's Visit Fee",
+                  "subTypeTh": "ค่าแพทย์เยี่ยมไข้",
+                  "limit": 1000,
+                  "unit": "AMOUNT_PER_DAY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_20_1000",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "IPD-2-HGE-2.4-MED_SUP1_TH",
+            "mainGroupId": "2",
+            "mainGroupCode": "HGE",
+            "mainGroupEn": "General Expense",
+            "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+            "benefits": {
+              "MED_SUP1_TH": [
+                {
+                  "agreementCode": "HANSN1_15",
+                  "subTypeCode": "MED_SUP1_TH",
+                  "subTypeEn": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
+                  "subTypeTh": "ค่ายาผู้ป่วยกลับบ้าน",
+                  "limit": 15000,
+                  "unit": "AMOUNT_PER_DISABILITY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_15_15000",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "IPD",
+            "benefitCoverageCode": "OTH-12-AMB-12.0-AMB",
+            "mainGroupId": "12",
+            "mainGroupCode": "AMB",
+            "mainGroupEn": "General Expense",
+            "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+            "benefits": {
+              "AMB": [
+                {
+                  "agreementCode": "HANSN1_16",
+                  "subTypeCode": "AMB",
+                  "subTypeEn": "Ambulance fee",
+                  "subTypeTh": "ค่าบริการรถพยาบาล",
+                  "limit": 2,
+                  "unit": "VISIT_PER_DISABILITY",
+                  "limitType": "visits",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_16_1500",
+                  "parsedCoveragePercentage": null
+                },
+                {
+                  "agreementCode": "HANSN1_16",
+                  "subTypeCode": "AMB",
+                  "subTypeEn": "Ambulance fee",
+                  "subTypeTh": "ค่าบริการรถพยาบาล",
+                  "limit": 1500,
+                  "unit": "AMOUNT_PER_DISABILITY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_16_1500",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          }
+        ],
+        "ER": [
+          {
+            "coverageType": "ER",
+            "benefitCoverageCode": "NON-IPD-7-ACC-7.2-ACC_72H",
+            "mainGroupId": "7",
+            "mainGroupCode": "ACC",
+            "mainGroupEn": "Emergency Accident",
+            "mainGroupTh": "ค่ารักษาพยาบาลอุบัติเหตุฉุกเฉิน",
+            "benefits": {
+              "ACC_72H": [
+                {
+                  "agreementCode": "HANSN1_22",
+                  "subTypeCode": "ACC_72H",
+                  "subTypeEn": "medical fee for treatment of injury in outpatient case within 72 hours after each accident ",
+                  "subTypeTh": "ค่ารักษาพยาบาลการบาดเจ็บ กรณีผู้ป่วยนอก ภายใน 72 ชั่วโมง ของการเกิดอุบัติเหตุต่อครั้ง",
+                  "limit": 1500,
+                  "unit": "AMOUNT_PER_DISABILITY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_22_1500",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          }
+        ],
+        "HB Incentive": [
+          {
+            "coverageType": "HB Incentive",
+            "benefitCoverageCode": "OTH-31-CP-31.1-HB",
+            "mainGroupId": "31",
+            "mainGroupCode": "CP",
+            "mainGroupEn": "Indemnity",
+            "mainGroupTh": "ค่าชดเชย",
+            "benefits": {
+              "HB": [
+                {
+                  "agreementCode": "HANSN1_23",
+                  "subTypeCode": "HB",
+                  "subTypeEn": "HB Incentive",
+                  "subTypeTh": "ชดเชยรายได้ กรณีใช้สิทธิ์อื่นๆ",
+                  "limit": 1500,
+                  "unit": "AMOUNT_PER_DAY",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_23_1500",
+                  "parsedCoveragePercentage": null
+                },
+                {
+                  "agreementCode": "HANSN1_23",
+                  "subTypeCode": "HB",
+                  "subTypeEn": "HB Incentive",
+                  "subTypeTh": "ชดเชยรายได้ กรณีใช้สิทธิ์อื่นๆ",
+                  "limit": 91,
+                  "unit": "DAY_PER_DISABILITY",
+                  "limitType": "days",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_23_1500",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          }
+        ],
+        "OPD": [
+          {
+            "coverageType": "OPD",
+            "benefitCoverageCode": "DEN-28-DEN",
+            "mainGroupId": "28",
+            "mainGroupCode": "DEN",
+            "mainGroupEn": "Dental Coverage",
+            "mainGroupTh": "ค่าความคุ้มครองทางทันตกรรม",
+            "benefits": {
+              "DEN-28-DEN": [
+                {
+                  "agreementCode": "HANSN1_28",
+                  "subTypeCode": "DEN-28-DEN",
+                  "subTypeEn": null,
+                  "subTypeTh": null,
+                  "limit": 5000,
+                  "unit": "AMOUNT_PER_YEAR",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_28_5000",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          },
+          {
+            "coverageType": "OPD",
+            "benefitCoverageCode": "OTH-21-OPME",
+            "mainGroupId": "21",
+            "mainGroupCode": "OPME",
+            "mainGroupEn": "Outpatient medical expense ",
+            "mainGroupTh": "ค่ารักษาพยาบาลผู้ป่วยนอก",
+            "benefits": {
+              "OTH-21-OPME": [
+                {
+                  "agreementCode": "HANSN1_26",
+                  "subTypeCode": "OTH-21-OPME",
+                  "subTypeEn": null,
+                  "subTypeTh": null,
+                  "limit": 1,
+                  "unit": "VISIT_PER_DAY",
+                  "limitType": "visits",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_26_1500",
+                  "parsedCoveragePercentage": null
+                },
+                {
+                  "agreementCode": "HANSN1_26",
+                  "subTypeCode": "OTH-21-OPME",
+                  "subTypeEn": null,
+                  "subTypeTh": null,
+                  "limit": 30,
+                  "unit": "VISIT_PER_YEAR",
+                  "limitType": "visits",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_26_1500",
+                  "parsedCoveragePercentage": null
+                },
+                {
+                  "agreementCode": "HANSN1_26",
+                  "subTypeCode": "OTH-21-OPME",
+                  "subTypeEn": null,
+                  "subTypeTh": null,
+                  "limit": 1500,
+                  "unit": "AMOUNT_PER_VISIT",
+                  "limitType": "amount",
+                  "sharedLimitGroupCode": null,
+                  "sharedLimitAmountGroupCode": null,
+                  "sharedLimitDayGroupCode": null,
+                  "sharedLimitAmountMax": null,
+                  "sharedLimitDaysMax": null,
+                  "combinedLimitAmountGroupCode": null,
+                  "combinedLimitDayGroupCode": null,
+                  "combinedLimitAmountMax": null,
+                  "combinedLimitDayMax": null,
+                  "uniqueId": "HANSN1_HANSN1_26_1500",
+                  "parsedCoveragePercentage": null
+                }
+              ]
+            },
+            "isFamilyBenefit": false
+          }
+        ]
+    },
+    "member": {
+            "uuid": "342d535b-8ace-4d03-b4e7-37de338f5447",
+            "name": "จินตนา ชูพรมวงษ์",
+            "firstNameTh": "จินตนา",
+            "lastNameTh": "ชูพรมวงษ์",
+            "firstNameEn": "",
+            "lastNameEn": "",
+            "citizenId": "3410101821221",
+            "passportNumber": "3410101821221",
+            "dateOfBirth": "1982-09-10T00:00:00.000Z",
+            "gender": "FEMALE",
+            "mobilePhone": "",
+            "email": "",
+            "vip": false,
+            "cardNo": "",
+            "address": null,
+            "effectiveAt": "2024-09-30T17:00:00.000Z",
+            "expiredAt": "2025-09-29T17:00:00.000Z",
+            "iiaMembership": "51444403-1-1"
+    }
+  }
+}

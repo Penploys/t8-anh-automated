@@ -1,0 +1,223 @@
+{
+  "hospital_uuid": "26ffab35-c52a-4702-9bf1-b35aa6cd16a4",
+  "type": "REIMBURSEMENT",
+  "service_type": "IPD",
+  "coverageType": "IPD",
+  "policy_uuid": "dcb7e690-a55a-4c47-b16a-f246c08f37d8",
+  "cause_of_loss": "ILLNESS",
+  "visited_at": "2024-12-03T17:00:00.000Z",
+  "discharged_at": "2025-12-31T17:00:00.000Z",
+  "accident_alcohol_narcotic": false,
+  "payout_details": {
+    "type": "BANK_TRANSFER",
+    "bank_uuid": "9db95fe7-4f79-48d2-8e91-9a0e111323f3",
+    "bank_branch_code": "0000",
+    "account_number": "190281928121",
+    "account_name": "จินตนา ชูพรมวงษ์",
+    "title": "หม่อมเจ้า"
+  },
+  "icd10s": [
+    {
+      "uuid": "2c816dc3-3c82-462b-9792-6cd2205bb51c",
+      "is_primary": true,
+      "remark": ""
+    }
+  ],
+  "icd9s": [
+    {
+      "uuid": "5359df24-5fb7-4288-9fee-40bacd1326b4",
+      "remark": ""
+    }
+  ],
+  "billing_number": "12454747",
+  "billing_items": [
+    {
+      "simb_uuid": "43de8859-5aea-46e1-a631-6ba49c1a3889",
+      "amount": 3000,
+      "discount": 0,
+      "payable_amount": 3000,
+      "notes": "",
+      "member_sub_limit_key": "HANSN1_HANSN1_15_15000",
+      "benefit_coverage_code": "IPD-2-HGE-2.4-MED_SUP1_TH",
+      "incurred_day": 393,
+      "tax_amount": 0,
+      "net_amount": 3000,
+      "deduct_amount": 0,
+      "copay_amount": 0,
+      "exceed_amount": 0,
+      "not_cover_amount": 0,
+      "percent_schedule": 0,
+      "other_party_amount": 0,
+      "recovery_amount": 0,
+      "meta": {
+        "simbOption": {
+          "uuid": "43de8859-5aea-46e1-a631-6ba49c1a3889",
+          "billingCode": "1.1.11",
+          "version": 2,
+          "categoryNameEn": "ยากลับบ้าน",
+          "categoryNameTh": "ยากลับบ้าน",
+          "isActive": true,
+          "dayCountable": true,
+          "simbSequence": 13,
+          "simbSubfix": "ยากลับบ้าน",
+          "isMaster": false,
+          "createdAt": "2025-11-22T16:20:29.356Z",
+          "updatedAt": "2025-11-22T16:20:29.356Z",
+          "benefitCoverageCode": [
+            "IPD-2-HGE-2.4-MED_SUP1_TH"
+          ]
+        },
+        "benefit": {
+          "1.1.11_2_IPD_IPD-2-HGE-2.4-MED_SUP1_TH": [
+            {
+              "mainBenefitCoverageCode": "IPD",
+              "benefitCoverageCode": "IPD-2-HGE-2.4-MED_SUP1_TH",
+              "memberSubLimitKey": "HANSN1_HANSN1_15_15000",
+              "mainGroupCode": "HGE",
+              "mainGroupEn": "General Expense",
+              "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+              "subTypeCode": "MED_SUP1_TH",
+              "subTypeEn": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
+              "subTypeTh": "ค่ายาผู้ป่วยกลับบ้าน",
+              "minimumDay": null,
+              "companyCoveragePercentage": null,
+              "insuredCoveragePercentage": null
+            }
+          ]
+        }
+      },
+      "payable_major_med_amount": 0,
+      "service_date": "2024-12-03T17:00:00.000Z"
+    },
+    {
+      "simb_uuid": "e8502991-08eb-4d1d-8ac1-38e40f460958",
+      "amount": 1500,
+      "discount": 0,
+      "payable_amount": 1000,
+      "notes": "",
+      "member_sub_limit_key": "HANSN1_HANSN1_21_1000",
+      "benefit_coverage_code": "IPD-3-MD_EXAM-3.3-NON-SURG_CONSULT_FEE",
+      "incurred_day": 393,
+      "tax_amount": 0,
+      "net_amount": 1500,
+      "deduct_amount": 0,
+      "copay_amount": 0,
+      "exceed_amount": 500,
+      "not_cover_amount": 0,
+      "percent_schedule": 0,
+      "other_party_amount": 0,
+      "recovery_amount": 0,
+      "meta": {
+        "simbOption": {
+          "uuid": "e8502991-08eb-4d1d-8ac1-38e40f460958",
+          "billingCode": "1.2.1(1)",
+          "version": 1,
+          "categoryNameEn": "Out patient Physician fee",
+          "categoryNameTh": "ตรวจรักษากรณีผู้ป่วยนอก",
+          "isActive": true,
+          "dayCountable": false,
+          "simbSequence": 6,
+          "simbSubfix": "ค่าแพทย์ที่ปรึกษา ไม่ผ่าตัด",
+          "isMaster": false,
+          "createdAt": "2025-11-22T16:21:13.604Z",
+          "updatedAt": "2025-11-22T16:21:13.604Z",
+          "benefitCoverageCode": [
+            "IPD-3-MD_EXAM-3.3-NON-SURG_CONSULT_FEE"
+          ]
+        },
+        "benefit": {
+          "1.2.1(1)_1_IPD_IPD-3-MD_EXAM-3.3-NON-SURG_CONSULT_FEE": [
+            {
+              "mainBenefitCoverageCode": "IPD",
+              "benefitCoverageCode": "IPD-3-MD_EXAM-3.3-NON-SURG_CONSULT_FEE",
+              "memberSubLimitKey": "HANSN1_HANSN1_21_1000",
+              "mainGroupCode": "MD_EXAM",
+              "mainGroupEn": "General Expense",
+              "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+              "subTypeCode": "NON_SURG_CONSULT_FEE",
+              "subTypeEn": "Non-Surgical Consultation Fee",
+              "subTypeTh": "ค่าแพทย์ที่ปรึกษา กรณีไม่ผ่าตัด",
+              "minimumDay": null,
+              "companyCoveragePercentage": null,
+              "insuredCoveragePercentage": null
+            }
+          ]
+        }
+      },
+      "payable_major_med_amount": 0,
+      "service_date": "2024-12-03T17:00:00.000Z"
+    },
+    {
+      "simb_uuid": "ce2bbfea-f378-4666-8bc6-94e56eebc7ef",
+      "amount": 500,
+      "discount": 0,
+      "payable_amount": 500,
+      "notes": "",
+      "member_sub_limit_key": "HANSN1_HANSN1_21_1000",
+      "benefit_coverage_code": "IPD-3-MD_EXAM-3.2-SURG_CONSULT_FEE",
+      "incurred_day": 393,
+      "tax_amount": 0,
+      "net_amount": 500,
+      "deduct_amount": 0,
+      "copay_amount": 0,
+      "exceed_amount": 0,
+      "not_cover_amount": 0,
+      "percent_schedule": 0,
+      "other_party_amount": 0,
+      "recovery_amount": 0,
+      "meta": {
+        "simbOption": {
+          "uuid": "ce2bbfea-f378-4666-8bc6-94e56eebc7ef",
+          "billingCode": "1.28.1",
+          "version": 2,
+          "categoryNameEn": "Physician Evaluation & Management Services",
+          "categoryNameTh": "Physician Evaluation & Management Services",
+          "isActive": true,
+          "dayCountable": false,
+          "simbSequence": 5,
+          "simbSubfix": "ค่าแพทย์ที่ปรึกษา ผ่าตัด",
+          "isMaster": false,
+          "createdAt": "2025-11-22T16:21:46.206Z",
+          "updatedAt": "2025-11-22T16:21:46.206Z",
+          "benefitCoverageCode": [
+            "IPD-3-MD_EXAM-3.2-SURG_CONSULT_FEE"
+          ]
+        },
+        "benefit": {
+          "1.28.1_2_IPD_IPD-3-MD_EXAM-3.2-SURG_CONSULT_FEE": [
+            {
+              "mainBenefitCoverageCode": "IPD",
+              "benefitCoverageCode": "IPD-3-MD_EXAM-3.2-SURG_CONSULT_FEE",
+              "memberSubLimitKey": "HANSN1_HANSN1_21_1000",
+              "mainGroupCode": "MD_EXAM",
+              "mainGroupEn": "General Expense",
+              "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
+              "subTypeCode": "SURG_CONSULT_FEE",
+              "subTypeEn": "Surgical Consultation Fee",
+              "subTypeTh": "ค่าแพทย์ที่ปรึกษา กรณีผ่าตัด",
+              "minimumDay": null,
+              "companyCoveragePercentage": null,
+              "insuredCoveragePercentage": null
+            }
+          ]
+        }
+      },
+      "payable_major_med_amount": 0,
+      "service_date": "2024-12-03T17:00:00.000Z"
+    }
+  ],
+  "billing_at": "2026-01-03T17:00:00.000Z",
+  "billing_submitter_type": "MEMBER",
+  "physician_name": "เพ็ญพลอย",
+  "physician_license_number": "78454545544",
+  "length_of_stay": 393,
+  "exclude_fee": false,
+  "attachment_uuids": [],
+  "claim_group_uuid": null,
+  "is_custom_hospital": false,
+  "custom_hospital_name": "",
+  "is_new_coverage_quota": true,
+  "selected_member_sub_limit_key": "",
+  "action_reason_remark": "",
+  "skip_warnings": []
+}

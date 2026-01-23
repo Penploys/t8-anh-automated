@@ -1,884 +1,352 @@
 {
-"policy": {
-    "copay": {
-        "ipd": [
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "OTH-TOTAL-MPL",
-                "mainGroupId": "TOTAL",
-                "mainGroupCode": "MPL",
-                "mainGroupEn": "Max Payable Limit",
-                "mainGroupTh": "ผลประโยชน์สูงสุดที่จ่าย",
-                "benefits": {
-                    "OTH-TOTAL-MPL": [
-                        {
-                            "agreementCode": "HASU290_12",
-                            "subTypeCode": "OTH-TOTAL-MPL",
-                            "subTypeEn": null,
-                            "subTypeTh": null,
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_12_50000",
-                            "parsedCoveragePercentage": 90
-                        },
-                        {
-                            "agreementCode": "HASU290_11",
-                            "subTypeCode": "OTH-TOTAL-MPL",
-                            "subTypeEn": null,
-                            "subTypeTh": null,
-                            "limit": 200000,
-                            "unit": "AMOUNT_PER_YEAR",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": null,
-                            "sharedLimitAmountGroupCode": null,
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": null,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_11_200000",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+    "policy": {
+        "copay": {
+            "IPD": [
+                {
+                    "mainGroup": "Max Payable Limit",
+                    "subBenefit": "-",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "OTH-CPM-CPM",
-                "mainGroupId": "CPM",
-                "mainGroupCode": "CPM",
-                "mainGroupEn": "Copayment",
-                "mainGroupTh": "ค่าใช้จ่ายร่วม",
-                "benefits": {
-                    "OTH-CPM-CPM": [
-                        {
-                            "agreementCode": "HASU290_45",
-                            "subTypeCode": "OTH-CPM-CPM",
-                            "subTypeEn": null,
-                            "subTypeTh": null,
-                            "limit": 90,
-                            "unit": "PERCENTAGE",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": null,
-                            "sharedLimitAmountGroupCode": null,
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": null,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_45_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "Max Payable Limit",
+                    "subBenefit": "-",
+                    "limit": 200000,
+                    "limitUnit": "THB per year",
+                    "combinedSub": 0,
+                    "combinedSubUnit": "THB per year",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per year"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-1-RNB-1.2-ICU_RM",
-                "mainGroupId": "1",
-                "mainGroupCode": "RNB",
-                "mainGroupEn": "Room and Board",
-                "mainGroupTh": "ค่าห้อง และค่าอาหาร",
-                "benefits": {
-                    "ICU_RM": [
-                        {
-                            "agreementCode": "HASU290_15",
-                            "subTypeCode": "ICU_RM",
-                            "subTypeEn": "ICU Room",
-                            "subTypeTh": "ค่าห้องผู้ป่วยหนัก",
-                            "limit": 10000,
-                            "unit": "AMOUNT_PER_DAY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": "HASU290_HASU290_14_5000",
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": 365,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_15_10000",
-                            "parsedCoveragePercentage": 90
-                        },
-                        {
-                            "agreementCode": "HASU290_15",
-                            "subTypeCode": "ICU_RM",
-                            "subTypeEn": "ICU Room",
-                            "subTypeTh": "ค่าห้องผู้ป่วยหนัก",
-                            "limit": 365,
-                            "unit": "DAY_PER_DISABILITY",
-                            "limitType": "days",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": "HASU290_HASU290_14_5000",
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": 365,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_15_10000",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "Copayment",
+                    "subBenefit": "-",
+                    "limit": 0,
+                    "limitUnit": "90:10 [ประกัน:ผู้เอาประกัน]",
+                    "combinedSub": 0,
+                    "combinedSubUnit": "90:10 [ประกัน:ผู้เอาประกัน]",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "90:10 [ประกัน:ผู้เอาประกัน]"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-1-RNB-1.1-NRM_RM",
-                "mainGroupId": "1",
-                "mainGroupCode": "RNB",
-                "mainGroupEn": "Room and Board",
-                "mainGroupTh": "ค่าห้อง และค่าอาหาร",
-                "benefits": {
-                    "NRM_RM": [
-                        {
-                            "agreementCode": "HASU290_14",
-                            "subTypeCode": "NRM_RM",
-                            "subTypeEn": "Normal Room",
-                            "subTypeTh": "ค่าห้องผู้ป่วยปกติ",
-                            "limit": 365,
-                            "unit": "DAY_PER_DISABILITY",
-                            "limitType": "days",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": "HASU290_HASU290_14_5000",
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": 365,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_14_5000",
-                            "parsedCoveragePercentage": 90
-                        },
-                        {
-                            "agreementCode": "HASU290_14",
-                            "subTypeCode": "NRM_RM",
-                            "subTypeEn": "Normal Room",
-                            "subTypeTh": "ค่าห้องผู้ป่วยปกติ",
-                            "limit": 5000,
-                            "unit": "AMOUNT_PER_DAY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": "HASU290_HASU290_14_5000",
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": 365,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_14_5000",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "Room and Board",
+                    "subBenefit": "ICU Room",
+                    "limit": 10000,
+                    "limitUnit": "THB per day",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 365,
+                    "combinedSubDayUnit": "Day per disability",
+                    "combined": 0,
+                    "combinedUnit": "THB per day"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-4-SURG_PROC-4.3-PROF_FEE_SP",
-                "mainGroupId": "4",
-                "mainGroupCode": "SURG_PROC",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "PROF_FEE_SP": [
-                        {
-                            "agreementCode": "HASU290_27",
-                            "subTypeCode": "PROF_FEE_SP",
-                            "subTypeEn": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
-                            "subTypeTh": "ค่าผู้ประกอบวิชาชีพเวชกรรม ทำศัลยกรรมและหัตถการ สำหรับแพทย์ทำศัลยกรรม  และหัตถการ(รวมแพทย์ผู้ช่วยผ่าตัด) (Doctor fee) ",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_27_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "Room and Board",
+                    "subBenefit": "ICU Room",
+                    "limit": 365,
+                    "limitUnit": "Day per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 365,
+                    "combinedSubDayUnit": "Day per disability",
+                    "combined": 0,
+                    "combinedUnit": "Day per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-4-SURG_PROC-4.4-ANES_FEE",
-                "mainGroupId": "4",
-                "mainGroupCode": "SURG_PROC",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "ANES_FEE": [
-                        {
-                            "agreementCode": "HASU290_28",
-                            "subTypeCode": "ANES_FEE",
-                            "subTypeEn": "Medical practitioner fee for anesthetist (doctor fee) based on the rate in the medical fee manual",
-                            "subTypeTh": "ค่าวิสัญญีแพทย์",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_28_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "Room and Board",
+                    "subBenefit": "Normal Room",
+                    "limit": 365,
+                    "limitUnit": "Day per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 365,
+                    "combinedSubDayUnit": "Day per disability",
+                    "combined": 0,
+                    "combinedUnit": "Day per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-4-SURG_PROC-4.1-OR_PR_FEE",
-                "mainGroupId": "4",
-                "mainGroupCode": "SURG_PROC",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "OR_PR_FEE": [
-                        {
-                            "agreementCode": "HASU290_25",
-                            "subTypeCode": "OR_PR_FEE",
-                            "subTypeEn": "operating room fee and procedure room fee",
-                            "subTypeTh": "ค่าห้องผ่าตัด และค่าห้องทำหัตถการ",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_25_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "Room and Board",
+                    "subBenefit": "Normal Room",
+                    "limit": 5000,
+                    "limitUnit": "THB per day",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 365,
+                    "combinedSubDayUnit": "Day per disability",
+                    "combined": 0,
+                    "combinedUnit": "THB per day"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-4-SURG_PROC-4.5-ORG_TX",
-                "mainGroupId": "4",
-                "mainGroupCode": "SURG_PROC",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "ORG_TX": [
-                        {
-                            "agreementCode": "HASU290_29",
-                            "subTypeCode": "ORG_TX",
-                            "subTypeEn": "Medical fee for organ transplatation x times of the benefits in Item 4 (at least 2x)",
-                            "subTypeTh": "ค่ารักษาพยาบาลโดยการผ่าตัดเปลี่ยนอวัยวะ",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_29_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "NON-IPD-5-DS-5.2-MAJ_DAY_SURG_FEE",
-                "mainGroupId": "5",
-                "mainGroupCode": "DS",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "MAJ_DAY_SURG_FEE": [
-                        {
-                            "agreementCode": "HASU290_30",
-                            "subTypeCode": "MAJ_DAY_SURG_FEE",
-                            "subTypeEn": "Major Day Surgery Fee",
-                            "subTypeTh": "ค่าผ่าตัดใหญ่ (Day Surgery)",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_30_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medical practitioner fee for anesthetist (doctor fee) based on the rate in the medical fee manual",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-2-HGE-2.2-TX_BLD_NRS",
-                "mainGroupId": "2",
-                "mainGroupCode": "HGE",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "TX_BLD_NRS": [
-                        {
-                            "agreementCode": "HASU290_20",
-                            "subTypeCode": "TX_BLD_NRS",
-                            "subTypeEn": "Medical fee for treatment, blood and blood component service fee and nurse service fee",
-                            "subTypeTh": "ค่าบริการทางการแพทย์เพื่อการบำบัดรักษา ค่าบริการโลหิตและส่วนประกอบของโลหิต และค่าบริการทางการพยาบาล",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_20_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "operating room fee and procedure room fee",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-4-SURG_PROC-4.2-SPSM",
-                "mainGroupId": "4",
-                "mainGroupCode": "SURG_PROC",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "SPSM": [
-                        {
-                            "agreementCode": "HASU290_26",
-                            "subTypeCode": "SPSM",
-                            "subTypeEn": "medicine fee, parenteral nutrition fee, medical supplies fee, and surgery and procedure fee",
-                            "subTypeTh": "ค่ายา ค่าสารอาหารทางหลอดเลือด ค่าเวชภัณฑ์ และค่าอุปกรณ์การผ่าตัดและหัตถการ",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_26_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medical fee for organ transplatation x times of the benefits in Item 4 (at least 2x)",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-2-HGE-2.3-MED_PN_MS",
-                "mainGroupId": "2",
-                "mainGroupCode": "HGE",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "MED_PN_MS": [
-                        {
-                            "agreementCode": "HASU290_21",
-                            "subTypeCode": "MED_PN_MS",
-                            "subTypeEn": "Medicine fee, Parenteral nutrition fee and medical supplies fee",
-                            "subTypeTh": "ค่ายา ค่าสารอาหารทางหลอดเลือด และค่าเวชภัณฑ์",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_21_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Major Day Surgery Fee",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-2-HGE-2.1-MED_EXAM",
-                "mainGroupId": "2",
-                "mainGroupCode": "HGE",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "MED_EXAM": [
-                        {
-                            "agreementCode": "HASU290_19",
-                            "subTypeCode": "MED_EXAM",
-                            "subTypeEn": "Medical Examination Fee",
-                            "subTypeTh": "ค่าบริการทางการแพทย์เพื่อการตรวจวินิจฉัย",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_19_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medical fee for treatment, blood and blood component service fee and nurse service fee",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-3-MD_EXAM-3.0-DOC_FEE",
-                "mainGroupId": "3",
-                "mainGroupCode": "MD_EXAM",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "MD_FEE": [
-                        {
-                            "agreementCode": "HASU290_23",
-                            "subTypeCode": "MD_FEE",
-                            "subTypeEn": "Doctor's Fee",
-                            "subTypeTh": "ค่าแพทย์ตรวจรักษา",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_23_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "medicine fee, parenteral nutrition fee, medical supplies fee, and surgery and procedure fee",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "NON-IPD-11-CHEMO-11.0-CHEMO",
-                "mainGroupId": "11",
-                "mainGroupCode": "CHEMO",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "CHEMO": [
-                        {
-                            "agreementCode": "HASU290_41",
-                            "subTypeCode": "CHEMO",
-                            "subTypeEn": "Medical fee for treatment of cancer by chemotherapy",
-                            "subTypeTh": "ค่าบริการทางการแพทย์ โดยเคมีบำบัด",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_41_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medicine fee, Parenteral nutrition fee and medical supplies fee",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "NON-IPD-10-CAN_RT_NM-10.0-CAN_RT_NM",
-                "mainGroupId": "10",
-                "mainGroupCode": "CAN_RT_NM",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "CAN_RT_NM": [
-                        {
-                            "agreementCode": "HASU290_40",
-                            "subTypeCode": "CAN_RT_NM",
-                            "subTypeEn": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
-                            "subTypeTh": "ค่าบริการทางการแพทย์ โดยรังสีรักษา เวชศาสตร์นิวเคลียร์",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_40_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medical Examination Fee",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "NON-IPD-9-CKD_HD-9.0-CKD_HD",
-                "mainGroupId": "9",
-                "mainGroupCode": "CKD_HD",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "CKD_HD": [
-                        {
-                            "agreementCode": "HASU290_39",
-                            "subTypeCode": "CKD_HD",
-                            "subTypeEn": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
-                            "subTypeTh": "ค่าบริการทางการแพทย์เพื่อล้างไตผ่านทางเส้นเลือด",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_39_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Doctor's Fee",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "NON-IPD-13-MINOP",
-                "mainGroupId": "13",
-                "mainGroupCode": "MINOP",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "NON-IPD-13-MINOP": [
-                        {
-                            "agreementCode": "HASU290_43",
-                            "subTypeCode": "NON-IPD-13-MINOP",
-                            "subTypeEn": "Medical fee for minor operation",
-                            "subTypeTh": "ค่ารักษาพยาบาล โดยการผ่าตัดเล็ก",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_43_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medical fee for treatment of cancer by chemotherapy",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "IPD-2-HGE-2.4-MED_SUP1_TH",
-                "mainGroupId": "2",
-                "mainGroupCode": "HGE",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "MED_SUP1_TH": [
-                        {
-                            "agreementCode": "HASU290_22",
-                            "subTypeCode": "MED_SUP1_TH",
-                            "subTypeEn": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
-                            "subTypeTh": "ค่ายาผู้ป่วยกลับบ้าน",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_22_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "IPD",
-                "benefitCoverageCode": "OTH-12-AMB-12.0-AMB",
-                "mainGroupId": "12",
-                "mainGroupCode": "AMB",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "AMB": [
-                        {
-                            "agreementCode": "HASU290_42",
-                            "subTypeCode": "AMB",
-                            "subTypeEn": "Ambulance fee",
-                            "subTypeTh": "ค่าบริการรถพยาบาล",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_42_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            }
-        ],
-        "opd": [
-            {
-                "coverageType": "OPD",
-                "benefitCoverageCode": "NON-IPD-6-PPHC-6.2-POST_HOSP_OPD_EXCL_DIAG",
-                "mainGroupId": "6",
-                "mainGroupCode": "PPHC",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "POST_HOSP_OPD_EXCL_DIAG": [
-                        {
-                            "agreementCode": "HASU290_35",
-                            "subTypeCode": "POST_HOSP_OPD_EXCL_DIAG",
-                            "subTypeEn": "Post-Hospitalization Outpatient Care (excluding diagnostic services)",
-                            "subTypeTh": "ค่ารักษาพยาบาลผู้ป่วยนอกหลังจากการรักษาเป็นผู้ป่วยใน (ไม่รวมค่าบริการทางการแพทย์เพื่อการตรวจวินิจฉัย)",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_35_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "OPD",
-                "benefitCoverageCode": "NON-IPD-8-POST_REHAB-8.0-POST_REHAB",
-                "mainGroupId": "8",
-                "mainGroupCode": "POST_REHAB",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "POST_REHAB": [
-                        {
-                            "agreementCode": "HASU290_38",
-                            "subTypeCode": "POST_REHAB",
-                            "subTypeEn": "Rehabilitation medicine fee after each hospitalization as an inpatient",
-                            "subTypeTh": "ค่าเวชศาสตร์ฟื้นฟู หลังการเข้าพักรักษาตัวเป็นผู้ป่วยใน",
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_38_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Ambulance fee",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
+                }
+            ],
+            "OPD": [
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Post-Hospitalization Outpatient Care (excluding diagnostic services)",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            },
-            {
-                "coverageType": "OPD",
-                "benefitCoverageCode": "NON-IPD-6-PPHC",
-                "mainGroupId": "6",
-                "mainGroupCode": "PPHC",
-                "mainGroupEn": "General Expense",
-                "mainGroupTh": "ค่ารักษาพยาบาลทั่วไป",
-                "benefits": {
-                    "NON-IPD-6-PPHC": [
-                        {
-                            "agreementCode": "HASU290_34",
-                            "subTypeCode": "NON-IPD-6-PPHC",
-                            "subTypeEn": null,
-                            "subTypeTh": null,
-                            "limit": 50000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_34_0",
-                            "parsedCoveragePercentage": 90
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Rehabilitation medicine fee after each hospitalization as an inpatient",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            }
-        ],
-        "er": [
-            {
-                "coverageType": "ER",
-                "benefitCoverageCode": "NON-IPD-7-ACC_7.1-ACC_24H",
-                "mainGroupId": "7",
-                "mainGroupCode": "ACC",
-                "mainGroupEn": "Emergency Accident",
-                "mainGroupTh": "ค่ารักษาพยาบาลอุบัติเหตุฉุกเฉิน",
-                "benefits": {
-                    "ACC_24H": [
-                        {
-                            "agreementCode": "HASU290_37",
-                            "subTypeCode": "ACC_24H",
-                            "subTypeEn": "medical fee for treatment of injury in outpatient case within 24 hours after each accident ",
-                            "subTypeTh": "ค่ารักษาพยาบาลการบาดเจ็บ กรณีผู้ป่วยนอก ภายใน 24 ชั่วโมง ของการเกิดอุบัติเหตุต่อครั้ง",
-                            "limit": 15,
-                            "unit": "DAY_PER_DISABILITY",
-                            "limitType": "days",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_37_5000",
-                            "parsedCoveragePercentage": null
-                        },
-                        {
-                            "agreementCode": "HASU290_37",
-                            "subTypeCode": "ACC_24H",
-                            "subTypeEn": "medical fee for treatment of injury in outpatient case within 24 hours after each accident ",
-                            "subTypeTh": "ค่ารักษาพยาบาลการบาดเจ็บ กรณีผู้ป่วยนอก ภายใน 24 ชั่วโมง ของการเกิดอุบัติเหตุต่อครั้ง",
-                            "limit": 5000,
-                            "unit": "AMOUNT_PER_DISABILITY",
-                            "limitType": "amount",
-                            "sharedLimitGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitAmountGroupCode": "HASU290_HASU290_12_50000",
-                            "sharedLimitDayGroupCode": null,
-                            "sharedLimitAmountMax": 50000,
-                            "sharedLimitDaysMax": null,
-                            "combinedLimitAmountGroupCode": null,
-                            "combinedLimitDayGroupCode": null,
-                            "combinedLimitAmountMax": null,
-                            "combinedLimitDayMax": null,
-                            "uniqueId": "HASU290_HASU290_37_5000",
-                            "parsedCoveragePercentage": null
-                        }
-                    ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Medical fee for minor operation",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
                 },
-                "isFamilyBenefit": false
-            }
-        ]
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "-",
+                    "limit": 50000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
+                }
+            ],
+            "ER": [
+                {
+                    "mainGroup": "Emergency Accident",
+                    "subBenefit": "medical fee for treatment of injury in outpatient case within 24 hours after each accident",
+                    "limit": 15,
+                    "limitUnit": "Day per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "Day per disability"
+                },
+                {
+                    "mainGroup": "Emergency Accident",
+                    "subBenefit": "medical fee for treatment of injury in outpatient case within 24 hours after each accident",
+                    "limit": 5000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 50000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
+                }
+            ],
+            "OTH": [],
+            "OPD_Follow_IPD": [],
+            "PA": [],
+            "HB": []
+        }
     }
-}
 }

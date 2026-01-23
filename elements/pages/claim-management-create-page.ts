@@ -1,5 +1,11 @@
 import { Locator, expect } from '@playwright/test'
 import { BasePage } from '../base-page'
+import path from 'path'
+import fs from 'fs'
+import {
+  validateClaimBenefitNotUsageRemainingSection,
+  validateClaimBenefitSection
+} from '../../helpers/coverage-validator'
 
 export class ClaimManagementCreatePage extends BasePage {
   // Tabs
@@ -34,6 +40,148 @@ export class ClaimManagementCreatePage extends BasePage {
   readonly saveDraftBtnLocator: Locator = this.page.getByRole('button', { name: /Save draft|บันทึกฉบับร่าง/ })
   readonly saveAsDraftBtnLocator: Locator = this.page.getByRole('button', { name: /Save as draft|บันทึกเป็นฉบับร่าง/ })
   readonly viewDetailBtnLocator: Locator = this.page.getByRole('button', { name: /View detail/ })
+
+  async extractClaimCoverageTable(sectionName: string) {
+    const clean = async cell => (await cell.innerText()).replace(/\s+/g, ' ').trim()
+
+    const table = this.page.locator(
+      `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
+    )
+
+    const rows = table.locator('tbody > tr')
+
+    let previousMainGroup = ''
+    let previousSubBenefit = ''
+    let previousCombinedSub = ''
+    let previousCombined = ''
+    let previousCombinedSubRemaining = ''
+    let previousCombinedRemaining = ''
+
+    const results = []
+
+    for (let i = 0; i < (await rows.count()); i++) {
+      const row = rows.nth(i)
+
+      const valueCells = row.locator("td[class*='css-136xsf8']")
+      const subBenefitCells = row.locator("td[class*='css-1x2df3e']")
+      const mainGroupCells = row.locator("td[class*='css-4jen04']")
+
+      const valueCount = await valueCells.count()
+
+      // ---------- Main Group ----------
+      let mainGroup: string | null = null
+      if ((await mainGroupCells.count()) > 0) {
+        mainGroup = await clean(mainGroupCells.nth(0))
+        if (mainGroup) previousMainGroup = mainGroup
+        else mainGroup = previousMainGroup
+      } else {
+        mainGroup = previousMainGroup
+      }
+
+      // ---------- Sub Benefit ----------
+      let subBenefit: string | null = null
+      if ((await subBenefitCells.count()) > 0) {
+        subBenefit = await clean(subBenefitCells.nth(0))
+        if (subBenefit) previousSubBenefit = subBenefit
+        else subBenefit = previousSubBenefit
+      } else {
+        subBenefit = previousSubBenefit
+      }
+
+      // ---------- Limit / Combined ----------
+      let limit: string | null = null
+      let usage: string | null = null
+      let remaining: string | null = null
+      let combinedSub: string | null = null
+      let combinedSubRemaining: string | null = null
+      let combined: string | null = null
+      let combinedRemaining: string | null = null
+
+      if (valueCount >= 1) {
+        limit = await clean(valueCells.nth(0))
+        usage = await clean(valueCells.nth(1))
+        remaining = await clean(valueCells.nth(2))
+      }
+
+      if (valueCount === 7) {
+        combinedSub = await clean(valueCells.nth(3))
+        combinedSubRemaining = await clean(valueCells.nth(4))
+
+        combined = await clean(valueCells.nth(5))
+        combinedRemaining = await clean(valueCells.nth(6))
+      }
+
+      if (valueCount === 5) {
+        combined = await clean(valueCells.nth(3))
+        combinedRemaining = await clean(valueCells.nth(4))
+      }
+
+      // ---------- carry forward ----------
+      if (combinedSub) previousCombinedSub = combinedSub
+      else combinedSub = previousCombinedSub
+
+      if (combinedSubRemaining) previousCombinedSubRemaining = combinedSubRemaining
+      else combinedSubRemaining = previousCombinedSubRemaining
+
+      if (combined) previousCombined = combined
+      else combined = previousCombined
+
+      if (combinedRemaining) previousCombinedRemaining = combinedRemaining
+      else combinedRemaining = previousCombinedRemaining
+
+      results.push({
+        mainGroup,
+        subBenefit,
+        limit,
+        usage,
+        remaining,
+        combinedSub,
+        combinedSubRemaining,
+        combined,
+        combinedRemaining
+      })
+    }
+
+    return results
+  }
+
+  async getClaimCoverageDetail(productName: string, claimType: string) {
+    const results = await this.extractClaimCoverageTable(claimType)
+
+    const data = {
+      [claimType]: results
+    }
+    const dirPath = path.resolve(process.cwd(), 'test-data', 'actual-data')
+    const filePath = path.join(dirPath, `claim_coverage_${productName}_${claimType}.json`)
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true })
+    }
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
+  }
+
+  async validateClaimCoverageDetail(calimCoverageData: any, productName: string, claimType: string) {
+    const filePath = path.resolve(
+      process.cwd(),
+      'test-data',
+      'actual-data',
+      `claim_coverage_${productName}_${claimType}.json`
+    )
+    const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+
+    validateClaimBenefitSection(calimCoverageData[claimType], coverage[claimType])
+  }
+
+  async validateClaimCoverageNotUsageRemainingDetail(calimCoverageData: any, productName: string, claimType: string) {
+    const filePath = path.resolve(
+      process.cwd(),
+      'test-data',
+      'actual-data',
+      `claim_coverage_${productName}_${claimType}.json`
+    )
+    const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+
+    validateClaimBenefitNotUsageRemainingSection(calimCoverageData[claimType], coverage[claimType])
+  }
 
   async fillMainBenefitInformation(claimData: {
     claimType?: string

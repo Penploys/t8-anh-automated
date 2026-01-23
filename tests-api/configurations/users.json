@@ -1,6 +1,8 @@
 {
-  "user1": {
-    "email": "demo01@demo.com",
-    "password": "Welcome1"
+  "claimManager": {
+    "uuid": "952102e7-ef73-4b75-970c-8019b71065d2",
+    "email": "ah-test+claim-manager@horixon-t8.com",
+    "password": "Passw0rd",
+    "audience":"surveyor"
   }
 }

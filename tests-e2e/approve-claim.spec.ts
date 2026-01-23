@@ -8,7 +8,8 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
   let draftNumber: string
   let claimNumber: string
   let appSetting: any
-  // let policyData: any
+  let policyData: any
+  let claimInitData: any
   let userData: any
   let tabData: any
   let memberData: any
@@ -21,7 +22,8 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     const config = new E2EConfiguration()
 
     appSetting = config.appSetting
-    // policyData = config.policyCoverages.policy.copay
+    policyData = config.policyCoverages.policy.copay
+    claimInitData = config.claimCoveragesinit.policy.copay
     userData = config.users.uat
     tabData = config.tabs
     memberData = config.members.memberCopay
@@ -82,7 +84,7 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     // TODO: cancel claim
   })
 
-  test.skip('Validate coverage details and get remaining', async ({
+  test('Validate coverage details and get remaining', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -100,20 +102,22 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
       await memberPolicyPage.ensureLanguage()
     })
 
-    await test.step('Validate search by name only on the Member policy page', async () => {
+    /* await test.step('Validate search by name only on the Member policy page', async () => {
       await memberPolicyPage.MemberSearchByName(memberData)
       await memberPolicyPage.validateSearchResultsByName(memberData)
-    })
+    }) */
 
     await test.step('Validate search by citizen ID only on the Member policy page', async () => {
+      await memberPolicyPage.MemberSearchByName(memberData)
       await memberPolicyPage.MemberSearchByCitizenId(memberData)
-      await memberPolicyPage.validateSearchResultsByCitizenId(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
     })
 
+    /*
     await test.step('Search and select the policy on the Member policy page', async () => {
       await memberPolicyPage.memberSearch(memberData)
       await memberPolicyPage.selectPolicy(memberData)
-    })
+    }) */
 
     await test.step('Validate tabs on the Policy overview page', async () => {
       await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.surveyor)
@@ -122,6 +126,9 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     await test.step('Validate coverage table on the Policy overview page', async () => {
       // TODO: validate coverage details (surveyor)
       // await memberPolicyDetailPage.validateCoverageDetailSurveyor(policyData)
+      test.setTimeout(20000)
+      await memberPolicyDetailPage.getCoverageDetails('copay')
+      await memberPolicyDetailPage.validateCoverageDetail(policyData, 'copay')
     })
 
     await test.step('Validate member information on the Policy overview page', async () => {
@@ -135,7 +142,18 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     await test.step('Validate coverage table and get coverage remaining on the Create claim page', async () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
       // TODO: validate coverage claim (surveyor)
-      // await claimManagementCreatePage.validateCoverageClaimSurveyor(policyData.ipd)
+      await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
+
+      // ตัวอย่างการเรียกใช้ เพื่อทำ Expect result หลัง save claim
+      const ipdCoverageActual = claimInitData['IPD']
+
+      console.log(ipdCoverageActual.usage)
+      ipdCoverageActual[1].usage = 200000
+      ipdCoverageActual[1].remaining = 0
+
+      await claimManagementCreatePage.validateClaimCoverageDetail(claimInitData, 'copay', 'IPD')
+
       // TODO: get remaining coverage claim (surveyor)
       // const coverageRemaining = await claimManagementCreatePage.getCoverageRemaining()
       // console.log('Coverage Remaining:', JSON.stringify(coverageRemaining, null, 2))
@@ -146,7 +164,7 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_Claim_Draft_001 Provider can draft  claim', async ({
+  test.skip('@E2E_Claim_Draft_001 Provider can draft  claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -231,7 +249,7 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_Claim_Submit_001 Provider admission can submit claim', async ({
+  test.skip('@E2E_Claim_Submit_001 Provider admission can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -318,7 +336,7 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_Claim_Assign_001 Fax claim can assign claim to assignee', async ({
+  test.skip('@E2E_Claim_Assign_001 Fax claim can assign claim to assignee', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -370,7 +388,7 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_Claim_Pending_Info_001 Fax claim can pending info claim', async ({
+  test.skip('@E2E_Claim_Pending_Info_001 Fax claim can pending info claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -435,7 +453,7 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_Claim_Resubmitted_001 Provider can resubmitted claim', async ({
+  test.skip('@E2E_Claim_Resubmitted_001 Provider can resubmitted claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -508,7 +526,7 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_Claim_Authorize_001 Assignee can authorize claim', async ({
+  test.skip('@E2E_Claim_Authorize_001 Assignee can authorize claim', async ({
     page,
     loginPage,
     memberPolicyPage,

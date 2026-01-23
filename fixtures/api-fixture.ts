@@ -1,9 +1,11 @@
 import { test as base } from '@playwright/test'
 
 import { LoginService } from '@api-services/login-service'
+import { PolicySearchService } from '@api-services/search-policy-service'
+import { PolicyCoverageService } from '@api-services/coverage-policy-service'
+import { ClaimService } from '@api-services/claim-service'
 import { APIContextManager } from '@services/api-request/api-context-manager'
 import { APIConfiguration } from '@services/configurations/api-configuration'
-import { ProductService } from '@api-services/product-service'
 
 interface APITestFixtures {
   configuration: APIConfiguration
@@ -11,7 +13,9 @@ interface APITestFixtures {
   apiContextManager: APIContextManager
 
   loginService: LoginService
-  productService: ProductService
+  policySearchService: PolicySearchService
+  policyCoverageService: PolicyCoverageService
+  claimService: ClaimService
 }
 
 const test = base.extend<APITestFixtures>({
@@ -27,9 +31,17 @@ const test = base.extend<APITestFixtures>({
     const loginService = new LoginService(apiContextManager, configuration)
     await use(loginService)
   },
-  productService: async ({ apiContextManager, configuration }, use) => {
-    const productService = new ProductService(apiContextManager, configuration)
-    await use(productService)
+  policySearchService: async ({ apiContextManager, configuration }, use) => {
+    const policySearchService = new PolicySearchService(apiContextManager, configuration)
+    await use(policySearchService)
+  },
+  policyCoverageService: async ({ apiContextManager, configuration }, use) => {
+    const policyCoverageService = new PolicyCoverageService(apiContextManager, configuration)
+    await use(policyCoverageService)
+  },
+  claimService: async ({ apiContextManager, configuration }, use) => {
+    const claimService = new ClaimService(apiContextManager, configuration)
+    await use(claimService)
   }
 })
 
