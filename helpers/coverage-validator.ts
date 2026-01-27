@@ -359,7 +359,7 @@ export const validateClaimBenefitNotUsageRemainingSection = (
 };
 
 
-export const validateClaimBenefitNotUsageRemainingSection = (
+export const validateHospitalClaimCoverageNotUsageRemainingDetail = (
   policyItems: any[] = [],
   coverageItems: any[] = []
 ) => {

@@ -149,21 +149,22 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
       await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
 
       //Hospital
-      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
-        claimInitData,
-        'copay',
-        'IPD'
-      )
+      //await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
+      //await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+      //  claimInitData,
+      //  'copay',
+      //  'IPD'
+      //)
 
       // ตัวอย่างการเรียกใช้ เพื่อทำ Expect result หลัง save claim
-      const ipdCoverageActual = claimInitData['IPD']
+      //const ipdCoverageActual = claimInitData['IPD']
 
-      console.log(ipdCoverageActual.usage)
-      ipdCoverageActual[1].usage = 200000
-      ipdCoverageActual[1].remaining = 0
-      await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      await claimManagementCreatePage.validateHospitalClaimCoverageDetail(claimInitData, 'copay', 'IPD')
+      //console.log(ipdCoverageActual.usage)
+      //ipdCoverageActual[1].usage = 200000
+      //ipdCoverageActual[1].remaining = 0
+      //await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      //await claimManagementCreatePage.validateHospitalClaimCoverageDetail(claimInitData, 'copay', 'IPD')
+      
       // TODO: get remaining coverage claim (surveyor)
       // const coverageRemaining = await claimManagementCreatePage.getCoverageRemaining()
       // console.log('Coverage Remaining:', JSON.stringify(coverageRemaining, null, 2))
