@@ -361,7 +361,7 @@ export const validateClaimBenefitNotUsageRemainingSection = (
 };
 
 
-export const validateHospitalClaimCoverageNotUsageRemainingDetail = (
+export const validateHospitalClaimBenefitNotUsageRemainingSection = (
   policyItems: any[] = [],
   coverageItems: any[] = []
 ) => {
