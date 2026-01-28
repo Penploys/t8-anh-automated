@@ -1,0 +1,710 @@
+{
+  "uat": {
+    "pendingInfo": {
+      "reason": "Additional Documents Required",
+      "completeMedicalHistory": true,
+      "completeMedicalHistoryDate": "Date range",
+      "completeMedicalHistoryFrom": "01/01/2025",
+      "completeMedicalHistoryTo": "01/01/2026",
+      "opdCardOofTreatment": true,
+      "opdCardOofTreatmentDate": "Year range",
+      "opdCardOofTreatmentFrom": "2025",
+      "opdCardOofTreatmentTo": "2026",
+      "doctorOrder": true,
+      "progressiveNote": false,
+      "medicalRecord": false,
+      "graphicSheet": false,
+      "nursesNote": false,
+      "operativeNote": false,
+      "vitalSignChart": false,
+      "form1": false,
+      "labAndPathologyResults": false,
+      "xRayUltrasoundMriCtEstEchoResults": false,
+      "others": true,
+      "otherRemark": "Please provide the required documents as soon as possible",
+      "claimStatusUpdateRemark": "Requesting additional documents for further review"
+    },
+    "claimPayout": {
+      "payoutChannel": "Transfer",
+      "bankName": "ธ. กรุงเทพ จำกัด (มหาชน)",
+      "branchCode": "0000",
+      "nameTitle": "คุณ",
+      "bankAccountName": "nameTh+ +surnameTh",
+      "accountNumber": "1234567890",
+      "confirmBankAccountNumber": "1234567890"
+    },
+    "schedule": {
+      "ph": {
+        "ipd": {
+          "positive": {
+            "ipdDischarge": {
+              "draftInfo": {
+                "claimType": "IPD Discharge",
+                "benefitType": "IPD",
+                "providerNameTh": "โรงพยาบาลป่าตอง",
+                "providerNameEn": "Patong Hospital",
+                "causeOfLoss": "Illness",
+                "appointmentDate": null,
+                "admissionDate": true,
+                "estimatedIpdDays": "",
+                "estimatedExpenses": "",
+                "dischargeDate": true,
+                "lengthOfStay": "2",
+                "accidentDate": null,
+                "isAlcoholInvolved": null,
+                "symptom": "ปวดศีรษะ แขนขาอ่อนแรง",
+                "openClaimWithNewLimit": null
+              },
+              "billingInfo": {
+                "physicianName": "Jeeranan",
+                "medicalLicenseNumber": "999999",
+                "icd10": [
+                  {
+                    "code": "I64",
+                    "name": "I64 - เป็นลมหมดสติจากภาวะในสมอง ที่ไม่จัดกลุ่มว่าเป็นจากเลือดออกในสมองหรือเนื้อสมองตายจากการขาดเลือด",
+                    "remark": "ปวดศีรษะรุนแรง และหมดสติ"
+                  },
+                  {
+                    "code": "G46.3",
+                    "name": "G46.3 - กลุ่มอาการอัมพาตบริเวณก้านสมอง",
+                    "remark": "แขนขาอ่อนแรง"
+                  }
+                ],
+                "icd9": [
+                  {
+                    "code": "00.21",
+                    "name": "00.21 - Intravascular imaging of extracranial cerebral vessels",
+                    "remark": ""
+                  },
+                  {
+                    "code": "135-41-50",
+                    "name": "135-41-50 - Transcatheter thrombolysis of middle cerebral artery using thrombolytic agent",
+                    "remark": ""
+                  }
+                ],
+                "billingNo": "TEST-111111",
+                "billingDate": true,
+                "billSubmitterType": "Provider",
+                "billingItems": [
+                  {
+                    "no": "1",
+                    "billingCode": "2.1(1)",
+                    "billingName": "2.1(1) - Intensive Care Unit (ผู้ป่วยหนัก)",
+                    "billingNameResult": "2.1(1) - ค่าห้องหรือค่าเตียงผู้ป่วยหนัก (ICU)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "2",
+                    "incurredAmount": "30000.00",
+                    "discount": "100.55",
+                    "netAmount": "29899.45",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "18000.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "11899.45",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "2",
+                    "billingCode": "2.1",
+                    "billingName": "2.1 - ค่าห้องพักผู้ป่วยใน (Inpatient Room) (ผู้ป่วยปกติ)",
+                    "billingNameResult": "2.1 - ค่าห้องพักผู้ป่วยใน (Inpatient Room)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "6000.00",
+                    "discount": "200.00",
+                    "netAmount": "5800.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "4500.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "1300.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "3",
+                    "billingCode": "2.3.1",
+                    "billingName": "2.3.1 - อาหารผู้ป่วยในมาตรฐาน (Standard Inpatient Food) (ผู้ป่วยปกติ)",
+                    "billingNameResult": "2.3.1 - อาหารผู้ป่วยในมาตรฐาน (Standard Inpatient Food)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "3000.00",
+                    "discount": "0.00",
+                    "netAmount": "3000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "0.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "3000.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "4",
+                    "billingCode": "1.1",
+                    "billingName": "1.1 - ค่ายาและสารอาหารทางหลอดเลือด(Drugs & Parenteral Nutrition) (ค่ายา-เวชภัณฑ์)",
+                    "billingNameResult": "1.1 - ค่ายาและสารอาหารทางหลอดเลือด(Drugs & Parenteral Nutrition)",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "2",
+                    "incurredAmount": "3000.00",
+                    "discount": "0.00",
+                    "netAmount": "3000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "2700.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "300.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "5",
+                    "billingCode": "1.1.12",
+                    "billingName": "1.1.12 - ค่ายาและสารอาหารในห้องผ่าตัด (ค่ายา-เวชภัณฑ์ และอุปกรณ์ผ่าตัด)",
+                    "billingNameResult": "1.1.12 - ค่ายาและสารอาหารในห้องผ่าตัด",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "2000.00",
+                    "discount": "0.00",
+                    "netAmount": "2000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "1800.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "200.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "6",
+                    "billingCode": "1.28",
+                    "billingName": "1.28 - ค่าผู้ประกอบวิชาชีพเวชกรรม ตรวจรักษาทั่วไป (Physician Evaluation & Management Services) (ค่าแพทย์ตรวจ)",
+                    "billingNameResult": "1.28 - ค่าผู้ประกอบวิชาชีพเวชกรรม ตรวจรักษาทั่วไป (Physician Evaluation & Management Services)",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "2000.00",
+                    "discount": "0.00",
+                    "netAmount": "2000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "1800.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "200.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  }
+                ],
+                "billingRemark": "Billing remark test"
+              },
+              "billingTotal": {
+                "incurredAmount": "46000.00",
+                "discount": "300.55",
+                "netAmount": "45699.45",
+                "deduct": "0.00",
+                "decline": "0.00",
+                "coveredByOtherParties": "0.00",
+                "payableAmount": "28800.00",
+                "majorMedical": "0.00",
+                "exceededLimit": "16899.45",
+                "recovery": "0.00"
+              }
+            }
+          },
+          "negative": {}
+        },
+        "opd": {
+          "positive": {},
+          "negative": {}
+        },
+        "er72": {
+          "positive": {},
+          "negative": {}
+        }
+      }
+    },
+    "copay": {
+      "ha": {
+        "ipd": {
+          "positive": {
+            "preArrangement": {
+              "draftInfo": {
+                "claimType": "Pre-arrangement",
+                "benefitType": "IPD",
+                "providerNameTh": "โรงพยาบาลป่าตอง",
+                "providerNameEn": "Patong Hospital",
+                "causeOfLoss": "Illness",
+                "appointmentDate": true,
+                "admissionDate": null,
+                "estimatedIpdDays": "3",
+                "estimatedExpenses": "70000.45",
+                "dischargeDate": null,
+                "lengthOfStay": "",
+                "accidentDate": null,
+                "isAlcoholInvolved": null,
+                "symptom": "ปวดศีรษะ แขนขาอ่อนแรง",
+                "openClaimWithNewLimit": null
+              },
+              "billingInfo": {
+                "physicianName": "Jeeranan",
+                "medicalLicenseNumber": "999999",
+                "icd10": [
+                  {
+                    "code": "I64",
+                    "name": "I64 - เป็นลมหมดสติจากภาวะในสมอง ที่ไม่จัดกลุ่มว่าเป็นจากเลือดออกในสมองหรือเนื้อสมองตายจากการขาดเลือด",
+                    "remark": "ปวดศีรษะรุนแรง และหมดสติ"
+                  },
+                  {
+                    "code": "G46.3",
+                    "name": "G46.3 - กลุ่มอาการอัมพาตบริเวณก้านสมอง",
+                    "remark": "แขนขาอ่อนแรง"
+                  }
+                ],
+                "icd9": [
+                  {
+                    "code": "00.21",
+                    "name": "00.21 - Intravascular imaging of extracranial cerebral vessels",
+                    "remark": ""
+                  },
+                  {
+                    "code": "135-41-50",
+                    "name": "135-41-50 - Transcatheter thrombolysis of middle cerebral artery using thrombolytic agent",
+                    "remark": ""
+                  }
+                ],
+                "billingNo": "TEST-111111",
+                "billingDate": true,
+                "billSubmitterType": "Provider",
+                "billingItems": [
+                  {
+                    "no": "1",
+                    "billingCode": "2.1(1)",
+                    "billingName": "2.1(1) - Intensive Care Unit (ผู้ป่วยหนัก)",
+                    "billingNameResult": "2.1(1) - ค่าห้องหรือค่าเตียงผู้ป่วยหนัก (ICU)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "2",
+                    "incurredAmount": "30000.00",
+                    "discount": "100.55",
+                    "netAmount": "29899.45",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "18000.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "11899.45",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "2",
+                    "billingCode": "2.1",
+                    "billingName": "2.1 - ค่าห้องพักผู้ป่วยใน (Inpatient Room) (ผู้ป่วยปกติ)",
+                    "billingNameResult": "2.1 - ค่าห้องพักผู้ป่วยใน (Inpatient Room)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "6000.00",
+                    "discount": "200.00",
+                    "netAmount": "5800.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "4500.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "1300.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "3",
+                    "billingCode": "2.3.1",
+                    "billingName": "2.3.1 - อาหารผู้ป่วยในมาตรฐาน (Standard Inpatient Food) (ผู้ป่วยปกติ)",
+                    "billingNameResult": "2.3.1 - อาหารผู้ป่วยในมาตรฐาน (Standard Inpatient Food)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "3000.00",
+                    "discount": "0.00",
+                    "netAmount": "3000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "0.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "3000.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "4",
+                    "billingCode": "1.1",
+                    "billingName": "1.1 - ค่ายาและสารอาหารทางหลอดเลือด(Drugs & Parenteral Nutrition) (ค่ายา-เวชภัณฑ์)",
+                    "billingNameResult": "1.1 - ค่ายาและสารอาหารทางหลอดเลือด(Drugs & Parenteral Nutrition)",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "2",
+                    "incurredAmount": "3000.00",
+                    "discount": "0.00",
+                    "netAmount": "3000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "2700.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "300.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "5",
+                    "billingCode": "1.1.12",
+                    "billingName": "1.1.12 - ค่ายาและสารอาหารในห้องผ่าตัด (ค่ายา-เวชภัณฑ์ และอุปกรณ์ผ่าตัด)",
+                    "billingNameResult": "1.1.12 - ค่ายาและสารอาหารในห้องผ่าตัด",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "2000.00",
+                    "discount": "0.00",
+                    "netAmount": "2000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "1800.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "200.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "6",
+                    "billingCode": "1.28",
+                    "billingName": "1.28 - ค่าผู้ประกอบวิชาชีพเวชกรรม ตรวจรักษาทั่วไป (Physician Evaluation & Management Services) (ค่าแพทย์ตรวจ)",
+                    "billingNameResult": "1.28 - ค่าผู้ประกอบวิชาชีพเวชกรรม ตรวจรักษาทั่วไป (Physician Evaluation & Management Services)",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "2000.00",
+                    "discount": "0.00",
+                    "netAmount": "2000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "1800.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "200.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  }
+                ],
+                "billingRemark": "Billing remark test"
+              },
+              "billingTotal": {
+                "incurredAmount": "46000.00",
+                "discount": "300.55",
+                "netAmount": "45699.45",
+                "deduct": "0.00",
+                "decline": "0.00",
+                "coveredByOtherParties": "0.00",
+                "payableAmount": "28800.00",
+                "majorMedical": "0.00",
+                "exceededLimit": "16899.45",
+                "recovery": "0.00"
+              }
+            },
+            "ipdDischarge": {
+              "draftInfo": {
+                "claimType": "IPD Discharge",
+                "benefitType": "IPD",
+                "providerNameTh": "โรงพยาบาลป่าตอง",
+                "providerNameEn": "Patong Hospital",
+                "causeOfLoss": "Illness",
+                "appointmentDate": null,
+                "admissionDate": true,
+                "estimatedIpdDays": "",
+                "estimatedExpenses": "",
+                "dischargeDate": true,
+                "lengthOfStay": "2",
+                "accidentDate": null,
+                "isAlcoholInvolved": null,
+                "symptom": "ปวดศีรษะ แขนขาอ่อนแรง",
+                "openClaimWithNewLimit": null
+              },
+              "billingInfo": {
+                "physicianName": "Jeeranan",
+                "medicalLicenseNumber": "999999",
+                "icd10": [
+                  {
+                    "code": "I64",
+                    "name": "I64 - เป็นลมหมดสติจากภาวะในสมอง ที่ไม่จัดกลุ่มว่าเป็นจากเลือดออกในสมองหรือเนื้อสมองตายจากการขาดเลือด",
+                    "remark": "ปวดศีรษะรุนแรง และหมดสติ"
+                  },
+                  {
+                    "code": "G46.3",
+                    "name": "G46.3 - กลุ่มอาการอัมพาตบริเวณก้านสมอง",
+                    "remark": "แขนขาอ่อนแรง"
+                  }
+                ],
+                "icd9": [
+                  {
+                    "code": "00.21",
+                    "name": "00.21 - Intravascular imaging of extracranial cerebral vessels",
+                    "remark": ""
+                  },
+                  {
+                    "code": "135-41-50",
+                    "name": "135-41-50 - Transcatheter thrombolysis of middle cerebral artery using thrombolytic agent",
+                    "remark": ""
+                  }
+                ],
+                "billingNo": "TEST-111111",
+                "billingDate": true,
+                "billSubmitterType": "Provider",
+                "billingItems": [
+                  {
+                    "no": "1",
+                    "billingCode": "2.1(1)",
+                    "billingName": "2.1(1) - Intensive Care Unit (ผู้ป่วยหนัก)",
+                    "billingNameResult": "2.1(1) - ค่าห้องหรือค่าเตียงผู้ป่วยหนัก (ICU)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "2",
+                    "incurredAmount": "30000.00",
+                    "discount": "100.55",
+                    "netAmount": "29899.45",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "18000.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "11899.45",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "2",
+                    "billingCode": "2.1",
+                    "billingName": "2.1 - ค่าห้องพักผู้ป่วยใน (Inpatient Room) (ผู้ป่วยปกติ)",
+                    "billingNameResult": "2.1 - ค่าห้องพักผู้ป่วยใน (Inpatient Room)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "6000.00",
+                    "discount": "200.00",
+                    "netAmount": "5800.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "4500.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "1300.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "3",
+                    "billingCode": "2.3.1",
+                    "billingName": "2.3.1 - อาหารผู้ป่วยในมาตรฐาน (Standard Inpatient Food) (ผู้ป่วยปกติ)",
+                    "billingNameResult": "2.3.1 - อาหารผู้ป่วยในมาตรฐาน (Standard Inpatient Food)",
+                    "benefit": "Room and Board",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "3000.00",
+                    "discount": "0.00",
+                    "netAmount": "3000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "0.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "3000.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "4",
+                    "billingCode": "1.1",
+                    "billingName": "1.1 - ค่ายาและสารอาหารทางหลอดเลือด(Drugs & Parenteral Nutrition) (ค่ายา-เวชภัณฑ์)",
+                    "billingNameResult": "1.1 - ค่ายาและสารอาหารทางหลอดเลือด(Drugs & Parenteral Nutrition)",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "2",
+                    "incurredAmount": "3000.00",
+                    "discount": "0.00",
+                    "netAmount": "3000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "2700.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "300.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "5",
+                    "billingCode": "1.1.12",
+                    "billingName": "1.1.12 - ค่ายาและสารอาหารในห้องผ่าตัด (ค่ายา-เวชภัณฑ์ และอุปกรณ์ผ่าตัด)",
+                    "billingNameResult": "1.1.12 - ค่ายาและสารอาหารในห้องผ่าตัด",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "2000.00",
+                    "discount": "0.00",
+                    "netAmount": "2000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "1800.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "200.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  },
+                  {
+                    "no": "6",
+                    "billingCode": "1.28",
+                    "billingName": "1.28 - ค่าผู้ประกอบวิชาชีพเวชกรรม ตรวจรักษาทั่วไป (Physician Evaluation & Management Services) (ค่าแพทย์ตรวจ)",
+                    "billingNameResult": "1.28 - ค่าผู้ประกอบวิชาชีพเวชกรรม ตรวจรักษาทั่วไป (Physician Evaluation & Management Services)",
+                    "benefit": "General Expense",
+                    "schedule": "0",
+                    "copay": "90.00",
+                    "noOfDays": "1",
+                    "incurredAmount": "2000.00",
+                    "discount": "0.00",
+                    "netAmount": "2000.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "1800.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "200.00",
+                    "recovery": "0.00",
+                    "remark": ""
+                  }
+                ],
+                "billingRemark": "Billing remark test"
+              },
+              "billingTotal": {
+                "incurredAmount": "46000.00",
+                "discount": "300.55",
+                "netAmount": "45699.45",
+                "deduct": "0.00",
+                "decline": "0.00",
+                "coveredByOtherParties": "0.00",
+                "payableAmount": "28800.00",
+                "majorMedical": "0.00",
+                "exceededLimit": "16899.45",
+                "recovery": "0.00"
+              }
+            }         
+          },
+          "negative": {}
+        },
+        "er24": {
+          "positive": {},
+          "negative": {}
+        }
+      }
+    },
+    "deduct": {
+      "ha": {
+        "notIncludedEr": {
+          "ipd": {
+            "positive": {},
+            "negative": {}
+          },
+          "opd": {
+            "positive": {},
+            "negative": {}
+          },
+          "er24": {
+            "positive": {},
+            "negative": {}
+          }
+        },
+        "room": {
+          "hb": {
+            "positive": {},
+            "negative": {}
+          }
+        }
+      }
+    },
+    "majorMed": {
+      "ph": {
+        "ipd": {
+          "positive": {},
+          "negative": {}
+        },
+        "opd": {
+          "positive": {},
+          "negative": {}
+        },
+        "maternity": {
+          "positive": {},
+          "negative": {}
+        },
+        "er24": {
+          "positive": {},
+          "negative": {}
+        },
+        "dental": {
+          "positive": {},
+          "negative": {}
+        }
+      },
+      "ha": {
+        "er72": {
+          "positive": {},
+          "negative": {}
+        },
+        "hbIncentive": {
+          "positive": {},
+          "negative": {}
+        }
+      }
+    },
+    "pa": {
+      "holiday": {
+        "pa": {
+          "positive": {},
+          "negative": {}
+        },
+        "hb": {
+          "positive": {},
+          "negative": {}
+        }
+      }
+    }
+  }
+}

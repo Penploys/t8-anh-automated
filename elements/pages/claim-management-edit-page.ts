@@ -1,6 +1,7 @@
 import { Locator, expect } from '@playwright/test'
 import { BasePage } from '../base-page'
-import path from 'path'
+import * as fs from 'fs'
+import * as path from 'path'
 
 export class ClaimManagementEditPage extends BasePage {
   // Tabs
@@ -542,6 +543,2344 @@ export class ClaimManagementEditPage extends BasePage {
     }
   }
 
+  calculateBillingTotal(billingItems: any[], billingTotal: any) {
+    let totalIncurredAmount = 0
+    let totalDiscount = 0
+    let totalNetAmount = 0
+    let totalDeduct = 0
+    let totalDecline = 0
+    let totalCoveredByOtherParties = 0
+    let totalPayableAmount = 0
+    let totalMajorMedical = 0
+    let totalExceededLimit = 0
+    let totalRecovery = 0
+
+    const parse = (val: string | number | undefined) => {
+      if (!val) return 0
+      const num = typeof val === 'string' ? parseFloat(val.replace(/,/g, '')) : val
+      return isNaN(num) ? 0 : num
+    }
+
+    if (billingItems && Array.isArray(billingItems)) {
+      for (const item of billingItems) {
+        totalIncurredAmount += parse(item.incurredAmount)
+        totalDiscount += parse(item.discount)
+        totalNetAmount += parse(item.netAmount)
+        totalDeduct += parse(item.deduct)
+        totalDecline += parse(item.decline)
+        totalCoveredByOtherParties += parse(item.coveredByOtherParties)
+        totalPayableAmount += parse(item.payableAmount)
+        totalMajorMedical += parse(item.majorMedical)
+        totalExceededLimit += parse(item.exceededLimit)
+        totalRecovery += parse(item.recovery)
+      }
+    }
+
+    if (!billingTotal) {
+      billingTotal = {}
+    }
+
+    billingTotal.incurredAmount = totalIncurredAmount.toFixed(2)
+    billingTotal.discount = totalDiscount.toFixed(2)
+    billingTotal.netAmount = totalNetAmount.toFixed(2)
+    billingTotal.deduct = totalDeduct.toFixed(2)
+    billingTotal.decline = totalDecline.toFixed(2)
+    billingTotal.coveredByOtherParties = totalCoveredByOtherParties.toFixed(2)
+    billingTotal.payableAmount = totalPayableAmount.toFixed(2)
+    billingTotal.majorMedical = totalMajorMedical.toFixed(2)
+    billingTotal.exceededLimit = totalExceededLimit.toFixed(2)
+    billingTotal.recovery = totalRecovery.toFixed(2)
+
+    console.log(' ')
+    console.log('✓ Calculated Total:', billingTotal)
+  }
+
+  async calculateBillingSchedule(
+    claimType:
+      | 'ipdDischarge'
+      | 'opdDischarge'
+      | 'er72Discharge'
+      | 'ipdDischargeSchedule'
+      | 'opdDischargeSchedule'
+      | 'er72DischargeSchedule'
+  ) {
+    // Define Paths
+    const rootDir = process.cwd()
+    const coveragesPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claim-coverages-init.json')
+    const claimsPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claims.json')
+
+    // Read JSON Files
+    const coveragesData = JSON.parse(fs.readFileSync(coveragesPath, 'utf-8'))
+    const claimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+    // Get Base Limits
+    const ipdCoverages = coveragesData.policy.schedule.IPD
+    const icuRoomLimit = parseFloat(ipdCoverages[0].limit)
+    const icuRoomRemaining = parseFloat(ipdCoverages[0].remaining)
+    const icuRoomDayRemaining = parseFloat(ipdCoverages[1].remaining)
+    // Shared room day pool
+    // const icuRoomDayCombinedSub = parseFloat(ipdCoverages[1].combinedSubDayRemaining)
+    const normalRoomLimit = parseFloat(ipdCoverages[2].limit)
+    const normalRoomRemaining = parseFloat(ipdCoverages[2].remaining)
+    const normalRoomDayRemaining = parseFloat(ipdCoverages[3].remaining)
+    // Major room day pool
+    const normalRoomDayCombinedSub = parseFloat(ipdCoverages[3].combinedSubDayRemaining)
+    const hospitalOrMedicalLimit = parseFloat(ipdCoverages[4].limit)
+    const hospitalOrMedicalRemaining = parseFloat(ipdCoverages[4].remaining)
+    // Major medical pool
+    const hospitalOrMedicalCombinedSub = parseFloat(ipdCoverages[4].combinedSubRemaining)
+    const nonSurgicalConsultLimit = parseFloat(ipdCoverages[5].limit)
+    const nonSurgicalConsultRemaining = parseFloat(ipdCoverages[5].remaining)
+    // Shared medical pool
+    // const nonSurgicalConsultCombinedSub = parseFloat(ipdCoverages[5].combinedSubRemaining)
+    const surgicalConsultLimit = parseFloat(ipdCoverages[6].limit)
+    const surgicalConsultRemaining = parseFloat(ipdCoverages[6].remaining)
+    // Shared doctor practitioner pool
+    // const surgicalConsultCombinedSub = parseFloat(ipdCoverages[6].combinedSubRemaining)
+    const doctorPractitionerFeeLimit = parseFloat(ipdCoverages[7].limit)
+    const doctorPractitionerFeeRemaining = parseFloat(ipdCoverages[7].remaining)
+    // Major doctor pool
+    const doctorPractitionerFeeCombinedSub = parseFloat(ipdCoverages[7].combinedSubRemaining)
+    const doctorsVisitFeeDayRemaining = parseFloat(ipdCoverages[8].remaining)
+    const doctorsVisitFeeLimit = parseFloat(ipdCoverages[9].limit)
+    const doctorsVisitFeeRemaining = parseFloat(ipdCoverages[9].remaining)
+    const ambulanceLimit = parseFloat(ipdCoverages[10].limit)
+    const ambulanceRemaining = parseFloat(ipdCoverages[10].remaining)
+    // Shared medical pool
+    // const ambulanceCombinedSub = parseFloat(ipdCoverages[9].combinedSubRemaining)
+
+    const opdCoverages = coveragesData.policy.schedule.OPD
+    const opdVisitYearRemaining = parseFloat(opdCoverages[0].remaining)
+    const opdVisitDayRemaining = parseFloat(opdCoverages[1].remaining)
+    const opdVisitLimit = parseFloat(opdCoverages[2].limit)
+    const opdVisitRemaining = parseFloat(opdCoverages[2].remaining)
+
+    const erCoverages = coveragesData.policy.schedule.ER
+    const er72HoursLimit = parseFloat(erCoverages[0].limit)
+    const er72HoursRemaining = parseFloat(erCoverages[0].remaining)
+
+    // Initialize Pool State
+    const sharedRoomDayPool = {
+      remaining: normalRoomDayCombinedSub
+    }
+
+    const sharedMedicalPool = {
+      remaining: hospitalOrMedicalCombinedSub
+    }
+
+    const sharedDoctorPool = {
+      remaining: doctorPractitionerFeeCombinedSub
+    }
+
+    // Get Target Billing Items
+    const billingIpd = claimsData.uat.schedule.ph.ipd.positive.ipdDischarge
+    const billingItemsIpd = billingIpd.billingInfo.billingItems
+    const billingTotalIpd = billingIpd.billingTotal
+
+    const billingOpd = claimsData.uat.schedule.ph.opd.positive.ipdDischarge
+    const billingItemsOpd = billingOpd.billingInfo.billingItems
+    const billingTotalOpd = billingOpd.billingTotal
+
+    const billingEr72 = claimsData.uat.schedule.ph.er72.positive.ipdDischarge
+    const billingItemsEr = billingEr72.billingInfo.billingItems
+    const billingTotalEr = billingEr72.billingTotal
+
+    // Helper Function: Core Logic for Schedule
+    const applyCoverageLogic = (netAmountFloat, baseLimit, isSchedule = false, originalSchedule = '0') => {
+      let schedulePercent = 0
+      let usedSchedule = '0'
+
+      // 1. Determine Schedule Percentage
+      if (isSchedule) {
+        // Case: Force Schedule 50%
+        schedulePercent = 50
+        usedSchedule = '50'
+      } else {
+        // Case: Force Schedule 100%
+        const existingSchedule = parseFloat(originalSchedule)
+        if (existingSchedule === 0) {
+          schedulePercent = 100
+        } else {
+          schedulePercent = existingSchedule
+        }
+        usedSchedule = originalSchedule
+      }
+
+      // 2. Calculate Payable by Schedule
+      // Formula: Net * (Schedule / 100)
+      const payableBySchedule = netAmountFloat * (schedulePercent / 100)
+
+      // 3. Apply Base Limit
+      const payable = Math.min(payableBySchedule, baseLimit)
+
+      // 4. Calculate Exceeded Limit
+      const exceededLimit = (netAmountFloat - payable).toFixed(2)
+
+      console.log(
+        `    > Item: Net ${netAmountFloat.toFixed(2)} -> Schedule ${schedulePercent}% -> Pay ${payable.toFixed(2)} -> Exceed ${exceededLimit}`
+      )
+
+      return {
+        payableAmount: payable.toFixed(2),
+        exceededLimit: exceededLimit,
+        schedule: usedSchedule
+      }
+    }
+
+    const calculateBillingItemPerDay = (
+      item,
+      limitAmountRemaining,
+      limitDayRemaining,
+      baseForIncurred,
+      isSchedule = false,
+      sharedDayPool: { remaining: number } | null = null
+    ) => {
+      const noOfDays = parseFloat(item.noOfDays)
+
+      // 1. Incurred Amount: (Limit / 4) * Days
+      const incurredAmount = ((baseForIncurred / 4) * noOfDays).toFixed(2)
+
+      // 2. Discount: 10% of Incurred
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+
+      // 3. Net Amount: Incurred - Discount
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      // 4. Calculated Allowed Days
+      let allowedDays = 0
+
+      if (limitDayRemaining > 0) {
+        allowedDays = noOfDays
+        allowedDays = Math.min(allowedDays, limitDayRemaining)
+
+        if (sharedDayPool) {
+          allowedDays = Math.min(allowedDays, sharedDayPool.remaining)
+        }
+      } else {
+        allowedDays = 0
+      }
+
+      // 5. Calculate Max Payable based on Allowed Days
+      const maxBasePayable = limitAmountRemaining * allowedDays
+
+      // 6. Apply Logic
+      const result = applyCoverageLogic(netAmountFloat, maxBasePayable, isSchedule, item.schedule)
+
+      // 7. Deduct from Shared Pool
+      if (sharedDayPool) {
+        sharedDayPool.remaining -= allowedDays
+        if (sharedDayPool.remaining < 0) sharedDayPool.remaining = 0
+      }
+
+      // Update items
+      item.schedule = result.schedule
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerDis = (
+      item,
+      limitAmountRemaining,
+      baseForIncurred,
+      isSchedule = false,
+      sharedPool: { remaining: number } | null = null
+    ) => {
+      const incurredAmount = (baseForIncurred / 4).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      let maxBasePayable = limitAmountRemaining
+      if (sharedPool) {
+        maxBasePayable = Math.min(limitAmountRemaining, sharedPool.remaining)
+      }
+
+      const result = applyCoverageLogic(netAmountFloat, maxBasePayable, isSchedule, item.schedule)
+
+      if (sharedPool) {
+        sharedPool.remaining -= parseFloat(result.payableAmount)
+        if (sharedPool.remaining < 0) sharedPool.remaining = 0
+      }
+
+      item.schedule = result.schedule
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerVisit = (
+      item,
+      limitAmountRemaining,
+      limitVisitDayRemaining,
+      limitVisitYearRemaining,
+      baseForIncurred,
+      isSchedule = false
+    ) => {
+      const incurredAmount = (baseForIncurred / 4).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      let maxBasePayable = 0
+      if (limitVisitYearRemaining > 0) {
+        if (limitVisitDayRemaining > 0) {
+          maxBasePayable = limitAmountRemaining
+        } else {
+          maxBasePayable = 0
+        }
+      } else {
+        maxBasePayable = 0
+      }
+
+      const result = applyCoverageLogic(netAmountFloat, maxBasePayable, isSchedule, item.schedule)
+
+      item.schedule = result.schedule
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    // Execute Calculation
+    console.log('✓ Updated billing items with Schedule Logic')
+    console.log(`  Room day combined sub Pool Initial: ${sharedRoomDayPool.remaining} THB`)
+    console.log(`  Medical combined sub Pool Initial: ${sharedMedicalPool.remaining} THB`)
+    console.log(`  Doctor practitioner combined sub Pool Initial: ${sharedDoctorPool.remaining} THB`)
+    console.log(' ')
+
+    // 1. IPD Items
+    if (claimType === 'ipdDischarge') {
+      if (billingItemsIpd && billingItemsIpd.length > 0) {
+        if (billingItemsIpd[0])
+          calculateBillingItemPerDay(
+            billingItemsIpd[0],
+            icuRoomRemaining,
+            icuRoomDayRemaining,
+            icuRoomLimit,
+            false,
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[1])
+          calculateBillingItemPerDay(
+            billingItemsIpd[1],
+            normalRoomRemaining,
+            normalRoomDayRemaining,
+            normalRoomLimit,
+            false,
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[2])
+          calculateBillingItemPerDis(
+            billingItemsIpd[2],
+            hospitalOrMedicalRemaining,
+            hospitalOrMedicalLimit,
+            false,
+            sharedMedicalPool
+          )
+        if (billingItemsIpd[3])
+          calculateBillingItemPerDis(
+            billingItemsIpd[3],
+            nonSurgicalConsultRemaining,
+            nonSurgicalConsultLimit,
+            false,
+            sharedMedicalPool
+          )
+        if (billingItemsIpd[4])
+          calculateBillingItemPerDis(
+            billingItemsIpd[4],
+            surgicalConsultRemaining,
+            surgicalConsultLimit,
+            false,
+            sharedDoctorPool
+          )
+        if (billingItemsIpd[5])
+          calculateBillingItemPerDis(
+            billingItemsIpd[5],
+            doctorPractitionerFeeRemaining,
+            doctorPractitionerFeeLimit,
+            false,
+            sharedDoctorPool
+          )
+        if (billingItemsIpd[6])
+          calculateBillingItemPerDay(
+            billingItemsIpd[6],
+            doctorsVisitFeeRemaining,
+            doctorsVisitFeeDayRemaining,
+            doctorsVisitFeeLimit,
+            false
+          )
+        if (billingItemsIpd[7])
+          calculateBillingItemPerDis(billingItemsIpd[7], ambulanceRemaining, ambulanceLimit, false, sharedMedicalPool)
+
+        console.log(' ')
+        console.log(
+          `  [Schedule IPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule IPD] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule IPD] Doctor practitioner combined sub Pool Remaining: ${sharedDoctorPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalIpd && billingItemsIpd.length > 0) {
+        this.calculateBillingTotal(billingItemsIpd, billingTotalIpd)
+      }
+    }
+
+    // 2. OPD Items
+    if (claimType === 'opdDischarge') {
+      if (billingItemsOpd && billingItemsOpd.length > 0) {
+        if (billingItemsOpd[0])
+          calculateBillingItemPerVisit(
+            billingItemsOpd[0],
+            opdVisitRemaining,
+            opdVisitDayRemaining,
+            opdVisitYearRemaining,
+            opdVisitLimit,
+            false
+          )
+
+        console.log(' ')
+        console.log(
+          `  [Schedule OPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule OPD] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule OPD] Doctor practitioner combined sub Pool Remaining: ${sharedDoctorPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalOpd && billingItemsOpd.length > 0) {
+        this.calculateBillingTotal(billingItemsOpd, billingTotalOpd)
+      }
+    }
+
+    // 3. ER Items
+    if (claimType === 'er72Discharge') {
+      if (billingItemsEr && billingItemsEr.length > 0) {
+        if (billingItemsEr[0]) calculateBillingItemPerDis(billingItemsEr[0], er72HoursRemaining, er72HoursLimit, false)
+
+        console.log(' ')
+        console.log(
+          `  [Schedule ER72] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule ER72] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule ER72] Doctor practitioner combined sub Pool Remaining: ${sharedDoctorPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalEr && billingItemsEr.length > 0) {
+        this.calculateBillingTotal(billingItemsEr, billingTotalEr)
+      }
+    }
+
+    // 4. IPD Items with schedule
+    if (claimType === 'ipdDischargeSchedule') {
+      if (billingItemsIpd && billingItemsIpd.length > 0) {
+        if (billingItemsIpd[0])
+          calculateBillingItemPerDay(
+            billingItemsIpd[0],
+            icuRoomRemaining,
+            icuRoomDayRemaining,
+            icuRoomLimit,
+            true,
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[1])
+          calculateBillingItemPerDay(
+            billingItemsIpd[1],
+            normalRoomRemaining,
+            normalRoomDayRemaining,
+            normalRoomLimit,
+            true,
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[2])
+          calculateBillingItemPerDis(
+            billingItemsIpd[2],
+            hospitalOrMedicalRemaining,
+            hospitalOrMedicalLimit,
+            true,
+            sharedMedicalPool
+          )
+        if (billingItemsIpd[3])
+          calculateBillingItemPerDis(
+            billingItemsIpd[3],
+            nonSurgicalConsultRemaining,
+            nonSurgicalConsultLimit,
+            true,
+            sharedMedicalPool
+          )
+        if (billingItemsIpd[4])
+          calculateBillingItemPerDis(
+            billingItemsIpd[4],
+            surgicalConsultRemaining,
+            surgicalConsultLimit,
+            true,
+            sharedDoctorPool
+          )
+        if (billingItemsIpd[5])
+          calculateBillingItemPerDis(
+            billingItemsIpd[5],
+            doctorPractitionerFeeRemaining,
+            doctorPractitionerFeeLimit,
+            true,
+            sharedDoctorPool
+          )
+        if (billingItemsIpd[6])
+          calculateBillingItemPerDay(
+            billingItemsIpd[6],
+            doctorsVisitFeeRemaining,
+            doctorsVisitFeeDayRemaining,
+            doctorsVisitFeeLimit,
+            true
+          )
+        if (billingItemsIpd[7])
+          calculateBillingItemPerDis(billingItemsIpd[7], ambulanceRemaining, ambulanceLimit, true, sharedMedicalPool)
+
+        console.log(' ')
+        console.log(
+          `  [Schedule IPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule IPD] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule IPD] Doctor practitioner combined sub Pool Remaining: ${sharedDoctorPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalIpd && billingItemsIpd.length > 0) {
+        this.calculateBillingTotal(billingItemsIpd, billingTotalIpd)
+      }
+    }
+
+    // 5. OPD Items with schedule
+    if (claimType === 'opdDischargeSchedule') {
+      if (billingItemsOpd && billingItemsOpd.length > 0) {
+        if (billingItemsOpd[0])
+          calculateBillingItemPerVisit(
+            billingItemsOpd[0],
+            opdVisitRemaining,
+            opdVisitDayRemaining,
+            opdVisitYearRemaining,
+            opdVisitLimit,
+            true
+          )
+
+        console.log(' ')
+        console.log(
+          `  [Schedule OPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule OPD] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule OPD] Doctor practitioner combined sub Pool Remaining: ${sharedDoctorPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalOpd && billingItemsOpd.length > 0) {
+        this.calculateBillingTotal(billingItemsOpd, billingTotalOpd)
+      }
+    }
+
+    // 6. ER Items with schedule
+    if (claimType === 'er72DischargeSchedule') {
+      if (billingItemsEr && billingItemsEr.length > 0) {
+        if (billingItemsEr[0]) calculateBillingItemPerDis(billingItemsEr[0], er72HoursRemaining, er72HoursLimit, true)
+
+        console.log(' ')
+        console.log(
+          `  [Schedule ER72] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule ER72] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+        console.log(
+          `  [Schedule ER72] Doctor practitioner combined sub Pool Remaining: ${sharedDoctorPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalEr && billingItemsEr.length > 0) {
+        this.calculateBillingTotal(billingItemsEr, billingTotalEr)
+      }
+    }
+
+    fs.writeFileSync(claimsPath, JSON.stringify(claimsData, null, 2), 'utf-8')
+    console.log(' ')
+    console.log('✓ Saved claims.json with Schedule logic')
+    console.log('--------------------------------------------')
+  }
+
+  async calculateBillingCopay(claimType: 'ipdPreAuth' | 'ipdDischarge' | 'opdDischarge' | 'er24Discharge') {
+    // Define Paths
+    const rootDir = process.cwd()
+    const coveragesPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claim-coverages-init.json')
+    const claimsPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claims.json')
+
+    // Read JSON Files
+    const coveragesData = JSON.parse(fs.readFileSync(coveragesPath, 'utf-8'))
+    const claimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+    // Get Limit Remaining
+    const othCoverages = coveragesData.policy.copay.OTH
+    const maxPayableRemaining = parseFloat(othCoverages[0].remaining)
+    const maxPayableIpdRemaining = parseFloat(othCoverages[1].remaining)
+
+    const ipdCoverages = coveragesData.policy.copay.IPD
+    const icuRoomLimit = parseFloat(ipdCoverages[1].limit)
+    const icuRoomRemaining = parseFloat(ipdCoverages[1].remaining)
+    const icuRoomDayRemaining = parseFloat(ipdCoverages[2].remaining)
+    // Shared room day pool
+    // const icuRoomDayCombinedSub = parseFloat(ipdCoverages[2].remaining)
+    const normalRoomDayRemaining = parseFloat(ipdCoverages[3].remaining)
+    // Major room day pool
+    const normalRoomDayCombinedSub = parseFloat(ipdCoverages[3].combinedSubDayRemaining)
+    const normalRoomLimit = parseFloat(ipdCoverages[4].limit)
+    const normalRoomRemaining = parseFloat(ipdCoverages[4].remaining)
+    const doctorPractitionerFeeLimit = parseFloat(ipdCoverages[5].limit)
+    const doctorPractitionerFeeRemaining = parseFloat(ipdCoverages[5].remaining)
+    const anesthetistPractitionerFeeLimit = parseFloat(ipdCoverages[6].limit)
+    const anesthetistPractitionerFeeRemaining = parseFloat(ipdCoverages[6].remaining)
+    const operatingRoomLimit = parseFloat(ipdCoverages[7].limit)
+    const operatingRoomRemaining = parseFloat(ipdCoverages[7].remaining)
+    const organTransplantationLimit = parseFloat(ipdCoverages[8].limit)
+    const organTransplantationRemaining = parseFloat(ipdCoverages[8].remaining)
+    const daySurgeryLimit = parseFloat(ipdCoverages[9].limit)
+    const daySurgeryRemaining = parseFloat(ipdCoverages[9].remaining)
+    const bloodAndBloodComponentsLimit = parseFloat(ipdCoverages[10].limit)
+    const bloodAndBloodComponentsRemaining = parseFloat(ipdCoverages[10].remaining)
+    const medicalSuppliesAndProcedureLimit = parseFloat(ipdCoverages[11].limit)
+    const medicalSuppliesAndProcedureRemaining = parseFloat(ipdCoverages[11].remaining)
+    const medicalSuppliesLimit = parseFloat(ipdCoverages[12].limit)
+    const medicalSuppliesRemaining = parseFloat(ipdCoverages[12].remaining)
+    const medicalExaminationLimit = parseFloat(ipdCoverages[13].limit)
+    const medicalExaminationRemaining = parseFloat(ipdCoverages[13].remaining)
+    const doctorsFeeLimit = parseFloat(ipdCoverages[14].limit)
+    const doctorsFeeRemaining = parseFloat(ipdCoverages[14].remaining)
+    const cancerByChemoLimit = parseFloat(ipdCoverages[15].limit)
+    const cancerByChemoRemaining = parseFloat(ipdCoverages[15].remaining)
+    const cancerByRadioNuclearLimit = parseFloat(ipdCoverages[16].limit)
+    const cancerByRadioNuclearRemaining = parseFloat(ipdCoverages[16].remaining)
+    const chronicKidneyLimit = parseFloat(ipdCoverages[17].limit)
+    const chronicKidneyRemaining = parseFloat(ipdCoverages[17].remaining)
+    // FIXME: copay data
+    // const minorOperationLimit = parseFloat(ipdCoverages[18].limit)
+    // const minorOperationRemaining = parseFloat(ipdCoverages[18].remaining)
+    const suppliesTakeawayLimit = parseFloat(ipdCoverages[19].limit)
+    const suppliesTakeawayRemaining = parseFloat(ipdCoverages[19].remaining)
+    const ambulanceLimit = parseFloat(ipdCoverages[20].limit)
+    const ambulanceRemaining = parseFloat(ipdCoverages[20].remaining)
+
+    // FIXME: copay data
+    // const opdCoverages = coveragesData.policy.copay.OPD
+    // const postHospitalLimit = parseFloat(opdCoverages[0].limit)
+    // const postHospitalRemaining = parseFloat(opdCoverages[0].remaining)
+    // const rehabLimit = parseFloat(opdCoverages[1].limit)
+    // const rehabRemaining = parseFloat(opdCoverages[1].remaining)
+    // const preAndPostHospitalLimit = parseFloat(opdCoverages[2].limit)
+    // const preAndPostHospitalRemaining = parseFloat(opdCoverages[2].remaining)
+
+    const erCoverages = coveragesData.policy.copay.ER
+    const er24HoursDayRemaining = parseFloat(erCoverages[0].remaining)
+    const er24HoursLimit = parseFloat(erCoverages[1].limit)
+    const er24HoursRemaining = parseFloat(erCoverages[1].remaining)
+
+    // Initialize Current Remaining
+    let currentGlobalRemaining = maxPayableRemaining
+    let currentGlobalIpdRemaining = maxPayableIpdRemaining
+
+    // Initialize Pool State
+    const sharedRoomDayPool = {
+      remaining: normalRoomDayCombinedSub
+    }
+
+    // Get Target Billing Items (Pointer to array)
+    const billingIpdPreAuth = claimsData.uat.copay.ha.ipd.positive.preArrangement
+    const billingItemsIpdPreAuth = billingIpdPreAuth.billingInfo.billingItems
+    const billingTotalIpdPreAuth = billingIpdPreAuth.billingTotal
+
+    const billingIpd = claimsData.uat.copay.ha.ipd.positive.ipdDischarge
+    const billingItemsIpd = billingIpd.billingInfo.billingItems
+    const billingTotalIpd = billingIpd.billingTotal
+
+    // FIXME: copay data
+    // const billingOpd = claimsData.uat.copay.ha.opd.positive.icuDischarge
+    // const billingItemsOpd = billingOpd.billingInfo.billingItems
+    // const billingTotalOpd = billingOpd.billingTotal
+
+    const billingEr24 = claimsData.uat.copay.ha.er24.positive.ipdDischarge
+    const billingItemsEr = billingEr24.billingInfo.billingItems
+    const billingTotalEr = billingEr24.billingTotal
+
+    // Helper Function: Core Logic for Copay + Global Limit
+    const applyCoverageLogic = (netAmountFloat, maxItemPayable, type: 'ipd' | 'opd' | 'er') => {
+      let payable = maxItemPayable
+
+      // 1. Check IPD Global Limit (Only for IPD)
+      if (type === 'ipd') {
+        if (currentGlobalIpdRemaining <= 0) {
+          payable = 0
+        } else {
+          payable = Math.min(payable, currentGlobalIpdRemaining)
+        }
+      }
+
+      // 2. Check Global Limit (Overall Policy Limit)
+      if (currentGlobalRemaining <= 0) {
+        payable = 0
+      } else {
+        payable = Math.min(payable, currentGlobalRemaining)
+      }
+
+      // Deduct from Limit Pools
+      if (payable > 0) {
+        if (type === 'ipd') {
+          currentGlobalIpdRemaining -= payable
+        }
+        currentGlobalRemaining -= payable
+      }
+
+      // 3. Calculate Exceeded Limit
+      const exceededLimit = (netAmountFloat - payable).toFixed(2)
+
+      console.log(
+        `    > Item: Net ${netAmountFloat.toFixed(2)} -> Pay ${payable.toFixed(2)} -> Exceed ${exceededLimit}`
+      )
+
+      return {
+        payableAmount: payable.toFixed(2),
+        exceededLimit: exceededLimit
+      }
+    }
+
+    const calculateBillingItemPerDay = (
+      item,
+      limitAmountRemaining,
+      limitDayRemaining,
+      baseForIncurred,
+      type: 'ipd' | 'opd' | 'er',
+      sharedDayPool: { remaining: number } | null = null
+    ) => {
+      const noOfDays = parseFloat(item.noOfDays)
+      const copayPercent = parseFloat(item.copay)
+      const coveragePercent = copayPercent === 0 ? 1.0 : copayPercent / 100
+
+      // 1. Incurred Amount: (Limit / 4) * Days
+      const incurredAmount = ((baseForIncurred / 4) * noOfDays).toFixed(2)
+
+      // 2. Discount: 10% of Incurred
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+
+      // 3. Net Amount: Incurred - Discount
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      // 4. Calculate Payable by Policy Condition (Net * Coverage%)
+      const payableByPolicy = netAmountFloat * coveragePercent
+
+      // 5. Calculate Allowed Days
+      let allowedDays = 0
+      if (limitDayRemaining > 0) {
+        allowedDays = noOfDays
+
+        allowedDays = Math.min(allowedDays, limitDayRemaining)
+
+        if (sharedDayPool) {
+          allowedDays = Math.min(allowedDays, sharedDayPool.remaining)
+        }
+      } else {
+        allowedDays = 0
+      }
+
+      // 6. Calculate Max Item Payable based on Allowed Days
+      let maxItemPayable = 0
+      if (allowedDays > 0) {
+        const maxLimit = limitAmountRemaining * allowedDays
+
+        maxItemPayable = Math.min(payableByPolicy, maxLimit)
+      } else {
+        maxItemPayable = 0
+      }
+
+      // 7. Apply Global Logic
+      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+
+      // 8. Deduct from Shared Pool
+      if (sharedDayPool) {
+        sharedDayPool.remaining -= allowedDays
+        if (sharedDayPool.remaining < 0) sharedDayPool.remaining = 0
+      }
+
+      // Update items
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerDis = (item, limitAmountRemaining, baseForIncurred, type: 'ipd' | 'opd' | 'er') => {
+      const copayPercent = parseFloat(item.copay)
+      const coveragePercent = copayPercent === 0 ? 1.0 : copayPercent / 100
+
+      const incurredAmount = (baseForIncurred / 4).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      const payableByPolicy = netAmountFloat * coveragePercent
+
+      const maxItemPayable = Math.min(payableByPolicy, limitAmountRemaining)
+
+      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerDisWithDay = (
+      item,
+      limitAmountRemaining,
+      limitDayRemaining,
+      baseForIncurred,
+      type: 'ipd' | 'opd' | 'er'
+    ) => {
+      const copayPercent = parseFloat(item.copay)
+      const coveragePercent = copayPercent === 0 ? 1.0 : copayPercent / 100
+
+      const incurredAmount = (baseForIncurred / 4).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      const payableByPolicy = netAmountFloat * coveragePercent
+
+      let maxItemPayable = 0
+      if (limitDayRemaining > 0) {
+        maxItemPayable = Math.min(payableByPolicy, limitAmountRemaining)
+      } else {
+        maxItemPayable = 0
+      }
+
+      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    // Execute Calculation
+    console.log('✓ Updated billing items with Copay logic')
+    console.log(`  Initial Global Limit: ${maxPayableRemaining}`)
+    console.log(`  Initial IPD Global Limit: ${maxPayableIpdRemaining}`)
+    console.log(' ')
+
+    // 1. IPD (Pre-Authorization)
+    if (claimType === 'ipdPreAuth') {
+      if (billingItemsIpdPreAuth && billingItemsIpdPreAuth.length > 0) {
+        if (billingItemsIpdPreAuth[0])
+          calculateBillingItemPerDay(
+            billingItemsIpdPreAuth[0],
+            icuRoomRemaining,
+            icuRoomDayRemaining,
+            icuRoomLimit,
+            'ipd',
+            sharedRoomDayPool
+          )
+        if (billingItemsIpdPreAuth[1])
+          calculateBillingItemPerDay(
+            billingItemsIpdPreAuth[1],
+            normalRoomRemaining,
+            normalRoomDayRemaining,
+            normalRoomLimit,
+            'ipd',
+            sharedRoomDayPool
+          )
+        if (billingItemsIpdPreAuth[2])
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[2],
+            doctorPractitionerFeeRemaining,
+            doctorPractitionerFeeLimit,
+            'ipd'
+          )
+        if (billingItemsIpdPreAuth[3])
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[3],
+            anesthetistPractitionerFeeRemaining,
+            anesthetistPractitionerFeeLimit,
+            'ipd'
+          )
+        if (billingItemsIpdPreAuth[4])
+          calculateBillingItemPerDis(billingItemsIpdPreAuth[4], operatingRoomRemaining, operatingRoomLimit, 'ipd')
+        if (billingItemsIpdPreAuth[5])
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[5],
+            organTransplantationRemaining,
+            organTransplantationLimit,
+            'ipd'
+          )
+        if (billingItemsIpdPreAuth[6])
+          calculateBillingItemPerDis(billingItemsIpdPreAuth[6], daySurgeryRemaining, daySurgeryLimit, 'ipd')
+        if (billingItemsIpdPreAuth[7])
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[7],
+            bloodAndBloodComponentsRemaining,
+            bloodAndBloodComponentsLimit,
+            'ipd'
+          )
+        if (billingItemsIpdPreAuth[8])
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[8],
+            medicalSuppliesAndProcedureRemaining,
+            medicalSuppliesAndProcedureLimit,
+            'ipd'
+          )
+        if (billingItemsIpdPreAuth[9])
+          calculateBillingItemPerDis(billingItemsIpdPreAuth[9], medicalSuppliesRemaining, medicalSuppliesLimit, 'ipd')
+        if (billingItemsIpdPreAuth[10])
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[10],
+            medicalExaminationRemaining,
+            medicalExaminationLimit,
+            'ipd'
+          )
+        if (billingItemsIpdPreAuth[11])
+          calculateBillingItemPerDis(billingItemsIpdPreAuth[11], doctorsFeeRemaining, doctorsFeeLimit, 'ipd')
+        if (billingItemsIpdPreAuth[12])
+          calculateBillingItemPerDis(billingItemsIpdPreAuth[12], cancerByChemoRemaining, cancerByChemoLimit, 'ipd')
+        if (billingItemsIpdPreAuth[13])
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[13],
+            cancerByRadioNuclearRemaining,
+            cancerByRadioNuclearLimit,
+            'ipd'
+          )
+        if (billingItemsIpdPreAuth[14])
+          calculateBillingItemPerDis(billingItemsIpdPreAuth[14], chronicKidneyRemaining, chronicKidneyLimit, 'ipd')
+        // FIXME: copay data
+        // if (billingItemsIpdPreAuth[]) calculateBillingItemPerDis(billingItemsIpdPreAuth[], minorOperationRemaining, minorOperationLimit, 'ipd')
+        if (billingItemsIpdPreAuth[15])
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[15],
+            suppliesTakeawayRemaining,
+            suppliesTakeawayLimit,
+            'ipd'
+          )
+        if (billingItemsIpdPreAuth[16])
+          calculateBillingItemPerDis(billingItemsIpdPreAuth[16], ambulanceRemaining, ambulanceLimit, 'ipd')
+
+        console.log(' ')
+        console.log(`  [Copay IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Copay IPD] IPD Global Remaining: ${currentGlobalIpdRemaining.toFixed(2)}`)
+        console.log(`  [Copay IPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+      }
+
+      if (billingTotalIpdPreAuth && billingItemsIpdPreAuth.length > 0) {
+        this.calculateBillingTotal(billingItemsIpdPreAuth, billingTotalIpdPreAuth)
+      }
+    }
+
+    // 2. IPD (IPD Discharge)
+    if (claimType === 'ipdDischarge') {
+      if (billingItemsIpd && billingItemsIpd.length > 0) {
+        if (billingItemsIpd[0])
+          calculateBillingItemPerDay(
+            billingItemsIpd[0],
+            icuRoomRemaining,
+            icuRoomDayRemaining,
+            icuRoomLimit,
+            'ipd',
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[1])
+          calculateBillingItemPerDay(
+            billingItemsIpd[1],
+            normalRoomRemaining,
+            normalRoomDayRemaining,
+            normalRoomLimit,
+            'ipd',
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[2])
+          calculateBillingItemPerDis(
+            billingItemsIpd[2],
+            doctorPractitionerFeeRemaining,
+            doctorPractitionerFeeLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[3])
+          calculateBillingItemPerDis(
+            billingItemsIpd[3],
+            anesthetistPractitionerFeeRemaining,
+            anesthetistPractitionerFeeLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[4])
+          calculateBillingItemPerDis(billingItemsIpd[4], operatingRoomRemaining, operatingRoomLimit, 'ipd')
+        if (billingItemsIpd[5])
+          calculateBillingItemPerDis(
+            billingItemsIpd[5],
+            organTransplantationRemaining,
+            organTransplantationLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[6])
+          calculateBillingItemPerDis(billingItemsIpd[6], daySurgeryRemaining, daySurgeryLimit, 'ipd')
+        if (billingItemsIpd[7])
+          calculateBillingItemPerDis(
+            billingItemsIpd[7],
+            bloodAndBloodComponentsRemaining,
+            bloodAndBloodComponentsLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[8])
+          calculateBillingItemPerDis(
+            billingItemsIpd[8],
+            medicalSuppliesAndProcedureRemaining,
+            medicalSuppliesAndProcedureLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[9])
+          calculateBillingItemPerDis(billingItemsIpd[9], medicalSuppliesRemaining, medicalSuppliesLimit, 'ipd')
+        if (billingItemsIpd[10])
+          calculateBillingItemPerDis(billingItemsIpd[10], medicalExaminationRemaining, medicalExaminationLimit, 'ipd')
+        if (billingItemsIpd[11])
+          calculateBillingItemPerDis(billingItemsIpd[11], doctorsFeeRemaining, doctorsFeeLimit, 'ipd')
+        if (billingItemsIpd[12])
+          calculateBillingItemPerDis(billingItemsIpd[12], cancerByChemoRemaining, cancerByChemoLimit, 'ipd')
+        if (billingItemsIpd[13])
+          calculateBillingItemPerDis(
+            billingItemsIpd[13],
+            cancerByRadioNuclearRemaining,
+            cancerByRadioNuclearLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[14])
+          calculateBillingItemPerDis(billingItemsIpd[14], chronicKidneyRemaining, chronicKidneyLimit, 'ipd')
+        // FIXME: copay data
+        // if (billingItemsIpd[]) calculateBillingItemPerDis(billingItemsIpd[], minorOperationRemaining, minorOperationLimit, 'ipd')
+        if (billingItemsIpd[15])
+          calculateBillingItemPerDis(billingItemsIpd[15], suppliesTakeawayRemaining, suppliesTakeawayLimit, 'ipd')
+        if (billingItemsIpd[16])
+          calculateBillingItemPerDis(billingItemsIpd[16], ambulanceRemaining, ambulanceLimit, 'ipd')
+
+        console.log(' ')
+        console.log(`  [Copay IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Copay IPD] IPD Global Remaining: ${currentGlobalIpdRemaining.toFixed(2)}`)
+        console.log(`  [Copay IPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+      }
+
+      if (billingTotalIpd && billingItemsIpd.length > 0) {
+        this.calculateBillingTotal(billingItemsIpd, billingTotalIpd)
+      }
+    }
+
+    // 3. OPD (IPD Discharge)
+    if (claimType === 'opdDischarge') {
+      // if (billingItemsOpd && billingItemsOpd.length > 0) {
+      //   // FIXME: copay data
+      //   if (billingItemsOpd[]) calculateBillingItemPerDis(billingItemsOpd[], postHospitalRemaining, postHospitalLimit, 'opd')
+      //   if (billingItemsOpd[]) calculateBillingItemPerDis(billingItemsOpd[], rehabRemaining, rehabLimit, 'opd')
+      //   if (billingItemsOpd[]) calculateBillingItemPerDis(billingItemsOpd[], preAndPostHospitalRemaining, preAndPostHospitalLimit, 'opd')
+      //   console.log(' ')
+      //   console.log(`  [Copay OPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+      //   console.log(`  [Copay OPD] IPD Global Remaining: ${currentGlobalIpdRemaining.toFixed(2)}`)
+      //   console.log(`  [Copay OPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+      // }
+      // if (billingTotalOpd && billingItemsOpd.length > 0) {
+      //   this.calculateBillingTotal(billingItemsOpd, billingTotalOpd)
+      // }
+    }
+
+    // 4. ER (IPD Discharge)
+    if (claimType === 'er24Discharge') {
+      if (billingItemsEr && billingItemsEr.length > 0) {
+        if (billingItemsEr[0])
+          calculateBillingItemPerDisWithDay(
+            billingItemsEr[0],
+            er24HoursRemaining,
+            er24HoursDayRemaining,
+            er24HoursLimit,
+            'er'
+          )
+
+        console.log(' ')
+        console.log(`  [Copay ER24] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Copay ER24] IPD Global Remaining: ${currentGlobalIpdRemaining.toFixed(2)}`)
+        console.log(`  [Copay ER24] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+      }
+
+      if (billingTotalEr && billingItemsEr.length > 0) {
+        this.calculateBillingTotal(billingItemsEr, billingTotalEr)
+      }
+    }
+
+    fs.writeFileSync(claimsPath, JSON.stringify(claimsData, null, 2), 'utf-8')
+    console.log(' ')
+    console.log('✓ Saved claims.json with Copay logic')
+    console.log('------------------------------------')
+  }
+
+  async calculateBillingDeductNotEr(claimType: 'ipdDischarge' | 'opdDischarge' | 'er24Discharge') {
+    // Define Paths
+    const rootDir = process.cwd()
+    const coveragesPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claim-coverages-init.json')
+    const claimsPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claims.json')
+
+    // Read JSON Files
+    const coveragesData = JSON.parse(fs.readFileSync(coveragesPath, 'utf-8'))
+    const claimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+    // Get Limit Remaining
+    const othCoverages = coveragesData.policy.deductNotER.OTH
+    const maxPayableRemaining = parseFloat(othCoverages[0].remaining)
+    const maxPayableIpdRemaining = parseFloat(othCoverages[1].remaining)
+
+    const ipdCoverages = coveragesData.policy.deductNotER.IPD
+    const icuRoomLimit = parseFloat(ipdCoverages[0].limit)
+    const icuRoomRemaining = parseFloat(ipdCoverages[0].remaining)
+    const icuRoomDayRemaining = parseFloat(ipdCoverages[1].remaining)
+    // Shared room day pool
+    // const icuRoomDayCombinedSub = parseFloat(ipdCoverages[1].combinedSubDayRemaining)
+    const normalRoomDayRemaining = parseFloat(ipdCoverages[2].remaining)
+    // Major room day pool
+    const normalRoomDayCombinedSub = parseFloat(ipdCoverages[2].combinedSubDayRemaining)
+    const normalRoomLimit = parseFloat(ipdCoverages[3].limit)
+    const normalRoomRemaining = parseFloat(ipdCoverages[3].remaining)
+    const doctorPractitionerFeeLimit = parseFloat(ipdCoverages[4].limit)
+    const doctorPractitionerFeeRemaining = parseFloat(ipdCoverages[4].remaining)
+    const anesthetistPractitionerFeeLimit = parseFloat(ipdCoverages[5].limit)
+    const anesthetistPractitionerFeeRemaining = parseFloat(ipdCoverages[5].remaining)
+    const operatingRoomLimit = parseFloat(ipdCoverages[6].limit)
+    const operatingRoomRemaining = parseFloat(ipdCoverages[6].remaining)
+    const organTransplantationLimit = parseFloat(ipdCoverages[7].limit)
+    const organTransplantationRemaining = parseFloat(ipdCoverages[7].remaining)
+    const daySurgeryLimit = parseFloat(ipdCoverages[8].limit)
+    const daySurgeryRemaining = parseFloat(ipdCoverages[8].remaining)
+    const bloodAndBloodComponentsLimit = parseFloat(ipdCoverages[9].limit)
+    const bloodAndBloodComponentsRemaining = parseFloat(ipdCoverages[9].remaining)
+    const medicalSuppliesAndProcedureLimit = parseFloat(ipdCoverages[10].limit)
+    const medicalSuppliesAndProcedureRemaining = parseFloat(ipdCoverages[10].remaining)
+    const medicalSuppliesLimit = parseFloat(ipdCoverages[11].limit)
+    const medicalSuppliesRemaining = parseFloat(ipdCoverages[11].remaining)
+    const medicalExaminationLimit = parseFloat(ipdCoverages[12].limit)
+    const medicalExaminationRemaining = parseFloat(ipdCoverages[12].remaining)
+    const doctorsFeeLimit = parseFloat(ipdCoverages[13].limit)
+    const doctorsFeeRemaining = parseFloat(ipdCoverages[13].remaining)
+    const cancerByChemoLimit = parseFloat(ipdCoverages[14].limit)
+    const cancerByChemoRemaining = parseFloat(ipdCoverages[14].remaining)
+    const cancerByRadioNuclearLimit = parseFloat(ipdCoverages[15].limit)
+    const cancerByRadioNuclearRemaining = parseFloat(ipdCoverages[15].remaining)
+    const chronicKidneyLimit = parseFloat(ipdCoverages[16].limit)
+    const chronicKidneyRemaining = parseFloat(ipdCoverages[16].remaining)
+    // FIXME: deduct data
+    // const minorOperationLimit = parseFloat(ipdCoverages[17].limit)
+    // const minorOperationRemaining = parseFloat(ipdCoverages[17].remaining)
+    const suppliesTakeawayLimit = parseFloat(ipdCoverages[18].limit)
+    const suppliesTakeawayRemaining = parseFloat(ipdCoverages[18].remaining)
+    // FIXME: deduct data
+    // const vaccinationLimit = parseFloat(ipdCoverages[19].limit)
+    // const vaccinationRemaining = parseFloat(ipdCoverages[19].remaining)
+    const ambulanceLimit = parseFloat(ipdCoverages[20].limit)
+    const ambulanceRemaining = parseFloat(ipdCoverages[20].remaining)
+
+    const opdCoverages = coveragesData.policy.deductNotER.OPD
+    // FIXME: deduct data
+    // const postHospitalLimit = parseFloat(opdCoverages[0].limit)
+    // const postHospitalRemaining = parseFloat(ipdCoverages[0].remaining)
+    // const preAndPostHospitalLimit = parseFloat(opdCoverages[1].limit)
+    // const preAndPostHospitalRemaining = parseFloat(ipdCoverages[1].remaining)
+    // const rehabLimit = parseFloat(opdCoverages[2].limit)
+    // const rehabRemaining = parseFloat(opdCoverages[2].remaining)
+    const opdLimit = parseFloat(opdCoverages[3].limit)
+    const opdRemaining = parseFloat(opdCoverages[3].remaining)
+    const opdVisitYearRemaining = parseFloat(opdCoverages[4].remaining)
+    const opdVisitDayRemaining = parseFloat(opdCoverages[5].remaining)
+
+    const erCoverages = coveragesData.policy.deductNotER.ER
+    const er24HoursLimit = parseFloat(erCoverages[0].limit)
+    const er24HoursRemaining = parseFloat(erCoverages[0].remaining)
+    const er24HoursDayRemaining = parseFloat(erCoverages[1].remaining)
+
+    // Initialize Current Remaining
+    let currentGlobalRemaining = maxPayableRemaining
+    let currentIpdGlobalRemaining = maxPayableIpdRemaining
+
+    // Initialize Deductible State
+    const deductState = {
+      ipd: 10000.0,
+      opd: 10000.0,
+      er: 0.0
+    }
+
+    // Initialize Pool State
+    const sharedRoomDayPool = {
+      remaining: normalRoomDayCombinedSub
+    }
+
+    // Get Target Billing Items
+    const billingIpd = claimsData.uat.deduct.ha.notIncludedEr.ipd.positive.ipdDischarge
+    const billingItemsIpd = billingIpd.billingInfo.billingItems
+    const billingTotalIpd = billingIpd.billingTotal
+
+    const billingOpd = claimsData.uat.deduct.ha.notIncludedEr.opd.positive.ipdDischarge
+    const billingItemsOpd = billingOpd.billingInfo.billingItems
+    const billingTotalOpd = billingOpd.billingTotal
+
+    const billingEr24 = claimsData.uat.deduct.ha.notIncludedEr.er24.positive.ipdDischarge
+    const billingItemsEr = billingEr24.billingInfo.billingItems
+    const billingTotalEr = billingEr24.billingTotal
+
+    // Helper Function: Core Logic for Deductible (Not included ER) + Global Limit
+    const applyCoverageLogic = (netAmountFloat, maxItemPayable, deductibleKey: 'ipd' | 'opd' | 'er') => {
+      const currentDeductible = deductState[deductibleKey]
+
+      // 1. Deduct Deductible first (only for IPD/OPD with value > 0)
+      let amountToDeduct = 0
+      if (currentDeductible > 0) {
+        amountToDeduct = Math.min(netAmountFloat, currentDeductible)
+        deductState[deductibleKey] -= amountToDeduct
+      }
+
+      // Amount remaining after deducting Deductible (Claimable)
+      const amountAfterDeduct = netAmountFloat - amountToDeduct
+
+      // 2. Check Item Limit
+      let payable = Math.min(amountAfterDeduct, maxItemPayable)
+
+      // 3. Check IPD Global Limit (IPD only)
+      if (deductibleKey === 'ipd') {
+        if (currentIpdGlobalRemaining <= 0) {
+          payable = 0
+        } else {
+          payable = Math.min(payable, currentIpdGlobalRemaining)
+        }
+      }
+
+      // 4. Check Global Limit
+      if (currentGlobalRemaining <= 0) {
+        payable = 0
+      } else {
+        payable = Math.min(payable, currentGlobalRemaining)
+      }
+
+      // Update Global Remaining
+      if (payable > 0) {
+        if (deductibleKey === 'ipd') {
+          currentIpdGlobalRemaining -= payable
+        }
+        currentGlobalRemaining -= payable
+      }
+
+      // 5. Calculate Exceeded Limit
+      // Exceeded = Net Amount - Payable Amount
+      // (This includes both Deductible and amount exceeding the Limit as per the requirement)
+      const exceededLimit = (netAmountFloat - payable).toFixed(2)
+
+      console.log(
+        `    > Item: Net ${netAmountFloat.toFixed(2)} -> Pay ${payable.toFixed(2)} -> Deduct ${amountToDeduct.toFixed(2)} -> Exceed ${exceededLimit}`
+      )
+
+      return {
+        payableAmount: payable.toFixed(2),
+        exceededLimit: exceededLimit,
+        deductedAmount: amountToDeduct.toFixed(2)
+      }
+    }
+
+    const calculateBillingItemPerDay = (
+      item,
+      limitAmountRemaining,
+      limitDayRemaining,
+      baseForIncurred,
+      type: 'ipd' | 'opd' | 'er',
+      sharedDayPool: { remaining: number } | null = null
+    ) => {
+      const noOfDays = parseFloat(item.noOfDays)
+
+      // 1. Incurred Amount: (Limit / 4) * Days
+      const incurredAmount = ((baseForIncurred / 4) * noOfDays).toFixed(2)
+
+      // 2. Discount: 10% of Incurred
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+
+      // 3. Net Amount: Incurred - Discount
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      // 4. Calculate Allowed Days (Shared Pool Logic)
+      let allowedDays = 0
+      if (limitDayRemaining > 0) {
+        allowedDays = noOfDays
+
+        allowedDays = Math.min(allowedDays, limitDayRemaining)
+
+        if (sharedDayPool) {
+          allowedDays = Math.min(allowedDays, sharedDayPool.remaining)
+        }
+      } else {
+        allowedDays = 0
+      }
+
+      // 5. Calculate Max Item Payable based on Allowed Days
+      let maxItemPayable = 0
+      if (allowedDays > 0) {
+        maxItemPayable = limitAmountRemaining * allowedDays
+      } else {
+        maxItemPayable = 0
+      }
+
+      // 6. Apply Logic (Deductible -> Limit -> Global)
+      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+
+      // 7. Deduct from Shared Pool (Cut Days)
+      if (sharedDayPool) {
+        sharedDayPool.remaining -= allowedDays
+        if (sharedDayPool.remaining < 0) sharedDayPool.remaining = 0
+      }
+
+      // Update items
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.deduct = result.deductedAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerDis = (item, limitAmountRemaining, baseForIncurred, type: 'ipd' | 'opd' | 'er') => {
+      const incurredAmount = (baseForIncurred / 4).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      const maxItemPayable = limitAmountRemaining
+
+      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.deduct = result.deductedAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerDisWithDay = (
+      item,
+      limitAmountRemaining,
+      limitDayRemaining,
+      baseForIncurred,
+      type: 'ipd' | 'opd' | 'er'
+    ) => {
+      const incurredAmount = (baseForIncurred / 4).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      let maxItemPayable = 0
+      if (limitDayRemaining > 0) {
+        maxItemPayable = limitAmountRemaining
+      } else {
+        maxItemPayable = 0
+      }
+
+      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.deduct = result.deductedAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerVisit = (
+      item,
+      limitAmountRemaining,
+      limitVisitDayRemaining,
+      limitVisitYearRemaining,
+      baseForIncurred,
+      type: 'ipd' | 'opd' | 'er'
+    ) => {
+      const incurredAmount = (baseForIncurred / 4).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      let maxItemPayable = 0
+      if (limitVisitYearRemaining > 0) {
+        if (limitVisitDayRemaining > 0) {
+          maxItemPayable = limitAmountRemaining
+        } else {
+          maxItemPayable = 0
+        }
+      } else {
+        maxItemPayable = 0
+      }
+
+      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.deduct = result.deductedAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    // Execute Calculation
+    console.log('✓ Updated billing items with Deduct (Not included ER) logic:')
+    console.log(`  Initial Global Limit: ${maxPayableRemaining}`)
+    console.log(`  Initial IPD Global Limit: ${maxPayableIpdRemaining}`)
+    console.log('  Initial IPD Deduct: 10000, OPD Deduct: 10000, ER Deduct: 0')
+    console.log(' ')
+
+    // 1. IPD Items (Subject to 10,000 Deductible)
+    if (claimType === 'ipdDischarge') {
+      if (billingItemsIpd && billingItemsIpd.length > 0) {
+        if (billingItemsIpd[0])
+          calculateBillingItemPerDay(
+            billingItemsIpd[0],
+            icuRoomRemaining,
+            icuRoomDayRemaining,
+            icuRoomLimit,
+            'ipd',
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[1])
+          calculateBillingItemPerDay(
+            billingItemsIpd[1],
+            normalRoomRemaining,
+            normalRoomDayRemaining,
+            normalRoomLimit,
+            'ipd',
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[2])
+          calculateBillingItemPerDis(
+            billingItemsIpd[2],
+            doctorPractitionerFeeRemaining,
+            doctorPractitionerFeeLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[3])
+          calculateBillingItemPerDis(
+            billingItemsIpd[3],
+            anesthetistPractitionerFeeRemaining,
+            anesthetistPractitionerFeeLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[4])
+          calculateBillingItemPerDis(billingItemsIpd[4], operatingRoomRemaining, operatingRoomLimit, 'ipd')
+        if (billingItemsIpd[5])
+          calculateBillingItemPerDis(
+            billingItemsIpd[5],
+            organTransplantationRemaining,
+            organTransplantationLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[6])
+          calculateBillingItemPerDis(billingItemsIpd[6], daySurgeryRemaining, daySurgeryLimit, 'ipd')
+        if (billingItemsIpd[7])
+          calculateBillingItemPerDis(
+            billingItemsIpd[7],
+            bloodAndBloodComponentsRemaining,
+            bloodAndBloodComponentsLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[8])
+          calculateBillingItemPerDis(
+            billingItemsIpd[8],
+            medicalSuppliesAndProcedureRemaining,
+            medicalSuppliesAndProcedureLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[9])
+          calculateBillingItemPerDis(billingItemsIpd[9], medicalSuppliesRemaining, medicalSuppliesLimit, 'ipd')
+        if (billingItemsIpd[10])
+          calculateBillingItemPerDis(billingItemsIpd[10], medicalExaminationRemaining, medicalExaminationLimit, 'ipd')
+        if (billingItemsIpd[11])
+          calculateBillingItemPerDis(billingItemsIpd[11], doctorsFeeRemaining, doctorsFeeLimit, 'ipd')
+        if (billingItemsIpd[12])
+          calculateBillingItemPerDis(billingItemsIpd[12], cancerByChemoRemaining, cancerByChemoLimit, 'ipd')
+        if (billingItemsIpd[13])
+          calculateBillingItemPerDis(
+            billingItemsIpd[13],
+            cancerByRadioNuclearRemaining,
+            cancerByRadioNuclearLimit,
+            'ipd'
+          )
+        if (billingItemsIpd[14])
+          calculateBillingItemPerDis(billingItemsIpd[14], chronicKidneyRemaining, chronicKidneyLimit, 'ipd')
+        // FIXME: deduct data
+        // if (billingItemsIpd[]) calculateBillingItemPerDis(billingItemsIpd[], minorOperationRemaining, minorOperationLimit, 'ipd')
+        if (billingItemsIpd[15])
+          calculateBillingItemPerDis(billingItemsIpd[15], suppliesTakeawayRemaining, suppliesTakeawayLimit, 'ipd')
+        // FIXME: deduct data
+        // if (billingItemsIpd[]) calculateBillingItemPerDis(billingItemsIpd[], vaccinationRemaining, vaccinationLimit, 'ipd')
+        if (billingItemsIpd[16])
+          calculateBillingItemPerDis(billingItemsIpd[16], ambulanceRemaining, ambulanceLimit, 'ipd')
+
+        console.log(' ')
+        console.log(`  [Deduct IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Deduct IPD] IPD Global Remaining: ${currentIpdGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Deduct IPD] Deductible Remaining: ${deductState.ipd}`)
+        console.log(`  [Deduct IPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+
+        if (billingTotalIpd && billingItemsIpd.length > 0) {
+          this.calculateBillingTotal(billingItemsIpd, billingTotalIpd)
+        }
+      }
+    }
+
+    // 2. OPD Items (Subject to 10,000 Deductible)
+    if (claimType === 'opdDischarge') {
+      if (billingItemsOpd && billingItemsOpd.length > 0) {
+        if (billingItemsOpd[0])
+          calculateBillingItemPerVisit(
+            billingItemsOpd[0],
+            opdRemaining,
+            opdVisitDayRemaining,
+            opdVisitYearRemaining,
+            opdLimit,
+            'opd'
+          )
+        // FIXME: deduct data
+        // if (billingItemsOpd[]) calculateBillingItemPerDis(billingItemsOpd[], postHospitalRemaining, postHospitalLimit, 'opd')
+        // if (billingItemsOpd[]) calculateBillingItemPerDis(billingItemsOpd[], preAndPostHospitalRemaining, preAndPostHospitalLimit, 'opd')
+        // if (billingItemsOpd[]) calculateBillingItemPerDis(billingItemsOpd[], rehabRemaining, rehabLimit, 'opd')
+
+        console.log(' ')
+        console.log(`  [Deduct IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Deduct IPD] IPD Global Remaining: ${currentIpdGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Deduct OPD] Deductible Remaining: ${deductState.opd}`)
+        console.log(`  [Deduct OPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+
+        if (billingTotalOpd && billingItemsOpd.length > 0) {
+          this.calculateBillingTotal(billingItemsOpd, billingTotalOpd)
+        }
+      }
+    }
+
+    // 3. ER Items (No Deductible)
+    if (claimType === 'er24Discharge') {
+      if (billingItemsEr && billingItemsEr.length > 0) {
+        if (billingItemsEr[0])
+          calculateBillingItemPerDisWithDay(
+            billingItemsEr[0],
+            er24HoursRemaining,
+            er24HoursDayRemaining,
+            er24HoursLimit,
+            'er'
+          )
+
+        console.log(' ')
+        console.log(`  [Deduct IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Deduct IPD] IPD Global Remaining: ${currentIpdGlobalRemaining.toFixed(2)}`)
+        console.log(`  [Deduct ER] Deductible Remaining: ${deductState.er} (Should stay 0)`)
+        console.log(`  [Deduct ER] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+      }
+
+      if (billingTotalEr && billingItemsEr.length > 0) {
+        this.calculateBillingTotal(billingItemsEr, billingTotalEr)
+      }
+    }
+
+    fs.writeFileSync(claimsPath, JSON.stringify(claimsData, null, 2), 'utf-8')
+    console.log(' ')
+    console.log('✓ Saved claims.json with Deduct (Not included ER) logic')
+    console.log('-------------------------------------')
+  }
+
+  async calculateBillingDeductRoom() {}
+
+  async calculateBillingMajorMedPh(
+    claimType: 'ipdDischarge' | 'opdDischarge' | 'maternityDischarge' | 'er24Discharge' | 'dentalOpd'
+  ) {
+    // Define Paths
+    const rootDir = process.cwd()
+    const coveragesPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claim-coverages-init.json')
+    const claimsPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claims.json')
+
+    // Read JSON Files
+    const coveragesData = JSON.parse(fs.readFileSync(coveragesPath, 'utf-8'))
+    const claimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+    // Get Base Limits & MM Limits
+    const ipdCoverages = coveragesData.policy.majorMedPh.IPD
+    const majorMedDayRemaining = parseFloat(ipdCoverages[1].remaining)
+    const majorMedRemaining = parseFloat(ipdCoverages[2].remaining)
+
+    // Base Limits
+    const icuRoomLimit = parseFloat(ipdCoverages[3].limit)
+    const icuRoomRemaining = parseFloat(ipdCoverages[3].remaining)
+    const icuRoomDayRemaining = parseFloat(ipdCoverages[4].remaining)
+    // Shared room day pool
+    // const icuRoomDayCombinedSub = parseFloat(ipdCoverages[4].combinedSubDayRemaining)
+    const normalRoomLimit = parseFloat(ipdCoverages[5].limit)
+    const normalRoomRemaining = parseFloat(ipdCoverages[5].remaining)
+    const normalRoomDayRemaining = parseFloat(ipdCoverages[6].remaining)
+    // Major room day pool
+    const normalRoomDayCombinedSub = parseFloat(ipdCoverages[6].combinedSubDayRemaining)
+    const hospitalOrMedicalLimit = parseFloat(ipdCoverages[7].limit)
+    const hospitalOrMedicalRemaining = parseFloat(ipdCoverages[7].remaining)
+    // Major medical pool
+    const hospitalOrMedicalCombinedSub = parseFloat(ipdCoverages[7].combinedSubRemaining)
+    const nonSurgicalConsultLimit = parseFloat(ipdCoverages[8].limit)
+    const nonSurgicalConsultRemaining = parseFloat(ipdCoverages[8].remaining)
+    const surgicalConsultLimit = parseFloat(ipdCoverages[9].limit)
+    const surgicalConsultRemaining = parseFloat(ipdCoverages[9].remaining)
+    const doctorPractitionerFeeLimit = parseFloat(ipdCoverages[10].limit)
+    const doctorPractitionerFeeRemaining = parseFloat(ipdCoverages[10].remaining)
+    const doctorsVisitFeeLimit = parseFloat(ipdCoverages[11].limit)
+    const doctorsVisitFeeRemaining = parseFloat(ipdCoverages[11].remaining)
+    const ambulanceLimit = parseFloat(ipdCoverages[12].limit)
+    const ambulanceRemaining = parseFloat(ipdCoverages[12].remaining)
+    // FIXME: maternity data
+    // const caesareanSectionLimit = parseFloat(ipdCoverages[13].limit)
+    // const caesareanSectionRemaining = parseFloat(ipdCoverages[13].remaining)
+    // const miscarriageLimit = parseFloat(ipdCoverages[14].limit)
+    // const miscarriageRemaining = parseFloat(ipdCoverages[14].remaining)
+    // const normalDeliveryLimit = parseFloat(ipdCoverages[15].limit)
+    // const normalDeliveryRemaining = parseFloat(ipdCoverages[15].remaining)
+    const emergencyAmbulanceFeeLimit = parseFloat(ipdCoverages[16].limit)
+    const emergencyAmbulanceFeeRemaining = parseFloat(ipdCoverages[16].remaining)
+    // Shared medical pool
+    // const emergencyAmbulanceFeeCombinedSub = parseFloat(ipdCoverages[16].remaining)
+
+    const opdCoverages = coveragesData.policy.majorMedPh.OPD
+    const opdLimit = parseFloat(opdCoverages[0].limit)
+    const opdRemaining = parseFloat(opdCoverages[0].remaining)
+
+    const erCoverages = coveragesData.policy.majorMedPh.ER
+    const er24HoursLimit = parseFloat(erCoverages[0].limit)
+    const er24HoursRemaining = parseFloat(erCoverages[0].remaining)
+
+    // Initialize Pool State
+    const majorMedPool = {
+      amountRemaining: majorMedRemaining,
+      daysRemaining: majorMedDayRemaining
+    }
+
+    const sharedRoomDayPool = {
+      remaining: normalRoomDayCombinedSub
+    }
+
+    const sharedMedicalPool = {
+      remaining: hospitalOrMedicalCombinedSub
+    }
+
+    // Get Target Billing Items
+    const billingIpd = claimsData.uat.majorMed.ph.ipd.positive.ipdDischarge
+    const billingItemsIpd = billingIpd.billingInfo.billingItems
+    const billingTotalIpd = billingIpd.billingTotal
+
+    const billingOpd = claimsData.uat.majorMed.ph.opd.positive.ipdDischarge
+    const billingItemsOpd = billingOpd.billingInfo.billingItems
+    const billingTotalOpd = billingOpd.billingTotal
+
+    const billingMaternity = claimsData.uat.majorMed.ph.maternity.positive.ipdDischarge
+    const billingItemsMaternity = billingMaternity.billingInfo.billingItems
+    const billingTotalMaternity = billingMaternity.billingTotal
+
+    const billingEr24 = claimsData.uat.majorMed.ph.er24.positive.ipdDischarge
+    const billingItemsEr = billingEr24.billingInfo.billingItems
+    const billingTotalEr = billingEr24.billingTotal
+
+    const billingDental = claimsData.uat.majorMed.ph.dental.positive.opd
+    const billingItemsDental = billingDental.billingInfo.billingItems
+    const billingTotalDental = billingDental.billingTotal
+
+    // Helper Function: Core Logic for Major Medical (PH)
+    const applyCoverageLogic = (netAmountFloat, baseLimit, noOfDays = 0, isIpd = false) => {
+      // Base Coverage
+      const payableBase = Math.min(netAmountFloat, baseLimit)
+
+      // Excess
+      const excessAmount = netAmountFloat - payableBase
+
+      let payableMM = 0
+
+      // Major Medical Calculation (Only IPD (Not included room) & If Excess exists)
+      if (isIpd && excessAmount > 0) {
+        let daysAllowed = true
+
+        // Check Days Remaining
+        if (noOfDays > 0) {
+          if (majorMedPool.daysRemaining <= 0) {
+            daysAllowed = false
+          }
+        }
+
+        // Check Amount Remaining
+        if (daysAllowed && majorMedPool.amountRemaining > 0) {
+          // Company pays 80% of excess
+          const mmCoverageRaw = excessAmount * 0.8
+
+          // Cap at remaining MM pool
+          payableMM = Math.min(mmCoverageRaw, majorMedPool.amountRemaining)
+
+          // Deduct from Pool
+          majorMedPool.amountRemaining -= payableMM
+
+          // Deduct Days (if applicable)
+          if (noOfDays > 0 && payableMM > 0) {
+            majorMedPool.daysRemaining -= noOfDays
+          }
+        }
+      }
+
+      // Summary
+      const totalPayable = payableBase + payableMM
+      const exceededLimit = (netAmountFloat - totalPayable).toFixed(2)
+
+      console.log(
+        `    > Item: Net ${netAmountFloat.toFixed(2)} -> Pay ${payableBase.toFixed(2)} + MM ${payableMM.toFixed(2)} -> Exceed ${exceededLimit}`
+      )
+
+      return {
+        payableAmount: payableBase.toFixed(2),
+        majorMedicalAmount: payableMM.toFixed(2),
+        exceededLimit: exceededLimit
+      }
+    }
+
+    const calculateBillingItemPerDay = (
+      item,
+      limitAmountRemaining,
+      limitDayRemaining,
+      baseForIncurred,
+      isMM = false,
+      sharedDayPool: { remaining: number } | null = null
+    ) => {
+      const noOfDays = parseFloat(item.noOfDays)
+
+      /// 1. Incurred Amount: (Limit * 1.2) * Days
+      const incurredAmount = (baseForIncurred * 1.2 * noOfDays).toFixed(2)
+
+      // 2. Discount: 10% of Incurred
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+
+      // 3. Net Amount: Incurred - Discount
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      // 4. Calculate Allowed Days
+      let allowedDays = 0
+      if (limitDayRemaining > 0) {
+        allowedDays = noOfDays
+        allowedDays = Math.min(allowedDays, limitDayRemaining)
+
+        if (sharedDayPool) {
+          allowedDays = Math.min(allowedDays, sharedDayPool.remaining)
+        }
+      } else {
+        allowedDays = 0
+      }
+
+      // 5. Calculate Max Item Payable based on Allowed Days
+      let maxBasePayable = 0
+      if (allowedDays > 0) {
+        maxBasePayable = limitAmountRemaining * allowedDays
+      } else {
+        maxBasePayable = 0
+      }
+
+      // 6. Apply Logic
+      const result = applyCoverageLogic(netAmountFloat, maxBasePayable, noOfDays, isMM)
+
+      // 7. Deduct from Shared Pool
+      if (sharedDayPool) {
+        sharedDayPool.remaining -= allowedDays
+        if (sharedDayPool.remaining < 0) sharedDayPool.remaining = 0
+      }
+
+      // Update items
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.majorMedical = result.majorMedicalAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerDis = (
+      item,
+      limitAmountRemaining,
+      baseForIncurred,
+      isIpd = false,
+      sharedPool: { remaining: number } | null = null
+    ) => {
+      const incurredAmount = (baseForIncurred * 1.2).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      let maxBasePayable = limitAmountRemaining
+      if (sharedPool) {
+        maxBasePayable = Math.min(limitAmountRemaining, sharedPool.remaining)
+      }
+
+      const result = applyCoverageLogic(netAmountFloat, maxBasePayable, 0, isIpd)
+
+      if (sharedPool) {
+        sharedPool.remaining -= parseFloat(result.payableAmount)
+        if (sharedPool.remaining < 0) sharedPool.remaining = 0
+      }
+
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.majorMedical = result.majorMedicalAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    // Execute Calculation
+    console.log('✓ Updated billing items with Major Medical (PH) Logic')
+    console.log(`  MM Pool Initial: ${majorMedPool.amountRemaining} THB, Days: ${majorMedPool.daysRemaining}`)
+    console.log(`  Medical combined sub Pool Initial: ${sharedMedicalPool.remaining} THB`)
+    console.log(' ')
+
+    // 1. IPD Items
+    if (claimType === 'ipdDischarge') {
+      if (billingItemsIpd && billingItemsIpd.length > 0) {
+        if (billingItemsIpd[0])
+          calculateBillingItemPerDay(
+            billingItemsIpd[0],
+            icuRoomRemaining,
+            icuRoomDayRemaining,
+            icuRoomLimit,
+            false,
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[1])
+          calculateBillingItemPerDay(
+            billingItemsIpd[1],
+            normalRoomRemaining,
+            normalRoomDayRemaining,
+            normalRoomLimit,
+            false,
+            sharedRoomDayPool
+          )
+        if (billingItemsIpd[2])
+          calculateBillingItemPerDis(
+            billingItemsIpd[2],
+            hospitalOrMedicalRemaining,
+            hospitalOrMedicalLimit,
+            true,
+            sharedMedicalPool
+          )
+        if (billingItemsIpd[3])
+          calculateBillingItemPerDis(billingItemsIpd[3], nonSurgicalConsultRemaining, nonSurgicalConsultLimit, true)
+        if (billingItemsIpd[4])
+          calculateBillingItemPerDis(billingItemsIpd[4], surgicalConsultRemaining, surgicalConsultLimit, true)
+        if (billingItemsIpd[5])
+          calculateBillingItemPerDis(
+            billingItemsIpd[5],
+            doctorPractitionerFeeRemaining,
+            doctorPractitionerFeeLimit,
+            true
+          )
+        if (billingItemsIpd[6])
+          calculateBillingItemPerDay(billingItemsIpd[6], doctorsVisitFeeRemaining, 365, doctorsVisitFeeLimit, true)
+        if (billingItemsIpd[7])
+          calculateBillingItemPerDis(billingItemsIpd[7], ambulanceRemaining, ambulanceLimit, true, sharedMedicalPool)
+
+        console.log(' ')
+        console.log(`  [Major med IPD] MM Pool Remaining: ${majorMedPool.amountRemaining.toFixed(2)} THB`)
+        console.log(
+          `  [Major med IPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} Days`
+        )
+        console.log(
+          `  [Major med IPD] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalIpd && billingItemsIpd.length > 0) {
+        this.calculateBillingTotal(billingItemsIpd, billingTotalIpd)
+      }
+    }
+
+    // 2. OPD Items
+    if (claimType === 'opdDischarge') {
+      if (billingItemsOpd && billingItemsOpd.length > 0) {
+        if (billingItemsOpd[0]) calculateBillingItemPerDis(billingItemsOpd[0], opdRemaining, opdLimit, false)
+
+        console.log(' ')
+        console.log(`  [Major med OPD] MM Pool Remaining: ${majorMedPool.amountRemaining.toFixed(2)} THB`)
+        console.log(
+          `  [Major med OPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} Days`
+        )
+        console.log(
+          `  [Major med OPD] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalOpd && billingItemsOpd.length > 0) {
+        this.calculateBillingTotal(billingItemsOpd, billingTotalOpd)
+      }
+    }
+
+    // 3. Maternity Items
+    if (claimType === 'maternityDischarge') {
+      if (billingItemsMaternity && billingItemsMaternity.length > 0) {
+        if (billingItemsMaternity[0])
+          calculateBillingItemPerDis(
+            billingItemsMaternity[0],
+            emergencyAmbulanceFeeRemaining,
+            emergencyAmbulanceFeeLimit,
+            false
+          )
+        // FIXME: maternity data
+        // if (billingItemsMaternity[]) calculateBillingItemPerDis(billingItemsMaternity[], caesareanSectionRemaining, caesareanSectionLimit, false)
+        // if (billingItemsMaternity[]) calculateBillingItemPerDis(billingItemsMaternity[], miscarriageRemaining, miscarriageLimit, false)
+        // if (billingItemsMaternity[]) calculateBillingItemPerDis(billingItemsMaternity[], normalDeliveryRemaining, normalDeliveryLimit, false)
+
+        console.log(' ')
+        console.log(`  [Major med Maternity] MM Pool Remaining: ${majorMedPool.amountRemaining.toFixed(2)} THB`)
+        console.log(
+          `  [Major med Maternity] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} Days`
+        )
+        console.log(
+          `  [Major med Maternity] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalMaternity && billingItemsMaternity.length > 0) {
+        this.calculateBillingTotal(billingItemsMaternity, billingTotalMaternity)
+      }
+    }
+
+    // 4. ER Items
+    if (claimType === 'er24Discharge') {
+      if (billingItemsEr && billingItemsEr.length > 0) {
+        if (billingItemsEr[0]) calculateBillingItemPerDis(billingItemsEr[0], er24HoursRemaining, er24HoursLimit, false)
+
+        console.log(' ')
+        console.log(`  [Major med ER24] MM Pool Remaining: ${majorMedPool.amountRemaining.toFixed(2)} THB`)
+        console.log(
+          `  [Major med ER24] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} Days`
+        )
+        console.log(
+          `  [Major med ER24] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalEr && billingItemsEr.length > 0) {
+        this.calculateBillingTotal(billingItemsEr, billingTotalEr)
+      }
+    }
+
+    // 5. Dental Items
+    if (claimType === 'dentalOpd') {
+      if (billingItemsDental && billingItemsDental.length > 0) {
+        if (billingItemsDental[0]) calculateBillingItemPerDis(billingItemsDental[0], opdRemaining, opdLimit, false)
+
+        console.log(' ')
+        console.log(`  [Major med Dental] MM Pool Remaining: ${majorMedPool.amountRemaining.toFixed(2)} THB`)
+        console.log(
+          `  [Major med Dental] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)} Days`
+        )
+        console.log(
+          `  [Major med Dental] Medical combined sub Pool Remaining: ${sharedMedicalPool.remaining.toFixed(2)} THB`
+        )
+      }
+
+      if (billingTotalDental && billingItemsDental.length > 0) {
+        this.calculateBillingTotal(billingItemsDental, billingTotalDental)
+      }
+    }
+
+    fs.writeFileSync(claimsPath, JSON.stringify(claimsData, null, 2), 'utf-8')
+    console.log(' ')
+    console.log('✓ Saved claims.json with Major Medical (PH) logic')
+    console.log('--------------------------------------------')
+  }
+
+  async calculateBillingMajorMedHa(claimType: 'er72Discharge' | 'hbIncentive') {
+    // Define Paths
+    const rootDir = process.cwd()
+    const coveragesPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claim-coverages-init.json')
+    const claimsPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claims.json')
+
+    // Read JSON Files
+    const coveragesData = JSON.parse(fs.readFileSync(coveragesPath, 'utf-8'))
+    const claimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+    // Base Limits
+    const erCoverages = coveragesData.policy.majorMedHa.ER
+    const er24HoursLimit = parseFloat(erCoverages[0].limit)
+    const er24HoursRemaining = parseFloat(erCoverages[0].remaining)
+
+    const hbIncentiveCoverages = coveragesData.policy.majorMedHa.HB_Incentive
+    const hbIncentiveDayRemaining = parseFloat(hbIncentiveCoverages[0].remaining)
+    const hbIncentiveLimit = parseFloat(hbIncentiveCoverages[1].limit)
+    const hbIncentiveRemaining = parseFloat(hbIncentiveCoverages[1].remaining)
+
+    // Get Target Billing Items
+    const billingEr72 = claimsData.uat.majorMed.ha.er72.positive.ipdDischarge
+    const billingItemsEr = billingEr72.billingInfo.billingItems
+    const billingTotalEr = billingEr72.billingTotal
+
+    const billingHbIncentive = claimsData.uat.majorMed.ha.hbIncentive.positive.hb
+    const billingItemsHbIncentive = billingHbIncentive.billingInfo.billingItems
+    const billingTotalHbIncentive = billingHbIncentive.billingTotal
+
+    // Helper Function: Core Logic for Major Medical (HA)
+    const applyCoverageLogic = (netAmountFloat, baseLimit) => {
+      // Base Coverage
+      const payableBase = Math.min(netAmountFloat, baseLimit)
+
+      // Excess
+      const exceededLimit = (netAmountFloat - payableBase).toFixed(2)
+
+      console.log(
+        `    > Item: Net ${netAmountFloat.toFixed(2)} -> Pay ${payableBase.toFixed(2)} -> Exceed ${exceededLimit}`
+      )
+
+      return {
+        payableAmount: payableBase.toFixed(2),
+        exceededLimit: exceededLimit
+      }
+    }
+
+    const calculateBillingItemPerDay = (item, limitAmountRemaining, limitDayRemaining, baseForIncurred) => {
+      const noOfDays = parseFloat(item.noOfDays)
+
+      /// 1. Incurred Amount: (Limit * 1.2) * Days
+      const incurredAmount = (baseForIncurred * 1.2 * noOfDays).toFixed(2)
+
+      // 2. Discount: 10% of Incurred
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+
+      // 3. Net Amount: Incurred - Discount
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      // 4. Calculate Max Item Payable based on Day Limit
+      let maxBasePayable = 0
+      if (limitDayRemaining > 0) {
+        maxBasePayable = limitAmountRemaining * noOfDays
+      } else {
+        maxBasePayable = 0
+      }
+
+      // 5. Apply Logic
+      const result = applyCoverageLogic(netAmountFloat, maxBasePayable)
+
+      // Update items
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerDis = (item, limitAmountRemaining, baseForIncurred) => {
+      const incurredAmount = (baseForIncurred * 1.2).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      const maxBasePayable = limitAmountRemaining
+
+      const result = applyCoverageLogic(netAmountFloat, maxBasePayable)
+
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    // Execute Calculation
+    console.log('✓ Updated billing items with Major Medical (HA) Logic')
+    console.log(' ')
+
+    // 1. ER Items
+    if (claimType === 'er72Discharge') {
+      if (billingItemsEr && billingItemsEr.length > 0) {
+        if (billingItemsEr[0]) calculateBillingItemPerDis(billingItemsEr[0], er24HoursRemaining, er24HoursLimit)
+
+        console.log(' ')
+      }
+
+      if (billingTotalEr && billingItemsEr.length > 0) {
+        this.calculateBillingTotal(billingItemsEr, billingTotalEr)
+      }
+    }
+
+    // 2. HB Incentive Items
+    if (claimType === 'hbIncentive') {
+      if (billingItemsHbIncentive && billingItemsHbIncentive.length > 0) {
+        if (billingItemsHbIncentive[0])
+          calculateBillingItemPerDay(
+            billingItemsHbIncentive[0],
+            hbIncentiveRemaining,
+            hbIncentiveDayRemaining,
+            hbIncentiveLimit
+          )
+
+        console.log(' ')
+      }
+
+      if (billingTotalHbIncentive && billingItemsHbIncentive.length > 0) {
+        this.calculateBillingTotal(billingItemsHbIncentive, billingTotalHbIncentive)
+      }
+    }
+
+    fs.writeFileSync(claimsPath, JSON.stringify(claimsData, null, 2), 'utf-8')
+    console.log(' ')
+    console.log('✓ Saved claims.json with Major Medical (HA) logic')
+    console.log('--------------------------------------------')
+  }
+
+  async calculateBillingPa(claimType: 'paSurgeryDischarge' | 'paHolidayDischarge' | 'paGeneralDischarge' | 'hb') {
+    // Define Paths
+    const rootDir = process.cwd()
+    const coveragesPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claim-coverages-init.json')
+    const claimsPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claims.json')
+
+    // Read JSON Files
+    const coveragesData = JSON.parse(fs.readFileSync(coveragesPath, 'utf-8'))
+    const claimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+    // Get Base Limits
+    const paCoverages = coveragesData.policy.pa.PA
+    const surgeryCarAccLimit = parseFloat(paCoverages[0].limit)
+    const surgeryCarAccRemaining = parseFloat(paCoverages[0].remaining)
+    const generalAccHolidayLimit = parseFloat(paCoverages[1].limit)
+    const generalAccHolidayRemaining = parseFloat(paCoverages[1].remaining)
+    const generalAccLimit = parseFloat(paCoverages[2].limit)
+    const generalAccRemaining = parseFloat(paCoverages[2].remaining)
+
+    const hbCoverages = coveragesData.policy.pa.HB
+    const generalAccBenefitYearRemaining = parseFloat(hbCoverages[0].remaining)
+    const generalAccBenefitLimit = parseFloat(hbCoverages[1].limit)
+    const generalAccBenefitRemaining = parseFloat(hbCoverages[1].remaining)
+    const generalAccBenefitDayRemaining = parseFloat(hbCoverages[2].remaining)
+
+    // Get Target Billing Items
+    const billingPaSurgery = claimsData.uat.pa.surgery.pa.positive.ipdDischarge
+    const billingItemsPaSurgery = billingPaSurgery.billingInfo.billingItems
+    const billingTotalPaSurgery = billingPaSurgery.billingTotal
+
+    const billingPaHoliday = claimsData.uat.pa.holiday.pa.positive.ipdDischarge
+    const billingItemsPaHoliday = billingPaHoliday.billingInfo.billingItems
+    const billingTotalPaHoliday = billingPaHoliday.billingTotal
+
+    const billingPaGeneral = claimsData.uat.pa.general.pa.positive.ipdDischarge
+    const billingItemsPaGeneral = billingPaGeneral.billingInfo.billingItems
+    const billingTotalPaGeneral = billingPaGeneral.billingTotal
+
+    const billingHb = claimsData.uat.pa.holiday.hb.positive.hb
+    const billingItemsHb = billingHb.billingInfo.billingItems
+    const billingTotalHb = billingHb.billingTotal
+
+    // Helper Function: Core Logic for PA Holiday
+    const applyCoverageLogic = (netAmountFloat, baseLimit) => {
+      let payable = Math.min(netAmountFloat, baseLimit)
+
+      if (payable < 0) payable = 0
+
+      const exceededLimit = (netAmountFloat - payable).toFixed(2)
+
+      console.log(
+        `    > Item: Net ${netAmountFloat.toFixed(2)} -> Pay ${payable.toFixed(2)} -> Exceed ${exceededLimit}`
+      )
+
+      return {
+        payableAmount: payable.toFixed(2),
+        exceededLimit: exceededLimit
+      }
+    }
+
+    const calculateBillingItemPerDis = (item, limitAmountRemaining, baseForIncurred) => {
+      // 1. Incurred Amount: (Limit * 1.2) * Days
+      const incurredAmount = (baseForIncurred * 1.2).toFixed(2)
+
+      // 2. Discount: 10% of Incurred
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+
+      // 3. Net Amount: Incurred - Discount
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      // 4. Max Item Payable based
+      const maxItemPayable = limitAmountRemaining
+
+      // 5. Apply Logic
+      const result = applyCoverageLogic(netAmountFloat, maxItemPayable)
+
+      // Update items
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    const calculateBillingItemPerDayWithDisYear = (
+      item,
+      limitAmountRemaining,
+      limitDayRemaining,
+      limitYearRemaining,
+      baseForIncurred
+    ) => {
+      const noOfDays = parseFloat(item.noOfDays)
+
+      const incurredAmount = (baseForIncurred * 1.2 * noOfDays).toFixed(2)
+      const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
+      const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
+      const netAmountFloat = parseFloat(netAmount)
+
+      let allowedDays = 0
+
+      // Calculate Allowed Days based on Day & Year Limit
+      if (limitDayRemaining > 0 && limitYearRemaining > 0) {
+        allowedDays = Math.min(noOfDays, limitDayRemaining, limitYearRemaining)
+      } else {
+        allowedDays = 0
+      }
+
+      const maxBasePayable = limitAmountRemaining * allowedDays
+
+      const result = applyCoverageLogic(netAmountFloat, maxBasePayable)
+
+      item.incurredAmount = incurredAmount
+      item.discount = discount
+      item.netAmount = netAmount
+      item.payableAmount = result.payableAmount
+      item.exceededLimit = result.exceededLimit
+
+      return { ...item }
+    }
+
+    // Execute Calculation
+    console.log('✓ Updated billing items with PA Holiday Logic')
+    console.log(' ')
+
+    // 1. PA Surgery Items
+    if (claimType === 'paSurgeryDischarge') {
+      if (billingItemsPaSurgery && billingItemsPaSurgery.length > 0) {
+        if (billingItemsPaSurgery[0])
+          calculateBillingItemPerDis(billingItemsPaSurgery[0], surgeryCarAccRemaining, surgeryCarAccLimit)
+
+        console.log('[PA Surgery]')
+      }
+
+      if (billingTotalPaSurgery && billingItemsPaSurgery.length > 0) {
+        this.calculateBillingTotal(billingItemsPaSurgery, billingTotalPaSurgery)
+      }
+    }
+
+    // 2. PA Holiday Items
+    if (claimType === 'paHolidayDischarge') {
+      if (billingItemsPaHoliday && billingItemsPaHoliday.length > 0) {
+        if (billingItemsPaHoliday[0])
+          calculateBillingItemPerDis(billingItemsPaHoliday[0], generalAccHolidayRemaining, generalAccHolidayLimit)
+
+        console.log('[PA Holiday]')
+      }
+
+      if (billingTotalPaHoliday && billingItemsPaHoliday.length > 0) {
+        this.calculateBillingTotal(billingItemsPaHoliday, billingTotalPaHoliday)
+      }
+    }
+
+    // 3. PA General Items
+    if (claimType === 'paGeneralDischarge') {
+      if (billingItemsPaGeneral && billingItemsPaGeneral.length > 0) {
+        if (billingItemsPaGeneral[0])
+          calculateBillingItemPerDis(billingItemsPaGeneral[0], generalAccRemaining, generalAccLimit)
+
+        console.log('[PA General]')
+      }
+
+      if (billingTotalPaGeneral && billingItemsPaGeneral.length > 0) {
+        this.calculateBillingTotal(billingItemsPaGeneral, billingTotalPaGeneral)
+      }
+    }
+
+    // 4. HB Items
+    if (claimType === 'hb') {
+      if (billingItemsHb && billingItemsHb.length > 0) {
+        if (billingItemsHb[0])
+          calculateBillingItemPerDayWithDisYear(
+            billingItemsHb[0],
+            generalAccBenefitRemaining,
+            generalAccBenefitDayRemaining,
+            generalAccBenefitYearRemaining,
+            generalAccBenefitLimit
+          )
+
+        console.log('[PA HB]')
+      }
+
+      if (billingTotalHb && billingItemsHb.length > 0) {
+        this.calculateBillingTotal(billingItemsHb, billingTotalHb)
+      }
+    }
+
+    fs.writeFileSync(claimsPath, JSON.stringify(claimsData, null, 2), 'utf-8')
+    console.log(' ')
+    console.log('✓ Saved claims.json with PA logic')
+    console.log('--------------------------------------------')
+  }
+
   async uploadDocument(fileName: string) {
     await this.uploadDocumentsTabLocator.waitFor({ state: 'visible' })
     await this.uploadDocumentsTabLocator.click()
@@ -578,6 +2917,7 @@ export class ClaimManagementEditPage extends BasePage {
   async viewClaimDetail() {
     await this.viewDetailBtnLocator.waitFor({ state: 'visible' })
     await this.viewDetailBtnLocator.click()
+    await this.page.waitForTimeout(1000)
 
     await expect(this.page).toHaveURL(/\/claim-management\/detail/i)
   }

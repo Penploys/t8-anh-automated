@@ -26,7 +26,7 @@
     },
 
     "clinicUser": {
-      "email": "ah-dev+clinic@horixon-t8.com",
+      "email": "ah-dev+clinic-1@horixon-t8.com",
       "password": "Passw0rd"
     },
 
@@ -151,11 +151,11 @@
     },
 
     "claimDirectorUser": {
-      "email": "",
+      "email": "ah-dev+director@horixon-t8.com",
       "password": "Passw0rd"
     },
     "providerManagerUser": {
-      "email": "",
+      "email": "ah-dev+provider-manager@horixon-t8.com",
       "password": "Passw0rd"
     }
   }

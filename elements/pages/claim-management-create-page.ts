@@ -394,18 +394,22 @@ export class ClaimManagementCreatePage extends BasePage {
       }
     }
 
-    // D. Checkbox "เปิดเคลมด้วยวงเงินใหม่"
-    if (claimData.openClaimWithNewLimit !== undefined && claimData.openClaimWithNewLimit !== null) {
-      const isCurrentlyChecked = await this.newLimitCheckboxLocator.isChecked()
-
-      if (claimData.openClaimWithNewLimit !== isCurrentlyChecked) {
-        await this.newLimitCheckboxLocator.click()
-      }
-    }
-
-    // Symptom
+    // D. Symptom
     if (claimData.symptom && claimData.symptom.trim() !== '') {
       await this.symptomInputLocator.fill(claimData.symptom)
+    }
+
+    // E. Checkbox "เปิดเคลมด้วยวงเงินใหม่"
+    if (claimData.openClaimWithNewLimit !== undefined && claimData.openClaimWithNewLimit !== null) {
+      try {
+        await this.newLimitCheckboxLocator.waitFor({ state: 'visible', timeout: 2000 })
+
+        const isCurrentlyChecked = await this.newLimitCheckboxLocator.isChecked()
+
+        if (claimData.openClaimWithNewLimit !== isCurrentlyChecked) {
+          await this.newLimitCheckboxLocator.click()
+        }
+      } catch (error) {}
     }
   }
 
@@ -415,6 +419,18 @@ export class ClaimManagementCreatePage extends BasePage {
     await this.saveDraftBtnLocator.click()
     await this.saveAsDraftBtnLocator.waitFor({ state: 'visible' })
     await this.saveAsDraftBtnLocator.click()
+
+    // Handle Warning Popup (Optional)
+    try {
+      const warningDialog = this.page.locator('.MuiDialog-paper', {
+        hasText: /Warning.*Visit date/s
+      })
+
+      await warningDialog.waitFor({ state: 'visible', timeout: 2000 })
+
+      const submitBtn = warningDialog.getByRole('button', { name: /Submit|ส่งข้อมูล/ })
+      await submitBtn.click()
+    } catch (error) {}
   }
 
   async viewClaimDetail() {
@@ -480,6 +496,4 @@ export class ClaimManagementCreatePage extends BasePage {
 
     return coverageRemainingData
   }
-
-  // async validateCoverageClaimSurveyor(ipdCoverages: any[]) {}
 }
