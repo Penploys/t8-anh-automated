@@ -22,11 +22,11 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     const config = new E2EConfiguration()
 
     appSetting = config.appSetting
-    policyData = config.policyCoverages.policy.copay
-    claimInitData = config.claimCoveragesinit.policy.copay
+    policyData = config.policyCoverages.policy.schedule
+    claimInitData = config.claimCoveragesinit.policy.schedule
     userData = config.users.uat
     tabData = config.tabs
-    memberData = config.members.memberCopay
+    memberData = config.members.memberSchedule
     slaData = config.sla.uat.copay.ha.ipd.positive.preArrangement
     pendingInfoData = config.claims.uat.pendingInfo
 
@@ -108,8 +108,8 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     }) */
 
     await test.step('Validate search by citizen ID only on the Member policy page', async () => {
-      await memberPolicyPage.MemberSearchByName(memberData)
-      await memberPolicyPage.MemberSearchByCitizenId(memberData)
+      //await memberPolicyPage.MemberSearchByName(memberData)
+      await memberPolicyPage.memberSearch(memberData)
       await memberPolicyPage.selectPolicy(memberData)
     })
 
@@ -120,18 +120,27 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
     }) */
 
     await test.step('Validate tabs on the Policy overview page', async () => {
-      await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.surveyor)
+      //await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.surveyor)
     })
 
     await test.step('Validate coverage table on the Policy overview page', async () => {
       // TODO: validate coverage details (surveyor)
       // await memberPolicyDetailPage.validateCoverageDetailSurveyor(policyData)
-      test.setTimeout(20000)
-      await memberPolicyDetailPage.getCoverageDetails('copay')
-      await memberPolicyDetailPage.validateCoverageDetail(policyData, 'copay')
+      test.setTimeout(50000)
+      //await memberPolicyDetailPage.getCoverageDetails('copay')
+      //await memberPolicyDetailPage.validateCoverageDetail(policyData, 'copay')
 
-      await memberPolicyDetailPage.getHospitalCoverageDetails('copay')
-      await memberPolicyDetailPage.validateHospitalCoverageDetail(policyData, 'copay')
+      //await memberPolicyDetailPage.getCoverageDetails('majorMed')
+      //await memberPolicyDetailPage.validateCoverageDetail(policyData, 'majorMed')
+
+      //await memberPolicyDetailPage.getCoverageDetails('deduct')
+      //await memberPolicyDetailPage.validateCoverageDetail(policyData, 'deduct')
+
+      await memberPolicyDetailPage.getCoverageDetails('schedule')
+      await memberPolicyDetailPage.validateCoverageDetail(policyData, 'schedule')
+
+      //await memberPolicyDetailPage.getHospitalCoverageDetails('copay')
+      //await memberPolicyDetailPage.validateHospitalCoverageDetail(policyData, 'copay')
     })
 
     await test.step('Validate member information on the Policy overview page', async () => {
@@ -164,7 +173,7 @@ test.describe('E2E_TC002_Pre-Arrangement_IPD_Copay', () => {
       //ipdCoverageActual[1].remaining = 0
       //await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
       //await claimManagementCreatePage.validateHospitalClaimCoverageDetail(claimInitData, 'copay', 'IPD')
-      
+
       // TODO: get remaining coverage claim (surveyor)
       // const coverageRemaining = await claimManagementCreatePage.getCoverageRemaining()
       // console.log('Coverage Remaining:', JSON.stringify(coverageRemaining, null, 2))

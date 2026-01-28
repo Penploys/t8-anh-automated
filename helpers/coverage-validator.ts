@@ -303,6 +303,8 @@ export const validateClaimBenefitNotUsageRemainingSection = (
     const policy = policyItems[i];
     const coverage = coverageItems[i];
 
+    console.log(policy.subBenefit);
+
     // ---------- Main Group ----------
     expect(normalize(policy.mainGroup ?? ''))
       .toBe(normalize(coverage.mainGroup));

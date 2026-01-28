@@ -1,0 +1,209 @@
+{
+  "OTH": [
+    {
+      "mainGroup": "Max Payable Limit",
+      "subBenefit": "-",
+      "limit": "5,000,000.00 THB per year",
+      "combinedSub": "0.00 THB per year",
+      "combined": "0.00 THB per year"
+    }
+  ],
+  "IPD": [
+    {
+      "mainGroup": "Room and Board",
+      "subBenefit": "ICU Room",
+      "limit": "20,000.00 THB per day",
+      "combinedSub": "90 Day per disability",
+      "combined": "0.00 THB per day"
+    },
+    {
+      "mainGroup": "Room and Board",
+      "subBenefit": "ICU Room",
+      "limit": "15 Day per disability",
+      "combinedSub": "90 Day per disability",
+      "combined": "0.00 Day per disability"
+    },
+    {
+      "mainGroup": "Room and Board",
+      "subBenefit": "Normal Room",
+      "limit": "90 Day per disability",
+      "combinedSub": "90 Day per disability",
+      "combined": "0.00 Day per disability"
+    },
+    {
+      "mainGroup": "Room and Board",
+      "subBenefit": "Normal Room",
+      "limit": "10,000.00 THB per day",
+      "combinedSub": "90 Day per disability",
+      "combined": "0.00 THB per day"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
+      "limit": "10,000.00 THB per disability",
+      "combinedSub": "10,000.00 THB per disability",
+      "combined": "200,000.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medical practitioner fee for anesthetist (doctor fee) based on the rate in the medical fee manual",
+      "limit": "10,000.00 THB per disability",
+      "combinedSub": "10,000.00 THB per disability",
+      "combined": "200,000.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "operating room fee and procedure room fee",
+      "limit": "200,000.00 THB per disability",
+      "combinedSub": "10,000.00 THB per disability",
+      "combined": "200,000.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medical fee for organ transplatation x times of the benefits in Item 4 (at least 2x)",
+      "limit": "200,000.00 THB per disability",
+      "combinedSub": "10,000.00 THB per disability",
+      "combined": "200,000.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Major Day Surgery Fee",
+      "limit": "5,000,000.00 THB per year",
+      "combinedSub": "0.00 THB per year",
+      "combined": "0.00 THB per year"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
+      "limit": "150,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "medicine fee, parenteral nutrition fee, medical supplies fee, and surgery and procedure fee",
+      "limit": "200,000.00 THB per disability",
+      "combinedSub": "200,000.00 THB per disability",
+      "combined": "200,000.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medicine fee, Parenteral nutrition fee and medical supplies fee",
+      "limit": "150,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medical Examination Fee",
+      "limit": "150,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Doctor's Fee",
+      "limit": "1 Visit per day",
+      "combinedSub": "0.00 Visit per day",
+      "combined": "0.00 Visit per day"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Doctor's Fee",
+      "limit": "1,500.00 THB per day",
+      "combinedSub": "0.00 THB per day",
+      "combined": "0.00 THB per day"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Doctor's Fee",
+      "limit": "90 Day per disability",
+      "combinedSub": "0.00 Day per disability",
+      "combined": "0.00 Day per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medical fee for treatment of cancer by chemotherapy",
+      "limit": "10,000.00 THB per year",
+      "combinedSub": "10,000.00 THB per year",
+      "combined": "0.00 THB per year"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
+      "limit": "10,000.00 THB per year",
+      "combinedSub": "10,000.00 THB per year",
+      "combined": "0.00 THB per year"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
+      "limit": "10,000.00 THB per year",
+      "combinedSub": "10,000.00 THB per year",
+      "combined": "0.00 THB per year"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Post-Hospitalization Outpatient Care (excluding diagnostic services)",
+      "limit": "150,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Pre- and Post-Hospitalization Diagnostic Services",
+      "limit": "150,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medical fee for minor operation",
+      "limit": "200,000.00 THB per disability",
+      "combinedSub": "200,000.00 THB per disability",
+      "combined": "200,000.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
+      "limit": "150,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    },
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Ambulance fee",
+      "limit": "4,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    }
+  ],
+  "OPD_Follow_IPD": [],
+  "OPD": [
+    {
+      "mainGroup": "General Expense",
+      "subBenefit": "Rehabilitation medicine fee after each hospitalization as an inpatient",
+      "limit": "150,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    }
+  ],
+  "ER": [
+    {
+      "mainGroup": "Emergency Accident",
+      "subBenefit": "medical fee for treatment of injury in outpatient case within 24 hours after each accident",
+      "limit": "31 Day per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 Day per disability"
+    },
+    {
+      "mainGroup": "Emergency Accident",
+      "subBenefit": "medical fee for treatment of injury in outpatient case within 24 hours after each accident",
+      "limit": "40,000.00 THB per disability",
+      "combinedSub": "150,000.00 THB per disability",
+      "combined": "0.00 THB per disability"
+    }
+  ],
+  "PA": [],
+  "HB": []
+}
