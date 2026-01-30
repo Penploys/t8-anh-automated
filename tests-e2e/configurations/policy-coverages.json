@@ -1,6 +1,20 @@
 {
     "policy": {
         "copay": {
+            "OTH": [
+                {
+                    "mainGroup": "Max Payable Limit",
+                    "subBenefit": "-",
+                    "limit": 200000,
+                    "limitUnit": "THB per year",
+                    "combinedSub": 0,
+                    "combinedSubUnit": "THB per year",
+                    "combinedSubDay": null,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per year"
+                }
+            ],
             "IPD": [
                 {
                     "mainGroup": "Copayment",
@@ -318,24 +332,7 @@
                     "combined": 0,
                     "combinedUnit": "THB per disability"
                 }
-            ],
-            "OTH": [
-                {
-                    "mainGroup": "Max Payable Limit",
-                    "subBenefit": "-",
-                    "limit": 200000,
-                    "limitUnit": "THB per year",
-                    "combinedSub": 0,
-                    "combinedSubUnit": "THB per year",
-                    "combinedSubDay": null,
-                    "combinedSubDayUnit": null,
-                    "combined": 0,
-                    "combinedUnit": "THB per year"
-                }
-            ],
-            "OPD_Follow_IPD": [],
-            "PA": [],
-            "HB": []
+            ]
         },
         "majorMed": {
             "IPD": [
@@ -571,11 +568,7 @@
                     "combined": 0,
                     "combinedUnit": "THB per disability"
                 }
-            ],
-            "OTH": [],
-            "OPD_Follow_IPD": [],
-            "PA": [],
-            "HB": []
+            ]
         },
         "deduct": {
             "OTH": [
@@ -923,7 +916,7 @@
                 }
             ]
         },
-        "PA": {
+        "pa": {
             "PA": [
                 {
                     "mainGroup": "PA Medical Expense",
@@ -1015,6 +1008,18 @@
                 },
                 {
                     "mainGroup": "General Expense",
+                    "subBenefit": "Surgical Consultation Fee",
+                    "limit": 10000,
+                    "limitUnit": "THB per disability",
+                    "combinedSub": 62000,
+                    "combinedSubUnit": "THB per disability",
+                    "combinedSubDay": null,
+                    "combinedSubDayUnit": null,
+                    "combined": 0,
+                    "combinedUnit": "THB per disability"
+                },
+                {
+                    "mainGroup": "General Expense",
                     "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
                     "limit": 62000,
                     "limitUnit": "THB per disability",
@@ -1028,18 +1033,6 @@
                 {
                     "mainGroup": "General Expense",
                     "subBenefit": "Doctor's Visit Fee",
-                    "limit": 31,
-                    "limitUnit": "Day per disability",
-                    "combinedSub": null,
-                    "combinedSubUnit": null,
-                    "combinedSubDay": 0,
-                    "combinedSubDayUnit": "Day per disability",
-                    "combined": 0,
-                    "combinedUnit": "Day per disability"
-                },
-                {
-                    "mainGroup": "General Expense",
-                    "subBenefit": "Doctor's Visit Fee",
                     "limit": 800,
                     "limitUnit": "THB per day",
                     "combinedSub": 0,
@@ -1048,6 +1041,18 @@
                     "combinedSubDayUnit": null,
                     "combined": 0,
                     "combinedUnit": "THB per day"
+                },
+                {
+                    "mainGroup": "General Expense",
+                    "subBenefit": "Doctor's Visit Fee",
+                    "limit": 31,
+                    "limitUnit": "Day per disability",
+                    "combinedSub": null,
+                    "combinedSubUnit": null,
+                    "combinedSubDay": 0,
+                    "combinedSubDayUnit": "Day per disability",
+                    "combined": 0,
+                    "combinedUnit": "Day per disability"
                 },
                 {
                     "mainGroup": "General Expense",

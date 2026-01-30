@@ -6,6 +6,7 @@
       "limit": "200,000.00 THB per year"
     }
   ],
+  "DEDUCTIBLE": [],
   "IPD": [
     {
       "mainGroup": "Copayment",
@@ -144,5 +145,6 @@
     }
   ],
   "PA": [],
-  "HB": []
+  "HB": [],
+  "HB_Incentive": []
 }

@@ -4,7 +4,7 @@ import * as claimCoveragesinit from '@tests-e2e/configurations/claim-coverages-i
 import * as Users from '@tests-e2e/configurations/users.json'
 import * as Tabs from '@tests-e2e/configurations/tabs.json'
 import * as Members from '@tests-e2e/configurations/members.json'
-import * as MembersJedi from '@tests-e2e/configurations/members-jedi.json'
+
 import * as Claims from '@tests-e2e/configurations/claims.json'
 import * as Sla from '@tests-e2e/configurations/sla.json'
 
@@ -15,7 +15,6 @@ export class E2EConfiguration {
   users: typeof Users
   tabs: typeof Tabs
   members: typeof Members
-  membersJedi: typeof MembersJedi
   claims: typeof Claims
   sla: typeof Sla
   constructor() {
@@ -25,7 +24,6 @@ export class E2EConfiguration {
     this.users = Users
     this.tabs = Tabs
     this.members = Members
-    this.membersJedi = MembersJedi
     this.claims = Claims
     this.sla = Sla
   }

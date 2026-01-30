@@ -120,6 +120,11 @@ export class MemberPolicyDetailPage extends BasePage {
     name: /\+.*(Create claim|Create claim and Eligibility Check Document|สร้างรายการเคลม)/
   })
 
+  // Header Table
+  readonly headerTableLocator = this.page.locator('h6', {
+    hasText: /OTH|DEDUCT|IPD|OPD_Follow_IPD|OPD|ER|PA|HB|HB Incentive/
+  })
+
   async validateTabs(tabsData: {
     coverageInfo: boolean
     claimsHistory: boolean
@@ -499,22 +504,28 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async getCoverageDetails(productName: string) {
+    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
+
+    const resultsOTH = await this.extractCoverageTable('OTH')
+    const resultsDEDUCTIBLE = await this.extractCoverageTable('DEDUCTIBLE')
     const resultsIPD = await this.extractCoverageTable('IPD')
     const resultsOPD_Follow_IPD = await this.extractCoverageTable('OPD_Follow_IPD')
     const resultsOPD = await this.extractCoverageTable('OPD')
     const resultsER = await this.extractCoverageTable('ER')
-    const resultsOTH = await this.extractCoverageTable('OTH')
     const resultsPA = await this.extractCoverageTable('PA')
     const resultsHB = await this.extractCoverageTable('HB')
+    const resultsHBIncentive = await this.extractCoverageTable('HB Incentive')
 
     const data = {
       OTH: resultsOTH,
+      DEDUCTIBLE: resultsDEDUCTIBLE,
       IPD: resultsIPD,
       OPD_Follow_IPD: resultsOPD_Follow_IPD,
       OPD: resultsOPD,
       ER: resultsER,
       PA: resultsPA,
-      HB: resultsHB
+      HB: resultsHB,
+      HB_Incentive: resultsHBIncentive
     }
     const dirPath = path.resolve(process.cwd(), 'test-data', 'actual-data')
     const filePath = path.join(dirPath, `coverage_${productName}.json`)
@@ -525,22 +536,28 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async getHospitalCoverageDetails(productName: string) {
+    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
+
+    const resultsOTH = await this.extractHospitalCoverageTable('OTH')
+    const resultsDEDUCTIBLE = await this.extractHospitalCoverageTable('DEDUCTIBLE')
     const resultsIPD = await this.extractHospitalCoverageTable('IPD')
     const resultsOPD_Follow_IPD = await this.extractHospitalCoverageTable('OPD_Follow_IPD')
     const resultsOPD = await this.extractHospitalCoverageTable('OPD')
     const resultsER = await this.extractHospitalCoverageTable('ER')
-    const resultsOTH = await this.extractHospitalCoverageTable('OTH')
     const resultsPA = await this.extractHospitalCoverageTable('PA')
     const resultsHB = await this.extractHospitalCoverageTable('HB')
+    const resultsHBIncentive = await this.extractHospitalCoverageTable('HB Incentive')
 
     const data = {
       OTH: resultsOTH,
+      DEDUCTIBLE: resultsDEDUCTIBLE,
       IPD: resultsIPD,
       OPD_Follow_IPD: resultsOPD_Follow_IPD,
       OPD: resultsOPD,
       ER: resultsER,
       PA: resultsPA,
-      HB: resultsHB
+      HB: resultsHB,
+      HB_Incentive: resultsHBIncentive
     }
     const dirPath = path.resolve(process.cwd(), 'test-data', 'actual-data')
     const filePath = path.join(dirPath, `hospital_coverage_${productName}.json`)
@@ -554,27 +571,29 @@ export class MemberPolicyDetailPage extends BasePage {
     const filePath = path.resolve(process.cwd(), 'test-data', 'actual-data', `coverage_${productName}.json`)
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
+    validateBenefitSection(policyData.OTH, coverage.OTH)
+    validateBenefitSection(policyData.DEDUCTIBLE, coverage.DEDUCTIBLE)
     validateBenefitSection(policyData.IPD, coverage.IPD)
     validateBenefitSection(policyData.OPD, coverage.OPD)
     validateBenefitSection(policyData.ER, coverage.ER)
-    validateBenefitSection(policyData.OTH, coverage.OTH)
     validateBenefitSection(policyData.OPD_Follow_IPD, coverage.OPD_Follow_IPD)
     validateBenefitSection(policyData.PA, coverage.PA)
     validateBenefitSection(policyData.HB, coverage.HB)
+    validateBenefitSection(policyData.HB_Incentive, coverage.HB_Incentive)
   }
 
   async validateHospitalCoverageDetail(policyData: any, productName: string) {
     const filePath = path.resolve(process.cwd(), 'test-data', 'actual-data', `coverage_${productName}.json`)
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
+    validateHospitalBenefitSection(policyData.OTH, coverage.OTH)
+    validateHospitalBenefitSection(policyData.DEDUCTIBLE, coverage.DEDUCTIBLE)
     validateHospitalBenefitSection(policyData.IPD, coverage.IPD)
     validateHospitalBenefitSection(policyData.OPD, coverage.OPD)
     validateHospitalBenefitSection(policyData.ER, coverage.ER)
-    validateHospitalBenefitSection(policyData.OTH, coverage.OTH)
     validateHospitalBenefitSection(policyData.OPD_Follow_IPD, coverage.OPD_Follow_IPD)
     validateHospitalBenefitSection(policyData.PA, coverage.PA)
     validateHospitalBenefitSection(policyData.HB, coverage.HB)
+    validateHospitalBenefitSection(policyData.HB_Incentive, coverage.HB_Incentive)
   }
-
-  // async validateCoverageDetailHospital(policyData: any) {}
 }

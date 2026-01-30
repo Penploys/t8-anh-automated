@@ -156,6 +156,10 @@ export class ClaimManagementDetailPage extends BasePage {
   readonly confirmAuthorizeBtnLocator: Locator = this.page
     .locator('.MuiDialog-root')
     .getByRole('button', { name: /Authorize|อนุญาต/ })
+  readonly approveBtnLocator: Locator = this.page.getByRole('button', { name: /Approve|อนุมัติ/ })
+  readonly confirmApproveBtnLocator: Locator = this.page
+    .locator('.MuiDialog-root')
+    .getByRole('button', { name: /Approve|อนุมัติ/ })
 
   // Request Document Dialog Locators
   readonly requestDocumentDialog: Locator = this.page.locator('.MuiDialog-root')
@@ -227,8 +231,8 @@ export class ClaimManagementDetailPage extends BasePage {
   readonly additionalDocumentsListItems: Locator = this.additionalDocumentsSection.locator('ul > li')
 
   async validateClaimStatus(expectedStatus?: string) {
-    await this.page.reload()
     await this.page.waitForTimeout(3000)
+
     await this.claimStatusChipLocator.waitFor({ state: 'visible' })
     const statusText = await this.claimStatusChipLocator.textContent()
 
@@ -563,7 +567,7 @@ export class ClaimManagementDetailPage extends BasePage {
   }
 
   // Validate text field in grid row
-  private async validateGridTextField(row: Locator, field: string, expectedValue: string): Promise<void> {
+  private async validateGridTextField(row: Locator, field: string, expectedValue: string | RegExp): Promise<void> {
     await expect(row.locator(`[data-field="${field}"]`)).toHaveText(expectedValue)
   }
 
@@ -610,7 +614,13 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.validateGridInputField(row, 'schedule', item.schedule)
 
     // Copay
-    await this.validateGridTextField(row, 'copay', this.formatMoney(item.copay))
+    const copayVal = parseFloat(item.copay)
+
+    if (copayVal === 0) {
+      await this.validateGridTextField(row, 'copay', /^(0(\.00)?|-)$/)
+    } else {
+      await this.validateGridTextField(row, 'copay', this.formatMoney(item.copay))
+    }
 
     // Days
     await this.validateGridInputField(row, 'noOfDays', item.noOfDays)
@@ -639,7 +649,13 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.validateGridTextField(row, 'majorMedAmount', this.formatMoney(item.majorMedical))
 
     // Exceeded Limit
-    await this.validateGridTextField(row, 'exceedLimit', this.formatMoney(item.exceededLimit))
+    const exceedVal = parseFloat(item.exceededLimit)
+
+    if (exceedVal === 0) {
+      await this.validateGridTextField(row, 'exceedLimit', /^(0(\.00)?|-)$/)
+    } else {
+      await this.validateGridTextField(row, 'exceedLimit', this.formatMoney(item.exceededLimit))
+    }
 
     // Recovery
     await this.validateGridTextField(row, 'recovery', this.formatMoney(item.recovery))
@@ -676,7 +692,13 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.validateCommonBillingFields(row, item)
 
     // Copay
-    await this.validateGridTextField(row, 'copay', this.formatMoney(item.copay))
+    const copayVal = parseFloat(item.copay)
+
+    if (copayVal === 0) {
+      await this.validateGridTextField(row, 'copay', /^(0(\.00)?|-)$/)
+    } else {
+      await this.validateGridTextField(row, 'copay', this.formatMoney(item.copay))
+    }
 
     // Scroll right
     await this.scrollBillingGrid('right')
@@ -691,7 +713,13 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.validateGridTextField(row, 'payableAmount', this.formatMoney(item.payableAmount))
 
     // Exceeded Limit
-    await this.validateGridTextField(row, 'exceedLimit', this.formatMoney(item.exceededLimit))
+    const exceedVal = parseFloat(item.exceededLimit)
+
+    if (exceedVal === 0) {
+      await this.validateGridTextField(row, 'exceedLimit', /^(0(\.00)?|-)$/)
+    } else {
+      await this.validateGridTextField(row, 'exceedLimit', this.formatMoney(item.exceededLimit))
+    }
 
     // Scroll back left
     await this.scrollBillingGrid('left')
@@ -1011,6 +1039,19 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.submitBtnLocator.click()
     await this.confirmSubmitBtnLocator.waitFor({ state: 'visible' })
     await this.confirmSubmitBtnLocator.click()
+
+    // Handle Warning Popup (Optional)
+    try {
+      const warningDialog = this.page.locator('.MuiDialog-paper', {
+        hasText: /Warning.*Visit date/s
+      })
+
+      await warningDialog.waitFor({ state: 'visible', timeout: 2000 })
+
+      const submitBtn = warningDialog.getByRole('button', { name: /Submit|ส่งข้อมูล/ })
+      await submitBtn.click()
+    } catch (error) {}
+
     await this.viewDetailBtnLocator.waitFor({ state: 'visible' })
     await this.viewDetailBtnLocator.click()
   }
@@ -1580,14 +1621,16 @@ export class ClaimManagementDetailPage extends BasePage {
 
     await this.page.waitForTimeout(1000)
 
-    const uploadSection = this.page.locator('.MuiCollapse-entered').filter({ hasText: 'Upload documents' }).first()
+    const uploadSectionWrapper = this.page.locator('#upload-docs')
+    await uploadSectionWrapper.waitFor({ state: 'visible' })
 
-    await uploadSection.waitFor({ state: 'visible' })
+    const uploadContent = uploadSectionWrapper.locator('.MuiCollapse-root')
+    await uploadContent.waitFor({ state: 'visible' })
 
     const fileList = fileNames.split(',').map(name => name.trim())
 
     for (const fileName of fileList) {
-      const fileLocator = uploadSection.locator('.MuiBox-root').filter({ hasText: fileName }).last()
+      const fileLocator = uploadContent.locator('.MuiBox-root').filter({ hasText: fileName }).last()
 
       await expect(fileLocator).toBeVisible()
       console.log(`✓ Validated uploaded document: ${fileName}`)
@@ -1605,22 +1648,14 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.viewDetailBtnLocator.click()
   }
 
-  // async approveClaim() {
-  //   await this.approveBtnLocator.waitFor({ state: 'visible' })
-  //   await this.approveBtnLocator.click()
+  async approveClaim() {
+    await this.approveBtnLocator.waitFor({ state: 'visible' })
+    await this.approveBtnLocator.click()
 
-  //   await this.confirmApproveBtnLocator.waitFor({ state: 'visible' })
-  //   await this.confirmApproveBtnLocator.click()
+    await this.confirmApproveBtnLocator.waitFor({ state: 'visible' })
+    await this.confirmApproveBtnLocator.click()
 
-  //   await this.viewDetailBtnLocator.waitFor({ state: 'visible' })
-  //   await this.viewDetailBtnLocator.click()
-  // }
-
-  // async validateCoverageClaimSurveyor(ipdCoverages: any) {}
-
-  // async validateCoverageClaimHospital(ipdCoverages: any) {}
-
-  // async validateCoverageLimitSurveyor(ipdCoverages: any) {}
-
-  // async validateCoverageLimitHospital(ipdCoverages: any) {}
+    await this.viewDetailBtnLocator.waitFor({ state: 'visible' })
+    await this.viewDetailBtnLocator.click()
+  }
 }

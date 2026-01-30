@@ -24,6 +24,7 @@ export class ClaimManagementCreatePage extends BasePage {
   readonly providerNameInputLocator: Locator = this.page.locator('input[name="providerId"]')
   // Used for both Appointment Date and Visit/Admission Date
   readonly admissionDateInputLocator: Locator = this.page.locator('input[name="admissionDate"]')
+  readonly appointmentDateInputLocator: Locator = this.page.locator('input[name="appointmentAt"]')
   readonly estimatedIpdDaysInputLocator: Locator = this.page.locator('#estimatedIpdDays')
   readonly estimatedExpensesInputLocator: Locator = this.page.locator('#estimatedExpenses')
   readonly symptomInputLocator: Locator = this.page.locator('#importantSymptom')
@@ -37,6 +38,11 @@ export class ClaimManagementCreatePage extends BasePage {
 
   // Dropdown list
   readonly listBoxLocator: Locator = this.page.getByRole('listbox')
+
+  // Header Table
+  readonly headerTableLocator = this.page.locator('h6', {
+    hasText: /OTH|DEDUCT|IPD|OPD_Follow_IPD|OPD|ER|PA|HB|HB Incentive/
+  })
 
   // Actions
   readonly saveDraftBtnLocator: Locator = this.page.getByRole('button', { name: /Save draft|บันทึกฉบับร่าง/ })
@@ -215,6 +221,8 @@ export class ClaimManagementCreatePage extends BasePage {
   }
 
   async getClaimCoverageDetail(productName: string, claimType: string) {
+    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
+
     const results = await this.extractClaimCoverageTable(claimType)
 
     const data = {
@@ -229,20 +237,22 @@ export class ClaimManagementCreatePage extends BasePage {
   }
 
   async getHospitalClaimCoverageDetail(productName: string, claimType: string) {
+    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
+
     const results = await this.extractHospitalClaimCoverageTable(claimType)
 
     const data = {
       [claimType]: results
     }
     const dirPath = path.resolve(process.cwd(), 'test-data', 'actual-data')
-    const filePath = path.join(dirPath, `hospiltal_claim_coverage_${productName}_${claimType}.json`)
+    const filePath = path.join(dirPath, `hospital_claim_coverage_${productName}_${claimType}.json`)
     if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath, { recursive: true })
     }
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
   }
 
-  async validateHospitalClaimCoverageDetail(calimCoverageData: any, productName: string, claimType: string) {
+  async validateClaimCoverageDetail(claimCoverageData: any, productName: string, claimType: string) {
     const filePath = path.resolve(
       process.cwd(),
       'test-data',
@@ -251,10 +261,10 @@ export class ClaimManagementCreatePage extends BasePage {
     )
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
-    validateHospitalClaimBenefitSection(calimCoverageData[claimType], coverage[claimType])
+    validateClaimBenefitSection(claimCoverageData[claimType], coverage[claimType])
   }
 
-  async validateClaimCoverageDetail(calimCoverageData: any, productName: string, claimType: string) {
+  async validateHospitalClaimCoverageDetail(claimCoverageData: any, productName: string, claimType: string) {
     const filePath = path.resolve(
       process.cwd(),
       'test-data',
@@ -263,10 +273,12 @@ export class ClaimManagementCreatePage extends BasePage {
     )
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
-    validateClaimBenefitSection(calimCoverageData[claimType], coverage[claimType])
+    validateHospitalClaimBenefitSection(claimCoverageData[claimType], coverage[claimType])
   }
 
-  async validateClaimCoverageNotUsageRemainingDetail(calimCoverageData: any, productName: string, claimType: string) {
+  async validateClaimCoverageNotUsageRemainingDetail(claimCoverageData: any, productName: string, claimType: string) {
+    await this.page.waitForTimeout(1000)
+
     const filePath = path.resolve(
       process.cwd(),
       'test-data',
@@ -275,14 +287,16 @@ export class ClaimManagementCreatePage extends BasePage {
     )
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
-    validateClaimBenefitNotUsageRemainingSection(calimCoverageData[claimType], coverage[claimType])
+    validateClaimBenefitNotUsageRemainingSection(claimCoverageData[claimType], coverage[claimType])
   }
 
   async validateHospitalClaimCoverageNotUsageRemainingDetail(
-    calimCoverageData: any,
+    claimCoverageData: any,
     productName: string,
     claimType: string
   ) {
+    await this.page.waitForTimeout(1000)
+
     const filePath = path.resolve(
       process.cwd(),
       'test-data',
@@ -291,7 +305,7 @@ export class ClaimManagementCreatePage extends BasePage {
     )
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
-    validateHospitalClaimBenefitNotUsageRemainingSection(calimCoverageData[claimType], coverage[claimType])
+    validateHospitalClaimBenefitNotUsageRemainingSection(claimCoverageData[claimType], coverage[claimType])
   }
 
   async fillMainBenefitInformation(claimData: {
@@ -347,7 +361,7 @@ export class ClaimManagementCreatePage extends BasePage {
 
     // Appointment Date
     if (claimData.appointmentDate && claimData.appointmentDate.trim() !== '') {
-      await this.admissionDateInputLocator.fill(claimData.appointmentDate)
+      await this.appointmentDateInputLocator.fill(claimData.appointmentDate)
     }
 
     // Visit/Admission Date
@@ -439,61 +453,5 @@ export class ClaimManagementCreatePage extends BasePage {
     await this.viewDetailBtnLocator.click()
 
     await expect(this.page).toHaveURL(/\/claim-management\/detail/i)
-  }
-
-  async getCoverageRemaining() {
-    await this.page.waitForTimeout(1000)
-
-    const coverageRemainingData: any[] = []
-
-    // Find all table rows in Coverage details section
-    const tableRows = this.page.locator('table tbody tr')
-    const rowCount = await tableRows.count()
-
-    for (let i = 0; i < rowCount; i++) {
-      const row = tableRows.nth(i)
-      const cells = row.locator('td')
-      const cellCount = await cells.count()
-
-      // Skip rows with no cells or only action cells
-      if (cellCount < 2) continue
-
-      try {
-        // Extract benefit type (first cell)
-        const benefitTypeCell = cells.nth(0)
-        const benefitType = await benefitTypeCell.textContent()
-
-        // Extract sub benefit (second cell)
-        const subBenefitCell = cells.nth(1)
-        const subBenefit = await subBenefitCell.textContent()
-
-        // Extract limit, usage, and remaining (columns 3, 4, 5)
-        if (cellCount >= 5) {
-          const limitCell = cells.nth(2)
-          const limitText = await limitCell.textContent()
-
-          const usageCell = cells.nth(3)
-          const usageText = await usageCell.textContent()
-
-          const remainingCell = cells.nth(4)
-          const remainingText = await remainingCell.textContent()
-
-          if (benefitType && benefitType.trim()) {
-            coverageRemainingData.push({
-              benefitType: benefitType.trim(),
-              subBenefit: subBenefit?.trim() || '-',
-              limit: limitText?.trim() || '-',
-              usage: usageText?.trim() || '-',
-              remaining: remainingText?.trim() || '-'
-            })
-          }
-        }
-      } catch (error) {
-        // Skip rows that cannot be processed
-        continue
-      }
-    }
-
-    return coverageRemainingData
   }
 }
