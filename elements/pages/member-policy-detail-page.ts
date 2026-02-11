@@ -121,9 +121,11 @@ export class MemberPolicyDetailPage extends BasePage {
   })
 
   // Header Table
-  readonly headerTableLocator = this.page.locator('h6', {
-    hasText: /OTH|DEDUCT|IPD|OPD_Follow_IPD|OPD|ER|PA|HB|HB Incentive/
-  })
+  readonly headerTableLocator = this.page
+    .locator('section, div')
+    .filter({ hasText: 'Coverage details' })
+    .locator('h6')
+    .filter({ hasText: /OTH|DEDUCTIBLE|IPD|OPD_Follow_IPD|OPD|ER|PA|HB|HB Incentive/ })
 
   async validateTabs(tabsData: {
     coverageInfo: boolean

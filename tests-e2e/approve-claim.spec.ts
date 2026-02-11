@@ -1,64 +1,74 @@
 import { test } from '@fixtures/e2e-fixture'
 import { E2EConfiguration } from '@services/configurations/e2e-configuration'
 import { DateHelper } from '@utils/date-helper'
+import * as fs from 'fs'
+import * as path from 'path'
 
 test.describe.configure({ mode: 'serial' })
 
-test.describe.skip('Test', () => {
+test.describe.skip('Calculate test', () => {
   test('test randomBilling', async ({ claimManagementEditPage }) => {
     await test.step('test', async () => {
-      // await claimManagementEditPage.calculateBillingCopay('ipdPreAuth', 'claim_coverage_copay_OTH.json', 'claim_coverage_copay_IPD.json')
+      await claimManagementEditPage.calculateBillingCopay(
+        'ipdPreAuth',
+        'claim_coverage_copay-preAuth_OTH.json',
+        'claim_coverage_copay-preAuth_IPD.json'
+      ) // get 2 types
 
-      // Before draft edit
+      // Provider edit
       // await claimManagementEditPage.calculateBillingSchedule('ipdDischarge', 'claim_coverage_schedule_IPD.json')
-      // await claimManagementEditPage.calculateBillingSchedule('opdDischarge', 'claim_coverage_schedule_IPD.json', 'claim_coverage_schedule_OPD.json')
-      // await claimManagementEditPage.calculateBillingSchedule('er72Discharge', 'claim_coverage_schedule_IPD.json', 'claim_coverage_schedule_ER.json')
-      // Before schedule edit
+      // await claimManagementEditPage.calculateBillingSchedule('opdDischarge', 'claim_coverage_schedule_OPD.json')
+      // await claimManagementEditPage.calculateBillingSchedule('er72Discharge', 'claim_coverage_schedule_IPD.json', 'claim_coverage_schedule_ER.json') // get 2 types
+      // Claim staff edit
       // await claimManagementEditPage.calculateBillingSchedule('ipdDischargeSchedule', 'claim_coverage_schedule_IPD.json')
-      // await claimManagementEditPage.calculateBillingSchedule('opdDischargeSchedule', 'claim_coverage_schedule_IPD.json', 'claim_coverage_schedule_OPD.json')
-      // await claimManagementEditPage.calculateBillingSchedule('er72DischargeSchedule', 'claim_coverage_schedule_IPD.json', 'claim_coverage_schedule_ER.json')
+      // await claimManagementEditPage.calculateBillingSchedule('opdDischargeSchedule', 'claim_coverage_schedule_OPD.json')
+      // await claimManagementEditPage.calculateBillingSchedule('er72DischargeSchedule', 'claim_coverage_schedule_IPD.json', 'claim_coverage_schedule_ER.json') // get 2 types
 
-      // await claimManagementEditPage.calculateBillingCopay('ipdDischarge', 'claim_coverage_copay_OTH.json', 'claim_coverage_copay_IPD.json')
-      // await claimManagementEditPage.calculateBillingCopay('opdDischarge', 'claim_coverage_copay_OTH.json', 'claim_coverage_copay_OPD.json')
-      // await claimManagementEditPage.calculateBillingCopay('er24Discharge', 'claim_coverage_copay_OTH.json', 'claim_coverage_copay_ER.json')
+      // await claimManagementEditPage.calculateBillingCopay('ipdDischarge', 'claim_coverage_copay_OTH.json', 'claim_coverage_copay_IPD.json') // get 2 types
+      // await claimManagementEditPage.calculateBillingCopay('opdDischarge', 'claim_coverage_copay_OTH.json', 'claim_coverage_copay_OPD.json') // get 2 types
+      // await claimManagementEditPage.calculateBillingCopay('er24Discharge', 'claim_coverage_copay_OTH.json', 'claim_coverage_copay_ER.json') // get 2 types
 
-      // TODO: test data
-      // await claimManagementEditPage.calculateBillingDeductNotEr('ipdDischarge')
-      // await claimManagementEditPage.calculateBillingDeductNotEr('opdDischarge')
-      // await claimManagementEditPage.calculateBillingDeductNotEr('er24Discharge')
-      // await claimManagementEditPage.calculateBillingDeductRoom('hb')
+      // await claimManagementEditPage.calculateBillingDeductAll('ipdDischarge', 10000, true, false, 'claim_coverage_deduct_OTH.json', 'claim_coverage_deduct_IPD.json') // get 2 types
+      // await claimManagementEditPage.calculateBillingDeductAll('opdDischarge', 10000, true, false, 'claim_coverage_deduct_OTH.json', 'claim_coverage_deduct_IPD.json', 'claim_coverage_deduct_OPD.json') // get 3 types
+      // await claimManagementEditPage.calculateBillingDeductAll('er24Discharge', 10000, true, false, 'claim_coverage_deduct_OTH.json', 'claim_coverage_deduct_IPD.json', 'claim_coverage_deduct_ER.json') // get 3 types
 
-      await claimManagementEditPage.calculateBillingMajorMedPh('ipdDischarge', 'claim_coverage_majorMed_IPD.json')
+      // await claimManagementEditPage.calculateBillingMajorMedPh('ipdDischarge', 'claim_coverage_majorMed_IPD.json')
       // await claimManagementEditPage.calculateBillingMajorMedPh('opdDischarge', 'claim_coverage_majorMed_OPD.json')
       // await claimManagementEditPage.calculateBillingMajorMedPh('maternityDischarge', 'claim_coverage_majorMed_IPD.json')
       // await claimManagementEditPage.calculateBillingMajorMedPh('er24Discharge', 'claim_coverage_majorMed_ER.json')
       // await claimManagementEditPage.calculateBillingMajorMedPh('dentalOpd', 'claim_coverage_majorMed_OPD.json')
 
-      // TODO: test data
-      // await claimManagementEditPage.calculateBillingMajorMedHa('er72Discharge')
-      // BUG: cannot edit Cause of loss
-      // await claimManagementEditPage.calculateBillingMajorMedHa('hbIncentive')
+      // await claimManagementEditPage.calculateBillingPaWakeBoard('paGeneralDischarge','claim_coverage_pa_PA.json',)
 
       // TODO: test data
-      // await claimManagementEditPage.calculateBillingPa('paSurgeryDischarge')
-      // await claimManagementEditPage.calculateBillingPa('paHolidayDischarge')
-      // await claimManagementEditPage.calculateBillingPa('paGeneralDischarge')
-      // await claimManagementEditPage.calculateBillingPa('hb')
+      // await claimManagementEditPage.calculateBillingDeductNotEr('ipdDischarge')
+      // await claimManagementEditPage.calculateBillingDeductNotEr('opdDischarge')
+      // await claimManagementEditPage.calculateBillingDeductNotEr('er24Discharge')
+
+      // await claimManagementEditPage.calculateBillingDeductRoom('hb')
+
+      // await claimManagementEditPage.calculateBillingMajorMedHa('er72Discharge')
+      // await claimManagementEditPage.calculateBillingMajorMedHa('hbIncentive')
+
+      // await claimManagementEditPage.calculateBillingPaHoliday('paSurgeryDischarge')
+      // await claimManagementEditPage.calculateBillingPaHoliday('paHolidayDischarge')
+      // await claimManagementEditPage.calculateBillingPaHoliday('hb')
     })
   })
 })
 
-// Pre-Auth: not show IPD coverage on create claim page (not deducted amount)
+// Pre-Auth not show IPD coverage on create claim page (not deducted amount)
 test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
   let policyData: any
-  // let claimInitData: any
+  let claimInitData: any
   let userData: any
   let tabData: any
   let memberData: any
   let draftData: any
+  let draftDataDischarge: any
   let billingData: any
   let slaData: any
   let pendingInfoData: any
@@ -68,7 +78,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
 
     baseUrl = config.appSetting.url.uat
     policyData = config.policyCoverages.policy.copay
-    // claimInitData = config.claimCoveragesinit.policy.copay
+    claimInitData = config.claimCoveragesinit.policy.copay
     userData = config.users.uat
     tabData = config.tabs
     memberData = config.members.memberCopay.ha
@@ -78,6 +88,9 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     const positiveCase = config.claims.uat.copay.ha.ipd.positive.preArrangement
     draftData = positiveCase.draftInfo
     billingData = positiveCase.billingInfo
+
+    const positiveCaseDischarge = config.claims.uat.copay.ha.ipd.positive.ipdDischarge
+    draftDataDischarge = positiveCaseDischarge.draftInfo
 
     // Calculate lossDate from memberEffectiveDate + 2 months (DD/MM/YYYY)
     if (memberData.lossDate === true) {
@@ -104,13 +117,19 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
       billingData.billingDate = baseDateOnly
     }
 
-    // Temp: for test
-    // draftNumber = 'DRAFT1768818938310'
-    // claimNumber = 'PRE1768890143149'
+    if (draftDataDischarge.admissionDate === true) {
+      const effectiveDateOnly = memberData.memberEffectiveDate.split(' ')[0]
+      draftDataDischarge.admissionDate = `${DateHelper.addMonths(effectiveDateOnly, 2)} 00:00`
+    }
+
+    if (draftDataDischarge.dischargeDate === true) {
+      const admissionDateOnly = draftDataDischarge.admissionDate.split(' ')[0]
+      draftDataDischarge.dischargeDate = DateHelper.addDays(admissionDateOnly, 1)
+    }
   })
 
   test.beforeEach(async ({ page }) => {
-    await page.setViewportSize({ width: 1920, height: 1080 })
+    await page.setViewportSize({ width: 1920, height: 930 })
   })
 
   test.afterAll(async () => {
@@ -172,11 +191,16 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     })
 
     await test.step('Validate coverage table and get coverage remaining on the Create claim page', async () => {
-      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
+      await claimManagementCreatePage.fillMainBenefitInformation(draftDataDischarge)
+
       // Surveyor
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OTH')
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
+      await claimManagementCreatePage.getClaimCoverageDetail('copay-preAuth', 'OTH')
+      await claimManagementCreatePage.getClaimCoverageDetail('copay-preAuth', 'IPD')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'copay-preAuth',
+        'IPD'
+      )
 
       // Hospital
       // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
@@ -292,6 +316,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
       // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
       // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
     })
@@ -331,22 +356,31 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
       await claimManagementDetailPage.clickEditClaim()
     })
 
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
+    })
+
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingCopay
       // const coverageActual = claimInitData['IPD']
       // NOTE: Pre-Auth not show IPD coverage
       await claimManagementEditPage.calculateBillingCopay(
         'ipdPreAuth',
-        'claim_coverage_copay_OTH.json',
-        'claim_coverage_copay_IPD.json'
+        'claim_coverage_copay-preAuth_OTH.json',
+        'claim_coverage_copay-preAuth_IPD.json'
       )
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.copay.ha.ipd.positive.preArrangement.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -362,16 +396,18 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
       // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
+
       // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -382,10 +418,11 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
       claimNumber = await claimManagementDetailPage.getClaimNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
-      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
-      await claimManagementDetailPage.validateSummaryAmount(billingData)
       // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
       // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
     })
 
     await test.step('Logout', async () => {
@@ -422,12 +459,13 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -451,7 +489,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -472,12 +510,13 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -492,12 +531,13 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -535,11 +575,12 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -557,11 +598,12 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -596,15 +638,24 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
       await claimManagementDetailPage.validateClaimStatus('Resubmitted')
     })
 
+    await test.step('Assign claim to assignee on the Claim details page', async () => {
+      await claimManagementDetailPage.assignClaimToAssignee(userData.faxClaimUser.email)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
 
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -620,12 +671,15 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
+      await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -837,11 +891,6 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
     })
 
-    await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'IPD')
-    })
-
     await test.step('Save draft claim on the Create claim page', async () => {
       await claimManagementCreatePage.saveDraftClaim()
       await claimManagementCreatePage.viewClaimDetail()
@@ -854,8 +903,6 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'IPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -894,16 +941,20 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
 
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingSchedule
       // const coverageActual = claimInitData['IPD']
       await claimManagementEditPage.calculateBillingSchedule('ipdDischarge', 'claim_coverage_schedule_IPD.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.schedule.ph.ipd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'IPD')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -923,12 +974,11 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'IPD')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -942,8 +992,6 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -980,14 +1028,14 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -997,6 +1045,85 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     await test.step('Validate claim status on the Claim details page', async () => {
       // BUG: UI shows 'Submitted' instead of 'Under Review'
       // await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      // BUG: UI shows 'Submitted' instead of 'Under Review'
+      // await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC009 Claim staff can edit schedule claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    slaClaimPage,
+    claimManagementDetailPage,
+    claimManagementEditPage
+  }) => {
+    test.setTimeout(320000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.pendingInfo)
+
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.pendingInfo)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Click edit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.clickEditClaim()
+    })
+
+    await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
+      // FIXME: calculateBillingSchedule
+      // const coverageActual = claimInitData['IPD']
+      await claimManagementEditPage.calculateBillingSchedule('ipdDischargeSchedule', 'claim_coverage_schedule_IPD.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.schedule.ph.ipd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
+      await claimManagementEditPage.fillBillingDetailsSchedule(billingData)
+    })
+
+    await test.step('Save edit claim on the Edit claim page', async () => {
+      await claimManagementEditPage.saveChangeClaim()
+      await claimManagementEditPage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim details on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
     })
 
     await test.step('Logout', async () => {
@@ -1011,7 +1138,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -1032,14 +1159,14 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -1054,14 +1181,14 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -1102,8 +1229,6 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -1123,8 +1248,6 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -1162,13 +1285,14 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -1184,13 +1308,16 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'IPD')
+
+      await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -1203,7 +1330,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
   })
 })
 
-test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
+test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -1318,6 +1445,7 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
       await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OTH')
       await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'OTH')
       await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
     })
 
@@ -1403,11 +1531,6 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
     })
 
-    await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
-    })
-
     await test.step('Save draft claim on the Create claim page', async () => {
       await claimManagementCreatePage.saveDraftClaim()
       await claimManagementCreatePage.viewClaimDetail()
@@ -1420,8 +1543,6 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -1460,6 +1581,8 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     })
 
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingCopay
       // const coverageActual = claimInitData['IPD']
       await claimManagementEditPage.calculateBillingCopay(
@@ -1467,13 +1590,15 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
         'claim_coverage_copay_OTH.json',
         'claim_coverage_copay_IPD.json'
       )
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.copay.ha.ipd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -1493,12 +1618,11 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'IPD')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -1512,8 +1636,6 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -1550,14 +1672,14 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -1581,7 +1703,7 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -1602,14 +1724,14 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -1624,14 +1746,14 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -1672,8 +1794,6 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -1693,8 +1813,6 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -1732,13 +1850,14 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -1754,13 +1873,14 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -1773,7 +1893,572 @@ test.describe.skip('E2E_TS102_IPDDischarge_IPD_Copay', () => {
   })
 })
 
-// BUG: Major medical calculation issue (Expected: Not include Room and Board)
+test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
+  let draftNumber: string
+  let claimNumber: string
+  let baseUrl: any
+  let policyData: any
+  let claimInitData: any
+  let userData: any
+  let tabData: any
+  let memberData: any
+  let draftData: any
+  let billingData: any
+  let slaData: any
+  let pendingInfoData: any
+
+  test.beforeAll(async () => {
+    const config = new E2EConfiguration()
+
+    baseUrl = config.appSetting.url.uat
+    policyData = config.policyCoverages.policy.deduct
+    claimInitData = config.claimCoveragesinit.policy.deduct
+    userData = config.users.uat
+    tabData = config.tabs
+    memberData = config.members.memberDeduct.ha.all
+    slaData = config.sla.uat.deduct.ha.all.ipd.positive.ipdDischarge
+    pendingInfoData = config.claims.uat.pendingInfo
+
+    const positiveCase = config.claims.uat.deduct.ha.all.ipd.positive.ipdDischarge
+    draftData = positiveCase.draftInfo
+    billingData = positiveCase.billingInfo
+
+    // Calculate lossDate from memberEffectiveDate + 2 months (DD/MM/YYYY)
+    if (memberData.lossDate === true) {
+      const effectiveDateOnly = memberData.memberEffectiveDate.split(' ')[0]
+      memberData.lossDate = DateHelper.addMonths(effectiveDateOnly, 2)
+    }
+
+    // draftData.admissionDate (true): pick date from memberEffectiveDate + 2 months (DD/MM/YYYY hh:mm)
+    if (draftData.admissionDate === true) {
+      const effectiveDateOnly = memberData.memberEffectiveDate.split(' ')[0]
+      draftData.admissionDate = `${DateHelper.addMonths(effectiveDateOnly, 2)} 00:00`
+    }
+
+    // draftData.dischargeDate (true): pick date from admissionDate + 2 days (DD/MM/YYYY)
+    if (draftData.dischargeDate === true) {
+      const admissionDateOnly = draftData.admissionDate.split(' ')[0]
+      draftData.dischargeDate = DateHelper.addDays(admissionDateOnly, 2)
+    }
+
+    // accidentDate (true): pick date from admissionDate - 1 day (DD/MM/YYYY hh:mm)
+    if (draftData.accidentDate === true) {
+      const baseDate = draftData.admissionDate
+      const baseDateOnly = baseDate.split(' ')[0]
+      draftData.accidentDate = `${DateHelper.addDays(baseDateOnly, -1)} 00:00`
+    }
+
+    // billingDate (true): pick date from dischargeDate (DD/MM/YYYY)
+    if (billingData.billingDate === true) {
+      const baseDate = draftData.dischargeDate
+      const baseDateOnly = baseDate.split(' ')[0]
+      billingData.billingDate = baseDateOnly
+    }
+  })
+
+  test.beforeEach(async ({ page }) => {
+    await page.setViewportSize({ width: 1920, height: 1080 })
+  })
+
+  test.afterAll(async () => {
+    // TODO: cancel claim
+  })
+
+  test('Validate coverage details and get remaining', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    memberPolicyDetailPage,
+    claimManagementCreatePage
+  }) => {
+    test.setTimeout(120000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+
+    await test.step('Validate tabs on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.surveyor)
+    })
+
+    await test.step('Validate coverage table on the Policy overview page', async () => {
+      await memberPolicyDetailPage.getCoverageDetails('deduct')
+      await memberPolicyDetailPage.validateCoverageDetail(policyData, 'deduct')
+    })
+
+    await test.step('Validate member information on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateMemberInfo(memberData)
+    })
+
+    await test.step('Click the create claim button on the Policy overview page', async () => {
+      await memberPolicyDetailPage.clickCreateClaim()
+    })
+
+    await test.step('Validate coverage table and get coverage remaining on the Create claim page', async () => {
+      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
+      await claimManagementCreatePage.getClaimCoverageDetail('deduct', 'OTH')
+      await claimManagementCreatePage.getClaimCoverageDetail('deduct', 'IPD')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'deduct', 'OTH')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'deduct', 'IPD')
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementCreatePage.logout()
+    })
+  })
+
+  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC001 Provider can search and select policy', async ({
+    page,
+    loginPage,
+    memberPolicyPage
+  }) => {
+    test.setTimeout(30000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerAdmissionUser.email, userData.providerAdmissionUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Validate search by name only on the Member policy page', async () => {
+      await memberPolicyPage.MemberSearchByName(memberData)
+      await memberPolicyPage.validateSearchResultsByName(memberData)
+    })
+
+    await test.step('Validate search by citizen ID only on the Member policy page', async () => {
+      await memberPolicyPage.MemberSearchByCitizenId(memberData)
+      await memberPolicyPage.validateSearchResultsByCitizenId(memberData)
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+  })
+
+  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC002 Provider can draft claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    memberPolicyDetailPage,
+    claimManagementCreatePage,
+    claimManagementDetailPage
+  }) => {
+    test.setTimeout(90000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerAdmissionUser.email, userData.providerAdmissionUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+
+    await test.step('Validate tabs on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.hospital)
+    })
+
+    await test.step('Validate coverage table on the Policy overview page', async () => {
+      await memberPolicyDetailPage.getHospitalCoverageDetails('deduct')
+      await memberPolicyDetailPage.validateHospitalCoverageDetail(policyData, 'deduct')
+    })
+
+    await test.step('Validate member information on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateMemberInfo(memberData)
+    })
+
+    await test.step('Click the create claim button on the Policy overview page', async () => {
+      await memberPolicyDetailPage.clickCreateClaim()
+    })
+
+    await test.step('Fill data in the claim information on the Create claim page', async () => {
+      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
+    })
+
+    await test.step('Save draft claim on the Create claim page', async () => {
+      await claimManagementCreatePage.saveDraftClaim()
+      await claimManagementCreatePage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Draft')
+    })
+
+    await test.step('Validate draft claim details on the Claim details page', async () => {
+      draftNumber = await claimManagementDetailPage.getDraftNumber()
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+    })
+
+    await test.step('Print Eligibility Check Document', async () => {
+      await claimManagementDetailPage.printEligibilityCheckDocument()
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC003 Provider can submit claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    claimManagementPage,
+    claimManagementDetailPage,
+    claimManagementEditPage
+  }) => {
+    test.setTimeout(360000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerCashierIPDUser.email, userData.providerCashierIPDUser.password)
+    })
+
+    await test.step('Search and select claim on the Claim management page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.claimManagement()
+      await claimManagementPage.claimSearch(draftNumber)
+      await claimManagementPage.selectClaim(memberData, draftNumber)
+    })
+
+    await test.step('Click edit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.clickEditClaim()
+    })
+
+    await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
+      // FIXME: calculateBillingDeductAll
+      // const coverageActual = claimInitData['IPD']
+      await claimManagementEditPage.calculateBillingDeductAll(
+        'ipdDischarge',
+        10000,
+        true,
+        false,
+        'claim_coverage_deduct_OTH.json',
+        'claim_coverage_deduct_IPD.json'
+      )
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.deduct.ha.all.ipd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
+      await claimManagementEditPage.fillTreatmentInformation(billingData)
+      await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
+    })
+
+    await test.step('Save edit claim on the Edit claim page', async () => {
+      await claimManagementEditPage.saveChangeClaim()
+      await claimManagementEditPage.viewClaimDetail()
+    })
+
+    await test.step('validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Draft')
+    })
+
+    await test.step('Validate draft claim details on the Claim details page', async () => {
+      // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Submit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Submitted')
+    })
+
+    await test.step('Validate submitted claim details on the Claim details page', async () => {
+      claimNumber = await claimManagementDetailPage.getClaimNumber()
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC004 Claim staff can assign claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    claimManagementDetailPage,
+    slaClaimPage
+  }) => {
+    test.setTimeout(90000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.assign)
+
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.assign)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Submitted')
+    })
+
+    await test.step('Validate submitted claim details on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('deduct', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'deduct', 'IPD')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Assign claim to assignee on the Claim details page', async () => {
+      await claimManagementDetailPage.assignClaimToAssignee(userData.faxClaimUser.email)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      // BUG: UI shows 'Submitted' instead of 'Under Review'
+      // await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC005 Claim staff can request pending information', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    slaClaimPage,
+    claimManagementDetailPage
+  }) => {
+    test.setTimeout(160000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.pendingInfo)
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.pendingInfo)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('deduct', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'deduct', 'IPD')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Request document on the Claim details page', async () => {
+      await claimManagementDetailPage.requestDocument(pendingInfoData)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Pending Information')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('deduct', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'deduct', 'IPD')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC006 Provider can resubmit claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    claimManagementPage,
+    claimManagementDetailPage,
+    claimManagementEditPage
+  }) => {
+    test.setTimeout(120000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerCashierIPDUser.email, userData.providerCashierIPDUser.password)
+    })
+
+    await test.step('Search and select claim on the Claim management page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.claimManagement()
+      await claimManagementPage.claimSearch(claimNumber)
+      await claimManagementPage.selectClaim(memberData, claimNumber)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Pending Information')
+    })
+
+    await test.step('Validate coverage claim on the Claim details page', async () => {
+      await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Upload document on the Edit claim page', async () => {
+      await claimManagementDetailPage.goToUploadDocument()
+      await claimManagementEditPage.uploadDocument('test.pdf')
+      await claimManagementEditPage.resubmitClaim()
+      await claimManagementEditPage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+
+      await claimManagementDetailPage.validateUploadDocument('test.pdf')
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC008 Claim staff can approve claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    slaClaimPage,
+    claimManagementDetailPage
+  }) => {
+    test.setTimeout(150000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.approve)
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.approve)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('deduct', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'deduct', 'IPD')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+
+      await claimManagementDetailPage.validateUploadDocument('test.pdf')
+    })
+
+    await test.step('Approve claim on the Claim details page', async () => {
+      await claimManagementDetailPage.approveClaim()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Approved')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('deduct', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'deduct', 'IPD')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Print Eligibility Check Document', async () => {
+      await claimManagementDetailPage.printEligibilityCheckDocument()
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+})
+
 test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
   let draftNumber: string
   let claimNumber: string
@@ -1973,11 +2658,6 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
     })
 
-    await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'IPD')
-    })
-
     await test.step('Save draft claim on the Create claim page', async () => {
       await claimManagementCreatePage.saveDraftClaim()
       await claimManagementCreatePage.viewClaimDetail()
@@ -1990,8 +2670,6 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'IPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -2030,16 +2708,20 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
 
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingMajorMedPh
       // const coverageActual = claimInitData['IPD']
       await claimManagementEditPage.calculateBillingMajorMedPh('ipdDischarge', 'claim_coverage_majorMed_IPD.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.majorMed.ph.ipd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'IPD')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -2059,12 +2741,11 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'IPD')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -2078,8 +2759,6 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -2116,14 +2795,14 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -2147,7 +2826,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -2168,14 +2847,14 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -2190,14 +2869,14 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -2238,8 +2917,6 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -2259,8 +2936,6 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -2298,13 +2973,14 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -2320,13 +2996,14 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -2338,80 +3015,6 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
   })
 })
-
-/*
-test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
-  // let draftNumber: string
-  // let claimNumber: string
-  let baseUrl: any
-  let policyData: any
-  let claimInitData: any
-  let userData: any
-  let tabData: any
-  let memberData: any
-  let draftData: any
-  let billingData: any
-  let slaData: any
-  let pendingInfoData: any
-
-  test.beforeAll(async () => {
-    const config = new E2EConfiguration()
-
-    baseUrl = config.appSetting.url.uat
-    policyData = config.policyCoverages.policy.copay
-    claimInitData = config.claimCoveragesinit.policy.copay
-    userData = config.users.uat
-    tabData = config.tabs
-    memberData = config.members.memberCopay.ha
-    slaData = config.sla.uat.copay.ha.ipd.positive.ipdDischarge
-    pendingInfoData = config.claims.uat.pendingInfo
-
-    const positiveCase = config.claims.uat.copay.ha.ipd.positive.ipdDischarge
-    draftData = positiveCase.draftInfo
-    billingData = positiveCase.billingInfo
-
-    // Calculate lossDate from memberEffectiveDate + 2 months (DD/MM/YYYY)
-    if (memberData.lossDate === true) {
-      const effectiveDateOnly = memberData.memberEffectiveDate.split(' ')[0]
-      memberData.lossDate = DateHelper.addMonths(effectiveDateOnly, 2)
-    }
-
-    // draftData.admissionDate (true): pick date from memberEffectiveDate + 2 months (DD/MM/YYYY hh:mm)
-    if (draftData.admissionDate === true) {
-      const effectiveDateOnly = memberData.memberEffectiveDate.split(' ')[0]
-      draftData.admissionDate = `${DateHelper.addMonths(effectiveDateOnly, 2)} 00:00`
-    }
-
-    // draftData.dischargeDate (true): pick date from admissionDate + 2 days (DD/MM/YYYY)
-    if (draftData.dischargeDate === true) {
-      const admissionDateOnly = draftData.admissionDate.split(' ')[0]
-      draftData.dischargeDate = DateHelper.addDays(admissionDateOnly, 2)
-    }
-
-    // accidentDate (true): pick date from admissionDate - 1 day (DD/MM/YYYY hh:mm)
-    if (draftData.accidentDate === true) {
-      const baseDate = draftData.admissionDate
-      const baseDateOnly = baseDate.split(' ')[0]
-      draftData.accidentDate = `${DateHelper.addDays(baseDateOnly, -1)} 00:00`
-    }
-
-    // billingDate (true): pick date from dischargeDate (DD/MM/YYYY)
-    if (billingData.billingDate === true) {
-      const baseDate = draftData.dischargeDate
-      const baseDateOnly = baseDate.split(' ')[0]
-      billingData.billingDate = baseDateOnly
-    }
-  })
-
-  test.beforeEach(async ({ page }) => {
-    await page.setViewportSize({ width: 1920, height: 1080 })
-  })
-
-  test.afterAll(async () => {
-    // TODO: cancel claim
-  })
-})
-*/
 
 test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
   let draftNumber: string
@@ -2526,7 +3129,6 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
 
     await test.step('Validate coverage table and get coverage remaining on the Create claim page', async () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
-      await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
       await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
       await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'OPD')
     })
@@ -2614,8 +3216,12 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
 
     await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'OPD')
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'schedule',
+        'OPD'
+      )
     })
 
     await test.step('Save draft claim on the Create claim page', async () => {
@@ -2630,8 +3236,13 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'OPD')
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'schedule',
+        'OPD'
+      )
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -2648,6 +3259,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     loginPage,
     memberPolicyPage,
     claimManagementPage,
+    claimManagementCreatePage,
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
@@ -2669,21 +3281,30 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
       await claimManagementDetailPage.clickEditClaim()
     })
 
-    await test.step('Fill data in the treatment information on the Edit claim page', async () => {
-      // FIXME: calculateBillingSchedule
-      // const coverageActual = claimInitData['OPD']
-      await claimManagementEditPage.calculateBillingSchedule(
-        'opdDischarge',
-        'claim_coverage_schedule_IPD.json',
-        'claim_coverage_schedule_OPD.json'
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'schedule',
+        'OPD'
       )
-      await claimManagementEditPage.fillTreatmentInformation(billingData)
-      await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
     })
 
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'OPD')
+    await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
+      // FIXME: calculateBillingSchedule
+      // const coverageActual = claimInitData['OPD']
+      await claimManagementEditPage.calculateBillingSchedule('opdDischarge', 'claim_coverage_schedule_OPD.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.schedule.ph.opd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
+      await claimManagementEditPage.fillTreatmentInformation(billingData)
+      await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -2699,16 +3320,22 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
       // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'schedule',
+        'OPD'
+      )
+
       // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'OPD')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -2719,11 +3346,13 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
       claimNumber = await claimManagementDetailPage.getClaimNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
     })
 
     await test.step('Logout', async () => {
@@ -2760,14 +3389,14 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -2784,6 +3413,80 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
+  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC009 Claim staff can edit schedule claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    slaClaimPage,
+    claimManagementDetailPage,
+    claimManagementEditPage
+  }) => {
+    test.setTimeout(320000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.pendingInfo)
+
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.pendingInfo)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Click edit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.clickEditClaim()
+    })
+
+    await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
+      // FIXME: calculateBillingSchedule
+      // const coverageActual = claimInitData['OPD']
+      await claimManagementEditPage.calculateBillingSchedule('opdDischargeSchedule', 'claim_coverage_schedule_OPD.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.schedule.ph.opd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
+      await claimManagementEditPage.fillBillingDetailsSchedule(billingData)
+    })
+
+    await test.step('Save edit claim on the Edit claim page', async () => {
+      await claimManagementEditPage.saveChangeClaim()
+      await claimManagementEditPage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim details on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
   test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
@@ -2791,7 +3494,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -2812,14 +3515,14 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -2834,14 +3537,14 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
     })
 
     await test.step('Logout', async () => {
@@ -2879,11 +3582,13 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -2900,11 +3605,13 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -2942,13 +3649,14 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -2964,13 +3672,14 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'OPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -3098,6 +3807,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
       await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OTH')
       await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'OTH')
       await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'OPD')
     })
 
@@ -3184,8 +3894,12 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     })
 
     await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'OPD')
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'copay',
+        'OPD'
+      )
     })
 
     await test.step('Save draft claim on the Create claim page', async () => {
@@ -3200,8 +3914,13 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'OPD')
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'copay',
+        'OPD'
+      )
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -3218,6 +3937,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     loginPage,
     memberPolicyPage,
     claimManagementPage,
+    claimManagementCreatePage,
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
@@ -3239,22 +3959,34 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
       await claimManagementDetailPage.clickEditClaim()
     })
 
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'copay',
+        'OPD'
+      )
+    })
+
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingCopay
       // const coverageActual = claimInitData['OPD']
       await claimManagementEditPage.calculateBillingCopay(
         'opdDischarge',
-        'claim',
         'claim_coverage_copay_OTH.json',
         'claim_coverage_copay_OPD.json'
       )
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.copay.ha.opd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'OPD')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -3270,16 +4002,22 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
       // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'copay',
+        'OPD'
+      )
+
       // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'OPD')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -3290,11 +4028,13 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
       claimNumber = await claimManagementDetailPage.getClaimNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -3331,14 +4071,14 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -3362,7 +4102,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -3383,14 +4123,14 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -3405,14 +4145,14 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
     })
 
     await test.step('Logout', async () => {
@@ -3450,11 +4190,13 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'OPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'OPD')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -3471,11 +4213,13 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'OPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'OPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -3513,13 +4257,14 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -3535,13 +4280,14 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'OPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -3646,15 +4392,15 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     const config = new E2EConfiguration()
 
     baseUrl = config.appSetting.url.uat
-    policyData = config.policyCoverages.policy.copay
-    claimInitData = config.claimCoveragesinit.policy.copay
+    policyData = config.policyCoverages.policy.majorMed
+    claimInitData = config.claimCoveragesinit.policy.majorMed
     userData = config.users.uat
     tabData = config.tabs
-    memberData = config.members.memberCopay.ha
-    slaData = config.sla.uat.copay.ha.opd.positive.ipdDischarge
+    memberData = config.members.memberMajorMed.ph
+    slaData = config.sla.uat.majorMed.ph.opd.positive.ipdDischarge
     pendingInfoData = config.claims.uat.pendingInfo
 
-    const positiveCase = config.claims.uat.copay.ha.opd.positive.ipdDischarge
+    const positiveCase = config.claims.uat.majorMed.ph.opd.positive.ipdDischarge
     draftData = positiveCase.draftInfo
     billingData = positiveCase.billingInfo
 
@@ -3828,8 +4574,12 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     })
 
     await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'OPD')
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'OPD'
+      )
     })
 
     await test.step('Save draft claim on the Create claim page', async () => {
@@ -3844,8 +4594,13 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'OPD')
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'OPD'
+      )
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -3862,6 +4617,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     loginPage,
     memberPolicyPage,
     claimManagementPage,
+    claimManagementCreatePage,
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
@@ -3883,17 +4639,30 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
       await claimManagementDetailPage.clickEditClaim()
     })
 
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'OPD'
+      )
+    })
+
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingMajorMedPh
       // const coverageActual = claimInitData['OPD']
       await claimManagementEditPage.calculateBillingMajorMedPh('opdDischarge', 'claim_coverage_majorMed_OPD.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.majorMed.ph.opd.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'OPD')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -3909,16 +4678,22 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
       // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'OPD'
+      )
+
       // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'OPD')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -3929,11 +4704,13 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
       claimNumber = await claimManagementDetailPage.getClaimNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
     })
 
     await test.step('Logout', async () => {
@@ -3970,14 +4747,14 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -4001,7 +4778,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -4022,14 +4799,14 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -4044,14 +4821,14 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
     })
 
     await test.step('Logout', async () => {
@@ -4089,11 +4866,13 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -4110,11 +4889,13 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -4152,13 +4933,14 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -4174,13 +4956,14 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -4193,7 +4976,6 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
   })
 })
 
-// BUG: Major medical calculation issue (Expected: Not include Maternity Coverage)
 test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
   let draftNumber: string
   let claimNumber: string
@@ -4393,11 +5175,6 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
     })
 
-    await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'IPD')
-    })
-
     await test.step('Save draft claim on the Create claim page', async () => {
       await claimManagementCreatePage.saveDraftClaim()
       await claimManagementCreatePage.viewClaimDetail()
@@ -4410,8 +5187,6 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'IPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -4451,16 +5226,20 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     })
 
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingMajorMedPh
       // const coverageActual = claimInitData['IPD']
       await claimManagementEditPage.calculateBillingMajorMedPh('maternityDischarge', 'claim_coverage_majorMed_IPD.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.majorMed.ph.maternity.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'IPD')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -4480,12 +5259,11 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'IPD')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -4499,8 +5277,6 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -4537,14 +5313,14 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -4568,7 +5344,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -4589,14 +5365,14 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -4611,14 +5387,14 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Logout', async () => {
@@ -4659,8 +5435,6 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -4680,8 +5454,6 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -4719,13 +5491,14 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -4741,13 +5514,14 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'IPD')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'IPD')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -4875,6 +5649,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
       await claimManagementCreatePage.fillMainBenefitInformation(draftData)
       await claimManagementCreatePage.getClaimCoverageDetail('copay', 'OTH')
       await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'OTH')
       await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
     })
 
@@ -4961,8 +5736,8 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     })
 
     await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
     })
 
     await test.step('Save draft claim on the Create claim page', async () => {
@@ -4977,8 +5752,9 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -4995,6 +5771,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     loginPage,
     memberPolicyPage,
     claimManagementPage,
+    claimManagementCreatePage,
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
@@ -5016,7 +5793,14 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
       await claimManagementDetailPage.clickEditClaim()
     })
 
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
+    })
+
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingCopay
       // const coverageActual = claimInitData['ER']
       await claimManagementEditPage.calculateBillingCopay(
@@ -5024,13 +5808,15 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
         'claim_coverage_copay_OTH.json',
         'claim_coverage_copay_ER.json'
       )
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.copay.ha.er24.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -5046,16 +5832,18 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
       // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
+
       // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'copay', 'ER')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -5066,11 +5854,13 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
       claimNumber = await claimManagementDetailPage.getClaimNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'ER')
     })
 
     await test.step('Logout', async () => {
@@ -5107,14 +5897,14 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -5138,7 +5928,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -5163,10 +5953,6 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -5181,14 +5967,14 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
     })
 
     await test.step('Logout', async () => {
@@ -5226,11 +6012,13 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'ER')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -5247,11 +6035,13 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'copay', 'ER')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -5289,13 +6079,14 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -5311,13 +6102,14 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('copay', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'copay', 'ER')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -5426,7 +6218,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     claimInitData = config.claimCoveragesinit.policy.majorMed
     userData = config.users.uat
     tabData = config.tabs
-    memberData = config.members.memberMajorMed.ha
+    memberData = config.members.memberMajorMed.ph
     slaData = config.sla.uat.majorMed.ph.er24.positive.ipdDischarge
     pendingInfoData = config.claims.uat.pendingInfo
 
@@ -5604,8 +6396,12 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     })
 
     await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'ER')
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'ER'
+      )
     })
 
     await test.step('Save draft claim on the Create claim page', async () => {
@@ -5620,8 +6416,13 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'ER')
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'ER'
+      )
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -5638,6 +6439,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     loginPage,
     memberPolicyPage,
     claimManagementPage,
+    claimManagementCreatePage,
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
@@ -5659,17 +6461,30 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
       await claimManagementDetailPage.clickEditClaim()
     })
 
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'ER'
+      )
+    })
+
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingMajorMedPh
       // const coverageActual = claimInitData['ER']
       await claimManagementEditPage.calculateBillingMajorMedPh('er24Discharge', 'claim_coverage_majorMed_ER.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.majorMed.ph.er24.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'ER')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -5685,16 +6500,22 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
       // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'ER'
+      )
+
       // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'ER')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -5705,11 +6526,13 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
       claimNumber = await claimManagementDetailPage.getClaimNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
     })
 
     await test.step('Logout', async () => {
@@ -5746,14 +6569,14 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -5777,7 +6600,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -5798,14 +6621,14 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -5820,14 +6643,14 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
     })
 
     await test.step('Logout', async () => {
@@ -5865,11 +6688,13 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -5886,11 +6711,13 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -5928,13 +6755,14 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -5950,13 +6778,14 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'majorMed', 'ER')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -5979,6 +6808,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
   let tabData: any
   let memberData: any
   let draftData: any
+  let draftDataIpd: any
   let billingData: any
   let slaData: any
   let pendingInfoData: any
@@ -5998,6 +6828,8 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     const positiveCase = config.claims.uat.schedule.ph.er72.positive.ipdDischarge
     draftData = positiveCase.draftInfo
     billingData = positiveCase.billingInfo
+    const positiveCaseIpd = config.claims.uat.schedule.ph.ipd.positive.ipdDischarge
+    draftDataIpd = positiveCaseIpd.draftInfo
 
     // Calculate lossDate from memberEffectiveDate + 2 months (DD/MM/YYYY)
     if (memberData.lossDate === true) {
@@ -6029,6 +6861,22 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
       const baseDate = draftData.dischargeDate
       const baseDateOnly = baseDate.split(' ')[0]
       billingData.billingDate = baseDateOnly
+    }
+
+    if (draftDataIpd.admissionDate === true) {
+      const effectiveDateOnly = memberData.memberEffectiveDate.split(' ')[0]
+      draftDataIpd.admissionDate = `${DateHelper.addMonths(effectiveDateOnly, 2)} 00:00`
+    }
+
+    if (draftDataIpd.dischargeDate === true) {
+      const admissionDateOnly = draftDataIpd.admissionDate.split(' ')[0]
+      draftDataIpd.dischargeDate = DateHelper.addDays(admissionDateOnly, 1)
+    }
+
+    if (draftDataIpd.accidentDate === true) {
+      const baseDate = draftDataIpd.admissionDate
+      const baseDateOnly = baseDate.split(' ')[0]
+      draftDataIpd.accidentDate = `${DateHelper.addDays(baseDateOnly, -3)} 00:00`
     }
   })
 
@@ -6081,8 +6929,22 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
 
     await test.step('Validate coverage table and get coverage remaining on the Create claim page', async () => {
-      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
+      await claimManagementCreatePage.fillMainBenefitInformation(draftDataIpd)
       await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'IPD')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'IPD')
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+
+    await test.step('Click the create claim button on the Policy overview page', async () => {
+      await memberPolicyDetailPage.clickCreateClaim()
+    })
+
+    await test.step('Validate coverage table and get coverage remaining on the Create claim page', async () => {
+      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
       await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
       await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'ER')
     })
@@ -6170,8 +7032,12 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
 
     await test.step('Validate policy coverage on the Create claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'ER')
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'schedule',
+        'ER'
+      )
     })
 
     await test.step('Save draft claim on the Create claim page', async () => {
@@ -6186,8 +7052,13 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     await test.step('Validate draft claim details on the Claim details page', async () => {
       draftNumber = await claimManagementDetailPage.getDraftNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'ER')
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'schedule',
+        'ER'
+      )
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -6204,6 +7075,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     loginPage,
     memberPolicyPage,
     claimManagementPage,
+    claimManagementCreatePage,
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
@@ -6225,7 +7097,18 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
       await claimManagementDetailPage.clickEditClaim()
     })
 
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'schedule',
+        'ER'
+      )
+    })
+
     await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
       // FIXME: calculateBillingSchedule
       // const coverageActual = claimInitData['ER']
       await claimManagementEditPage.calculateBillingSchedule(
@@ -6233,13 +7116,15 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
         'claim_coverage_schedule_IPD.json',
         'claim_coverage_schedule_ER.json'
       )
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.schedule.ph.er72.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
       await claimManagementEditPage.fillTreatmentInformation(billingData)
       await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
-    })
-
-    await test.step('Validate coverage claim on the Edit claim page', async () => {
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'ER')
     })
 
     await test.step('Save edit claim on the Edit claim page', async () => {
@@ -6255,16 +7140,22 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
       // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'schedule',
+        'ER'
+      )
+
       // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'schedule', 'ER')
     })
 
     await test.step('Submit claim on the Claim details page', async () => {
       await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
     })
 
     await test.step('Validate claim status on the Claim details page', async () => {
@@ -6275,11 +7166,13 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
       claimNumber = await claimManagementDetailPage.getClaimNumber()
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'ER')
     })
 
     await test.step('Logout', async () => {
@@ -6316,14 +7209,14 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     await test.step('Validate submitted claim details on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
     })
 
     await test.step('Assign claim to assignee on the Claim details page', async () => {
@@ -6340,6 +7233,83 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
+  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC009 Claim staff can edit schedule claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    slaClaimPage,
+    claimManagementDetailPage,
+    claimManagementEditPage
+  }) => {
+    test.setTimeout(320000)
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.pendingInfo)
+
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.pendingInfo)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Click edit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.clickEditClaim()
+    })
+
+    await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
+      // FIXME: calculateBillingSchedule
+      // const coverageActual = claimInitData['ER']
+      await claimManagementEditPage.calculateBillingSchedule(
+        'er72DischargeSchedule',
+        'claim_coverage_schedule_IPD.json',
+        'claim_coverage_schedule_ER.json'
+      )
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.schedule.ph.er72.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
+      await claimManagementEditPage.fillBillingDetailsSchedule(billingData)
+    })
+
+    await test.step('Save edit claim on the Edit claim page', async () => {
+      await claimManagementEditPage.saveChangeClaim()
+      await claimManagementEditPage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim details on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
   test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
@@ -6347,7 +7317,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(160000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -6368,14 +7338,14 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
     })
 
     await test.step('Request document on the Claim details page', async () => {
@@ -6390,14 +7360,14 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
     })
 
     await test.step('Logout', async () => {
@@ -6435,11 +7405,13 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
       await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'ER')
     })
 
     await test.step('Upload document on the Edit claim page', async () => {
@@ -6456,11 +7428,13 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'schedule', 'ER')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -6498,13 +7472,14 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
 
       await claimManagementDetailPage.validateUploadDocument('test.pdf')
     })
@@ -6520,13 +7495,14 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     await test.step('Validate claim detail on the Claim details page', async () => {
       await claimManagementDetailPage.validateMainBenefitInformation(draftData)
 
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
+
       await claimManagementDetailPage.validateMemberInformation(memberData)
       await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
       await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
       await claimManagementDetailPage.validateSummaryAmount(billingData)
-      // FIXME: validateClaimCoverageDetail
-      // await claimManagementCreatePage.getClaimCoverageDetail('schedule', 'ER')
-      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'schedule', 'ER')
     })
 
     await test.step('Print Eligibility Check Document', async () => {
@@ -6761,10 +7737,9 @@ test.describe.skip('E2E_TS146_IPDDischarge_PAHoliday_PA', () => {
 })
 */
 
-/*
 test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
-  // let draftNumber: string
-  // let claimNumber: string
+  let draftNumber: string
+  let claimNumber: string
   let baseUrl: any
   let policyData: any
   let claimInitData: any
@@ -6780,15 +7755,15 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     const config = new E2EConfiguration()
 
     baseUrl = config.appSetting.url.uat
-    policyData = config.policyCoverages.policy.copay
-    claimInitData = config.claimCoveragesinit.policy.copay
+    policyData = config.policyCoverages.policy.pa
+    claimInitData = config.claimCoveragesinit.policy.pa
     userData = config.users.uat
     tabData = config.tabs
-    memberData = config.members.memberCopay.ha
-    slaData = config.sla.uat.copay.ha.ipd.positive.ipdDischarge
+    memberData = config.members.memberPa.wakeBoard
+    slaData = config.sla.uat.pa.wakeBoard.pa.positive.ipdDischarge
     pendingInfoData = config.claims.uat.pendingInfo
 
-    const positiveCase = config.claims.uat.copay.ha.ipd.positive.ipdDischarge
+    const positiveCase = config.claims.uat.pa.wakeBoard.pa.general.positive.ipdDischarge
     draftData = positiveCase.draftInfo
     billingData = positiveCase.billingInfo
 
@@ -6832,13 +7807,526 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
   test.afterAll(async () => {
     // TODO: cancel claim
   })
-})
-*/
 
-/*
+  test('Validate coverage details and get remaining', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    memberPolicyDetailPage,
+    claimManagementCreatePage
+  }) => {
+    test.setTimeout(120000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+
+    await test.step('Validate tabs on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.surveyor)
+    })
+
+    await test.step('Validate coverage table on the Policy overview page', async () => {
+      await memberPolicyDetailPage.getCoverageDetails('pa')
+      await memberPolicyDetailPage.validateCoverageDetail(policyData, 'pa')
+    })
+
+    await test.step('Validate member information on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateMemberInfo(memberData)
+    })
+
+    await test.step('Click the create claim button on the Policy overview page', async () => {
+      await memberPolicyDetailPage.clickCreateClaim()
+    })
+
+    await test.step('Validate coverage table and get coverage remaining on the Create claim page', async () => {
+      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
+      await claimManagementCreatePage.getClaimCoverageDetail('pa', 'PA')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'pa', 'PA')
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementCreatePage.logout()
+    })
+  })
+
+  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC001 Provider can search and select policy', async ({
+    page,
+    loginPage,
+    memberPolicyPage
+  }) => {
+    test.setTimeout(30000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerAdmissionUser.email, userData.providerAdmissionUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Validate search by name only on the Member policy page', async () => {
+      await memberPolicyPage.MemberSearchByName(memberData)
+      await memberPolicyPage.validateSearchResultsByName(memberData)
+    })
+
+    await test.step('Validate search by citizen ID only on the Member policy page', async () => {
+      await memberPolicyPage.MemberSearchByCitizenId(memberData)
+      await memberPolicyPage.validateSearchResultsByCitizenId(memberData)
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+  })
+
+  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC002 Provider can draft claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    memberPolicyDetailPage,
+    claimManagementCreatePage,
+    claimManagementDetailPage
+  }) => {
+    test.setTimeout(90000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerAdmissionUser.email, userData.providerAdmissionUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+
+    await test.step('Validate tabs on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.hospital)
+    })
+
+    await test.step('Validate coverage table on the Policy overview page', async () => {
+      await memberPolicyDetailPage.getHospitalCoverageDetails('pa')
+      await memberPolicyDetailPage.validateHospitalCoverageDetail(policyData, 'pa')
+    })
+
+    await test.step('Validate member information on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateMemberInfo(memberData)
+    })
+
+    await test.step('Click the create claim button on the Policy overview page', async () => {
+      await memberPolicyDetailPage.clickCreateClaim()
+    })
+
+    await test.step('Fill data in the claim information on the Create claim page', async () => {
+      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
+    })
+
+    await test.step('Validate policy coverage on the Create claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('pa', 'PA')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'pa', 'PA')
+    })
+
+    await test.step('Select benefit credit in the coverage details on the Create claim page', async () => {
+      await claimManagementCreatePage.selectBenefitCredit('Medical Expenses for General Accidents')
+    })
+
+    await test.step('Save draft claim on the Create claim page', async () => {
+      await claimManagementCreatePage.saveDraftClaim()
+      await claimManagementCreatePage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Draft')
+    })
+
+    await test.step('Validate draft claim details on the Claim details page', async () => {
+      draftNumber = await claimManagementDetailPage.getDraftNumber()
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('pa', 'PA')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'pa', 'PA')
+    })
+
+    await test.step('Print Eligibility Check Document', async () => {
+      await claimManagementDetailPage.printEligibilityCheckDocument()
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC003 Provider can submit claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    claimManagementPage,
+    claimManagementCreatePage,
+    claimManagementDetailPage,
+    claimManagementEditPage
+  }) => {
+    test.setTimeout(360000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerCashierIPDUser.email, userData.providerCashierIPDUser.password)
+    })
+
+    await test.step('Search and select claim on the Claim management page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.claimManagement()
+      await claimManagementPage.claimSearch(draftNumber)
+      await claimManagementPage.selectClaim(memberData, draftNumber)
+    })
+
+    await test.step('Click edit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.clickEditClaim()
+    })
+
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('pa', 'PA')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'pa', 'PA')
+    })
+
+    await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
+      // FIXME: calculateBillingPa
+      // const coverageActual = claimInitData['PA']
+      await claimManagementEditPage.calculateBillingPaWakeBoard('paGeneralDischarge', 'claim_coverage_pa_PA.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.pa.wakeBoard.pa.general.positive.ipdDischarge.billingInfo
+      billingData.billingDate = correctBillingDate
+
+      await claimManagementEditPage.fillTreatmentInformation(billingData)
+      await claimManagementEditPage.fillBillingDetailsHospitalIpd(billingData)
+    })
+
+    await test.step('Save edit claim on the Edit claim page', async () => {
+      await claimManagementEditPage.saveChangeClaim()
+      await claimManagementEditPage.viewClaimDetail()
+    })
+
+    await test.step('validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Draft')
+    })
+
+    await test.step('Validate draft claim details on the Claim details page', async () => {
+      // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('pa', 'PA')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(claimInitData, 'pa', 'PA')
+
+      // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Submit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Submitted')
+    })
+
+    await test.step('Validate submitted claim details on the Claim details page', async () => {
+      claimNumber = await claimManagementDetailPage.getClaimNumber()
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('pa', 'PA')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'pa', 'PA')
+
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC004 Claim staff can assign claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    claimManagementDetailPage,
+    slaClaimPage
+  }) => {
+    test.setTimeout(90000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.assign)
+
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.assign)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Submitted')
+    })
+
+    await test.step('Validate submitted claim details on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('pa', 'PA')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'pa', 'PA')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Assign claim to assignee on the Claim details page', async () => {
+      await claimManagementDetailPage.assignClaimToAssignee(userData.faxClaimUser.email)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      // BUG: UI shows 'Submitted' instead of 'Under Review'
+      // await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC005 Claim staff can request pending information', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    slaClaimPage,
+    claimManagementDetailPage
+  }) => {
+    test.setTimeout(160000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.pendingInfo)
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.pendingInfo)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Request document on the Claim details page', async () => {
+      await claimManagementDetailPage.requestDocument(pendingInfoData)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Pending Information')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('pa', 'PA')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'pa', 'PA')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC006 Provider can resubmit claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    claimManagementPage,
+    claimManagementDetailPage,
+    claimManagementEditPage
+  }) => {
+    test.setTimeout(120000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerCashierIPDUser.email, userData.providerCashierIPDUser.password)
+    })
+
+    await test.step('Search and select claim on the Claim management page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.claimManagement()
+      await claimManagementPage.claimSearch(claimNumber)
+      await claimManagementPage.selectClaim(memberData, claimNumber)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Pending Information')
+    })
+
+    await test.step('Validate coverage claim on the Claim details page', async () => {
+      await claimManagementDetailPage.validateRequestedDocument(pendingInfoData)
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('pa', 'PA')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'pa', 'PA')
+
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Upload document on the Edit claim page', async () => {
+      await claimManagementDetailPage.goToUploadDocument()
+      await claimManagementEditPage.uploadDocument('test.pdf')
+      await claimManagementEditPage.resubmitClaim()
+      await claimManagementEditPage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('pa', 'PA')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'pa', 'PA')
+
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+
+      await claimManagementDetailPage.validateUploadDocument('test.pdf')
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC008 Claim staff can approve claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    slaClaimPage,
+    claimManagementDetailPage
+  }) => {
+    test.setTimeout(150000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
+    })
+
+    await test.step('Search and select claim on the SLA claim page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.slaClaim()
+      await slaClaimPage.slaClaimSearch(slaData.approve)
+      await slaClaimPage.selectSlaClaim(claimNumber, slaData.approve)
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Under Review')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('pa', 'PA')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'pa', 'PA')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+
+      await claimManagementDetailPage.validateUploadDocument('test.pdf')
+    })
+
+    await test.step('Approve claim on the Claim details page', async () => {
+      await claimManagementDetailPage.approveClaim()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Approved')
+    })
+
+    await test.step('Validate claim detail on the Claim details page', async () => {
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateClaimCoverageDetail
+      // await claimManagementCreatePage.getClaimCoverageDetail('pa', 'PA')
+      // await claimManagementCreatePage.validateClaimCoverageDetail(coverageActual, 'pa', 'PA')
+
+      await claimManagementDetailPage.validateMemberInformation(memberData)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalSurveyor(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Print Eligibility Check Document', async () => {
+      await claimManagementDetailPage.printEligibilityCheckDocument()
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+})
+
+// NOTE: OPD need batch claim
 test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
   let draftNumber: string
-  let claimNumber: string
+  // let claimNumber: string
   let baseUrl: any
   let policyData: any
   let claimInitData: any
@@ -6847,8 +8335,7 @@ test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
   let memberData: any
   let draftData: any
   let billingData: any
-  let slaData: any
-  let pendingInfoData: any
+  // let pendingInfoData: any
 
   test.beforeAll(async () => {
     const config = new E2EConfiguration()
@@ -6859,8 +8346,7 @@ test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
     userData = config.users.uat
     tabData = config.tabs
     memberData = config.members.memberMajorMed.ph
-    // slaData = config.sla.uat.majorMed.ph.dental.positive.opd
-    pendingInfoData = config.claims.uat.pendingInfo
+    // pendingInfoData = config.claims.uat.pendingInfo
 
     const positiveCase = config.claims.uat.majorMed.ph.dental.positive.opd
     draftData = positiveCase.draftInfo
@@ -6893,8 +8379,281 @@ test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
   test.afterAll(async () => {
     // TODO: cancel claim
   })
+
+  test('Validate coverage details and get remaining', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    memberPolicyDetailPage,
+    claimManagementCreatePage
+  }) => {
+    test.setTimeout(120000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.surveyorLoginURL)
+      await loginPage.submitLogin(userData.claimManagerUser.email, userData.claimManagerUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+
+    await test.step('Validate tabs on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.surveyor)
+    })
+
+    await test.step('Validate coverage table on the Policy overview page', async () => {
+      await memberPolicyDetailPage.getCoverageDetails('majorMed')
+      await memberPolicyDetailPage.validateCoverageDetail(policyData, 'majorMed')
+    })
+
+    await test.step('Validate member information on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateMemberInfo(memberData)
+    })
+
+    await test.step('Click the create claim button on the Policy overview page', async () => {
+      await memberPolicyDetailPage.clickCreateClaim()
+    })
+
+    await test.step('Validate coverage table and get coverage remaining on the Create claim page', async () => {
+      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
+      await claimManagementCreatePage.getClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateClaimCoverageNotUsageRemainingDetail(claimInitData, 'majorMed', 'OPD')
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementCreatePage.logout()
+    })
+  })
+
+  test('@E2E_TS167_OPD_Dental_MajorMed_TC001 Provider can search and select policy', async ({
+    page,
+    loginPage,
+    memberPolicyPage
+  }) => {
+    test.setTimeout(30000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerRegistrationUser.email, userData.providerRegistrationUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Validate search by name only on the Member policy page', async () => {
+      await memberPolicyPage.MemberSearchByName(memberData)
+      await memberPolicyPage.validateSearchResultsByName(memberData)
+    })
+
+    await test.step('Validate search by citizen ID only on the Member policy page', async () => {
+      await memberPolicyPage.MemberSearchByCitizenId(memberData)
+      await memberPolicyPage.validateSearchResultsByCitizenId(memberData)
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+  })
+
+  test('@E2E_TS167_OPD_Dental_MajorMed_TC002 Provider can draft claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    memberPolicyDetailPage,
+    claimManagementCreatePage,
+    claimManagementDetailPage
+  }) => {
+    test.setTimeout(90000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerRegistrationUser.email, userData.providerRegistrationUser.password)
+    })
+
+    await test.step('Ensure language on the Member policy page', async () => {
+      await memberPolicyPage.ensureLanguage()
+    })
+
+    await test.step('Search and select the policy on the Member policy page', async () => {
+      await memberPolicyPage.memberSearch(memberData)
+      await memberPolicyPage.selectPolicy(memberData)
+    })
+
+    await test.step('Validate tabs on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateTabs(tabData.memberPolicyDetailTabs.hospital)
+    })
+
+    await test.step('Validate coverage table on the Policy overview page', async () => {
+      await memberPolicyDetailPage.getHospitalCoverageDetails('majorMed')
+      await memberPolicyDetailPage.validateHospitalCoverageDetail(policyData, 'majorMed')
+    })
+
+    await test.step('Validate member information on the Policy overview page', async () => {
+      await memberPolicyDetailPage.validateMemberInfo(memberData)
+    })
+
+    await test.step('Click the create claim button on the Policy overview page', async () => {
+      await memberPolicyDetailPage.clickCreateClaim()
+    })
+
+    await test.step('Fill data in the claim information on the Create claim page', async () => {
+      await claimManagementCreatePage.fillMainBenefitInformation(draftData)
+    })
+
+    await test.step('Validate policy coverage on the Create claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'OPD'
+      )
+    })
+
+    await test.step('Save draft claim on the Create claim page', async () => {
+      await claimManagementCreatePage.saveDraftClaim()
+      await claimManagementCreatePage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Draft')
+    })
+
+    await test.step('Validate draft claim details on the Claim details page', async () => {
+      draftNumber = await claimManagementDetailPage.getDraftNumber()
+      // BUG: UI don't show Claim information in Main benefit information tab
+      // await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'OPD'
+      )
+    })
+
+    await test.step('Print Eligibility Check Document', async () => {
+      await claimManagementDetailPage.printEligibilityCheckDocument()
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
+
+  test('@E2E_TS167_OPD_Dental_MajorMed_TC003 Provider can submit claim', async ({
+    page,
+    loginPage,
+    memberPolicyPage,
+    claimManagementPage,
+    claimManagementCreatePage,
+    claimManagementDetailPage,
+    claimManagementEditPage
+  }) => {
+    test.setTimeout(360000)
+
+    await test.step('Login', async () => {
+      await page.goto(baseUrl.hospitalLoginURL)
+      await loginPage.submitLogin(userData.providerCashierOPDUser.email, userData.providerCashierOPDUser.password)
+    })
+
+    await test.step('Search and select claim on the Claim management page', async () => {
+      await memberPolicyPage.ensureLanguage()
+      await memberPolicyPage.claimManagement()
+      await claimManagementPage.claimSearch(draftNumber)
+      await claimManagementPage.selectClaim(memberData, draftNumber)
+    })
+
+    await test.step('Click edit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.clickEditClaim()
+    })
+
+    await test.step('Validate coverage claim on the Edit claim page', async () => {
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'OPD'
+      )
+    })
+
+    await test.step('Fill data in the treatment information on the Edit claim page', async () => {
+      const correctBillingDate = billingData.billingDate
+
+      // FIXME: calculateBillingMajorMedPh
+      // const coverageActual = claimInitData['OPD']
+      await claimManagementEditPage.calculateBillingMajorMedPh('dentalOpd', 'claim_coverage_majorMed_OPD.json')
+
+      const claimsPath = path.join(process.cwd(), 'tests-e2e', 'configurations', 'claims.json')
+      const updatedClaimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
+
+      billingData = updatedClaimsData.uat.majorMed.ph.dental.positive.opd.billingInfo
+      billingData.billingDate = correctBillingDate
+
+      await claimManagementEditPage.fillTreatmentInformation(billingData)
+      await claimManagementEditPage.fillBillingDetailsHospitalOpd(billingData)
+    })
+
+    await test.step('Save edit claim on the Edit claim page', async () => {
+      await claimManagementEditPage.saveChangeClaim()
+      await claimManagementEditPage.viewClaimDetail()
+    })
+
+    await test.step('validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Draft')
+    })
+
+    await test.step('Validate draft claim details on the Claim details page', async () => {
+      // BUG: UI displaying wrong appointment date (23:59 instead of 00:00)
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      await claimManagementCreatePage.validateHospitalClaimCoverageNotUsageRemainingDetail(
+        claimInitData,
+        'majorMed',
+        'OPD'
+      )
+
+      // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Submit claim on the Claim details page', async () => {
+      await claimManagementDetailPage.submitClaim()
+      await claimManagementDetailPage.viewClaimDetail()
+    })
+
+    await test.step('Validate claim status on the Claim details page', async () => {
+      await claimManagementDetailPage.validateClaimStatus('Submitted')
+    })
+
+    await test.step('Validate submitted claim details on the Claim details page', async () => {
+      // claimNumber = await claimManagementDetailPage.getClaimNumber()
+      await claimManagementDetailPage.validateMainBenefitInformation(draftData)
+
+      // FIXME: validateHospitalClaimCoverageDetail
+      // await claimManagementCreatePage.getHospitalClaimCoverageDetail('majorMed', 'OPD')
+      // await claimManagementCreatePage.validateHospitalClaimCoverageDetail(coverageActual, 'majorMed', 'OPD')
+
+      await claimManagementDetailPage.validateClaimInformation(draftData, billingData)
+      await claimManagementDetailPage.validateBillingTotalHospitalIpd(billingData)
+      await claimManagementDetailPage.validateSummaryAmount(billingData)
+    })
+
+    await test.step('Logout', async () => {
+      await claimManagementDetailPage.logout()
+    })
+  })
 })
-*/
 
 /*
 test.describe.skip('E2E_TS235_HB_HB_Deduct', () => {

@@ -4,6 +4,7 @@
     "lib": ["dom",
       "es2020", "esnext.asynciterable"
     ],
+    "types": ["node"],
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": ".",
     "paths": {

@@ -40,9 +40,11 @@ export class ClaimManagementCreatePage extends BasePage {
   readonly listBoxLocator: Locator = this.page.getByRole('listbox')
 
   // Header Table
-  readonly headerTableLocator = this.page.locator('h6', {
-    hasText: /OTH|DEDUCT|IPD|OPD_Follow_IPD|OPD|ER|PA|HB|HB Incentive/
-  })
+  readonly headerTableLocator = this.page
+    .locator('section, div')
+    .filter({ hasText: 'Coverage details' })
+    .locator('h6')
+    .filter({ hasText: /OTH|DEDUCTIBLE|IPD|OPD_Follow_IPD|OPD|ER|PA|HB|HB Incentive/ })
 
   // Actions
   readonly saveDraftBtnLocator: Locator = this.page.getByRole('button', { name: /Save draft|บันทึกฉบับร่าง/ })
@@ -221,7 +223,23 @@ export class ClaimManagementCreatePage extends BasePage {
   }
 
   async getClaimCoverageDetail(productName: string, claimType: string) {
-    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
+    const coverageSection = this.page.locator('text=Coverage details').first()
+    await coverageSection.scrollIntoViewIfNeeded()
+
+    const expandButton = this.page
+      .locator('text=Coverage details')
+      .locator('..')
+      .locator('button[aria-label="expand"]')
+      .or(this.page.locator('text=Coverage details').locator('..').locator('button').last())
+
+    try {
+      await expandButton.click({ timeout: 3000 })
+      await this.page.waitForTimeout(500)
+    } catch (error) {
+      // Already expanded or button not found
+    }
+
+    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 30000 })
 
     const results = await this.extractClaimCoverageTable(claimType)
 
@@ -237,7 +255,23 @@ export class ClaimManagementCreatePage extends BasePage {
   }
 
   async getHospitalClaimCoverageDetail(productName: string, claimType: string) {
-    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
+    const coverageSection = this.page.locator('text=Coverage details').first()
+    await coverageSection.scrollIntoViewIfNeeded()
+
+    const expandButton = this.page
+      .locator('text=Coverage details')
+      .locator('..')
+      .locator('button[aria-label="expand"]')
+      .or(this.page.locator('text=Coverage details').locator('..').locator('button').last())
+
+    try {
+      await expandButton.click({ timeout: 3000 })
+      await this.page.waitForTimeout(500)
+    } catch (error) {
+      // Already expanded or button not found
+    }
+
+    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 30000 })
 
     const results = await this.extractHospitalClaimCoverageTable(claimType)
 
@@ -330,6 +364,7 @@ export class ClaimManagementCreatePage extends BasePage {
     openClaimWithNewLimit?: boolean | null
   }) {
     // Main benefit information tab
+    await this.mainBenefitInfoTabLocator.waitFor({ state: 'visible' })
     await this.mainBenefitInfoTabLocator.click()
 
     // Claim type (Pre-arrangement / IPD Admission / IPD Discharge)
@@ -416,7 +451,7 @@ export class ClaimManagementCreatePage extends BasePage {
     // E. Checkbox "เปิดเคลมด้วยวงเงินใหม่"
     if (claimData.openClaimWithNewLimit !== undefined && claimData.openClaimWithNewLimit !== null) {
       try {
-        await this.newLimitCheckboxLocator.waitFor({ state: 'visible', timeout: 2000 })
+        await this.newLimitCheckboxLocator.waitFor({ state: 'visible', timeout: 3000 })
 
         const isCurrentlyChecked = await this.newLimitCheckboxLocator.isChecked()
 
@@ -427,6 +462,50 @@ export class ClaimManagementCreatePage extends BasePage {
     }
   }
 
+  async selectBenefitCredit(subBenefitName: string) {
+    // Wait for Coverage details table to be visible
+    const coverageTable = this.page.locator('table').filter({
+      has: this.page.locator('th', { hasText: 'Sub benefit' })
+    })
+    await coverageTable.waitFor({ state: 'visible', timeout: 10000 })
+
+    // Get all rows in tbody
+    const rows = coverageTable.locator('tbody tr')
+    const rowCount = await rows.count()
+
+    for (let i = 0; i < rowCount; i++) {
+      const row = rows.nth(i)
+
+      // Get all td cells in this row
+      const cells = row.locator('td')
+      const cellCount = await cells.count()
+
+      for (let j = 0; j < cellCount; j++) {
+        const cell = cells.nth(j)
+        // Get text and normalize spaces (replace &nbsp; and multiple spaces)
+        const cellText = (await cell.textContent()) || ''
+        const normalizedCellText = cellText
+          .replace(/\u00A0/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim()
+        const normalizedSearchText = subBenefitName.replace(/\s+/g, ' ').trim()
+
+        if (normalizedCellText.includes(normalizedSearchText)) {
+          // Found the matching cell, now find the radio button in this row
+          const radioButton = row.locator('input[type="radio"]')
+
+          if ((await radioButton.count()) > 0) {
+            await radioButton.scrollIntoViewIfNeeded()
+            await radioButton.click({ force: true })
+            await this.page.waitForTimeout(500)
+            return
+          }
+        }
+      }
+    }
+    throw new Error(`Sub benefit "${subBenefitName}" not found in Coverage details table`)
+  }
+
   async saveDraftClaim() {
     // Save draft
     await this.saveDraftBtnLocator.waitFor({ state: 'visible' })
@@ -435,20 +514,29 @@ export class ClaimManagementCreatePage extends BasePage {
     await this.saveAsDraftBtnLocator.click()
 
     // Handle Warning Popup (Optional)
-    try {
-      const warningDialog = this.page.locator('.MuiDialog-paper', {
-        hasText: /Warning.*Visit date/s
-      })
+    const maxRetries = 3
 
-      await warningDialog.waitFor({ state: 'visible', timeout: 2000 })
+    for (let i = 0; i < maxRetries; i++) {
+      try {
+        const warningDialog = this.page.locator('.MuiDialog-paper', {
+          hasText: /Warning.*(Appointment date|Visit date|Discharge date|Accident date)/is
+        })
 
-      const submitBtn = warningDialog.getByRole('button', { name: /Submit|ส่งข้อมูล/ })
-      await submitBtn.click()
-    } catch (error) {}
+        await warningDialog.waitFor({ state: 'visible', timeout: 3000 })
+
+        const submitBtn = warningDialog.getByRole('button', { name: /Submit|ส่งข้อมูล/i })
+
+        await submitBtn.waitFor({ state: 'visible' })
+        await submitBtn.click()
+
+        await this.page.waitForTimeout(2000)
+      } catch (error) {
+        break
+      }
+    }
   }
 
   async viewClaimDetail() {
-    // View detail
     await this.viewDetailBtnLocator.waitFor({ state: 'visible' })
     await this.viewDetailBtnLocator.click()
 

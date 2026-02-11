@@ -43,27 +43,27 @@
       "limit": "40,000.00 THB per disability"
     },
     {
-      "mainGroup": "General Expense",
+      "mainGroup": "Medical practitioner's examination fee (doctor)",
       "subBenefit": "Non-Surgical Consultation Fee",
       "limit": "2,500.00 THB per disability"
     },
     {
-      "mainGroup": "General Expense",
+      "mainGroup": "Medical practitioner's examination fee (doctor)",
       "subBenefit": "Surgical Consultation Fee",
       "limit": "2,500.00 THB per disability"
     },
     {
-      "mainGroup": "General Expense",
+      "mainGroup": "Operation (surgery) and procedure fee",
       "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
       "limit": "30,000.00 THB per disability"
     },
     {
-      "mainGroup": "General Expense",
+      "mainGroup": "Medical practitioner's examination fee (doctor)",
       "subBenefit": "Doctor's Visit Fee",
       "limit": "1,500.00 THB per day"
     },
     {
-      "mainGroup": "General Expense",
+      "mainGroup": "Ambulance fee",
       "subBenefit": "Ambulance fee",
       "limit": "2,000.00 THB per disability"
     },

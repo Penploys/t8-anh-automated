@@ -15,6 +15,16 @@
                 "assignment": "unassigned",
                 "hospitalName": "โรงพยาบาลป่าตอง"
               },
+              "editSchedule": {
+                "assignees": "ah-test+fax-claim@horixon-t8.com",
+                "claimType": "Credit claim",
+                "claimServiceType": "IPD",
+                "claimStage": "Discharge",
+                "claimStatus": "Under Review",
+                "name": "เกียรติรัชต์ สินสมบูรณ์",
+                "assignment": "assigned",
+                "hospitalName": "โรงพยาบาลป่าตอง"
+              },
               "pendingInfo": {
                 "assignees": "ah-test+fax-claim@horixon-t8.com",
                 "claimType": "Credit claim",
@@ -138,13 +148,13 @@
                 "hospitalName": "โรงพยาบาลป่าตอง"
               },
               "authorize": {
-                "assignees": "ah-test+fax-claim@horixon-t8.com",
+                "assignees": "",
                 "claimType": "Credit claim",
                 "claimServiceType": "IPD",
                 "claimStage": "Pre arrangement",
                 "claimStatus": "Resubmitted",
                 "name": "วิภาวีร์ ศรีนิธี",
-                "assignment": "assigned",
+                "assignment": "unassigned",
                 "hospitalName": "โรงพยาบาลป่าตอง"
               }
             },
@@ -254,6 +264,120 @@
             }
           }
         }
+      }
+    },
+    "deduct": {
+      "ha": {
+        "all": {
+          "ipd": {
+            "positive": {
+              "ipdDischarge": {
+                "assign": {
+                  "assignees": "",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Submitted",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "unassigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                },
+                "pendingInfo": {
+                  "assignees": "ah-test+fax-claim@horixon-t8.com",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Under Review",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "assigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                },
+                "approve": {
+                  "assignees": "ah-test+fax-claim@horixon-t8.com",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Under Review",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "assigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                }
+              }
+            }
+          },
+          "opd": {
+            "positive":{
+              "ipdDischarge": {
+                "assign": {
+                  "assignees": "",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Submitted",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "unassigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                },
+                "pendingInfo": {
+                  "assignees": "ah-test+fax-claim@horixon-t8.com",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Under Review",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "assigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                },
+                "approve": {
+                  "assignees": "ah-test+fax-claim@horixon-t8.com",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Under Review",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "assigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                }
+              }
+            }
+          },
+          "er24": {
+            "positive":{
+              "ipdDischarge": {
+                "assign": {
+                  "assignees": "",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Submitted",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "unassigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                },
+                "pendingInfo": {
+                  "assignees": "ah-test+fax-claim@horixon-t8.com",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Under Review",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "assigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                },
+                "approve": {
+                  "assignees": "ah-test+fax-claim@horixon-t8.com",
+                  "claimType": "Credit claim",
+                  "claimServiceType": "IPD",
+                  "claimStage": "Discharge",
+                  "claimStatus": "Under Review",
+                  "name": "นวินดา XฉัตรXXXX",
+                  "assignment": "assigned",
+                  "hospitalName": "โรงพยาบาลป่าตอง"
+                }
+              }
+            }
+          }
+        } 
       }
     },
     "majorMed": {
@@ -396,6 +520,46 @@
                 "claimStage": "Discharge",
                 "claimStatus": "Under Review",
                 "name": "สุนันทา วิมลรัตน์",
+                "assignment": "assigned",
+                "hospitalName": "โรงพยาบาลป่าตอง"
+              }
+            }
+          }
+        }
+      }
+    },
+    "pa": {
+      "wakeBoard": {
+        "pa": {
+          "positive": {
+            "ipdDischarge": {
+              "assign": {
+                "assignees": "",
+                "claimType": "Credit claim",
+                "claimServiceType": "IPD",
+                "claimStage": "Discharge",
+                "claimStatus": "Submitted",
+                "name": "อภิสิทธิ์ XสินจXXXX",
+                "assignment": "unassigned",
+                "hospitalName": "โรงพยาบาลป่าตอง"
+              },
+              "pendingInfo": {
+                "assignees": "ah-test+fax-claim@horixon-t8.com",
+                "claimType": "Credit claim",
+                "claimServiceType": "IPD",
+                "claimStage": "Discharge",
+                "claimStatus": "Under Review",
+                "name": "อภิสิทธิ์ XสินจXXXX",
+                "assignment": "assigned",
+                "hospitalName": "โรงพยาบาลป่าตอง"
+              },
+              "approve": {
+                "assignees": "ah-test+fax-claim@horixon-t8.com",
+                "claimType": "Credit claim",
+                "claimServiceType": "IPD",
+                "claimStage": "Discharge",
+                "claimStatus": "Under Review",
+                "name": "อภิสิทธิ์ XสินจXXXX",
                 "assignment": "assigned",
                 "hospitalName": "โรงพยาบาลป่าตอง"
               }

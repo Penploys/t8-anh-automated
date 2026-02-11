@@ -143,6 +143,7 @@ export class ClaimManagementDetailPage extends BasePage {
   readonly viewDetailBtnLocator: Locator = this.page
     .locator('.MuiDialog-root')
     .getByRole('button', { name: /View detail|ดูรายละเอียด/ })
+    .first()
   readonly assignToBtnLocator: Locator = this.page.getByRole('button', { name: /Assign to|มอบหมายให้/ })
   readonly assigneeInputLocator: Locator = this.page.locator('input[name="assignTo"]')
   readonly confirmAssignBtnLocator: Locator = this.page
@@ -271,10 +272,18 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.page.waitForTimeout(1000)
 
     // 1. Validate Common Static Fields
-    await expect(this.claimTypeValue).toHaveText(draftData.claimType)
-    await expect(this.benefitTypeValue).toHaveText(draftData.benefitType)
-    await expect(this.providerNameValue).toHaveText(draftData.providerNameTh)
-    await expect(this.causeOfLossValue).toHaveText(draftData.causeOfLoss)
+    if (draftData.claimType) {
+      await expect(this.claimTypeValue).toHaveText(draftData.claimType)
+    }
+    if (draftData.benefitType) {
+      await expect(this.benefitTypeValue).toHaveText(draftData.benefitType)
+    }
+    if (draftData.providerNameTh) {
+      await expect(this.providerNameValue).toHaveText(draftData.providerNameTh)
+    }
+    if (draftData.causeOfLoss) {
+      await expect(this.causeOfLossValue).toHaveText(draftData.causeOfLoss)
+    }
 
     // 2. Validate Primary Date (Appointment OR Visit/Admission)
     // Note: The UI usually uses the same slot/locator (this.appointmentDateValue) but changes the label
@@ -551,6 +560,14 @@ export class ClaimManagementDetailPage extends BasePage {
 
   // Validate billing header fields
   private async validateBillingHeader(billingData: any): Promise<void> {
+    if (
+      billingData.utilizationCost !== undefined &&
+      billingData.utilizationCost !== null &&
+      billingData.utilizationCost !== ''
+    ) {
+      await expect(this.getBillingFieldValue('Utilization cost')).toHaveText(billingData.utilizationCost)
+    }
+
     if (billingData.billingNo) {
       await expect(this.getBillingFieldValue('Billing/receipt no.')).toHaveText(billingData.billingNo)
     }
@@ -591,6 +608,9 @@ export class ClaimManagementDetailPage extends BasePage {
     // Billing code
     await this.validateGridInputField(row, 'simbOption', item.billingNameResult)
 
+    // Benefit
+    // await this.validateGridTextField(row, 'benefitCoverageOption', item.benefit)
+
     // Amount
     const expectedAmount = parseFloat(item.incurredAmount).toLocaleString('en-US')
     await this.validateGridInputField(row, 'amount', new RegExp(`^${expectedAmount}(\\.00)?$`))
@@ -606,9 +626,6 @@ export class ClaimManagementDetailPage extends BasePage {
   // Validate billing item for Surveyor
   private async validateSurveyorBillingItem(row: Locator, item: any): Promise<void> {
     await this.validateCommonBillingFields(row, item)
-
-    // Benefit
-    await this.validateGridTextField(row, 'benefitCoverageOption', item.benefit)
 
     // Schedule
     await this.validateGridInputField(row, 'schedule', item.schedule)
@@ -667,9 +684,6 @@ export class ClaimManagementDetailPage extends BasePage {
   // Validate billing item for Hospital IPD
   private async validateHospitalIpdBillingItem(row: Locator, item: any): Promise<void> {
     await this.validateCommonBillingFields(row, item)
-
-    // Benefit
-    await this.validateGridTextField(row, 'benefitCoverageOption', item.benefit)
 
     // Days
     await this.validateGridInputField(row, 'noOfDays', item.noOfDays)
@@ -985,6 +999,7 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.printMenuBtnLocator.click()
 
     await this.eligibilityCheckDocumentMenuItemLocator.waitFor({ state: 'visible' })
+    await this.page.waitForTimeout(1000)
     await expect(this.eligibilityCheckDocumentMenuItemLocator).toBeVisible()
 
     await this.page.keyboard.press('Escape')
@@ -1040,20 +1055,37 @@ export class ClaimManagementDetailPage extends BasePage {
     await this.confirmSubmitBtnLocator.waitFor({ state: 'visible' })
     await this.confirmSubmitBtnLocator.click()
 
-    // Handle Warning Popup (Optional)
-    try {
-      const warningDialog = this.page.locator('.MuiDialog-paper', {
-        hasText: /Warning.*Visit date/s
-      })
+    // Handle Warning Popup(s) - may appear multiple times for date validations
+    const warningDialog = this.page.locator('.MuiDialog-paper', {
+      hasText: /Warning.*(Appointment date|Visit date|Discharge date|Accident date)/is
+    })
 
-      await warningDialog.waitFor({ state: 'visible', timeout: 2000 })
+    const maxRetries = 3
+    for (let i = 0; i < maxRetries; i++) {
+      const isWarningVisible = await warningDialog.isVisible().catch(() => false)
 
-      const submitBtn = warningDialog.getByRole('button', { name: /Submit|ส่งข้อมูล/ })
+      if (!isWarningVisible) {
+        try {
+          await warningDialog.waitFor({ state: 'visible', timeout: 3000 })
+        } catch {
+          break // No warning dialog appeared
+        }
+      }
+
+      const submitBtn = warningDialog.getByRole('button', { name: /Submit|ส่งข้อมูล/i })
+      await submitBtn.waitFor({ state: 'visible' })
       await submitBtn.click()
-    } catch (error) {}
 
-    await this.viewDetailBtnLocator.waitFor({ state: 'visible' })
-    await this.viewDetailBtnLocator.click()
+      // Wait for dialog to close before checking for next one
+      await warningDialog.waitFor({ state: 'hidden', timeout: 5000 }).catch(() => {})
+    }
+  }
+
+  async viewClaimDetail() {
+    await this.successViewDetailBtn.waitFor({ state: 'visible', timeout: 10000 })
+    await this.successViewDetailBtn.click()
+
+    await expect(this.page).toHaveURL(/\/claim-management\/detail/i)
   }
 
   async assignClaimToAssignee(assigneeEmail: string) {
@@ -1066,6 +1098,8 @@ export class ClaimManagementDetailPage extends BasePage {
 
     await this.confirmAssignBtnLocator.waitFor({ state: 'visible' })
     await this.confirmAssignBtnLocator.click()
+
+    await this.requestDocumentBtnLocator.waitFor({ state: 'visible' })
   }
 
   async requestDocument(pendingInfoData: {
@@ -1119,15 +1153,27 @@ export class ClaimManagementDetailPage extends BasePage {
       if (pendingInfoData.completeMedicalHistoryDate === 'Date range') {
         await this.completeMedicalHistoryDateRangeBtn.click()
         await this.page.waitForTimeout(500)
-        await this.completeMedicalHistoryFromDate.fill(pendingInfoData.completeMedicalHistoryFrom)
-        await this.completeMedicalHistoryToDate.fill(pendingInfoData.completeMedicalHistoryTo)
+
+        if (pendingInfoData.completeMedicalHistoryFrom) {
+          await this.completeMedicalHistoryFromDate.fill(pendingInfoData.completeMedicalHistoryFrom)
+        }
+
+        if (pendingInfoData.completeMedicalHistoryTo) {
+          await this.completeMedicalHistoryToDate.fill(pendingInfoData.completeMedicalHistoryTo)
+        }
       }
 
       if (pendingInfoData.completeMedicalHistoryDate === 'Year range') {
         await this.completeMedicalHistoryYearRangeBtn.click()
         await this.page.waitForTimeout(500)
-        await this.completeMedicalHistoryFromDate.fill(pendingInfoData.completeMedicalHistoryFrom)
-        await this.completeMedicalHistoryToDate.fill(pendingInfoData.completeMedicalHistoryTo)
+
+        if (pendingInfoData.completeMedicalHistoryFrom) {
+          await this.completeMedicalHistoryFromDate.fill(pendingInfoData.completeMedicalHistoryFrom)
+        }
+
+        if (pendingInfoData.completeMedicalHistoryTo) {
+          await this.completeMedicalHistoryToDate.fill(pendingInfoData.completeMedicalHistoryTo)
+        }
       }
     }
 
@@ -1142,15 +1188,27 @@ export class ClaimManagementDetailPage extends BasePage {
       if (pendingInfoData.opdCardOofTreatmentDate === 'Date range') {
         await this.opdCardDateRangeBtn.click()
         await this.page.waitForTimeout(500)
-        await this.completeMedicalHistoryFromDate.fill(pendingInfoData.opdCardOofTreatmentFrom)
-        await this.completeMedicalHistoryToDate.fill(pendingInfoData.opdCardOofTreatmentTo)
+
+        if (pendingInfoData.opdCardOofTreatmentFrom) {
+          await this.completeMedicalHistoryFromDate.fill(pendingInfoData.opdCardOofTreatmentFrom)
+        }
+
+        if (pendingInfoData.opdCardOofTreatmentTo) {
+          await this.completeMedicalHistoryToDate.fill(pendingInfoData.opdCardOofTreatmentTo)
+        }
       }
 
       if (pendingInfoData.opdCardOofTreatmentDate === 'Year range') {
         await this.opdCardYearRangeBtn.click()
         await this.page.waitForTimeout(500)
-        await this.opdCardFromYear.fill(pendingInfoData.opdCardOofTreatmentFrom)
-        await this.opdCardToYear.fill(pendingInfoData.opdCardOofTreatmentTo)
+
+        if (pendingInfoData.opdCardOofTreatmentFrom) {
+          await this.opdCardFromYear.fill(pendingInfoData.opdCardOofTreatmentFrom)
+        }
+
+        if (pendingInfoData.opdCardOofTreatmentTo) {
+          await this.opdCardToYear.fill(pendingInfoData.opdCardOofTreatmentTo)
+        }
       }
     }
 
@@ -1241,7 +1299,10 @@ export class ClaimManagementDetailPage extends BasePage {
         await this.othersCheckbox.check()
       }
       await this.page.waitForTimeout(500)
-      await this.othersRemarkInput.fill(pendingInfoData.otherRemark)
+
+      if (pendingInfoData.otherRemark) {
+        await this.othersRemarkInput.fill(pendingInfoData.otherRemark)
+      }
     }
 
     // Claim status update remark

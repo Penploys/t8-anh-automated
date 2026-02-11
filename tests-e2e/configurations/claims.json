@@ -94,7 +94,7 @@
                     "billingNameResult": "2.1(1) - ค่าห้องหรือค่าเตียงผู้ป่วยหนัก (ICU)",
                     "benefit": "Room and Board",
                     "subBenefit": "ICU Room",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "2",
                     "incurredAmount": "2500.00",
@@ -103,9 +103,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "2250.00",
+                    "payableAmount": "1125.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "1125.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -116,7 +116,7 @@
                     "billingNameResult": "2.1 - ค่าห้องหรือค่าเตียงผู้ป่วยใน",
                     "benefit": "Room and Board",
                     "subBenefit": "Normal Room",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
                     "incurredAmount": "625.00",
@@ -125,9 +125,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "562.50",
+                    "payableAmount": "281.25",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "281.25",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -138,7 +138,7 @@
                     "billingNameResult": "1.1.1(1) - ยาผู้ป่วยใน",
                     "benefit": "General Expense",
                     "subBenefit": "Hospital or Medical Expenses",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
                     "incurredAmount": "13000.00",
@@ -147,9 +147,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "11700.00",
+                    "payableAmount": "5850.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "5850.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -160,7 +160,7 @@
                     "billingNameResult": "1.28.1 - Physician Evaluation & Management Services",
                     "benefit": "General Expense",
                     "subBenefit": "Non-Surgical Consultation Fee",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
                     "incurredAmount": "2500.00",
@@ -169,9 +169,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "2250.00",
+                    "payableAmount": "1125.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "1125.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -182,7 +182,7 @@
                     "billingNameResult": "1.28.1 - Physician Evaluation & Management Services",
                     "benefit": "General Expense",
                     "subBenefit": "Surgical Consultation Fee",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
                     "incurredAmount": "2500.00",
@@ -191,9 +191,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "2250.00",
+                    "payableAmount": "1125.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "1125.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -204,7 +204,7 @@
                     "billingNameResult": "1.29 - ค่าผู้ประกอบวิชาชีพเวชกรรม ทำศัลยกรรมและหัตถการ (Physician Surgery & Procedure)",
                     "benefit": "General Expense",
                     "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
                     "incurredAmount": "15500.00",
@@ -213,9 +213,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "13950.00",
+                    "payableAmount": "6975.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "6975.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -226,18 +226,18 @@
                     "billingNameResult": "1.2.1(10) - ตรวจรักษากรณีผู้ป่วยใน",
                     "benefit": "General Expense",
                     "subBenefit": "Doctor's Visit Fee",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
-                    "incurredAmount": "7.75",
-                    "discount": "0.78",
-                    "netAmount": "6.97",
+                    "incurredAmount": "200.00",
+                    "discount": "20.00",
+                    "netAmount": "180.00",
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "6.97",
+                    "payableAmount": "90.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "90.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -248,7 +248,7 @@
                     "billingNameResult": "2.6.2 - รถพยาบาลฉุกเฉินระดับมาตรฐาน (Ambulance-Basic Life Support)",
                     "benefit": "General Expense",
                     "subBenefit": "Ambulance fee",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
                     "incurredAmount": "625.00",
@@ -257,26 +257,26 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "562.50",
+                    "payableAmount": "281.25",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "281.25",
                     "recovery": "0.00",
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "37257.75",
-                "discount": "3725.78",
-                "netAmount": "33531.97",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "33531.97",
-                "majorMedical": "0.00",
-                "exceededLimit": "0.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "37450.00",
+                  "discount": "3745.00",
+                  "netAmount": "33705.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "16852.50",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "16852.50",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -341,7 +341,7 @@
                     "billingNameResult": "1.1.1(3) - ยาผู้ป่วยนอก",
                     "benefit": "Outpatient medical expense",
                     "subBenefit": "-",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
                     "incurredAmount": "250.00",
@@ -350,26 +350,26 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "225.00",
+                    "payableAmount": "112.50",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "112.50",
                     "recovery": "0.00",
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "250.00",
-                "discount": "25.00",
-                "netAmount": "225.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "225.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "0.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "250.00",
+                  "discount": "25.00",
+                  "netAmount": "225.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "112.50",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "112.50",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -434,35 +434,35 @@
                     "billingNameResult": "1.1.1(3) - ยาผู้ป่วยนอก",
                     "benefit": "Emergency Accident",
                     "subBenefit": "medical fee for treatment of injury in outpatient case within 72 hours after each accident",
-                    "schedule": "0",
+                    "schedule": "50",
                     "copay": "0.00",
                     "noOfDays": "1",
-                    "incurredAmount": "0.00",
-                    "discount": "0.00",
-                    "netAmount": "0.00",
+                    "incurredAmount": "2500.00",
+                    "discount": "250.00",
+                    "netAmount": "2250.00",
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "0.00",
+                    "payableAmount": "1125.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "0.00",
+                    "exceededLimit": "1125.00",
                     "recovery": "0.00",
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "0.00",
-                "discount": "0.00",
-                "netAmount": "0.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "0.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "0.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "2500.00",
+                  "discount": "250.00",
+                  "netAmount": "2250.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "1125.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "1125.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -541,9 +541,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "0.00",
+                    "payableAmount": "4050.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "4500.00",
+                    "exceededLimit": "450.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -563,9 +563,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "0.00",
+                    "payableAmount": "1012.50",
                     "majorMedical": "0.00",
-                    "exceededLimit": "1125.00",
+                    "exceededLimit": "112.50",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -585,9 +585,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "0.00",
+                    "payableAmount": "10125.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "11250.00",
+                    "exceededLimit": "1125.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -607,9 +607,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "0.00",
+                    "payableAmount": "10125.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "11250.00",
+                    "exceededLimit": "1125.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -629,9 +629,9 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "0.00",
+                    "payableAmount": "10125.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "11250.00",
+                    "exceededLimit": "1125.00",
                     "recovery": "0.00",
                     "remark": ""
                   },
@@ -651,14 +651,14 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "0.00",
+                    "payableAmount": "3937.50",
                     "majorMedical": "0.00",
-                    "exceededLimit": "11250.00",
+                    "exceededLimit": "7312.50",
                     "recovery": "0.00",
                     "remark": ""
                   },
                   {
-                    "no": "8",
+                    "no": "7",
                     "billingCode": "1.1.3",
                     "billingName": "1.1.3 - Blood Transfusion Services and Blood Components (ค่าบริการรักษา-โลหิต-พยาบาล)",
                     "billingNameResult": "1.1.3 - ค่าบริการโลหิตและส่วนประกอบของโลหิต",
@@ -680,7 +680,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "9",
+                    "no": "8",
                     "billingCode": "1.1.1",
                     "billingName": "1.1.1 - Parenteral Nutrition (ค่ายา-เวชภัณฑ์ และอุปกรณ์ผ่าตัด)",
                     "billingNameResult": "1.1.1 - ค่ายาและสารอาหารทางเส้นเลือด",
@@ -702,7 +702,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "10",
+                    "no": "9",
                     "billingCode": "1.1.2(1)",
                     "billingName": "1.1.2(1) - Medical Supplies 1 (ค่ายา-เวชภัณฑ์)",
                     "billingNameResult": "1.1.2(1) - เวชภัณฑ์ 1",
@@ -724,7 +724,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "11",
+                    "no": "10",
                     "billingCode": "1.1.3",
                     "billingName": "1.1.3 - Blood Transfusion Services and Blood Components (บริการตรวจวินิจฉัย)",
                     "billingNameResult": "1.1.3 - ค่าบริการโลหิตและส่วนประกอบของโลหิต",
@@ -746,7 +746,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "12",
+                    "no": "11",
                     "billingCode": "1.28.1",
                     "billingName": "1.28.1 - Physician Evaluation & Management Services (ค่าแพทย์ตรวจ)",
                     "billingNameResult": "1.28.1 - Physician Evaluation & Management Services",
@@ -768,7 +768,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "13",
+                    "no": "12",
                     "billingCode": "1.1.2(1)",
                     "billingName": "1.1.2(1) - Medical Supplies 1 (บริการเคมีบำบัด)",
                     "billingNameResult": "1.1.2(1) - เวชภัณฑ์ 1",
@@ -790,7 +790,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "14",
+                    "no": "13",
                     "billingCode": "1.8",
                     "billingName": "1.8 - ค่าบริการรังสีรักษา (Radiotherapy) (Cancer)",
                     "billingNameResult": "1.8 - ค่าบริการรังสีรักษา (Radiotherapy)",
@@ -812,7 +812,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "15",
+                    "no": "14",
                     "billingCode": "1.3.13",
                     "billingName": "1.3.13 - Blood & Blood Components-Others (ล้างไต)",
                     "billingNameResult": "1.3.13 - Blood & Blood Components-Others",
@@ -834,7 +834,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "17",
+                    "no": "15",
                     "billingCode": "1.2.2",
                     "billingName": "1.2.2 - Physician Procedures (บริการผ่าตัดเล็ก)",
                     "billingNameResult": "1.2.2 - ค่าทำศัลยกรรมและหัตถการต่าง ๆ",
@@ -856,7 +856,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "18",
+                    "no": "16",
                     "billingCode": "1.1.11",
                     "billingName": "1.1.11 - ยากลับบ้าน (ยากลับบ้าน)",
                     "billingNameResult": "1.1.11 - ยากลับบ้าน",
@@ -878,7 +878,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "20",
+                    "no": "17",
                     "billingCode": "2.6.2",
                     "billingName": "2.6.2 - รถพยาบาลฉุกเฉินระดับมาตรฐาน (Ambulance-Basic Life Support) (รถพยาบาล)",
                     "billingNameResult": "2.6.2 - รถพยาบาลฉุกเฉินระดับมาตรฐาน (Ambulance-Basic Life Support)",
@@ -900,19 +900,19 @@
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "193750.00",
-                "discount": "19375.00",
-                "netAmount": "174375.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "0.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "174375.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "193750.00",
+                  "discount": "19375.00",
+                  "netAmount": "174375.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "39375.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "135000.00",
+                  "recovery": "0.00"
+                }
               }
             },
             "ipdDischarge": {
@@ -1091,14 +1091,14 @@
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "9562.50",
+                    "payableAmount": "3937.50",
                     "majorMedical": "0.00",
-                    "exceededLimit": "1687.50",
+                    "exceededLimit": "7312.50",
                     "recovery": "0.00",
                     "remark": ""
                   },
                   {
-                    "no": "8",
+                    "no": "7",
                     "billingCode": "1.1.3",
                     "billingName": "1.1.3 - Blood Transfusion Services and Blood Components (ค่าบริการรักษา-โลหิต-พยาบาล)",
                     "billingNameResult": "1.1.3 - ค่าบริการโลหิตและส่วนประกอบของโลหิต",
@@ -1120,7 +1120,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "9",
+                    "no": "8",
                     "billingCode": "1.1.1",
                     "billingName": "1.1.1 - Parenteral Nutrition (ค่ายา-เวชภัณฑ์ และอุปกรณ์ผ่าตัด)",
                     "billingNameResult": "1.1.1 - ค่ายาและสารอาหารทางเส้นเลือด",
@@ -1142,7 +1142,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "10",
+                    "no": "9",
                     "billingCode": "1.1.2(1)",
                     "billingName": "1.1.2(1) - Medical Supplies 1 (ค่ายา-เวชภัณฑ์)",
                     "billingNameResult": "1.1.2(1) - เวชภัณฑ์ 1",
@@ -1164,7 +1164,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "11",
+                    "no": "10",
                     "billingCode": "1.1.3",
                     "billingName": "1.1.3 - Blood Transfusion Services and Blood Components (บริการตรวจวินิจฉัย)",
                     "billingNameResult": "1.1.3 - ค่าบริการโลหิตและส่วนประกอบของโลหิต",
@@ -1186,7 +1186,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "12",
+                    "no": "11",
                     "billingCode": "1.28.1",
                     "billingName": "1.28.1 - Physician Evaluation & Management Services (ค่าแพทย์ตรวจ)",
                     "billingNameResult": "1.28.1 - Physician Evaluation & Management Services",
@@ -1208,7 +1208,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "13",
+                    "no": "12",
                     "billingCode": "1.1.2(1)",
                     "billingName": "1.1.2(1) - Medical Supplies 1 (บริการเคมีบำบัด)",
                     "billingNameResult": "1.1.2(1) - เวชภัณฑ์ 1",
@@ -1230,7 +1230,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "14",
+                    "no": "13",
                     "billingCode": "1.8",
                     "billingName": "1.8 - ค่าบริการรังสีรักษา (Radiotherapy) (Cancer)",
                     "billingNameResult": "1.8 - ค่าบริการรังสีรักษา (Radiotherapy)",
@@ -1252,7 +1252,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "15",
+                    "no": "14",
                     "billingCode": "1.3.13",
                     "billingName": "1.3.13 - Blood & Blood Components-Others (ล้างไต)",
                     "billingNameResult": "1.3.13 - Blood & Blood Components-Others",
@@ -1274,7 +1274,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "17",
+                    "no": "15",
                     "billingCode": "1.2.2",
                     "billingName": "1.2.2 - Physician Procedures (บริการผ่าตัดเล็ก)",
                     "billingNameResult": "1.2.2 - ค่าทำศัลยกรรมและหัตถการต่าง ๆ",
@@ -1296,7 +1296,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "18",
+                    "no": "16",
                     "billingCode": "1.1.11",
                     "billingName": "1.1.11 - ยากลับบ้าน (ยากลับบ้าน)",
                     "billingNameResult": "1.1.11 - ยากลับบ้าน",
@@ -1318,7 +1318,7 @@
                     "remark": ""
                   },
                   {
-                    "no": "20",
+                    "no": "17",
                     "billingCode": "2.6.2",
                     "billingName": "2.6.2 - รถพยาบาลฉุกเฉินระดับมาตรฐาน (Ambulance-Basic Life Support) (รถพยาบาล)",
                     "billingNameResult": "2.6.2 - รถพยาบาลฉุกเฉินระดับมาตรฐาน (Ambulance-Basic Life Support)",
@@ -1340,19 +1340,19 @@
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "193750.00",
-                "discount": "19375.00",
-                "netAmount": "174375.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "45000.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "129375.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "193750.00",
+                  "discount": "19375.00",
+                  "netAmount": "174375.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "39375.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "135000.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -1416,7 +1416,7 @@
                     "billingName": "1.16 - ค่าบริการกายภาพบำบัด (Physical Therapy Services) (หลังการเข้าพักรักษาตัวเป็นผู้ป่วยใน)",
                     "billingNameResult": "1.16 - ค่าบริการกายภาพบำบัด (Physical Therapy Services)",
                     "benefit": "General Expense",
-                    "subBenefit": "-",
+                    "subBenefit": "Rehabilitation medicine fee after each hospitalization as an inpatient",
                     "schedule": "0",
                     "copay": "90.00",
                     "noOfDays": "1",
@@ -1433,19 +1433,19 @@
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "50000.00",
-                "discount": "5000.00",
-                "netAmount": "45000.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "40500.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "4500.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "50000.00",
+                  "discount": "5000.00",
+                  "netAmount": "45000.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "40500.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "4500.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -1513,32 +1513,32 @@
                     "schedule": "0",
                     "copay": "0.00",
                     "noOfDays": "1",
-                    "incurredAmount": "0.00",
-                    "discount": "0.00",
-                    "netAmount": "0.00",
+                    "incurredAmount": "1250.00",
+                    "discount": "125.00",
+                    "netAmount": "1125.00",
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "0.00",
+                    "payableAmount": "1125.00",
                     "majorMedical": "0.00",
                     "exceededLimit": "0.00",
                     "recovery": "0.00",
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "0.00",
-                "discount": "0.00",
-                "netAmount": "0.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "0.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "0.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "1250.00",
+                  "discount": "125.00",
+                  "netAmount": "1125.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "1125.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "0.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -1549,6 +1549,34 @@
     "deduct": {
       "ha": {
         "notIncludedEr": {
+          "ipd": {
+            "positive": {
+              "ipdDischarge": {}
+            },
+            "negative": {}
+          },
+          "opd": {
+            "positive": {
+              "ipdDischarge": {}
+            },
+            "negative": {}
+          },
+          "er24": {
+            "positive": {
+              "ipdDischarge": {}
+            },
+            "negative": {}
+          }
+        },
+        "room": {
+          "hb": {
+            "positive": {
+              "hb": {}
+            },
+            "negative": {}
+          }
+        },
+        "all": {
           "ipd": {
             "positive": {
               "ipdDischarge": {
@@ -1697,7 +1725,7 @@
                       "benefit": "General Expense",
                       "subBenefit": "operating room fee and procedure room fee",
                       "schedule": "0",
-                      "copay": "0.00",
+                      "copay": "90.00",
                       "noOfDays": "1",
                       "incurredAmount": "0.00",
                       "discount": "0.00",
@@ -1734,7 +1762,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "8",
+                      "no": "7",
                       "billingCode": "1.1.3",
                       "billingName": "1.1.3 - Blood Transfusion Services and Blood Components (ค่าบริการรักษา-โลหิต-พยาบาล)",
                       "billingNameResult": "1.1.3 - ค่าบริการโลหิตและส่วนประกอบของโลหิต",
@@ -1756,7 +1784,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "9",
+                      "no": "8",
                       "billingCode": "1.1.1",
                       "billingName": "1.1.1 - Parenteral Nutrition (ค่ายา-เวชภัณฑ์ และอุปกรณ์ผ่าตัด)",
                       "billingNameResult": "1.1.1 - ค่ายาและสารอาหารทางเส้นเลือด",
@@ -1778,7 +1806,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "10",
+                      "no": "9",
                       "billingCode": "1.1.2(1)",
                       "billingName": "1.1.2(1) - Medical Supplies 1 (ค่ายา-เวชภัณฑ์)",
                       "billingNameResult": "1.1.2(1) - เวชภัณฑ์ 1",
@@ -1800,7 +1828,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "11",
+                      "no": "10",
                       "billingCode": "1.1.3",
                       "billingName": "1.1.3 - Blood Transfusion Services and Blood Components (บริการตรวจวินิจฉัย)",
                       "billingNameResult": "1.1.3 - ค่าบริการโลหิตและส่วนประกอบของโลหิต",
@@ -1822,7 +1850,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "12",
+                      "no": "11",
                       "billingCode": "1.28.1",
                       "billingName": "1.28.1 - Physician Evaluation & Management Services (ค่าแพทย์ตรวจ)",
                       "billingNameResult": "1.28.1 - Physician Evaluation & Management Services",
@@ -1844,7 +1872,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "13",
+                      "no": "12",
                       "billingCode": "1.1.2(1)",
                       "billingName": "1.1.2(1) - Medical Supplies 1 (บริการเคมีบำบัด)",
                       "billingNameResult": "1.1.2(1) - เวชภัณฑ์ 1",
@@ -1866,7 +1894,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "14",
+                      "no": "13",
                       "billingCode": "1.8",
                       "billingName": "1.8 - ค่าบริการรังสีรักษา (Radiotherapy) (Cancer)",
                       "billingNameResult": "1.8 - ค่าบริการรังสีรักษา (Radiotherapy)",
@@ -1888,7 +1916,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "15",
+                      "no": "14",
                       "billingCode": "1.3.13",
                       "billingName": "1.3.13 - Blood & Blood Components-Others (ล้างไต)",
                       "billingNameResult": "1.3.13 - Blood & Blood Components-Others",
@@ -1910,7 +1938,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "17",
+                      "no": "15",
                       "billingCode": "1.2.2",
                       "billingName": "1.2.2 - Physician Procedures (บริการผ่าตัดเล็ก)",
                       "billingNameResult": "1.2.2 - ค่าทำศัลยกรรมและหัตถการต่าง ๆ",
@@ -1932,7 +1960,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "18",
+                      "no": "16",
                       "billingCode": "1.1.11",
                       "billingName": "1.1.11 - ยากลับบ้าน (ยากลับบ้าน)",
                       "billingNameResult": "1.1.11 - ยากลับบ้าน",
@@ -1954,7 +1982,7 @@
                       "remark": ""
                     },
                     {
-                      "no": "20",
+                      "no": "17",
                       "billingCode": "2.6.2",
                       "billingName": "2.6.2 - รถพยาบาลฉุกเฉินระดับมาตรฐาน (Ambulance-Basic Life Support) (รถพยาบาล)",
                       "billingNameResult": "2.6.2 - รถพยาบาลฉุกเฉินระดับมาตรฐาน (Ambulance-Basic Life Support)",
@@ -1976,19 +2004,19 @@
                       "remark": ""
                     }
                   ],
-                  "billingRemark": "Billing remark test"
-                },
-                "billingTotal": {
-                  "incurredAmount": "0.00",
-                  "discount": "0.00",
-                  "netAmount": "0.00",
-                  "deduct": "0.00",
-                  "decline": "0.00",
-                  "coveredByOtherParties": "0.00",
-                  "payableAmount": "0.00",
-                  "majorMedical": "0.00",
-                  "exceededLimit": "0.00",
-                  "recovery": "0.00"
+                  "billingRemark": "Billing remark test",
+                  "billingTotal": {
+                    "incurredAmount": "0.00",
+                    "discount": "0.00",
+                    "netAmount": "0.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "0.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "0.00",
+                    "recovery": "0.00"
+                  }
                 }
               }
             },
@@ -2048,11 +2076,11 @@
                   "billingItems": [
                     {
                       "no": "1",
-                      "billingCode": "1.1.1(3)",
-                      "billingName": "1.1.1(3) - Out patient Medications",
-                      "billingNameResult": "1.1.1(3) - ยาผู้ป่วยนอก",
-                      "benefit": "Outpatient medical expense",
-                      "subBenefit": "-",
+                      "billingCode": "1.16",
+                      "billingName": "1.16 - ค่าบริการกายภาพบำบัด (Physical Therapy Services) (หลังการเข้าพักรักษาตัวเป็นผู้ป่วยใน)",
+                      "billingNameResult": "1.16 - ค่าบริการกายภาพบำบัด (Physical Therapy Services)",
+                      "benefit": "General Expense",
+                      "subBenefit": "Rehabilitation medicine fee after each hospitalization as an inpatient",
                       "schedule": "0",
                       "copay": "0.00",
                       "noOfDays": "1",
@@ -2069,19 +2097,19 @@
                       "remark": ""
                     }
                   ],
-                  "billingRemark": "Billing remark test"
-                },
-                "billingTotal": {
-                  "incurredAmount": "0.00",
-                  "discount": "0.00",
-                  "netAmount": "0.00",
-                  "deduct": "0.00",
-                  "decline": "0.00",
-                  "coveredByOtherParties": "0.00",
-                  "payableAmount": "0.00",
-                  "majorMedical": "0.00",
-                  "exceededLimit": "0.00",
-                  "recovery": "0.00"
+                  "billingRemark": "Billing remark test",
+                  "billingTotal": {
+                    "incurredAmount": "0.00",
+                    "discount": "0.00",
+                    "netAmount": "0.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "0.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "0.00",
+                    "recovery": "0.00"
+                  }
                 }
               }
             },
@@ -2095,15 +2123,15 @@
                   "benefitType": "ER",
                   "providerNameTh": "โรงพยาบาลป่าตอง",
                   "providerNameEn": "Patong Hospital",
-                  "causeOfLoss": "Illness",
+                  "causeOfLoss": "Accident",
                   "appointmentDate": null,
                   "admissionDate": true,
                   "estimatedIpdDays": "",
                   "estimatedExpenses": "",
                   "dischargeDate": true,
                   "lengthOfStayIPD": "1",
-                  "accidentDate": null,
-                  "isAlcoholInvolved": null,
+                  "accidentDate": true,
+                  "isAlcoholInvolved": true,
                   "symptom": "เข้ารับการรักษาภายใน 24 ชั่วโมงหลังเกิดอุบัติเหตุ",
                   "openClaimWithNewLimit": true
                 },
@@ -2162,29 +2190,21 @@
                       "remark": ""
                     }
                   ],
-                  "billingRemark": "Billing remark test"
-                },
-                "billingTotal": {
-                  "incurredAmount": "0.00",
-                  "discount": "0.00",
-                  "netAmount": "0.00",
-                  "deduct": "0.00",
-                  "decline": "0.00",
-                  "coveredByOtherParties": "0.00",
-                  "payableAmount": "0.00",
-                  "majorMedical": "0.00",
-                  "exceededLimit": "0.00",
-                  "recovery": "0.00"
+                  "billingRemark": "Billing remark test",
+                  "billingTotal": {
+                    "incurredAmount": "0.00",
+                    "discount": "0.00",
+                    "netAmount": "0.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "0.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "0.00",
+                    "recovery": "0.00"
+                  }
                 }
               }
-            },
-            "negative": {}
-          }
-        },
-        "room": {
-          "hb": {
-            "positive": {
-              "hb": {}
             },
             "negative": {}
           }
@@ -2422,19 +2442,19 @@
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "109800.00",
-                "discount": "10980.00",
-                "netAmount": "98820.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "89500.00",
-                "majorMedical": "6624.00",
-                "exceededLimit": "2696.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "109800.00",
+                  "discount": "10980.00",
+                  "netAmount": "98820.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "89500.00",
+                  "majorMedical": "6624.00",
+                  "exceededLimit": "2696.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -2502,32 +2522,32 @@
                     "schedule": "0",
                     "copay": "0.00",
                     "noOfDays": "1",
-                    "incurredAmount": "240000.00",
-                    "discount": "24000.00",
-                    "netAmount": "216000.00",
+                    "incurredAmount": "28800.00",
+                    "discount": "2880.00",
+                    "netAmount": "25920.00",
                     "deduct": "0.00",
                     "decline": "0.00",
                     "coveredByOtherParties": "0.00",
-                    "payableAmount": "200000.00",
+                    "payableAmount": "24000.00",
                     "majorMedical": "0.00",
-                    "exceededLimit": "16000.00",
+                    "exceededLimit": "1920.00",
                     "recovery": "0.00",
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "240000.00",
-                "discount": "24000.00",
-                "netAmount": "216000.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "200000.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "16000.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "28800.00",
+                  "discount": "2880.00",
+                  "netAmount": "25920.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "24000.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "1920.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -2674,19 +2694,19 @@
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "146400.00",
-                "discount": "14640.00",
-                "netAmount": "131760.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "122000.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "9760.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "146400.00",
+                  "discount": "14640.00",
+                  "netAmount": "131760.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "122000.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "9760.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -2767,19 +2787,19 @@
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "12000.00",
-                "discount": "1200.00",
-                "netAmount": "10800.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "10000.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "800.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "12000.00",
+                  "discount": "1200.00",
+                  "netAmount": "10800.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "10000.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "800.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -2860,19 +2880,19 @@
                     "remark": ""
                   }
                 ],
-                "billingRemark": "Billing remark test"
-              },
-              "billingTotal": {
-                "incurredAmount": "28800.00",
-                "discount": "2880.00",
-                "netAmount": "25920.00",
-                "deduct": "0.00",
-                "decline": "0.00",
-                "coveredByOtherParties": "0.00",
-                "payableAmount": "0.00",
-                "majorMedical": "0.00",
-                "exceededLimit": "25920.00",
-                "recovery": "0.00"
+                "billingRemark": "Billing remark test",
+                "billingTotal": {
+                  "incurredAmount": "28800.00",
+                  "discount": "2880.00",
+                  "netAmount": "25920.00",
+                  "deduct": "0.00",
+                  "decline": "0.00",
+                  "coveredByOtherParties": "0.00",
+                  "payableAmount": "0.00",
+                  "majorMedical": "0.00",
+                  "exceededLimit": "25920.00",
+                  "recovery": "0.00"
+                }
               }
             }
           },
@@ -2897,10 +2917,24 @@
     "pa": {
       "holiday": {
         "pa": {
-          "positive": {
-            "ipdDischarge": {}
+          "generalHoliday": {
+            "positive": {
+              "ipdDischarge": {}
+            },
+            "negative": {}
           },
-          "negative": {}
+          "surgery": {
+            "positive": {
+              "ipdDischarge": {}
+            },
+            "negative": {}
+          },
+          "general": {
+            "positive": {
+              "ipdDischarge": {}
+            },
+            "negative": {}
+          }
         },
         "hb": {
           "positive": {
@@ -2909,18 +2943,101 @@
           "negative": {}
         }
       },
-      "surgery": {
-        "positive": {
-          "ipdDischarge": {}
-        },
-        "negative": {}
-      },
-      "general": {
-        "ph": {
-          "positive": {
-            "ipdDischarge": {}
-          },
-          "negative": {}
+      "wakeBoard": {
+        "pa": {
+          "general": {
+            "positive": {
+              "ipdDischarge": {
+                "draftInfo": {
+                  "claimType": "IPD Discharge",
+                  "benefitType": "PA",
+                  "providerNameTh": "โรงพยาบาลป่าตอง",
+                  "providerNameEn": "Patong Hospital",
+                  "causeOfLoss": "Accident",
+                  "appointmentDate": null,
+                  "admissionDate": true,
+                  "estimatedIpdDays": "",
+                  "estimatedExpenses": "",
+                  "dischargeDate": true,
+                  "lengthOfStayIPD": "1",
+                  "accidentDate": true,
+                  "isAlcoholInvolved": true,
+                  "symptom": "อุบัติเหตุทั่วไป",
+                  "openClaimWithNewLimit": true
+                },
+                "billingInfo": {
+                  "physicianName": "Jeeranan",
+                  "medicalLicenseNumber": "999999",
+                  "icd10": [
+                    {
+                      "code": "S01",
+                      "name": "S01 - แผลเปิดที่ศีรษะ",
+                      "remark": "ปวดศีรษะรุนแรง"
+                    },
+                    {
+                      "code": "S00.0",
+                      "name": "S00.0 - การบาดเจ็บ ชั้นผิวของหนังศีรษะ",
+                      "remark": "มีการบาดเจ็บที่ผิวหนังศีรษะ"
+                    }
+                  ],
+                  "icd9": [
+                    {
+                      "code": "86.59 ",
+                      "name": "86.59 - Closure of skin and subcutaneous tissue of other sites",
+                      "remark": ""
+                    },
+                    {
+                      "code": "96.59",
+                      "name": "96.59 - Other irrigation of wound",
+                      "remark": ""
+                    }
+                  ],
+                  "utilizationCost": "",
+                  "billingNo": "TEST-111111",
+                  "billingDate": true,
+                  "billSubmitterType": "Provider",
+                  "billingItems": [
+                    {
+                      "no": "1",
+                      "billingCode": "1.1.1(3)",
+                      "billingName": "1.1.1(3) - Out patient Medications (อุบัติเหตุทั่วไป)",
+                      "billingNameResult": "1.1.1(3) - ยาผู้ป่วยนอก",
+                      "benefit": "PA Medical Expense",
+                      "subBenefit": "Medical Expenses for General Accidents",
+                      "schedule": "0",
+                      "copay": "0.00",
+                      "noOfDays": "1",
+                      "incurredAmount": "36000.00",
+                      "discount": "3600.00",
+                      "netAmount": "32400.00",
+                      "deduct": "0.00",
+                      "decline": "0.00",
+                      "coveredByOtherParties": "0.00",
+                      "payableAmount": "30000.00",
+                      "majorMedical": "0.00",
+                      "exceededLimit": "2400.00",
+                      "recovery": "0.00",
+                      "remark": ""
+                    }
+                  ],
+                  "billingRemark": "Billing remark test",
+                  "billingTotal": {
+                    "incurredAmount": "36000.00",
+                    "discount": "3600.00",
+                    "netAmount": "32400.00",
+                    "deduct": "0.00",
+                    "decline": "0.00",
+                    "coveredByOtherParties": "0.00",
+                    "payableAmount": "30000.00",
+                    "majorMedical": "0.00",
+                    "exceededLimit": "2400.00",
+                    "recovery": "0.00"
+                  }
+                }
+              }
+            },
+            "negative": {}
+          }
         }
       }
     }

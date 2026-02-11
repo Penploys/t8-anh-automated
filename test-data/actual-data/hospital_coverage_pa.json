@@ -9,9 +9,7 @@
     {
       "mainGroup": "PA Medical Expense",
       "subBenefit": "Medical Expenses for General Accidents",
-      "limit": "30,000.00 THB per disability",
-      "combinedSub": "0.00 THB per disability",
-      "combined": "0.00 THB per disability"
+      "limit": "30,000.00 THB per disability"
     }
   ],
   "HB": [],

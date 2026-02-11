@@ -1,15 +1,15 @@
 {
   "OPD": [
     {
-      "mainGroup": "General Expense",
-      "subBenefit": "Rehabilitation medicine fee after each hospitalization as an inpatient",
-      "limit": "200,000.00 THB per disability",
-      "usage": "0.00 THB per disability",
-      "remaining": "200,000.00 THB per disability",
-      "combinedSub": "0.00 THB per disability",
-      "combinedSubRemaining": "0.00 THB per disability",
-      "combined": "0.00 THB per disability",
-      "combinedRemaining": "0.00 THB per disability"
+      "mainGroup": "Outpatient medical expense",
+      "subBenefit": "-",
+      "limit": "24,000.00 THB per year",
+      "usage": "0.00 THB per year",
+      "remaining": "24,000.00 THB per year",
+      "combinedSub": "0.00 THB per year",
+      "combinedSubRemaining": "0.00 THB per year",
+      "combined": "0.00 THB per year",
+      "combinedRemaining": "0.00 THB per year"
     }
   ]
 }

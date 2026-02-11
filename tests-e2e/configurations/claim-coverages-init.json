@@ -103,7 +103,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Non-Surgical Consultation Fee",
                     "limit": 10000,
                     "limitUnit": "THB per disability",
@@ -123,7 +123,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Surgical Consultation Fee",
                     "limit": 10000,
                     "limitUnit": "THB per disability",
@@ -143,7 +143,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
                     "limit": 62000,
                     "limitUnit": "THB per disability",
@@ -163,7 +163,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Doctor's Visit Fee",
                     "limit": 800,
                     "limitUnit": "THB per day",
@@ -183,7 +183,7 @@
                     "combinedRemainingUnit": "THB per day"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Doctor's Visit Fee",
                     "limit": 31,
                     "limitUnit": "Day per disability",
@@ -203,7 +203,7 @@
                     "combinedRemainingUnit": "Day per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Ambulance fee",
                     "subBenefit": "Ambulance fee",
                     "limit": 2500,
                     "limitUnit": "THB per disability",
@@ -433,7 +433,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -453,7 +453,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "Medical practitioner fee for anesthetist (doctor fee) based on the rate in the medical fee manual",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -473,7 +473,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "operating room fee and procedure room fee",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -493,7 +493,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "Medical fee for organ transplatation x times of the benefits in Item 4 (at least 2x)",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -513,7 +513,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Day Surgery- in case of day surgery, company shall pay the benefits equivalent to hospitalization as an inpatient at a hospital",
                     "subBenefit": "Major Day Surgery Fee",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -533,7 +533,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "subBenefit": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -553,7 +553,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "medicine fee, parenteral nutrition fee, medical supplies fee, and surgery and procedure fee",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -573,7 +573,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "subBenefit": "Medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -593,7 +593,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "subBenefit": "Medical Examination Fee",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -613,7 +613,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Doctor's Fee",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -633,7 +633,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for treatment of cancer by chemotherapy",
                     "subBenefit": "Medical fee for treatment of cancer by chemotherapy",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -653,7 +653,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
                     "subBenefit": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -673,7 +673,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
                     "subBenefit": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -693,7 +693,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Diagnostic tests and doctor consultations related to inpatient admission (e.g., within 30 days before), and follow-up treatments/medications after discharge (e.g., within 30-90 days after).",
                     "subBenefit": "Post-Hospitalization Outpatient Care (excluding diagnostic services)",
                     "limit": 200000,
                     "limitUnit": "THB per disability",
@@ -713,7 +713,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for minor operation",
                     "subBenefit": "Medical fee for minor operation",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -733,7 +733,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "subBenefit": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -753,7 +753,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Diagnostic tests and doctor consultations related to inpatient admission (e.g., within 30 days before), and follow-up treatments/medications after discharge (e.g., within 30-90 days after).",
                     "subBenefit": "Diagnostic tests and doctor consultations related to inpatient admission (e.g., within 30 days before), and follow-up treatments/medications after discharge (e.g., within 30-90 days after).",
                     "limit": 200000,
                     "limitUnit": "THB per disability",
@@ -773,7 +773,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Ambulance fee",
                     "subBenefit": "Ambulance fee",
                     "limit": 50000,
                     "limitUnit": "THB per disability",
@@ -795,7 +795,7 @@
             ],
             "OPD": [
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Rehabilitation medicine fee after each hospitalization as an inpatient",
                     "subBenefit": "Rehabilitation medicine fee after each hospitalization as an inpatient",
                     "limit": 200000,
                     "limitUnit": "THB per disability",
@@ -963,7 +963,7 @@
                     "combinedRemainingUnit": "THB per day"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
                     "limit": 10000,
                     "limitUnit": "THB per disability",
@@ -983,7 +983,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "Medical practitioner fee for anesthetist (doctor fee) based on the rate in the medical fee manual",
                     "limit": 10000,
                     "limitUnit": "THB per disability",
@@ -1003,7 +1003,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "operating room fee and procedure room fee",
                     "limit": 200000,
                     "limitUnit": "THB per disability",
@@ -1023,7 +1023,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "Medical fee for organ transplatation x times of the benefits in Item 4 (at least 2x)",
                     "limit": 200000,
                     "limitUnit": "THB per disability",
@@ -1043,7 +1043,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Day Surgery- in case of day surgery, company shall pay the benefits equivalent to hospitalization as an inpatient at a hospital",
                     "subBenefit": "Major Day Surgery Fee",
                     "limit": 5000000,
                     "limitUnit": "THB per year",
@@ -1063,7 +1063,7 @@
                     "combinedRemainingUnit": "THB per year"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "subBenefit": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "limit": 150000,
                     "limitUnit": "THB per disability",
@@ -1083,7 +1083,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "medicine fee, parenteral nutrition fee, medical supplies fee, and surgery and procedure fee",
                     "limit": 200000,
                     "limitUnit": "THB per disability",
@@ -1103,7 +1103,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "subBenefit": "Medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "limit": 150000,
                     "limitUnit": "THB per disability",
@@ -1123,7 +1123,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "subBenefit": "Medical Examination Fee",
                     "limit": 150000,
                     "limitUnit": "THB per disability",
@@ -1143,7 +1143,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Doctor's Fee",
                     "limit": 1,
                     "limitUnit": "Visit per day",
@@ -1163,7 +1163,7 @@
                     "combinedRemainingUnit": "Visit per day"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Doctor's Fee",
                     "limit": 1500,
                     "limitUnit": "THB per day",
@@ -1183,7 +1183,7 @@
                     "combinedRemainingUnit": "THB per day"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Doctor's Fee",
                     "limit": 90,
                     "limitUnit": "Day per disability",
@@ -1203,7 +1203,7 @@
                     "combinedRemainingUnit": "Day per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for treatment of cancer by chemotherapy",
                     "subBenefit": "Medical fee for treatment of cancer by chemotherapy",
                     "limit": 10000,
                     "limitUnit": "THB per year",
@@ -1223,7 +1223,7 @@
                     "combinedRemainingUnit": "THB per year"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
                     "subBenefit": "Medical fee for treatment of cancer by radiotherapy, interventional radiology, and nuclear medicine",
                     "limit": 10000,
                     "limitUnit": "THB per year",
@@ -1243,7 +1243,7 @@
                     "combinedRemainingUnit": "THB per year"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
                     "subBenefit": "Medical fee for treatment of chronic kidney failure by hemodialysis through vascular access",
                     "limit": 10000,
                     "limitUnit": "THB per year",
@@ -1263,7 +1263,7 @@
                     "combinedRemainingUnit": "THB per year"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Diagnostic tests and doctor consultations related to inpatient admission (e.g., within 30 days before), and follow-up treatments/medications after discharge (e.g., within 30-90 days after).",
                     "subBenefit": "Post-Hospitalization Outpatient Care (excluding diagnostic services)",
                     "limit": 150000,
                     "limitUnit": "THB per disability",
@@ -1283,7 +1283,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Diagnostic tests and doctor consultations related to inpatient admission (e.g., within 30 days before), and follow-up treatments/medications after discharge (e.g., within 30-90 days after).",
                     "subBenefit": "Pre- and Post-Hospitalization Diagnostic Services",
                     "limit": 150000,
                     "limitUnit": "THB per disability",
@@ -1303,7 +1303,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for minor operation",
                     "subBenefit": "Medical fee for minor operation",
                     "limit": 200000,
                     "limitUnit": "THB per disability",
@@ -1323,7 +1323,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical fee for examination or treatment, blood and blood component service fee, nurse service fee, medicine fee, Parenteral nutrition fee and medical supplies fee",
                     "subBenefit": "Medicine fee and disposable supplies fee (Med Supp 1) for takeaway",
                     "limit": 150000,
                     "limitUnit": "THB per disability",
@@ -1343,7 +1343,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Ambulance fee",
                     "subBenefit": "Ambulance fee",
                     "limit": 4000,
                     "limitUnit": "THB per disability",
@@ -1365,7 +1365,7 @@
             ],
             "OPD": [
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Rehabilitation medicine fee after each hospitalization as an inpatient",
                     "subBenefit": "Rehabilitation medicine fee after each hospitalization as an inpatient",
                     "limit": 150000,
                     "limitUnit": "THB per disability",
@@ -1591,7 +1591,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Non-Surgical Consultation Fee",
                     "limit": 2500,
                     "limitUnit": "THB per disability",
@@ -1611,7 +1611,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Surgical Consultation Fee",
                     "limit": 2500,
                     "limitUnit": "THB per disability",
@@ -1631,7 +1631,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Operation (surgery) and procedure fee",
                     "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
                     "limit": 30000,
                     "limitUnit": "THB per disability",
@@ -1651,7 +1651,7 @@
                     "combinedRemainingUnit": "THB per disability"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Medical practitioner's examination fee (doctor)",
                     "subBenefit": "Doctor's Visit Fee",
                     "limit": 1500,
                     "limitUnit": "THB per day",
@@ -1671,7 +1671,7 @@
                     "combinedRemainingUnit": "THB per day"
                 },
                 {
-                    "mainGroup": "General Expense",
+                    "mainGroup": "Ambulance fee",
                     "subBenefit": "Ambulance fee",
                     "limit": 2000,
                     "limitUnit": "THB per disability",
