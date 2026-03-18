@@ -1243,7 +1243,13 @@ export class ClaimManagementEditPage extends BasePage {
             false
           )
         if (billingItemsIpd[7])
-          calculateBillingItemPerDis(billingItemsIpd[7], ambulanceRemaining, ambulanceLimit, false, sharedMedicalPool)
+          calculateBillingItemPerDis(
+            billingItemsIpd[7], 
+            ambulanceRemaining, 
+            ambulanceLimit, 
+            false, 
+            sharedMedicalPool
+          )
 
         console.log(' ')
         console.log(
@@ -1296,7 +1302,13 @@ export class ClaimManagementEditPage extends BasePage {
     if (claimType === 'er72Discharge') {
       if (billingItemsEr && billingItemsEr.length > 0) {
         if (billingItemsEr[0])
-          calculateBillingItemPerDis(billingItemsEr[0], er72HoursRemaining, er72HoursLimit, false, sharedMedicalPool)
+          calculateBillingItemPerDis(
+            billingItemsEr[0], 
+            er72HoursRemaining, 
+            er72HoursLimit, 
+            false, 
+            sharedMedicalPool
+          )
 
         console.log(' ')
         console.log(
@@ -1377,7 +1389,13 @@ export class ClaimManagementEditPage extends BasePage {
             true
           )
         if (billingItemsIpd[7])
-          calculateBillingItemPerDis(billingItemsIpd[7], ambulanceRemaining, ambulanceLimit, true, sharedMedicalPool)
+          calculateBillingItemPerDis(
+            billingItemsIpd[7], 
+            ambulanceRemaining, 
+            ambulanceLimit, 
+            true, 
+            sharedMedicalPool
+          )
 
         console.log(' ')
         console.log(
@@ -1430,7 +1448,13 @@ export class ClaimManagementEditPage extends BasePage {
     if (claimType === 'er72DischargeSchedule') {
       if (billingItemsEr && billingItemsEr.length > 0) {
         if (billingItemsEr[0])
-          calculateBillingItemPerDis(billingItemsEr[0], er72HoursRemaining, er72HoursLimit, true, sharedMedicalPool)
+          calculateBillingItemPerDis(
+            billingItemsEr[0],
+            er72HoursRemaining,
+            er72HoursLimit,
+            true,
+            sharedMedicalPool
+          )
 
         console.log(' ')
         console.log(
@@ -1700,7 +1724,7 @@ export class ClaimManagementEditPage extends BasePage {
       const copayPercent = parseFloat(item.copay)
       const coveragePercent = copayPercent === 0 ? 1.0 : copayPercent / 100
 
-      const incurredAmount = (baseForIncurred / 4).toFixed(2)
+      const incurredAmount = (baseForIncurred * 0.05).toFixed(2)
       const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
       const netAmount = (parseFloat(incurredAmount) - parseFloat(discount)).toFixed(2)
       const netAmountFloat = parseFloat(netAmount)
@@ -1796,7 +1820,12 @@ export class ClaimManagementEditPage extends BasePage {
             'ipd'
           )
         if (billingItemsIpdPreAuth[4])
-          calculateBillingItemPerDis(billingItemsIpdPreAuth[4], operatingRoomRemaining, operatingRoomLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[4], 
+            operatingRoomRemaining, 
+            operatingRoomLimit, 
+            'ipd'
+          )
         if (billingItemsIpdPreAuth[5])
           calculateBillingItemPerDis(
             billingItemsIpdPreAuth[5],
@@ -1826,7 +1855,12 @@ export class ClaimManagementEditPage extends BasePage {
             'ipd'
           )
         if (billingItemsIpdPreAuth[8])
-          calculateBillingItemPerDis(billingItemsIpdPreAuth[8], medicalSuppliesRemaining, medicalSuppliesLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[8],
+            medicalSuppliesRemaining,
+            medicalSuppliesLimit,
+            'ipd'
+          )
         if (billingItemsIpdPreAuth[9])
           calculateBillingItemPerDis(
             billingItemsIpdPreAuth[9],
@@ -1835,9 +1869,19 @@ export class ClaimManagementEditPage extends BasePage {
             'ipd'
           )
         if (billingItemsIpdPreAuth[10])
-          calculateBillingItemPerDis(billingItemsIpdPreAuth[10], doctorsFeeRemaining, doctorsFeeLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[10], 
+            doctorsFeeRemaining, 
+            doctorsFeeLimit, 
+            'ipd'
+          )
         if (billingItemsIpdPreAuth[11])
-          calculateBillingItemPerDis(billingItemsIpdPreAuth[11], cancerByChemoRemaining, cancerByChemoLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[11], 
+            cancerByChemoRemaining, 
+            cancerByChemoLimit, 
+            'ipd'
+          )
         if (billingItemsIpdPreAuth[12])
           calculateBillingItemPerDis(
             billingItemsIpdPreAuth[12],
@@ -1846,7 +1890,12 @@ export class ClaimManagementEditPage extends BasePage {
             'ipd'
           )
         if (billingItemsIpdPreAuth[13])
-          calculateBillingItemPerDis(billingItemsIpdPreAuth[13], chronicKidneyRemaining, chronicKidneyLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[13], 
+            chronicKidneyRemaining, 
+            chronicKidneyLimit, 
+            'ipd'
+          )
         // if (billingItemsIpdPreAuth[])
         //   calculateBillingItemPerDis(
         //     billingItemsIpdPreAuth[],
@@ -1855,7 +1904,12 @@ export class ClaimManagementEditPage extends BasePage {
         //     'opd'
         //   )
         if (billingItemsIpdPreAuth[14])
-          calculateBillingItemPerDis(billingItemsIpdPreAuth[14], minorOperationRemaining, minorOperationLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[14], 
+            minorOperationRemaining, 
+            minorOperationLimit, 
+            'ipd'
+          )
         if (billingItemsIpdPreAuth[15])
           calculateBillingItemPerDis(
             billingItemsIpdPreAuth[15],
@@ -1871,7 +1925,12 @@ export class ClaimManagementEditPage extends BasePage {
         //     'opd'
         //   )
         if (billingItemsIpdPreAuth[16])
-          calculateBillingItemPerDis(billingItemsIpdPreAuth[16], ambulanceRemaining, ambulanceLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpdPreAuth[16], 
+            ambulanceRemaining, 
+            ambulanceLimit, 
+            'ipd'
+          )
 
         console.log(' ')
         console.log(`  [Copay IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
@@ -1920,7 +1979,12 @@ export class ClaimManagementEditPage extends BasePage {
             'ipd'
           )
         if (billingItemsIpd[4])
-          calculateBillingItemPerDis(billingItemsIpd[4], operatingRoomRemaining, operatingRoomLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[4], 
+            operatingRoomRemaining, 
+            operatingRoomLimit, 
+            'ipd'
+          )
         if (billingItemsIpd[5])
           calculateBillingItemPerDis(
             billingItemsIpd[5],
@@ -1950,13 +2014,33 @@ export class ClaimManagementEditPage extends BasePage {
             'ipd'
           )
         if (billingItemsIpd[8])
-          calculateBillingItemPerDis(billingItemsIpd[8], medicalSuppliesRemaining, medicalSuppliesLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[8], 
+            medicalSuppliesRemaining, 
+            medicalSuppliesLimit, 
+            'ipd'
+          )
         if (billingItemsIpd[9])
-          calculateBillingItemPerDis(billingItemsIpd[9], medicalExaminationRemaining, medicalExaminationLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[9], 
+            medicalExaminationRemaining, 
+            medicalExaminationLimit, 
+            'ipd'
+          )
         if (billingItemsIpd[10])
-          calculateBillingItemPerDis(billingItemsIpd[10], doctorsFeeRemaining, doctorsFeeLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[10],
+            doctorsFeeRemaining,
+            doctorsFeeLimit,
+            'ipd'
+          )
         if (billingItemsIpd[11])
-          calculateBillingItemPerDis(billingItemsIpd[11], cancerByChemoRemaining, cancerByChemoLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[11],
+            cancerByChemoRemaining,
+            cancerByChemoLimit,
+            'ipd'
+          )
         if (billingItemsIpd[12])
           calculateBillingItemPerDis(
             billingItemsIpd[12],
@@ -1965,7 +2049,12 @@ export class ClaimManagementEditPage extends BasePage {
             'ipd'
           )
         if (billingItemsIpd[13])
-          calculateBillingItemPerDis(billingItemsIpd[13], chronicKidneyRemaining, chronicKidneyLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[13],
+            chronicKidneyRemaining,
+            chronicKidneyLimit,
+            'ipd'
+          )
         // if (billingItemsIpd[])
         //   calculateBillingItemPerDis(
         //     billingItemsIpd[],
@@ -1974,9 +2063,19 @@ export class ClaimManagementEditPage extends BasePage {
         //     'opd'
         //   )
         if (billingItemsIpd[14])
-          calculateBillingItemPerDis(billingItemsIpd[14], minorOperationRemaining, minorOperationLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[14],
+            minorOperationRemaining,
+            minorOperationLimit,
+            'ipd'
+          )
         if (billingItemsIpd[15])
-          calculateBillingItemPerDis(billingItemsIpd[15], suppliesTakeawayRemaining, suppliesTakeawayLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[15],
+            suppliesTakeawayRemaining,
+            suppliesTakeawayLimit,
+            'ipd'
+          )
         // if (billingItemsIpd[])
         //   calculateBillingItemPerDis(
         //     billingItemsIpd[],
@@ -1985,7 +2084,12 @@ export class ClaimManagementEditPage extends BasePage {
         //     'opd'
         //   )
         if (billingItemsIpd[16])
-          calculateBillingItemPerDis(billingItemsIpd[16], ambulanceRemaining, ambulanceLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[16],
+            ambulanceRemaining,
+            ambulanceLimit,
+            'ipd'
+          )
 
         console.log(' ')
         console.log(`  [Copay IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
@@ -2001,7 +2105,13 @@ export class ClaimManagementEditPage extends BasePage {
     // 3. OPD (IPD Discharge)
     if (claimType === 'opdDischarge') {
       if (billingItemsOpd && billingItemsOpd.length > 0) {
-        if (billingItemsOpd[0]) calculateBillingItemPerDis(billingItemsOpd[0], rehabRemaining, rehabLimit, 'opd')
+        if (billingItemsOpd[0]) 
+          calculateBillingItemPerDis(
+            billingItemsOpd[0], 
+            rehabRemaining, 
+            rehabLimit, 
+            'opd'
+          )
 
         console.log(' ')
         console.log(`  [Copay OPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
@@ -2038,95 +2148,100 @@ export class ClaimManagementEditPage extends BasePage {
     console.log('------------------------------------')
   }
 
-  async calculateBillingDeductNotEr(claimType: 'ipdDischarge' | 'opdDischarge' | 'er24Discharge') {
+  async calculateBillingDeductNotEr(
+    claimType: 'ipdDischarge' | 'opdDischarge' | 'er24Discharge',
+    deductibleAmount: number,
+    isDeduct: boolean,
+    isIpdGlobal: boolean,
+    ...coverageFiles: string[]
+  ) {
     // Define Paths
     const rootDir = process.cwd()
-    const coveragesPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claim-coverages-init.json')
     const claimsPath = path.join(rootDir, 'tests-e2e', 'configurations', 'claims.json')
 
     // Read JSON Files
-    const coveragesData = JSON.parse(fs.readFileSync(coveragesPath, 'utf-8'))
+    const coveragesData = this.loadCoverageData(rootDir, coverageFiles)
     const claimsData = JSON.parse(fs.readFileSync(claimsPath, 'utf-8'))
 
     // Get Limit Remaining
-    const othCoverages = coveragesData.policy.deductNotER.OTH
-    const maxPayableRemaining = parseFloat(othCoverages[0].remaining)
-    const maxPayableIpdRemaining = parseFloat(othCoverages[1].remaining)
+    const othList = coveragesData.OTH
+    const getOthVal = (index: number, field: string) => (othList[index] ? othList[index][field] : 0)
+    const maxPayableRemaining = parseFloat(getOthVal(0, 'remaining'))
+    const maxPayableIpdRemaining = parseFloat(getOthVal(1, 'remaining')) // IPD Global Limit
 
-    const ipdCoverages = coveragesData.policy.deductNotER.IPD
-    const icuRoomLimit = parseFloat(ipdCoverages[0].limit)
-    const icuRoomRemaining = parseFloat(ipdCoverages[0].remaining)
-    const icuRoomDayRemaining = parseFloat(ipdCoverages[1].remaining)
-    // const icuRoomDayCombinedSub = parseFloat(ipdCoverages[1].combinedSubDayRemaining) // Shared room day pool
-    const normalRoomDayRemaining = parseFloat(ipdCoverages[2].remaining)
-    const normalRoomDayCombinedSub = parseFloat(ipdCoverages[2].combinedSubDayRemaining) // Shared room day pool
-    const normalRoomLimit = parseFloat(ipdCoverages[3].limit)
-    const normalRoomRemaining = parseFloat(ipdCoverages[3].remaining)
-    const doctorPractitionerFeeLimit = parseFloat(ipdCoverages[4].limit)
-    const doctorPractitionerFeeRemaining = parseFloat(ipdCoverages[4].remaining)
-    const anesthetistPractitionerFeeLimit = parseFloat(ipdCoverages[5].limit)
-    const anesthetistPractitionerFeeRemaining = parseFloat(ipdCoverages[5].remaining)
-    const operatingRoomLimit = parseFloat(ipdCoverages[6].limit)
-    const operatingRoomRemaining = parseFloat(ipdCoverages[6].remaining)
-    const organTransplantationLimit = parseFloat(ipdCoverages[7].limit)
-    const organTransplantationRemaining = parseFloat(ipdCoverages[7].remaining)
-    const daySurgeryLimit = parseFloat(ipdCoverages[8].limit)
-    const daySurgeryRemaining = parseFloat(ipdCoverages[8].remaining)
-    const bloodAndBloodComponentsLimit = parseFloat(ipdCoverages[9].limit)
-    const bloodAndBloodComponentsRemaining = parseFloat(ipdCoverages[9].remaining)
-    const medicalSuppliesAndProcedureLimit = parseFloat(ipdCoverages[10].limit)
-    const medicalSuppliesAndProcedureRemaining = parseFloat(ipdCoverages[10].remaining)
-    const medicalSuppliesLimit = parseFloat(ipdCoverages[11].limit)
-    const medicalSuppliesRemaining = parseFloat(ipdCoverages[11].remaining)
-    const medicalExaminationLimit = parseFloat(ipdCoverages[12].limit)
-    const medicalExaminationRemaining = parseFloat(ipdCoverages[12].remaining)
-    const doctorsFeeLimit = parseFloat(ipdCoverages[13].limit)
-    const doctorsFeeRemaining = parseFloat(ipdCoverages[13].remaining)
-    const cancerByChemoLimit = parseFloat(ipdCoverages[14].limit)
-    const cancerByChemoRemaining = parseFloat(ipdCoverages[14].remaining)
-    const cancerByRadioNuclearLimit = parseFloat(ipdCoverages[15].limit)
-    const cancerByRadioNuclearRemaining = parseFloat(ipdCoverages[15].remaining)
-    const chronicKidneyLimit = parseFloat(ipdCoverages[16].limit)
-    const chronicKidneyRemaining = parseFloat(ipdCoverages[16].remaining)
+    const ipdList = coveragesData.IPD
+    const getIpdVal = (index: number, field: string) => (ipdList[index] ? ipdList[index][field] : 0)
+    const icuRoomLimit = parseFloat(getIpdVal(0, 'limit'))
+    const icuRoomRemaining = parseFloat(getIpdVal(0, 'remaining'))
+    const icuRoomDayRemaining = parseFloat(getIpdVal(1, 'remaining'))
+    // const icuRoomDayCombinedSub = parseFloat(getIpdVal(1, 'combinedSubDayRemaining')) // Shared room day pool
+    const normalRoomDayRemaining = parseFloat(getIpdVal(2, 'remaining'))
+    const normalRoomDayCombinedSub = parseFloat(getIpdVal(2, 'combinedSubDayRemaining')) // Shared room day pool
+    const normalRoomLimit = parseFloat(getIpdVal(3, 'limit'))
+    const normalRoomRemaining = parseFloat(getIpdVal(3, 'remaining'))
+    const doctorPractitionerFeeLimit = parseFloat(getIpdVal(4, 'limit'))
+    const doctorPractitionerFeeRemaining = parseFloat(getIpdVal(4, 'remaining'))
+    const anesthetistPractitionerFeeLimit = parseFloat(getIpdVal(5, 'limit'))
+    const anesthetistPractitionerFeeRemaining = parseFloat(getIpdVal(5, 'remaining'))
+    const operatingRoomLimit = parseFloat(getIpdVal(6, 'limit'))
+    const operatingRoomRemaining = parseFloat(getIpdVal(6, 'remaining'))
+    const organTransplantationLimit = parseFloat(getIpdVal(7, 'limit'))
+    const organTransplantationRemaining = parseFloat(getIpdVal(7, 'remaining'))
+    const daySurgeryLimit = parseFloat(getIpdVal(8, 'limit'))
+    const daySurgeryRemaining = parseFloat(getIpdVal(8, 'remaining'))
+    const bloodAndBloodComponentsLimit = parseFloat(getIpdVal(9, 'limit'))
+    const bloodAndBloodComponentsRemaining = parseFloat(getIpdVal(9, 'remaining'))
+    const medicalSuppliesAndProcedureLimit = parseFloat(getIpdVal(10, 'limit'))
+    const medicalSuppliesAndProcedureRemaining = parseFloat(getIpdVal(10, 'remaining'))
+    const medicalSuppliesLimit = parseFloat(getIpdVal(11, 'limit'))
+    const medicalSuppliesRemaining = parseFloat(getIpdVal(11, 'remaining'))
+    const medicalExaminationLimit = parseFloat(getIpdVal(12, 'limit'))
+    const medicalExaminationRemaining = parseFloat(getIpdVal(12, 'remaining'))
+    const doctorsFeeLimit = parseFloat(getIpdVal(13, 'limit'))
+    const doctorsFeeRemaining = parseFloat(getIpdVal(13, 'remaining'))
+    const cancerByChemoLimit = parseFloat(getIpdVal(14, 'limit'))
+    const cancerByChemoRemaining = parseFloat(getIpdVal(14, 'remaining'))
+    const cancerByRadioNuclearLimit = parseFloat(getIpdVal(15, 'limit'))
+    const cancerByRadioNuclearRemaining = parseFloat(getIpdVal(15, 'remaining'))
+    const chronicKidneyLimit = parseFloat(getIpdVal(16, 'limit'))
+    const chronicKidneyRemaining = parseFloat(getIpdVal(16, 'remaining'))
     // FIXME: deduct data
-    // const minorOperationLimit = parseFloat(ipdCoverages[17].limit)
-    // const minorOperationRemaining = parseFloat(ipdCoverages[17].remaining)
-    const suppliesTakeawayLimit = parseFloat(ipdCoverages[18].limit)
-    const suppliesTakeawayRemaining = parseFloat(ipdCoverages[18].remaining)
+    // const minorOperationLimit = parseFloat(getIpdVal(17, 'limit'))
+    // const minorOperationRemaining = parseFloat(getIpdVal(17, 'remaining'))
+    const suppliesTakeawayLimit = parseFloat(getIpdVal(18, 'limit'))
+    const suppliesTakeawayRemaining = parseFloat(getIpdVal(18, 'remaining'))
     // FIXME: deduct data
-    // const vaccinationLimit = parseFloat(ipdCoverages[19].limit)
-    // const vaccinationRemaining = parseFloat(ipdCoverages[19].remaining)
-    const ambulanceLimit = parseFloat(ipdCoverages[20].limit)
-    const ambulanceRemaining = parseFloat(ipdCoverages[20].remaining)
+    // const vaccinationLimit = parseFloat(getIpdVal(19, 'limit'))
+    // const vaccinationRemaining = parseFloat(getIpdVal(19, 'remaining'))
+    const ambulanceLimit = parseFloat(getIpdVal(20, 'limit'))
+    const ambulanceRemaining = parseFloat(getIpdVal(20, 'remaining'))
 
-    const opdCoverages = coveragesData.policy.deductNotER.OPD
+    const opdList = coveragesData.OPD
+    const getOpdVal = (index: number, field: string) => (opdList[index] ? opdList[index][field] : 0)
     // FIXME: deduct data
-    // const postHospitalLimit = parseFloat(opdCoverages[0].limit)
-    // const postHospitalRemaining = parseFloat(ipdCoverages[0].remaining)
-    // const preAndPostHospitalLimit = parseFloat(opdCoverages[1].limit)
-    // const preAndPostHospitalRemaining = parseFloat(ipdCoverages[1].remaining)
-    // const rehabLimit = parseFloat(opdCoverages[2].limit)
-    // const rehabRemaining = parseFloat(opdCoverages[2].remaining)
-    const opdLimit = parseFloat(opdCoverages[3].limit)
-    const opdRemaining = parseFloat(opdCoverages[3].remaining)
-    const opdVisitYearRemaining = parseFloat(opdCoverages[4].remaining)
-    const opdVisitDayRemaining = parseFloat(opdCoverages[5].remaining)
+    // const postHospitalLimit = parseFloat(getOpdVal(0, 'limit'))
+    // const postHospitalRemaining = parseFloat(getOpdVal(0, 'remaining'))
+    // const preAndPostHospitalLimit = parseFloat(getOpdVal(1, 'limit'))
+    // const preAndPostHospitalRemaining = parseFloat(getOpdVal(1, 'remaining'))
+    // const rehabLimit = parseFloat(getOpdVal(2, 'limit'))
+    // const rehabRemaining = parseFloat(getOpdVal(2, 'remaining'))
+    const opdLimit = parseFloat(getOpdVal(3, 'limit'))
+    const opdRemaining = parseFloat(getOpdVal(3, 'remaining'))
+    const opdVisitYearRemaining = parseFloat(getOpdVal(4, 'remaining'))
+    const opdVisitDayRemaining = parseFloat(getOpdVal(5, 'remaining'))
 
-    const erCoverages = coveragesData.policy.deductNotER.ER
-    const er24HoursLimit = parseFloat(erCoverages[0].limit)
-    const er24HoursRemaining = parseFloat(erCoverages[0].remaining)
-    const er24HoursDayRemaining = parseFloat(erCoverages[1].remaining)
+    const er24List = coveragesData.ER
+    const getEr24Val = (index: number, field: string) => (er24List[index] ? er24List[index][field] : 0)
+    const er24HoursLimit = parseFloat(getEr24Val(0, 'limit'))
+    const er24HoursRemaining = parseFloat(getEr24Val(0, 'remaining'))
+    const er24HoursDayRemaining = parseFloat(getEr24Val(1, 'remaining'))
 
     // Initialize Current Remaining
     let currentGlobalRemaining = maxPayableRemaining
-    let currentIpdGlobalRemaining = maxPayableIpdRemaining
+    let currentIpdGlobalRemaining = isIpdGlobal ? maxPayableIpdRemaining : 0
 
     // Initialize Deductible State
-    const deductState = {
-      ipd: 10000.0,
-      opd: 10000.0,
-      er: 0.0
-    }
+    let remainingDeductible = isDeduct ? deductibleAmount : 0
 
     // Initialize Pool State
     const sharedRoomDayPool = {
@@ -2146,19 +2261,21 @@ export class ClaimManagementEditPage extends BasePage {
     const billingItemsEr = billingEr24.billingInfo.billingItems
     const billingTotalEr = billingEr24.billingInfo.billingTotal
 
-    // Helper Function: Core Logic for Deductible (Not included ER) + Global Limit
+    // Helper Function: Core Logic for Deductible + Global Limit + IPD Global Limit + Combined Pools
+    // Hierarchy: Item Limit -> Combined Sub -> Combined -> IPD Global (if enabled) -> Global
     const applyCoverageLogic = (
       netAmountFloat: number,
       maxItemPayable: number,
-      deductibleKey: 'ipd' | 'opd' | 'er'
+      applyDeduct: boolean,
+      combinedSubPool: { remaining: number } | null = null,
+      combinedPool: { remaining: number } | null = null,
+      useIpdGlobal: boolean = false
     ) => {
-      const currentDeductible = deductState[deductibleKey]
-
-      // 1. Deduct Deductible first (only for IPD/OPD with value > 0)
+      // 1. Deduct Deductible first (only if applyDeduct is true and remainingDeductible > 0)
       let amountToDeduct = 0
-      if (currentDeductible > 0) {
-        amountToDeduct = Math.min(netAmountFloat, currentDeductible)
-        deductState[deductibleKey] -= amountToDeduct
+      if (applyDeduct && remainingDeductible > 0) {
+        amountToDeduct = Math.min(netAmountFloat, remainingDeductible)
+        remainingDeductible -= amountToDeduct
       }
 
       // Amount remaining after deducting Deductible (Claimable)
@@ -2167,8 +2284,26 @@ export class ClaimManagementEditPage extends BasePage {
       // 2. Check Item Limit
       let payable = Math.min(amountAfterDeduct, maxItemPayable)
 
-      // 3. Check IPD Global Limit (IPD only)
-      if (deductibleKey === 'ipd') {
+      // 3. Check Combined Sub Pool (after Combined)
+      if (combinedSubPool && combinedSubPool.remaining >= 0) {
+        if (combinedSubPool.remaining <= 0) {
+          payable = 0
+        } else {
+          payable = Math.min(payable, combinedSubPool.remaining)
+        }
+      }
+
+      // 4. Check Combined Pool (after IPD Global or Global)
+      if (combinedPool && combinedPool.remaining >= 0) {
+        if (combinedPool.remaining <= 0) {
+          payable = 0
+        } else {
+          payable = Math.min(payable, combinedPool.remaining)
+        }
+      }
+
+      // 5. Check IPD Global Limit (if isIpdGlobal = true and useIpdGlobal = true)
+      if (isIpdGlobal && useIpdGlobal) {
         if (currentIpdGlobalRemaining <= 0) {
           payable = 0
         } else {
@@ -2176,24 +2311,39 @@ export class ClaimManagementEditPage extends BasePage {
         }
       }
 
-      // 4. Check Global Limit
+      // 6. Check Global Limit
       if (currentGlobalRemaining <= 0) {
         payable = 0
       } else {
         payable = Math.min(payable, currentGlobalRemaining)
       }
 
-      // Update Global Remaining
+      // Update Pools (deduct from bottom up)
       if (payable > 0) {
-        if (deductibleKey === 'ipd') {
-          currentIpdGlobalRemaining -= payable
-        }
+        // 6.1 Deduct from Global
         currentGlobalRemaining -= payable
+        if (currentGlobalRemaining < 0) currentGlobalRemaining = 0
+
+        // 6.2 Deduct from IPD Global (if applicable)
+        if (isIpdGlobal && useIpdGlobal) {
+          currentIpdGlobalRemaining -= payable
+          if (currentIpdGlobalRemaining < 0) currentIpdGlobalRemaining = 0
+        }
+
+        // 6.3 Deduct from Combined Pool
+        if (combinedPool) {
+          combinedPool.remaining -= payable
+          if (combinedPool.remaining < 0) combinedPool.remaining = 0
+        }
+
+        // 6.4 Deduct from Combined Sub Pool
+        if (combinedSubPool) {
+          combinedSubPool.remaining -= payable
+          if (combinedSubPool.remaining < 0) combinedSubPool.remaining = 0
+        }
       }
 
-      // 5. Calculate Exceeded Limit
-      // Exceeded = Net Amount - Payable Amount
-      // (This includes both Deductible and amount exceeding the Limit as per the requirement)
+      // 7. Calculate Exceeded Limit
       const exceededLimit = (netAmountFloat - payable).toFixed(2)
 
       console.log(
@@ -2212,8 +2362,11 @@ export class ClaimManagementEditPage extends BasePage {
       limitAmountRemaining: number,
       limitDayRemaining: number,
       baseForIncurred: number,
-      type: 'ipd' | 'opd' | 'er',
-      sharedDayPool: { remaining: number } | null = null
+      applyDeduct: boolean,
+      sharedDayPool: { remaining: number } | null = null,
+      combinedSubPool: { remaining: number } | null = null,
+      combinedPool: { remaining: number } | null = null,
+      useIpdGlobal: boolean = false
     ) => {
       const noOfDays = parseFloat(item.noOfDays)
 
@@ -2249,10 +2402,17 @@ export class ClaimManagementEditPage extends BasePage {
         maxItemPayable = 0
       }
 
-      // 6. Apply Logic (Deductible -> Limit -> Global)
-      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+      // 6. Apply Logic (Deductible -> Item Limit -> Combined Sub -> Combined -> IPD Global -> Global)
+      const result = applyCoverageLogic(
+        netAmountFloat,
+        maxItemPayable,
+        applyDeduct,
+        combinedSubPool,
+        combinedPool,
+        useIpdGlobal
+      )
 
-      // 7. Deduct from Shared Pool (Cut Days)
+      // 7. Deduct from Shared Day Pool (Cut Days)
       if (sharedDayPool) {
         sharedDayPool.remaining -= allowedDays
         if (sharedDayPool.remaining < 0) sharedDayPool.remaining = 0
@@ -2273,7 +2433,10 @@ export class ClaimManagementEditPage extends BasePage {
       item: any,
       limitAmountRemaining: number,
       baseForIncurred: number,
-      type: 'ipd' | 'opd' | 'er'
+      applyDeduct: boolean,
+      combinedSubPool: { remaining: number } | null = null,
+      combinedPool: { remaining: number } | null = null,
+      useIpdGlobal: boolean = false
     ) => {
       const incurredAmount = (baseForIncurred / 4).toFixed(2)
       const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
@@ -2282,7 +2445,14 @@ export class ClaimManagementEditPage extends BasePage {
 
       const maxItemPayable = limitAmountRemaining
 
-      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+      const result = applyCoverageLogic(
+        netAmountFloat,
+        maxItemPayable,
+        applyDeduct,
+        combinedSubPool,
+        combinedPool,
+        useIpdGlobal
+      )
 
       item.incurredAmount = incurredAmount
       item.discount = discount
@@ -2299,7 +2469,10 @@ export class ClaimManagementEditPage extends BasePage {
       limitAmountRemaining: number,
       limitDayRemaining: number,
       baseForIncurred: number,
-      type: 'ipd' | 'opd' | 'er'
+      applyDeduct: boolean,
+      combinedSubPool: { remaining: number } | null = null,
+      combinedPool: { remaining: number } | null = null,
+      useIpdGlobal: boolean = false
     ) => {
       const incurredAmount = (baseForIncurred / 4).toFixed(2)
       const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
@@ -2313,7 +2486,14 @@ export class ClaimManagementEditPage extends BasePage {
         maxItemPayable = 0
       }
 
-      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+      const result = applyCoverageLogic(
+        netAmountFloat,
+        maxItemPayable,
+        applyDeduct,
+        combinedSubPool,
+        combinedPool,
+        useIpdGlobal
+      )
 
       item.incurredAmount = incurredAmount
       item.discount = discount
@@ -2331,7 +2511,10 @@ export class ClaimManagementEditPage extends BasePage {
       limitVisitDayRemaining: number,
       limitVisitYearRemaining: number,
       baseForIncurred: number,
-      type: 'ipd' | 'opd' | 'er'
+      applyDeduct: boolean,
+      combinedSubPool: { remaining: number } | null = null,
+      combinedPool: { remaining: number } | null = null,
+      useIpdGlobal: boolean = false
     ) => {
       const incurredAmount = (baseForIncurred / 4).toFixed(2)
       const discount = (parseFloat(incurredAmount) * 0.1).toFixed(2)
@@ -2349,7 +2532,14 @@ export class ClaimManagementEditPage extends BasePage {
         maxItemPayable = 0
       }
 
-      const result = applyCoverageLogic(netAmountFloat, maxItemPayable, type)
+      const result = applyCoverageLogic(
+        netAmountFloat,
+        maxItemPayable,
+        applyDeduct,
+        combinedSubPool,
+        combinedPool,
+        useIpdGlobal
+      )
 
       item.incurredAmount = incurredAmount
       item.discount = discount
@@ -2362,11 +2552,15 @@ export class ClaimManagementEditPage extends BasePage {
     }
 
     // Execute Calculation
-    console.log('✓ Updated billing items with Deduct (Not included ER) logic:')
+    console.log('✓ Updated billing items with Deduct logic:')
     console.log(`  Initial Global Limit: ${maxPayableRemaining}`)
-    console.log(`  Initial IPD Global Limit: ${maxPayableIpdRemaining}`)
-    console.log('  Initial IPD Deduct: 10000, OPD Deduct: 10000, ER Deduct: 0')
+    console.log(`  Is IPD Global Enabled: ${isIpdGlobal}`)
+    console.log(`  Initial IPD Global Limit: ${isIpdGlobal ? maxPayableIpdRemaining : 'N/A'}`)
+    console.log(`  Is Deduct Enabled: ${isDeduct}`)
+    console.log(`  Initial Deductible Amount: ${isDeduct ? deductibleAmount : 0}`)
     console.log(' ')
+
+    const shouldApplyDeduct = isDeduct
 
     // 1. IPD Items (Subject to 10,000 Deductible)
     if (claimType === 'ipdDischarge') {
@@ -2377,8 +2571,11 @@ export class ClaimManagementEditPage extends BasePage {
             icuRoomRemaining,
             icuRoomDayRemaining,
             icuRoomLimit,
-            'ipd',
-            sharedRoomDayPool
+            shouldApplyDeduct,
+            sharedRoomDayPool, // sharedDayPool for calculating allowed days
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
           )
         if (billingItemsIpd[1])
           calculateBillingItemPerDay(
@@ -2386,89 +2583,190 @@ export class ClaimManagementEditPage extends BasePage {
             normalRoomRemaining,
             normalRoomDayRemaining,
             normalRoomLimit,
-            'ipd',
-            sharedRoomDayPool
+            shouldApplyDeduct,
+            sharedRoomDayPool, // sharedDayPool for calculating allowed days
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
           )
         if (billingItemsIpd[2])
           calculateBillingItemPerDis(
             billingItemsIpd[2],
             doctorPractitionerFeeRemaining,
             doctorPractitionerFeeLimit,
-            'ipd'
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
           )
         if (billingItemsIpd[3])
           calculateBillingItemPerDis(
             billingItemsIpd[3],
             anesthetistPractitionerFeeRemaining,
             anesthetistPractitionerFeeLimit,
-            'ipd'
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
           )
         if (billingItemsIpd[4])
-          calculateBillingItemPerDis(billingItemsIpd[4], operatingRoomRemaining, operatingRoomLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[4], 
+            operatingRoomRemaining, 
+            operatingRoomLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
+          )
         if (billingItemsIpd[5])
           calculateBillingItemPerDis(
             billingItemsIpd[5],
             organTransplantationRemaining,
             organTransplantationLimit,
-            'ipd'
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
           )
         if (billingItemsIpd[6])
-          calculateBillingItemPerDis(billingItemsIpd[6], daySurgeryRemaining, daySurgeryLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[6],
+            daySurgeryRemaining,
+            daySurgeryLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
+          )
         if (billingItemsIpd[7])
           calculateBillingItemPerDis(
             billingItemsIpd[7],
             bloodAndBloodComponentsRemaining,
             bloodAndBloodComponentsLimit,
-            'ipd'
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
           )
         if (billingItemsIpd[8])
           calculateBillingItemPerDis(
             billingItemsIpd[8],
             medicalSuppliesAndProcedureRemaining,
             medicalSuppliesAndProcedureLimit,
-            'ipd'
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
           )
         if (billingItemsIpd[9])
-          calculateBillingItemPerDis(billingItemsIpd[9], medicalSuppliesRemaining, medicalSuppliesLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[9],
+            medicalSuppliesRemaining,
+            medicalSuppliesLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
+          )
         if (billingItemsIpd[10])
-          calculateBillingItemPerDis(billingItemsIpd[10], medicalExaminationRemaining, medicalExaminationLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[10],
+            medicalExaminationRemaining,
+            medicalExaminationLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
+          )
         if (billingItemsIpd[11])
-          calculateBillingItemPerDis(billingItemsIpd[11], doctorsFeeRemaining, doctorsFeeLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[11],
+            doctorsFeeRemaining,
+            doctorsFeeLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
+          )
         if (billingItemsIpd[12])
-          calculateBillingItemPerDis(billingItemsIpd[12], cancerByChemoRemaining, cancerByChemoLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[12],
+            cancerByChemoRemaining,
+            cancerByChemoLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            false // useIpdGlobal
+          )
         if (billingItemsIpd[13])
           calculateBillingItemPerDis(
             billingItemsIpd[13],
             cancerByRadioNuclearRemaining,
             cancerByRadioNuclearLimit,
-            'ipd'
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            false // useIpdGlobal
           )
         if (billingItemsIpd[14])
-          calculateBillingItemPerDis(billingItemsIpd[14], chronicKidneyRemaining, chronicKidneyLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[14],
+            chronicKidneyRemaining,
+            chronicKidneyLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            false // useIpdGlobal
+          )
         // if (billingItemsIpd[])
         //   calculateBillingItemPerDis(
         //     billingItemsIpd[],
         //     minorOperationRemaining,
-        //     minorOperationLimit, 'ipd')
-        //     'ipd'
+        //     minorOperationLimit,
+        //     shouldApplyDeduct,
+        //     null, // combinedSubPool
+        //     null, // combinedPool
+        //     false // useIpdGlobal
         //   )
         if (billingItemsIpd[15])
-          calculateBillingItemPerDis(billingItemsIpd[15], suppliesTakeawayRemaining, suppliesTakeawayLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[15],
+            suppliesTakeawayRemaining,
+            suppliesTakeawayLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            true // useIpdGlobal
+          )
         // if (billingItemsIpd[])
         //   calculateBillingItemPerDis(
         //     billingItemsIpd[],
         //     vaccinationRemaining,
         //     vaccinationLimit,
-        //     'ipd'
+        //     shouldApplyDeduct,
+        //     null, // combinedSubPool
+        //     null, // combinedPool
+        //     false // useIpdGlobal
         //   )
         if (billingItemsIpd[16])
-          calculateBillingItemPerDis(billingItemsIpd[16], ambulanceRemaining, ambulanceLimit, 'ipd')
+          calculateBillingItemPerDis(
+            billingItemsIpd[16],
+            ambulanceRemaining,
+            ambulanceLimit,
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            false // useIpdGlobal
+          )
 
         console.log(' ')
         console.log(`  [Deduct IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
-        console.log(`  [Deduct IPD] IPD Global Remaining: ${currentIpdGlobalRemaining.toFixed(2)}`)
-        console.log(`  [Deduct IPD] Deductible Remaining: ${deductState.ipd}`)
-        console.log(`  [Deduct IPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+        console.log(
+          `  [Deduct IPD] IPD Global Remaining: ${isIpdGlobal ? currentIpdGlobalRemaining.toFixed(2) : 'N/A'}`
+        )
+        console.log(`  [Deduct IPD] Deductible Remaining: ${remainingDeductible.toFixed(2)}`)
+        console.log(`  [Deduct IPD] Room day Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
 
         if (billingTotalIpd && billingItemsIpd.length > 0) {
           this.calculateBillingTotal(billingItemsIpd, billingTotalIpd)
@@ -2486,35 +2784,49 @@ export class ClaimManagementEditPage extends BasePage {
             opdVisitDayRemaining,
             opdVisitYearRemaining,
             opdLimit,
-            'opd'
+            shouldApplyDeduct,
+            null, // combinedSubPool
+            null, // combinedPool
+            false // useIpdGlobal
           )
         // if (billingItemsOpd[])
         //   calculateBillingItemPerDis(
         //     billingItemsOpd[],
         //     postHospitalRemaining,
         //     postHospitalLimit,
-        //     'opd'
+        //     shouldApplyDeduct,
+        //     null, // combinedSubPool
+        //     null, // combinedPool
+        //     false // useIpdGlobal
         //   )
         // if (billingItemsOpd[])
         //   calculateBillingItemPerDis(
         //     billingItemsOpd[],
         //     preAndPostHospitalRemaining,
         //     preAndPostHospitalLimit,
-        //     'opd'
+        //     shouldApplyDeduct,
+        //     null, // combinedSubPool
+        //     null, // combinedPool
+        //     false // useIpdGlobal
         //   )
         // if (billingItemsOpd[])
         //   calculateBillingItemPerDis(
         //     billingItemsOpd[],
         //     rehabRemaining,
         //     rehabLimit,
-        //     'opd'
+        //     shouldApplyDeduct,
+        //     null, // combinedSubPool
+        //     null, // combinedPool
+        //     false // useIpdGlobal
         //   )
 
         console.log(' ')
-        console.log(`  [Deduct IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
-        console.log(`  [Deduct IPD] IPD Global Remaining: ${currentIpdGlobalRemaining.toFixed(2)}`)
-        console.log(`  [Deduct OPD] Deductible Remaining: ${deductState.opd}`)
-        console.log(`  [Deduct OPD] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+        console.log(`  [Deduct OPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+        console.log(
+          `  [Deduct OPD] IPD Global Remaining: ${isIpdGlobal ? currentIpdGlobalRemaining.toFixed(2) : 'N/A'} (Not used for OPD)`
+        )
+        console.log(`  [Deduct OPD] Deductible Remaining: ${remainingDeductible.toFixed(2)}`)
+        console.log(`  [Deduct OPD] Room day Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
 
         if (billingTotalOpd && billingItemsOpd.length > 0) {
           this.calculateBillingTotal(billingItemsOpd, billingTotalOpd)
@@ -2531,14 +2843,19 @@ export class ClaimManagementEditPage extends BasePage {
             er24HoursRemaining,
             er24HoursDayRemaining,
             er24HoursLimit,
-            'er'
+            false, // applyDeduct
+            null, // combinedSubPool
+            null, // combinedPool
+            false // useIpdGlobal
           )
 
         console.log(' ')
-        console.log(`  [Deduct IPD] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
-        console.log(`  [Deduct IPD] IPD Global Remaining: ${currentIpdGlobalRemaining.toFixed(2)}`)
-        console.log(`  [Deduct ER] Deductible Remaining: ${deductState.er} (Should stay 0)`)
-        console.log(`  [Deduct ER] Room day combined sub Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
+        console.log(`  [Deduct ER] Global Remaining: ${currentGlobalRemaining.toFixed(2)}`)
+        console.log(
+          `  [Deduct ER] IPD Global Remaining: ${isIpdGlobal ? currentIpdGlobalRemaining.toFixed(2) : 'N/A'} (Not used for ER)`
+        )
+        console.log(`  [Deduct ER] Deductible Remaining: ${remainingDeductible.toFixed(2)}`)
+        console.log(`  [Deduct ER] Room day Pool Remaining: ${sharedRoomDayPool.remaining.toFixed(2)}`)
       }
 
       if (billingTotalEr && billingItemsEr.length > 0) {

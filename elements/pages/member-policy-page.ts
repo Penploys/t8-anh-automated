@@ -32,6 +32,7 @@ export class MemberPolicyPage extends BasePage {
   // Grid
   readonly nameGridLocator: Locator = this.page.getByRole('grid').first()
   readonly policyGridLocator: Locator = this.page.getByRole('grid').last()
+  readonly policyGridVirtualScroller: Locator = this.page.locator('.MuiDataGrid-virtualScroller').last()
 
   async ensureLanguage() {
     if (!(await this.languageOptionLocator.isVisible())) {
@@ -49,7 +50,7 @@ export class MemberPolicyPage extends BasePage {
     }
   }
 
-  async getLossDate(): Promise<string> {
+  async getLossDate(): Promise<string | undefined> {
     await this.lossDateLocator.waitFor({ state: 'visible' })
     const value = await this.lossDateLocator.inputValue()
 
@@ -59,12 +60,12 @@ export class MemberPolicyPage extends BasePage {
   }
 
   async memberSearch(memberData: {
-    insurerName?: string
-    lossDate?: string
-    nameTh?: string
-    surnameTh?: string
-    policyNumber?: string
-    citizenId?: string
+    insurerName?: string | undefined
+    lossDate?: string | undefined
+    nameTh?: string | undefined
+    surnameTh?: string | undefined
+    policyNumber?: string | undefined
+    citizenId?: string | undefined
   }) {
     await this.searchMenuLocator.waitFor({ state: 'visible' })
     await this.searchMenuLocator.click()
@@ -79,20 +80,28 @@ export class MemberPolicyPage extends BasePage {
     }
 
     // Fill criteria
-    await this.nameThLocator.fill(memberData.nameTh)
-    await this.surnameThLocator.fill(memberData.surnameTh)
-    await this.policyNumberLocator.fill(memberData.policyNumber)
-    await this.citizenIdLocator.fill(memberData.citizenId)
+    if (memberData.nameTh) {
+      await this.nameThLocator.fill(memberData.nameTh)
+    }
+    if (memberData.surnameTh) {
+      await this.surnameThLocator.fill(memberData.surnameTh)
+    }
+    if (memberData.policyNumber) {
+      await this.policyNumberLocator.fill(memberData.policyNumber)
+    }
+    if (memberData.citizenId) {
+      await this.citizenIdLocator.fill(memberData.citizenId)
+    }
 
     await this.searchBtnLocator.waitFor({ state: 'visible' })
     await this.searchBtnLocator.click()
   }
 
   async MemberSearchByName(memberData: {
-    insurerName?: string
-    lossDate?: string
-    nameTh?: string
-    surnameTh?: string
+    insurerName?: string | undefined
+    lossDate?: string | undefined
+    nameTh?: string | undefined
+    surnameTh?: string | undefined
   }) {
     await this.searchMenuLocator.waitFor({ state: 'visible' })
     await this.searchMenuLocator.click()
@@ -115,14 +124,22 @@ export class MemberPolicyPage extends BasePage {
     await this.creditCardLocator.clear()
 
     // Fill only name criteria
-    await this.nameThLocator.fill(memberData.nameTh)
-    await this.surnameThLocator.fill(memberData.surnameTh)
+    if (memberData.nameTh) {
+      await this.nameThLocator.fill(memberData.nameTh)
+    }
+    if (memberData.surnameTh) {
+      await this.surnameThLocator.fill(memberData.surnameTh)
+    }
 
     await this.searchBtnLocator.waitFor({ state: 'visible' })
     await this.searchBtnLocator.click()
   }
 
-  async MemberSearchByCitizenId(memberData: { insurerName?: string; lossDate?: string; citizenId?: string }) {
+  async MemberSearchByCitizenId(
+    memberData: { insurerName?: string | undefined; 
+      lossDate?: string | undefined; 
+      citizenId?: string | undefined 
+    }) {
     await this.searchMenuLocator.waitFor({ state: 'visible' })
     await this.searchMenuLocator.click()
 
@@ -145,7 +162,9 @@ export class MemberPolicyPage extends BasePage {
     await this.creditCardLocator.clear()
 
     // Fill only citizen ID
-    await this.citizenIdLocator.fill(memberData.citizenId)
+    if (memberData.citizenId) {
+      await this.citizenIdLocator.fill(memberData.citizenId)
+    }
 
     await this.searchBtnLocator.waitFor({ state: 'visible' })
     await this.searchBtnLocator.click()
@@ -162,6 +181,8 @@ export class MemberPolicyPage extends BasePage {
 
     for (const row of allRows) {
       const rowText = await row.textContent()
+
+      if (rowText === null) continue
 
       // Check that both name and surname are present
       if (!rowText.includes(memberData.nameTh) || !rowText.includes(memberData.surnameTh)) {
@@ -196,6 +217,8 @@ export class MemberPolicyPage extends BasePage {
     for (const row of allRows) {
       const rowText = await row.textContent()
 
+      if (rowText === null) continue
+
       if (!rowText.includes(memberData.citizenId)) {
         throw new Error(
           `Search result contains incorrect citizen ID. Expected: ${memberData.citizenId}, Found: ${rowText}`
@@ -217,96 +240,107 @@ export class MemberPolicyPage extends BasePage {
     plan?: string
     policyStatus?: string
   }) {
-    // Wait for grids to be visible
     await this.policyGridLocator.waitFor({ state: 'visible' })
-    await this.nameGridLocator.waitFor({ state: 'visible' })
 
-    // Filter name grid first if name is provided
-    let matchedNameRowIndex = -1
+    // --- Pre-filter: collect valid row indices from name grid if name is provided ---
+    let nameMatchedIndices: Set<number> | null = null
 
     if (memberData.nameTh && memberData.surnameTh) {
-      // Use double filter instead of regex to handle "TPA" suffix
-      const nameRow = this.nameGridLocator
-        .getByRole('row')
-        .filter({ hasText: memberData.nameTh })
-        .filter({ hasText: memberData.surnameTh })
+      await this.nameGridLocator.waitFor({ state: 'visible' })
+      nameMatchedIndices = new Set()
+      const nameRows = await this.nameGridLocator.locator('[role="row"][data-rowindex]').all()
 
-      const nameRowCount = await nameRow.count()
-      if (nameRowCount === 0) {
-        throw new Error(`No member found with name: ${memberData.nameTh} ${memberData.surnameTh}`)
-      }
-
-      // Get the row index (data-rowindex attribute)
-      const rowIndexAttr = await nameRow.first().getAttribute('data-rowindex')
-      matchedNameRowIndex = rowIndexAttr ? parseInt(rowIndexAttr) : -1
-    }
-
-    // Filter policy grid
-    let filteredRow = this.policyGridLocator.getByRole('row')
-
-    if (memberData.policyNumber) {
-      filteredRow = filteredRow.filter({ hasText: memberData.policyNumber })
-    }
-
-    if (memberData.subClass) {
-      filteredRow = filteredRow.filter({ hasText: memberData.subClass })
-    }
-
-    if (memberData.citizenId) {
-      filteredRow = filteredRow.filter({ hasText: memberData.citizenId })
-    }
-
-    if (memberData.memberEffectiveDate && memberData.memberExpiryDate) {
-      const startDate = memberData.memberEffectiveDate.split(' ')[0]
-      const endDate = memberData.memberExpiryDate.split(' ')[0]
-      const expectedDateRange = `${startDate} - ${endDate}`
-      filteredRow = filteredRow.filter({ hasText: expectedDateRange })
-    }
-
-    if (memberData.plan) {
-      filteredRow = filteredRow.filter({ hasText: memberData.plan })
-    }
-
-    if (memberData.policyStatus) {
-      filteredRow = filteredRow.filter({ hasText: memberData.policyStatus })
-    }
-
-    if (memberData.policyHolder) {
-      filteredRow = filteredRow.filter({ hasText: memberData.policyHolder })
-    }
-
-    if (memberData.cardNo) {
-      filteredRow = filteredRow.filter({ hasText: memberData.cardNo })
-    }
-
-    // If name was checked, verify the policy row has the same index
-    if (matchedNameRowIndex !== -1) {
-      // Get all matching rows and filter manually
-      const allMatchingRows = await filteredRow.all()
-
-      for (const row of allMatchingRows) {
-        const rowIndex = await row.getAttribute('data-rowindex')
-        if (rowIndex === String(matchedNameRowIndex)) {
-          filteredRow = this.page.locator(`[role="row"][data-rowindex="${matchedNameRowIndex}"]`).last()
-          break
+      for (const nameRow of nameRows) {
+        const cell = nameRow.locator('[data-field="firstNameTh"]')
+        const text = await cell.textContent()
+        if (text?.includes(memberData.nameTh) && text?.includes(memberData.surnameTh)) {
+          const idx = await nameRow.getAttribute('data-rowindex')
+          if (idx !== null) nameMatchedIndices.add(parseInt(idx))
         }
       }
+
+      if (nameMatchedIndices.size === 0) {
+        throw new Error(`No member found with name: ${memberData.nameTh} ${memberData.surnameTh}`)
+      }
     }
 
-    // Validate that exactly one row matches
-    const matchCount = await filteredRow.count()
+    // --- Pass 1: scroll left, filter by left-side visible columns ---
+    await this.policyGridVirtualScroller.evaluate(el => { el.scrollLeft = 0 })
+    await this.page.waitForTimeout(500)
 
-    if (matchCount === 0) {
-      throw new Error(`No policy found matching the criteria`)
+    const candidateIndices: number[] = []
+    const allRows = await this.policyGridLocator.locator('[role="row"][data-rowindex]').all()
+
+    for (const row of allRows) {
+      const idx = await row.getAttribute('data-rowindex')
+      if (idx === null) continue
+      const rowIndex = parseInt(idx)
+
+      // Skip if not in name-matched indices
+      if (nameMatchedIndices !== null && !nameMatchedIndices.has(rowIndex)) continue
+
+      let match = true
+
+      if (memberData.policyNumber) {
+        const cell = row.locator('[data-field="policyNumber"]')
+        if (!(await cell.textContent())?.includes(memberData.policyNumber)) match = false
+      }
+      if (memberData.subClass) {
+        const cell = row.locator('[data-field="policySubClass"]')
+        if (!(await cell.textContent())?.includes(memberData.subClass)) match = false
+      }
+      if (memberData.policyHolder) {
+        const cell = row.locator('[data-field="policyHolderNameEn"]')
+        if (!(await cell.textContent())?.includes(memberData.policyHolder)) match = false
+      }
+      if (memberData.citizenId) {
+        const cell = row.locator('[data-field="citizenId"]')
+        if (!(await cell.textContent())?.includes(memberData.citizenId)) match = false
+      }
+      if (memberData.cardNo) {
+        const cell = row.locator('[data-field="cardNo"]')
+        if (!(await cell.textContent())?.includes(memberData.cardNo)) match = false
+      }
+      if (memberData.memberEffectiveDate && memberData.memberExpiryDate) {
+        const startDate = memberData.memberEffectiveDate.split(' ')[0]
+        const endDate = memberData.memberExpiryDate.split(' ')[0]
+        const cell = row.locator('[data-field="effectiveAt"]')
+        if (!(await cell.textContent())?.includes(`${startDate} - ${endDate}`)) match = false
+      }
+
+      if (match) candidateIndices.push(rowIndex)
     }
 
-    if (matchCount > 1) {
-      console.warn(`Warning: Found ${matchCount} policies matching the criteria. Selecting the first one.`)
+    // --- Pass 2: scroll right, check right-side columns for each candidate ---
+    await this.policyGridVirtualScroller.evaluate(el => { el.scrollLeft = el.scrollWidth })
+    await this.page.waitForTimeout(500)
+
+    let targetRowIndex = -1
+    for (const idx of candidateIndices) {
+      const row = this.policyGridLocator.locator(`[role="row"][data-rowindex="${idx}"]`)
+      let match = true
+
+      if (memberData.plan) {
+        const cell = row.locator('[data-field="planName"]')
+        if (!(await cell.textContent())?.includes(memberData.plan)) match = false
+      }
+      if (memberData.policyStatus) {
+        const cell = row.locator('[data-field="status"]')
+        if (!(await cell.textContent())?.includes(memberData.policyStatus)) match = false
+      }
+
+      if (match) { targetRowIndex = idx; break }
     }
 
-    // Click the matched row
-    await filteredRow.first().click()
+    if (targetRowIndex === -1) {
+      throw new Error(`No policy found matching the criteria: ${JSON.stringify(memberData)}`)
+    }
 
+    // Scroll back to left so the row's click target is visible
+    await this.policyGridVirtualScroller.evaluate(el => { el.scrollLeft = 0 })
+    await this.page.waitForTimeout(500)
+
+    await this.policyGridLocator.locator(`[role="row"][data-rowindex="${targetRowIndex}"]`).click()
     await expect(this.page).toHaveURL(/\/member-policy\/detail/i)
   }
 

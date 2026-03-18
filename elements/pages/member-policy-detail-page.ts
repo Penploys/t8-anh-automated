@@ -364,7 +364,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async extractCoverageTable(sectionName: string) {
-    const clean = async cell => (await cell.innerText()).replace(/\s+/g, ' ').trim()
+    const clean = async (cell: Locator) => (await cell.innerText()).replace(/\s+/g, ' ').trim()
 
     const table = this.page.locator(
       `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
@@ -382,9 +382,9 @@ export class MemberPolicyDetailPage extends BasePage {
     for (let i = 0; i < (await rows.count()); i++) {
       const row = rows.nth(i)
 
-      const valueCells = row.locator("td[class*='css-136xsf8']")
-      const subBenefitCells = row.locator("td[class*='css-1x2df3e']")
-      const mainGroupCells = row.locator("td[class*='css-4jen04']")
+      const valueCells = row.locator("td[class*='css-562xhp']")
+      const subBenefitCells = row.locator("td[class*='css-1q43pf6']")
+      const mainGroupCells = row.locator("td[class*='css-i88b5x']")
 
       const valueCount = await valueCells.count()
 
@@ -433,6 +433,8 @@ export class MemberPolicyDetailPage extends BasePage {
       if (combined) previousCombined = combined
       else combined = previousCombined
 
+      console.log({ mainGroup, subBenefit, limit, combinedSub, combined })
+
       results.push({
         mainGroup,
         subBenefit,
@@ -446,7 +448,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async extractHospitalCoverageTable(sectionName: string) {
-    const clean = async cell => (await cell.innerText()).replace(/\s+/g, ' ').trim()
+    const clean = async (cell: Locator) => (await cell.innerText()).replace(/\s+/g, ' ').trim()
 
     const table = this.page.locator(
       `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
@@ -462,9 +464,9 @@ export class MemberPolicyDetailPage extends BasePage {
     for (let i = 0; i < (await rows.count()); i++) {
       const row = rows.nth(i)
 
-      const valueCells = row.locator("td[class*='css-136xsf8']")
-      const subBenefitCells = row.locator("td[class*='css-1x2df3e']")
-      const mainGroupCells = row.locator("td[class*='css-4jen04']")
+      const valueCells = row.locator("td[class*='css-562xhp']")
+      const subBenefitCells = row.locator("td[class*='css-1q43pf6']")
+      const mainGroupCells = row.locator("td[class*='css-i88b5x']")
 
       const valueCount = await valueCells.count()
 
@@ -506,6 +508,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async getCoverageDetails(productName: string) {
+    await this.page.waitForTimeout(10000)
     await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
 
     const resultsOTH = await this.extractCoverageTable('OTH')
@@ -538,6 +541,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async getHospitalCoverageDetails(productName: string) {
+    await this.page.waitForTimeout(10000)
     await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
 
     const resultsOTH = await this.extractHospitalCoverageTable('OTH')
@@ -570,6 +574,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async validateCoverageDetail(policyData: any, productName: string) {
+    await this.page.waitForTimeout(10000)
     const filePath = path.resolve(process.cwd(), 'test-data', 'actual-data', `coverage_${productName}.json`)
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
@@ -585,6 +590,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async validateHospitalCoverageDetail(policyData: any, productName: string) {
+    await this.page.waitForTimeout(10000)
     const filePath = path.resolve(process.cwd(), 'test-data', 'actual-data', `coverage_${productName}.json`)
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 

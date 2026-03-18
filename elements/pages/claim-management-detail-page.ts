@@ -290,7 +290,7 @@ export class ClaimManagementDetailPage extends BasePage {
     if (draftData.appointmentDate && draftData.appointmentDate.trim() !== '') {
       // Pre-arrangement uses Appointment Date
       // BUG Note: If UI still shows 23:59 vs 00:00, keep this commented out or adjust expectation
-      // await expect(this.appointmentDateValue).toHaveText(draftData.appointmentDate)
+      await expect(this.appointmentDateValue).toHaveText(draftData.appointmentDate)
     }
 
     if (draftData.admissionDate && draftData.admissionDate.trim() !== '') {
@@ -575,6 +575,11 @@ export class ClaimManagementDetailPage extends BasePage {
     if (billingData.billingDate) {
       await expect(this.getBillingFieldValue('Billing/receipt date')).toHaveText(billingData.billingDate)
     }
+
+    // BUG: UI display wrong bill submitter type (Hospital instead of Provider)
+    // if (billingData.billSubmitterType) {
+    //   await expect(this.getBillingFieldValue('Bill submitter type')).toHaveText(billingData.billSubmitterType)
+    // }
   }
 
   // Validate input field in grid row
@@ -1015,6 +1020,8 @@ export class ClaimManagementDetailPage extends BasePage {
     if (text) {
       // Extract draft number after ": "
       const draftNumber = text.split(':')[1]?.trim()
+      console.log('Extracted draft number:', draftNumber)
+
       return draftNumber || text.trim()
     }
 
@@ -1030,6 +1037,8 @@ export class ClaimManagementDetailPage extends BasePage {
     if (text) {
       // Extract claim number after ": "
       const claimNumber = text.split(':')[1]?.trim()
+      console.log('Extracted claim number:', claimNumber)
+
       return claimNumber || text.trim()
     }
 
@@ -1044,6 +1053,8 @@ export class ClaimManagementDetailPage extends BasePage {
   }
 
   async clickEditClaim() {
+    await this.page.waitForTimeout(5000)
+
     await this.editBtnLocator.click()
 
     await expect(this.page).toHaveURL(/\/claim-management\/create\?mode\=edit/i)

@@ -4,7 +4,7 @@ import { DateHelper } from '@utils/date-helper'
 import * as fs from 'fs'
 import * as path from 'path'
 
-test.describe.configure({ mode: 'serial' })
+test.describe.configure({ mode: 'default' })
 
 test.describe.skip('Calculate test', () => {
   test('test randomBilling', async ({ claimManagementEditPage }) => {
@@ -129,7 +129,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
   })
 
   test.beforeEach(async ({ page }) => {
-    await page.setViewportSize({ width: 1920, height: 930 })
+    await page.setViewportSize({ width: 1920, height: 1080 })
   })
 
   test.afterAll(async () => {
@@ -143,7 +143,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -222,7 +222,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS002_PreArrangement_IPD_Copay_TC001 Provider can search and select policy', async ({
+  test('E2E_TS002_PreArrangement_IPD_Copay_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -254,7 +254,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS002_PreArrangement_IPD_Copay_TC002 Provider can draft claim', async ({
+  test('E2E_TS002_PreArrangement_IPD_Copay_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -262,7 +262,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -330,7 +330,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS002_PreArrangement_IPD_Copay_TC003 Provider can submit claim', async ({
+  test('E2E_TS002_PreArrangement_IPD_Copay_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -430,7 +430,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS002_PreArrangement_IPD_Copay_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS002_PreArrangement_IPD_Copay_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -482,14 +482,14 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS002_PreArrangement_IPD_Copay_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS002_PreArrangement_IPD_Copay_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -545,7 +545,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS002_PreArrangement_IPD_Copay_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS002_PreArrangement_IPD_Copay_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -553,7 +553,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -613,7 +613,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS002_PreArrangement_IPD_Copay_TC007 Claim staff can authorize claim', async ({
+  test('E2E_TS002_PreArrangement_IPD_Copay_@TC007 Claim staff can authorize claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -692,7 +692,7 @@ test.describe.skip('E2E_TS002_PreArrangement_IPD_Copay', () => {
   })
 })
 
-test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
+test.describe('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -770,7 +770,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -814,7 +814,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC001 Provider can search and select policy', async ({
+  test('E2E_TS101_IPDDischarge_IPD_Schedule_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -846,7 +846,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC002 Provider can draft claim', async ({
+  test('E2E_TS101_IPDDischarge_IPD_Schedule_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -854,7 +854,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -914,7 +914,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC003 Provider can submit claim', async ({
+  test('E2E_TS101_IPDDischarge_IPD_Schedule_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -999,7 +999,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS101_IPDDischarge_IPD_Schedule_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1057,7 +1057,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC009 Claim staff can edit schedule claim', async ({
+  test('E2E_TS101_IPDDischarge_IPD_Schedule_@TC009 Claim staff can edit schedule claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1065,7 +1065,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(320000)
+    test.setTimeout(240000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -1131,14 +1131,14 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS101_IPDDischarge_IPD_Schedule_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -1196,7 +1196,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS101_IPDDischarge_IPD_Schedule_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1204,7 +1204,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -1257,7 +1257,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS101_IPDDischarge_IPD_Schedule_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS101_IPDDischarge_IPD_Schedule_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1330,7 +1330,7 @@ test.describe.skip('E2E_TS101_IPDDischarge_IPD_Schedule', () => {
   })
 })
 
-test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
+test.describe('E2E_TS102_IPDDischarge_IPD_Copay', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -1408,7 +1408,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -1454,7 +1454,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS102_IPDDischarge_IPD_Copay_TC001 Provider can search and select policy', async ({
+  test('E2E_TS102_IPDDischarge_IPD_Copay_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -1486,7 +1486,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS102_IPDDischarge_IPD_Copay_TC002 Provider can draft claim', async ({
+  test('E2E_TS102_IPDDischarge_IPD_Copay_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1494,7 +1494,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -1554,7 +1554,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS102_IPDDischarge_IPD_Copay_TC003 Provider can submit claim', async ({
+  test('E2E_TS102_IPDDischarge_IPD_Copay_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1643,7 +1643,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS102_IPDDischarge_IPD_Copay_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS102_IPDDischarge_IPD_Copay_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1696,14 +1696,14 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS102_IPDDischarge_IPD_Copay_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS102_IPDDischarge_IPD_Copay_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -1761,7 +1761,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS102_IPDDischarge_IPD_Copay_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS102_IPDDischarge_IPD_Copay_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1769,7 +1769,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -1822,7 +1822,7 @@ test.describe.only('E2E_TS102_IPDDischarge_IPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS102_IPDDischarge_IPD_Copay_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS102_IPDDischarge_IPD_Copay_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -1971,7 +1971,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -2017,7 +2017,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     })
   })
 
-  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC001 Provider can search and select policy', async ({
+  test('E2E_TS103_IPDDischarge_IPD_Deduct_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -2049,7 +2049,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     })
   })
 
-  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC002 Provider can draft claim', async ({
+  test('E2E_TS103_IPDDischarge_IPD_Deduct_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2057,7 +2057,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -2117,7 +2117,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     })
   })
 
-  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC003 Provider can submit claim', async ({
+  test('E2E_TS103_IPDDischarge_IPD_Deduct_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2209,7 +2209,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     })
   })
 
-  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS103_IPDDischarge_IPD_Deduct_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2262,14 +2262,14 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     })
   })
 
-  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS103_IPDDischarge_IPD_Deduct_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -2327,7 +2327,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     })
   })
 
-  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS103_IPDDischarge_IPD_Deduct_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2335,7 +2335,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -2388,7 +2388,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
     })
   })
 
-  test('@E2E_TS103_IPDDischarge_IPD_Deduct_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS103_IPDDischarge_IPD_Deduct_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2459,7 +2459,7 @@ test.describe.skip('E2E_TS103_IPDDischarge_IPD_Deduct', () => {
   })
 })
 
-test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
+test.describe('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -2537,7 +2537,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -2581,7 +2581,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS104_IPDDischarge_IPD_MajorMed_TC001 Provider can search and select policy', async ({
+  test('E2E_TS104_IPDDischarge_IPD_MajorMed_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -2613,7 +2613,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS104_IPDDischarge_IPD_MajorMed_TC002 Provider can draft claim', async ({
+  test('E2E_TS104_IPDDischarge_IPD_MajorMed_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2621,7 +2621,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -2681,7 +2681,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS104_IPDDischarge_IPD_MajorMed_TC003 Provider can submit claim', async ({
+  test('E2E_TS104_IPDDischarge_IPD_MajorMed_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2766,7 +2766,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS104_IPDDischarge_IPD_MajorMed_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS104_IPDDischarge_IPD_MajorMed_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2819,14 +2819,14 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS104_IPDDischarge_IPD_MajorMed_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS104_IPDDischarge_IPD_MajorMed_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -2884,7 +2884,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS104_IPDDischarge_IPD_MajorMed_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS104_IPDDischarge_IPD_MajorMed_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -2892,7 +2892,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -2945,7 +2945,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS104_IPDDischarge_IPD_MajorMed_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS104_IPDDischarge_IPD_MajorMed_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -3016,7 +3016,7 @@ test.describe.skip('E2E_TS104_IPDDischarge_IPD_MajorMed', () => {
   })
 })
 
-test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
+test.describe('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -3094,7 +3094,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -3138,7 +3138,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC001 Provider can search and select policy', async ({
+  test('E2E_TS106_IPDDischarge_OPD_Schedule_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -3170,7 +3170,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC002 Provider can draft claim', async ({
+  test('E2E_TS106_IPDDischarge_OPD_Schedule_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -3178,7 +3178,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -3254,7 +3254,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC003 Provider can submit claim', async ({
+  test('E2E_TS106_IPDDischarge_OPD_Schedule_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -3360,7 +3360,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS106_IPDDischarge_OPD_Schedule_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -3413,7 +3413,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC009 Claim staff can edit schedule claim', async ({
+  test('E2E_TS106_IPDDischarge_OPD_Schedule_@TC009 Claim staff can edit schedule claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -3421,7 +3421,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(320000)
+    test.setTimeout(240000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -3487,14 +3487,14 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS106_IPDDischarge_OPD_Schedule_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -3552,7 +3552,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS106_IPDDischarge_OPD_Schedule_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -3560,7 +3560,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -3621,7 +3621,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
     })
   })
 
-  test('@E2E_TS106_IPDDischarge_OPD_Schedule_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS106_IPDDischarge_OPD_Schedule_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -3692,7 +3692,7 @@ test.describe.skip('E2E_TS106_IPDDischarge_OPD_Schedule', () => {
   })
 })
 
-test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
+test.describe('E2E_TS107_IPDDischarge_OPD_Copay', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -3770,7 +3770,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -3816,7 +3816,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS107_OPDDischarge_OPD_Copay_TC001 Provider can search and select policy', async ({
+  test('E2E_TS107_OPDDischarge_OPD_Copay_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -3848,7 +3848,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS107_OPDDischarge_OPD_Copay_TC002 Provider can draft claim', async ({
+  test('E2E_TS107_OPDDischarge_OPD_Copay_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -3856,7 +3856,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -3932,7 +3932,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS107_OPDDischarge_OPD_Copay_TC003 Provider can submit claim', async ({
+  test('E2E_TS107_OPDDischarge_OPD_Copay_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4042,7 +4042,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS107_OPDDischarge_OPD_Copay_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS107_OPDDischarge_OPD_Copay_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4095,14 +4095,14 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS107_OPDDischarge_OPD_Copay_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS107_OPDDischarge_OPD_Copay_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -4160,7 +4160,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS107_OPDDischarge_OPD_Copay_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS107_OPDDischarge_OPD_Copay_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4168,7 +4168,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -4229,7 +4229,7 @@ test.describe.skip('E2E_TS107_IPDDischarge_OPD_Copay', () => {
     })
   })
 
-  test('@E2E_TS107_OPDDischarge_OPD_Copay_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS107_OPDDischarge_OPD_Copay_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4374,7 +4374,7 @@ test.describe.skip('E2E_TS108_IPDDischarge_OPD_Deduct', () => {
 })
 */
 
-test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
+test.describe('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -4452,7 +4452,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -4496,7 +4496,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS109_IPDDischarge_OPD_MajorMed_TC001 Provider can search and select policy', async ({
+  test('E2E_TS109_IPDDischarge_OPD_MajorMed_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -4528,7 +4528,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS109_IPDDischarge_OPD_MajorMed_TC002 Provider can draft claim', async ({
+  test('E2E_TS109_IPDDischarge_OPD_MajorMed_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4536,7 +4536,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -4612,7 +4612,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS109_IPDDischarge_OPD_MajorMed_TC003 Provider can submit claim', async ({
+  test('E2E_TS109_IPDDischarge_OPD_MajorMed_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4718,7 +4718,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS109_IPDDischarge_OPD_MajorMed_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS109_IPDDischarge_OPD_MajorMed_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4771,14 +4771,14 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS109_IPDDischarge_OPD_MajorMed_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS109_IPDDischarge_OPD_MajorMed_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -4836,7 +4836,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS109_IPDDischarge_OPD_MajorMed_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS109_IPDDischarge_OPD_MajorMed_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4844,7 +4844,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -4905,7 +4905,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS109_IPDDischarge_OPD_MajorMed_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS109_IPDDischarge_OPD_MajorMed_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -4976,7 +4976,7 @@ test.describe.skip('E2E_TS109_IPDDischarge_OPD_MajorMed', () => {
   })
 })
 
-test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
+test.describe('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -5054,7 +5054,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -5098,7 +5098,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS119_IPDDischarge_Maternity_MajorMed_TC001 Provider can search and select policy', async ({
+  test('E2E_TS119_IPDDischarge_Maternity_MajorMed_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -5130,7 +5130,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS119_IPDDischarge_Maternity_MajorMed_TC002 Provider can draft claim', async ({
+  test('E2E_TS119_IPDDischarge_Maternity_MajorMed_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5138,7 +5138,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -5199,7 +5199,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
   })
 
   // BUG:
-  test('@E2E_TS119_IPDDischarge_Maternity_MajorMed_TC003 Provider can submit claim', async ({
+  test('E2E_TS119_IPDDischarge_Maternity_MajorMed_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5284,7 +5284,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS119_IPDDischarge_Maternity_MajorMed_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS119_IPDDischarge_Maternity_MajorMed_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5337,14 +5337,14 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS119_IPDDischarge_Maternity_MajorMed_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS119_IPDDischarge_Maternity_MajorMed_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -5402,7 +5402,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS119_IPDDischarge_Maternity_MajorMed_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS119_IPDDischarge_Maternity_MajorMed_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5410,7 +5410,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -5463,7 +5463,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS119_IPDDischarge_Maternity_MajorMed_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS119_IPDDischarge_Maternity_MajorMed_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5534,7 +5534,7 @@ test.describe.skip('E2E_TS119_IPDDischarge_Maternity_MajorMed', () => {
   })
 })
 
-test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
+test.describe('E2E_TS122_IPDDischarge_ER24_Copay', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -5612,7 +5612,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -5658,7 +5658,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     })
   })
 
-  test('@E2E_TS122_IPDDischarge_ER24_Copay_TC001 Provider can search and select policy', async ({
+  test('E2E_TS122_IPDDischarge_ER24_Copay_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -5690,7 +5690,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     })
   })
 
-  test('@E2E_TS122_IPDDischarge_ER24_Copay_TC002 Provider can draft claim', async ({
+  test('E2E_TS122_IPDDischarge_ER24_Copay_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5698,7 +5698,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -5766,7 +5766,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     })
   })
 
-  test('@E2E_TS122_IPDDischarge_ER24_Copay_TC003 Provider can submit claim', async ({
+  test('E2E_TS122_IPDDischarge_ER24_Copay_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5868,7 +5868,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     })
   })
 
-  test('@E2E_TS122_IPDDischarge_ER24_Copay_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS122_IPDDischarge_ER24_Copay_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5921,14 +5921,14 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     })
   })
 
-  test('@E2E_TS122_IPDDischarge_ER24_Copay_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS122_IPDDischarge_ER24_Copay_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -5982,7 +5982,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     })
   })
 
-  test('@E2E_TS122_IPDDischarge_ER24_Copay_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS122_IPDDischarge_ER24_Copay_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -5990,7 +5990,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -6051,7 +6051,7 @@ test.describe.skip('E2E_TS122_IPDDischarge_ER24_Copay', () => {
     })
   })
 
-  test('@E2E_TS122_IPDDischarge_ER24_Copay_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS122_IPDDischarge_ER24_Copay_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -6196,7 +6196,7 @@ test.describe.skip('E2E_TS123_IPDDischarge_ER24_Deduct', () => {
 })
 */
 
-test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
+test.describe('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -6274,7 +6274,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -6318,7 +6318,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS124_IPDDischarge_ER24_MajorMed_TC001 Provider can search and select policy', async ({
+  test('E2E_TS124_IPDDischarge_ER24_MajorMed_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -6350,7 +6350,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS124_IPDDischarge_ER24_MajorMed_TC002 Provider can draft claim', async ({
+  test('E2E_TS124_IPDDischarge_ER24_MajorMed_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -6358,7 +6358,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -6434,7 +6434,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS124_IPDDischarge_ER24_MajorMed_TC003 Provider can submit claim', async ({
+  test('E2E_TS124_IPDDischarge_ER24_MajorMed_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -6540,7 +6540,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS124_IPDDischarge_ER24_MajorMed_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS124_IPDDischarge_ER24_MajorMed_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -6593,14 +6593,14 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS124_IPDDischarge_ER24_MajorMed_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS124_IPDDischarge_ER24_MajorMed_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -6658,7 +6658,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS124_IPDDischarge_ER24_MajorMed_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS124_IPDDischarge_ER24_MajorMed_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -6666,7 +6666,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -6727,7 +6727,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS124_IPDDischarge_ER24_MajorMed_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS124_IPDDischarge_ER24_MajorMed_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -6798,7 +6798,7 @@ test.describe.skip('E2E_TS124_IPDDischarge_ER24_MajorMed', () => {
   })
 })
 
-test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
+test.describe('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -6895,7 +6895,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -6954,7 +6954,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
-  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC001 Provider can search and select policy', async ({
+  test('E2E_TS126_IPDDischarge_ER72_Schedule_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -6986,7 +6986,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
-  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC002 Provider can draft claim', async ({
+  test('E2E_TS126_IPDDischarge_ER72_Schedule_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -6994,7 +6994,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -7070,7 +7070,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
-  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC003 Provider can submit claim', async ({
+  test('E2E_TS126_IPDDischarge_ER72_Schedule_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -7180,7 +7180,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
-  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS126_IPDDischarge_ER72_Schedule_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -7233,7 +7233,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
-  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC009 Claim staff can edit schedule claim', async ({
+  test('E2E_TS126_IPDDischarge_ER72_Schedule_@TC009 Claim staff can edit schedule claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -7241,7 +7241,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(320000)
+    test.setTimeout(240000)
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
       await loginPage.submitLogin(userData.faxClaimUser.email, userData.faxClaimUser.password)
@@ -7310,14 +7310,14 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
-  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS126_IPDDischarge_ER72_Schedule_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -7375,7 +7375,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
-  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS126_IPDDischarge_ER72_Schedule_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -7383,7 +7383,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -7444,7 +7444,7 @@ test.describe.skip('E2E_TS126_IPDDischarge_ER72_Schedule', () => {
     })
   })
 
-  test('@E2E_TS126_IPDDischarge_ER72_Schedule_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS126_IPDDischarge_ER72_Schedule_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -7737,7 +7737,7 @@ test.describe.skip('E2E_TS146_IPDDischarge_PAHoliday_PA', () => {
 })
 */
 
-test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
+test.describe('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
   let draftNumber: string
   let claimNumber: string
   let baseUrl: any
@@ -7815,7 +7815,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -7859,7 +7859,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     })
   })
 
-  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC001 Provider can search and select policy', async ({
+  test('E2E_TS147_IPDDischarge_PAGeneral_PA_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -7891,7 +7891,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     })
   })
 
-  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC002 Provider can draft claim', async ({
+  test('E2E_TS147_IPDDischarge_PAGeneral_PA_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -7899,7 +7899,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -7971,7 +7971,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     })
   })
 
-  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC003 Provider can submit claim', async ({
+  test('E2E_TS147_IPDDischarge_PAGeneral_PA_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -8069,7 +8069,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     })
   })
 
-  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC004 Claim staff can assign claim', async ({
+  test('E2E_TS147_IPDDischarge_PAGeneral_PA_@TC004 Claim staff can assign claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -8122,14 +8122,14 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     })
   })
 
-  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC005 Claim staff can request pending information', async ({
+  test('E2E_TS147_IPDDischarge_PAGeneral_PA_@TC005 Claim staff can request pending information', async ({
     page,
     loginPage,
     memberPolicyPage,
     slaClaimPage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(160000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -8183,7 +8183,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     })
   })
 
-  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC006 Provider can resubmit claim', async ({
+  test('E2E_TS147_IPDDischarge_PAGeneral_PA_@TC006 Provider can resubmit claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -8191,7 +8191,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     claimManagementDetailPage,
     claimManagementEditPage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(150000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -8252,7 +8252,7 @@ test.describe.skip('E2E_TS147_IPDDischarge_PAGeneral_PA', () => {
     })
   })
 
-  test('@E2E_TS147_IPDDischarge_PAGeneral_PA_TC008 Claim staff can approve claim', async ({
+  test('E2E_TS147_IPDDischarge_PAGeneral_PA_@TC008 Claim staff can approve claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -8387,7 +8387,7 @@ test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
     memberPolicyDetailPage,
     claimManagementCreatePage
   }) => {
-    test.setTimeout(120000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.surveyorLoginURL)
@@ -8431,7 +8431,7 @@ test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS167_OPD_Dental_MajorMed_TC001 Provider can search and select policy', async ({
+  test('E2E_TS167_OPD_Dental_MajorMed_@TC001 Provider can search and select policy', async ({
     page,
     loginPage,
     memberPolicyPage
@@ -8463,7 +8463,7 @@ test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS167_OPD_Dental_MajorMed_TC002 Provider can draft claim', async ({
+  test('E2E_TS167_OPD_Dental_MajorMed_@TC002 Provider can draft claim', async ({
     page,
     loginPage,
     memberPolicyPage,
@@ -8471,7 +8471,7 @@ test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
     claimManagementCreatePage,
     claimManagementDetailPage
   }) => {
-    test.setTimeout(90000)
+    test.setTimeout(45000)
 
     await test.step('Login', async () => {
       await page.goto(baseUrl.hospitalLoginURL)
@@ -8548,7 +8548,7 @@ test.describe.skip('E2E_TS167_OPD_Dental_MajorMed', () => {
     })
   })
 
-  test('@E2E_TS167_OPD_Dental_MajorMed_TC003 Provider can submit claim', async ({
+  test('E2E_TS167_OPD_Dental_MajorMed_@TC003 Provider can submit claim', async ({
     page,
     loginPage,
     memberPolicyPage,

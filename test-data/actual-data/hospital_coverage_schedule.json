@@ -1,88 +1,10 @@
 {
   "OTH": [],
   "DEDUCTIBLE": [],
-  "IPD": [
-    {
-      "mainGroup": "Room and Board",
-      "subBenefit": "ICU Room",
-      "limit": "5,000.00 THB per day"
-    },
-    {
-      "mainGroup": "Room and Board",
-      "subBenefit": "ICU Room",
-      "limit": "7 Day per disability"
-    },
-    {
-      "mainGroup": "Room and Board",
-      "subBenefit": "Normal Room",
-      "limit": "2,500.00 THB per day"
-    },
-    {
-      "mainGroup": "Room and Board",
-      "subBenefit": "Normal Room",
-      "limit": "31 Day per disability"
-    },
-    {
-      "mainGroup": "General Expense",
-      "subBenefit": "Hospital or Medical Expenses",
-      "limit": "52,000.00 THB per disability"
-    },
-    {
-      "mainGroup": "Medical practitioner's examination fee (doctor)",
-      "subBenefit": "Non-Surgical Consultation Fee",
-      "limit": "10,000.00 THB per disability"
-    },
-    {
-      "mainGroup": "Medical practitioner's examination fee (doctor)",
-      "subBenefit": "Surgical Consultation Fee",
-      "limit": "10,000.00 THB per disability"
-    },
-    {
-      "mainGroup": "Operation (surgery) and procedure fee",
-      "subBenefit": "medical practitioner fee for doctors performing surgery and procedure (including assistant) (doctor fee) based on the rate in the medical fee manual",
-      "limit": "62,000.00 THB per disability"
-    },
-    {
-      "mainGroup": "Medical practitioner's examination fee (doctor)",
-      "subBenefit": "Doctor's Visit Fee",
-      "limit": "800.00 THB per day"
-    },
-    {
-      "mainGroup": "Medical practitioner's examination fee (doctor)",
-      "subBenefit": "Doctor's Visit Fee",
-      "limit": "31 Day per disability"
-    },
-    {
-      "mainGroup": "Ambulance fee",
-      "subBenefit": "Ambulance fee",
-      "limit": "2,500.00 THB per disability"
-    }
-  ],
+  "IPD": [],
   "OPD_Follow_IPD": [],
-  "OPD": [
-    {
-      "mainGroup": "Outpatient medical expense",
-      "subBenefit": "-",
-      "limit": "25 Visit per year"
-    },
-    {
-      "mainGroup": "Outpatient medical expense",
-      "subBenefit": "-",
-      "limit": "1 Visit per day"
-    },
-    {
-      "mainGroup": "Outpatient medical expense",
-      "subBenefit": "-",
-      "limit": "1,000.00 THB per visit"
-    }
-  ],
-  "ER": [
-    {
-      "mainGroup": "Emergency Accident",
-      "subBenefit": "medical fee for treatment of injury in outpatient case within 72 hours after each accident",
-      "limit": "10,000.00 THB per disability"
-    }
-  ],
+  "OPD": [],
+  "ER": [],
   "PA": [],
   "HB": [],
   "HB_Incentive": []

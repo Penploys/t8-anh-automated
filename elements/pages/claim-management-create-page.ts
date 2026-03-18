@@ -52,7 +52,7 @@ export class ClaimManagementCreatePage extends BasePage {
   readonly viewDetailBtnLocator: Locator = this.page.getByRole('button', { name: /View detail/ })
 
   async extractClaimCoverageTable(sectionName: string) {
-    const clean = async cell => (await cell.innerText()).replace(/\s+/g, ' ').trim()
+    const clean = async (cell: Locator) => (await cell.innerText()).replace(/\s+/g, ' ').trim()
 
     const table = this.page.locator(
       `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
@@ -72,9 +72,9 @@ export class ClaimManagementCreatePage extends BasePage {
     for (let i = 0; i < (await rows.count()); i++) {
       const row = rows.nth(i)
 
-      const valueCells = row.locator("td[class*='css-136xsf8']")
-      const subBenefitCells = row.locator("td[class*='css-1x2df3e']")
-      const mainGroupCells = row.locator("td[class*='css-4jen04']")
+      const valueCells = row.locator("td[class*='css-562xhp']")
+      const subBenefitCells = row.locator("td[class*='css-1q43pf6']")
+      const mainGroupCells = row.locator("td[class*='css-i88b5x']")
 
       const valueCount = await valueCells.count()
 
@@ -156,7 +156,7 @@ export class ClaimManagementCreatePage extends BasePage {
   }
 
   async extractHospitalClaimCoverageTable(sectionName: string) {
-    const clean = async cell => (await cell.innerText()).replace(/\s+/g, ' ').trim()
+    const clean = async (cell: Locator) => (await cell.innerText()).replace(/\s+/g, ' ').trim()
 
     const table = this.page.locator(
       `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
@@ -173,9 +173,9 @@ export class ClaimManagementCreatePage extends BasePage {
     for (let i = 0; i < (await rows.count()); i++) {
       const row = rows.nth(i)
 
-      const valueCells = row.locator("td[class*='css-136xsf8']")
-      const subBenefitCells = row.locator("td[class*='css-1x2df3e']")
-      const mainGroupCells = row.locator("td[class*='css-4jen04']")
+      const valueCells = row.locator("td[class*='css-562xhp']")
+      const subBenefitCells = row.locator("td[class*='css-1q43pf6']")
+      const mainGroupCells = row.locator("td[class*='css-i88b5x']")
 
       const valueCount = await valueCells.count()
 
@@ -343,10 +343,10 @@ export class ClaimManagementCreatePage extends BasePage {
   }
 
   async fillMainBenefitInformation(claimData: {
-    claimType?: string
-    benefitType?: string
-    providerNameTh?: string
-    causeOfLoss?: string
+    claimType: string
+    benefitType: string
+    providerNameTh: string
+    causeOfLoss: string
 
     // Dates
     appointmentDate?: string
