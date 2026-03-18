@@ -55,7 +55,7 @@ export class ClaimManagementCreatePage extends BasePage {
     const clean = async (cell: Locator) => (await cell.innerText()).replace(/\s+/g, ' ').trim()
 
     const table = this.page.locator(
-      `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
+      `//h6[normalize-space()='${sectionName}']/following::table[1]`
     )
 
     const rows = table.locator('tbody > tr')
@@ -159,7 +159,7 @@ export class ClaimManagementCreatePage extends BasePage {
     const clean = async (cell: Locator) => (await cell.innerText()).replace(/\s+/g, ' ').trim()
 
     const table = this.page.locator(
-      `//div[contains(@style, 'block')]//h6[normalize-space()='${sectionName}']/following::table[1]`
+      `//h6[normalize-space()='${sectionName}']/following::table[1]`
     )
 
     const rows = table.locator('tbody > tr')
