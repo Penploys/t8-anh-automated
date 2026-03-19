@@ -239,7 +239,7 @@ export class ClaimManagementCreatePage extends BasePage {
       // Already expanded or button not found
     }
 
-    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 30000 })
+    // await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 30000 })
 
     const results = await this.extractClaimCoverageTable(claimType)
 
@@ -271,7 +271,7 @@ export class ClaimManagementCreatePage extends BasePage {
       // Already expanded or button not found
     }
 
-    await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 30000 })
+    // await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 30000 })
 
     const results = await this.extractHospitalClaimCoverageTable(claimType)
 

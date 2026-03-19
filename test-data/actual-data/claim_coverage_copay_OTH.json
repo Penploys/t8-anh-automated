@@ -4,12 +4,23 @@
       "mainGroup": "Max Payable Limit",
       "subBenefit": "-",
       "limit": "200,000.00 THB per year",
-      "usage": "49,625.00 THB per year",
-      "remaining": "150,375.00 THB per year",
+      "usage": "178,000.00 THB per year",
+      "remaining": "22,000.00 THB per year",
       "combinedSub": "0.00 THB per year",
       "combinedSubRemaining": "0.00 THB per year",
       "combined": "0.00 THB per year",
       "combinedRemaining": "0.00 THB per year"
+    },
+    {
+      "mainGroup": "Max Payable Limit",
+      "subBenefit": "-",
+      "limit": "200,000.00THB per year",
+      "usage": "178,000.00THB per year",
+      "remaining": "22,000.00THB per year",
+      "combinedSub": "0.00THB per year",
+      "combinedSubRemaining": "0.00THB per year",
+      "combined": "0.00THB per year",
+      "combinedRemaining": "0.00THB per year"
     }
   ]
 }

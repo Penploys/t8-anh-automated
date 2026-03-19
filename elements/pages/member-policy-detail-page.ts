@@ -508,7 +508,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async getCoverageDetails(productName: string) {
-    await this.page.waitForTimeout(10000)
+    await this.page.waitForTimeout(3000)
     await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
 
     const resultsOTH = await this.extractCoverageTable('OTH')
@@ -541,7 +541,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async getHospitalCoverageDetails(productName: string) {
-    await this.page.waitForTimeout(10000)
+    await this.page.waitForTimeout(3000)
     await this.headerTableLocator.first().waitFor({ state: 'visible', timeout: 10000 })
 
     const resultsOTH = await this.extractHospitalCoverageTable('OTH')
@@ -574,7 +574,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async validateCoverageDetail(policyData: any, productName: string) {
-    await this.page.waitForTimeout(10000)
+    await this.page.waitForTimeout(3000)
     const filePath = path.resolve(process.cwd(), 'test-data', 'actual-data', `coverage_${productName}.json`)
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
@@ -590,7 +590,7 @@ export class MemberPolicyDetailPage extends BasePage {
   }
 
   async validateHospitalCoverageDetail(policyData: any, productName: string) {
-    await this.page.waitForTimeout(10000)
+    await this.page.waitForTimeout(3000)
     const filePath = path.resolve(process.cwd(), 'test-data', 'actual-data', `coverage_${productName}.json`)
     const coverage = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
